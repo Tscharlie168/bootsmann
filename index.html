@@ -55,9 +55,10 @@ a{color:inherit;}
 
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;}
-.nrow{display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ink);padding:11px 13px;border-radius:12px;background:#FDECE8;border:1px solid #F0C4B8;margin-bottom:8px;}
+.nrow{display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ink);padding:11px 13px;border-radius:12px;background:var(--paper);border:1px solid var(--line);margin-bottom:8px;}
 .nrow span{font-size:15px;font-weight:500;}
-.nrow b{font-family:'IBM Plex Mono',monospace;font-size:23px;color:var(--red);}
+.nrow b{font-family:'IBM Plex Mono',monospace;font-size:23px;color:var(--navy);}
+.cardnote{font-size:13px;color:var(--muted);margin:8px 2px 0;}
 .nsub{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
 .nsub a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 4px;}
 .nsub a span{font-size:11px;color:var(--muted);}
@@ -102,6 +103,13 @@ a{color:inherit;}
   </div>
 
   <div class="card">
+    <p class="lbl">Ihr Hotel</p>
+    <!-- TODO: Echte Rezeptionsnummer eintragen – sowohl im href="tel:..." als auch im angezeigten Text darunter. -->
+    <a class="nrow" href="tel:+4975430000000"><span>Rezeption</span><b>07543 · 0000</b></a>
+    <p class="cardnote">Fragen zu Anreise, Zimmer oder Ausflugstipps? Die Rezeption hilft gerne weiter.</p>
+  </div>
+
+  <div class="card">
     <p class="lbl">Im Notfall</p>
     <a class="nrow" href="tel:112"><span>Notruf (Europa)</span><b>112</b></a>
     <div class="nsub">
@@ -136,23 +144,42 @@ function wxCode(c){
   if(c>=95)return{t:"Gewitter",i:"⛈️"};
   return{t:"—",i:"🌡️"};
 }
-function loadWx(){
+var WX_DEFAULT={lat:47.598,lng:9.547,name:"Langenargen"};
+function loadWx(lat,lng,place){
   var el=document.getElementById("lg-weather"); if(!el) return;
-  var url="https://api.open-meteo.com/v1/forecast?latitude=47.598&longitude=9.547&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Europe%2FBerlin&forecast_days=3";
+  place=String(place).replace(/[<>]/g,"");
+  var url="https://api.open-meteo.com/v1/forecast?latitude="+lat+"&longitude="+lng+"&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=3";
   fetch(url).then(function(r){return r.json();}).then(function(d){
     if(!d||!d.current||!d.daily)throw 0;
     var now=wxCode(d.current.weather_code); var nm=["Heute","Morgen","Übermorgen"];
-    var h='<div class="lg-wx-now"><span class="lg-wx-ico">'+now.i+'</span><div class="lg-wx-nowtxt"><span class="lg-wx-temp">'+Math.round(d.current.temperature_2m)+'°</span><span class="lg-wx-place">jetzt in <b>Langenargen</b> · '+now.t+'</span></div></div><div class="lg-wx-days">';
+    var h='<div class="lg-wx-now"><span class="lg-wx-ico">'+now.i+'</span><div class="lg-wx-nowtxt"><span class="lg-wx-temp">'+Math.round(d.current.temperature_2m)+'°</span><span class="lg-wx-place">jetzt in <b>'+place+'</b> · '+now.t+'</span></div></div><div class="lg-wx-days">';
     for(var i=0;i<3;i++){ var w=wxCode(d.daily.weather_code[i]);
       h+='<div class="lg-wx-day"><span class="lg-wx-dname">'+nm[i]+'</span><span class="lg-wx-dico">'+w.i+'</span><span class="lg-wx-drange">'+Math.round(d.daily.temperature_2m_max[i])+'°<em> / '+Math.round(d.daily.temperature_2m_min[i])+'°</em></span></div>';
     }
     h+='</div>'; el.innerHTML=h;
   }).catch(function(){ el.innerHTML='<div class="lg-wx-fail">Wetter gerade nicht verfügbar.</div>'; });
 }
-if(navigator.geolocation){
-  navigator.geolocation.getCurrentPosition(function(p){ GEO.lat=p.coords.latitude; GEO.lng=p.coords.longitude; }, function(){}, {timeout:6000, maximumAge:300000});
+// Ortsnamen zum Standort ermitteln (kostenlos, ohne Schlüssel); bei Fehler neutraler Text
+function wxPlaceName(lat,lng,cb){
+  fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+lat+"&longitude="+lng+"&localityLanguage=de")
+    .then(function(r){return r.json();})
+    .then(function(d){ cb(d.city||d.locality||d.principalSubdivision||"Ihrer Nähe"); })
+    .catch(function(){ cb("Ihrer Nähe"); });
 }
-loadWx();
+// Wetter am aktuellen Standort; ohne Freigabe/Standort ersatzweise Langenargen
+function startWx(){
+  if(navigator.geolocation){
+    navigator.geolocation.getCurrentPosition(function(p){
+      GEO.lat=p.coords.latitude; GEO.lng=p.coords.longitude;
+      wxPlaceName(GEO.lat,GEO.lng,function(nm){ loadWx(GEO.lat,GEO.lng,nm); });
+    },function(){
+      loadWx(WX_DEFAULT.lat,WX_DEFAULT.lng,WX_DEFAULT.name);
+    },{timeout:6000, maximumAge:300000});
+  } else {
+    loadWx(WX_DEFAULT.lat,WX_DEFAULT.lng,WX_DEFAULT.name);
+  }
+}
+startWx();
 </script>
 <script>
 if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js'); }); }
