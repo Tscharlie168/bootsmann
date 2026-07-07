@@ -1,4 +1,4 @@
-/* Bootsmann – Service Worker (v1) – Stand: 7. Juli 2026
+/* Bootsmann – Service Worker (v2) – Stand: 7. Juli 2026
    Eigenständige App: Schifffahrtspläne am Bodensee (Ausflugsschiffe,
    Autofähre) plus Wetter.
 
@@ -11,7 +11,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v1';
+const CACHE = 'bootsmann-v2';
 const SHELL = [
   './',
   './index.html',
