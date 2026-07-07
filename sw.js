@@ -1,0 +1,72 @@
+/* Bootsmann – Service Worker (v1) – Stand: 7. Juli 2026
+   Eigenständige App: Schifffahrtspläne am Bodensee (Ausflugsschiffe,
+   Autofähre) plus Wetter.
+
+   Grundprinzip:
+   - Jede Seite wird unter ihrem EIGENEN Schlüssel gespeichert.
+   - Die Seite kommt zuerst frisch aus dem Netz (Updates erscheinen
+     automatisch), nur ohne Internet greift die gespeicherte Kopie.
+     Symbole & Manifest kommen zuerst aus dem Speicher. Fremde Dienste
+     (Wetter, Karten) immer aus dem Netz.
+   Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
+   eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
+
+const CACHE = 'bootsmann-v1';
+const SHELL = [
+  './',
+  './index.html',
+  './bsb-fahrplan.html',
+  './autofaehre.html',
+  './bootsmann.webmanifest',
+  './bootsmann-icon-180.png',
+  './bootsmann-icon-192.png',
+  './bootsmann-icon-512.png'
+];
+
+self.addEventListener('install', e => {
+  e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
+});
+
+self.addEventListener('activate', e => {
+  e.waitUntil(
+    caches.keys()
+      .then(keys => Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k))))
+      .then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', e => {
+  const req = e.request;
+  if (req.method !== 'GET') return;
+  const url = new URL(req.url);
+  if (url.origin !== location.origin) return; // Wetter/Karten o. Ä. nie abfangen
+
+  const istSeite = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+
+  if (istSeite) {
+    // Seite unter ihrem eigenen, sauberen Schlüssel ablegen (ohne ?lat=..&lng=..)
+    const pageKey =
+      url.pathname.endsWith('/bsb-fahrplan.html') ? './bsb-fahrplan.html' :
+      url.pathname.endsWith('/autofaehre.html')   ? './autofaehre.html'   : './index.html';
+    // zuerst Netz (frischer Stand), bei Offline die passende Kopie
+    e.respondWith(
+      fetch(req).then(resp => {
+        const copy = resp.clone();
+        caches.open(CACHE).then(c => c.put(pageKey, copy)).catch(() => {});
+        return resp;
+      }).catch(() =>
+        caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match('./index.html'))
+      )
+    );
+    return;
+  }
+
+  // Übrige eigene Dateien (Symbole, Manifest): zuerst Kopie, sonst Netz
+  e.respondWith(
+    caches.match(req).then(hit => hit || fetch(req).then(resp => {
+      const copy = resp.clone();
+      caches.open(CACHE).then(c => c.put(req, copy)).catch(() => {});
+      return resp;
+    }))
+  );
+});
