@@ -11,7 +11,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v4';
+const CACHE = 'bootsmann-v5';
 const SHELL = [
   './',
   './index.html',
