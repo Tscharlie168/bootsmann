@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v4) – Stand: 7. Juli 2026
+/* Bootsmann – Service Worker (v5) – Stand: 13. Juli 2026
+   Neu gegenüber v4:
+   - Fahrplan der Ausflugsschiffe (bsb-fahrplan.html) aus dem Lotse-
+     Projekt übernommen: Nebensaison-Fahrzeiten, neuer "Karte"-Tab mit
+     aktuellen Schiffspositionen (aus dem Fahrplan berechnet, keine
+     Live-Ortung), echte Bodensee-Silhouette mit Zoom/Pan, sowie eine
+     einklappbare Flotten-Übersicht mit Foto/Baujahr/Länge/Tiefgang zu
+     allen 33 Schiffen der Bodensee-Reedereien.
    Eigenständige App: Schifffahrtspläne am Bodensee (Ausflugsschiffe,
    Autofähre) plus Wetter.
 
@@ -11,7 +18,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v7';
+const CACHE = 'bootsmann-v8';
 const SHELL = [
   './',
   './index.html',
