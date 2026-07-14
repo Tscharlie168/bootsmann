@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v8) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v9) – Stand: 14. Juli 2026
+   Neu gegenüber v8:
+   - Startseiten-Kacheln umbenannt ("BSB Fahrplan" / "Bodensee Fähre",
+     jeweils mit vertauschter Klein-/Fettzeile), Wartezeit-am-Hafen-
+     Feld (Webcam-Link) auf der Autofähre-Seite komplett entfernt.
    Neu gegenüber v7:
    - Umstellung vom Hotel-Whitelabel auf eigenständige Endkunden-App:
      Hotel-Branding (Name, Rezeption) entfernt, Startseite/Fahrplan-
@@ -32,7 +36,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v11';
+const CACHE = 'bootsmann-v12';
 const SHELL = [
   './',
   './index.html',
