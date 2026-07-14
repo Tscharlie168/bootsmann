@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v22) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v23) – Stand: 14. Juli 2026
+   Neu gegenüber v22:
+   - Wetter-Kachel gekürzt: 3-Tage-Vorschau (Heute/Morgen/Übermorgen)
+     entfernt, stattdessen Tageshöchst-/Tiefsttemperatur direkt neben
+     der aktuellen Temperatur. Nutzer verlassen sich für Mehrtages-
+     Prognosen ohnehin meist auf eine eigene Wetter-App.
    Neu gegenüber v21:
    - Kopfzeilen gestrafft: Wort "Bodensee" aus den Unterzeilen von BSB
      Fahrplan und Live-Karte entfernt. Katamaran-Seite: Eyebrow-Zeile
@@ -83,7 +88,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v22';
+const CACHE = 'bootsmann-v23';
 const SHELL = [
   './',
   './index.html',
