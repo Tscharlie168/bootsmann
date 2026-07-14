@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#0E3553">
+<title>Katamaran Konstanz – Friedrichshafen</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<script src="katamaran-daten.js"></script>
+<style>
+:root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--kat:#7B4FA0;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;}
+.lg-app{max-width:560px;margin:0 auto;min-height:100vh;background:var(--paper);}
+select,input,button{font-family:inherit;}
+
+.lg-head{position:relative;background:linear-gradient(160deg,#0E3553 0%,#15679E 100%);color:#fff;padding:26px 22px 42px;overflow:hidden;}
+.lg-head-inner{position:relative;z-index:2;}
+.lg-back{display:inline-flex;align-items:center;gap:6px;color:#0A2233;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;text-transform:uppercase;background:#7FD5EA;border:1.5px solid #62D0E8;border-radius:999px;padding:9px 16px;margin-bottom:14px;-webkit-tap-highlight-color:transparent;cursor:pointer;}
+.lg-back:active{background:#62D0E8;border-color:#2BA6C9;}
+.lg-eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;color:#9FD4E6;}
+.lg-head h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:34px;line-height:1.04;margin:6px 0 0;letter-spacing:.01em;}
+.lg-head h1 span{color:#62D0E8;}
+.lg-sub{margin:8px 0 0;font-size:14px;color:#D5E6F1;}
+.lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:44px;z-index:1;fill:var(--paper);}
+
+.wrap{padding:16px;}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);margin-bottom:14px;}
+.lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 8px;}
+
+.dir{display:flex;gap:8px;}
+.dir button{flex:1;border:1.5px solid var(--line);background:#fff;border-radius:12px;padding:12px 8px;cursor:pointer;text-align:center;color:var(--ink);line-height:1.2;}
+.dir button b{display:block;font-size:15px;font-weight:600;}
+.dir button small{display:block;font-size:12px;color:var(--muted);margin-top:2px;}
+.dir button.is-active{border-color:var(--kat);background:#F3EDF8;box-shadow:inset 0 0 0 1px var(--kat);}
+
+.when{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;}
+.when .fld{flex:1;min-width:120px;}
+.when .fld span{display:block;font-size:12px;color:var(--muted);margin-bottom:4px;}
+.when input{width:100%;padding:11px 12px;border:1.5px solid var(--line);border-radius:12px;font-size:16px;color:var(--ink);background:#fff;}
+
+.deps{list-style:none;margin:0;padding:0;}
+.dep{display:flex;align-items:center;gap:12px;padding:13px 6px;border-bottom:1px solid var(--line);}
+.dep:last-child{border-bottom:none;}
+.dep .t{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:22px;color:var(--navy);min-width:74px;}
+.dep .meta{font-size:13px;color:var(--muted);flex:1;}
+.dep .in{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--kat);border-radius:999px;padding:4px 11px;white-space:nowrap;}
+.dep.soon .t{color:var(--kat);}
+.dephead{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:600;color:var(--muted);padding:6px 6px 2px;}
+
+.notice{background:#FFF7E9;border:1px solid #F0D9A8;border-radius:12px;padding:13px 14px;font-size:14px;color:#6b4e18;}
+.preise{list-style:none;margin:0;padding:0;font-size:14px;}
+.preise li{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--line);}
+.preise li:last-child{border-bottom:none;}
+.preise b{font-family:'IBM Plex Mono',monospace;color:var(--navy);}
+.foot{font-size:13px;color:var(--muted);padding:2px 6px 26px;}
+.foot a{color:var(--blue);}
+.foot .ext{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin:10px 0;color:var(--ink);text-decoration:none;}
+.foot .ext b{color:var(--blue);}
+</style>
+</head>
+<body>
+<div class="lg-app">
+  <header class="lg-head">
+    <div class="lg-head-inner">
+      <button class="lg-back" onclick="zurueck()">‹ Zurück</button>
+      <div class="lg-eyebrow">Bodensee · Katamaran</div>
+      <h1>Konstanz <span>–</span> Friedrichshafen</h1>
+      <p class="lg-sub">Nonstop in 52 Minuten · ganzjährig</p>
+    </div>
+    <svg class="lg-wave" viewBox="0 0 1440 44" preserveAspectRatio="none"><path d="M0 44V20c120-16 260-16 380 0s260 16 380 0 260-16 380 0 200 12 300 6v18z"/></svg>
+  </header>
+
+  <div class="wrap">
+    <div class="card">
+      <p class="lbl">Richtung</p>
+      <div class="dir" id="dir">
+        <button data-dir="kn" onclick="setDir('kn')"><b>ab Konstanz</b><small>Katamaran-Hafen</small></button>
+        <button data-dir="fn" onclick="setDir('fn')"><b>ab Friedrichshafen</b><small>Katamaran-Hafen</small></button>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="lbl">Ab wann?</p>
+      <div class="when">
+        <label class="fld"><span>Datum</span><input type="date" id="date"></label>
+        <label class="fld"><span>Uhrzeit</span><input type="time" id="time"></label>
+      </div>
+    </div>
+
+    <div class="card" id="result"></div>
+
+    <div class="card">
+      <p class="lbl">Preise (Auszug)</p>
+      <ul class="preise">
+        <li><span>Erwachsener, einfache Fahrt</span><b>14,30 €</b></li>
+        <li><span>Erwachsener, Hin- und Rückfahrt</span><b>27,50 €</b></li>
+        <li><span>Kind (6–14), einfache Fahrt</span><b>6,70 €</b></li>
+        <li><span>Familie (2 Erw. + 3 Kinder), Hin- u. Rück</span><b>68,30 €</b></li>
+        <li><span>14-Uhr-Ticket (ab 14 Uhr, Hin- u. Rück)</span><b>19,30 €</b></li>
+      </ul>
+    </div>
+
+    <div class="foot">
+      <a class="ext" href="https://der-katamaran.de" target="_blank" rel="noopener">
+        <span>🔗</span><span>Tickets, aktuelle Preise, Störungen und Sonderfahrten (z. B. Seehasenfest, Seenachtsfest) gelten nur auf der <b>offiziellen Seite der Katamaran-Reederei</b>. Dort gelten deren Regeln – nicht die von Bootsmann.</span>
+      </a>
+      Angaben ohne Gewähr · Sommerfahrplan gültig 01.04.–04.10.2026 · Betreiber: Katamaran-Reederei Bodensee GmbH & Co.KG.
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+function pad(n){return (n<10?"0":"")+n;}
+function iso(d){return d.getFullYear()+"-"+pad(d.getMonth()+1)+"-"+pad(d.getDate());}
+function hhmm(d){return pad(d.getHours())+":"+pad(d.getMinutes());}
+
+var STATE={dir:"kn",date:"",time:""};
+
+function distKm(a,b){
+  var R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;
+  var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
+}
+
+function collect(dir,baseDate,fromMin,n){
+  var res=[];
+  for(var off=0;off<3 && res.length<n;off++){
+    var d=new Date(baseDate.getTime()); d.setDate(d.getDate()+off);
+    var dStr=iso(d);
+    if(dStr<KAT_SEASON_START||dStr>KAT_SEASON_END) continue;
+    var hours=(dir==="kn"?katDepartsKN:katDepartsFN)(d.getDay(),dStr);
+    hours.forEach(function(h){
+      if(off>0 || h*60>=fromMin) res.push({h:h,off:off});
+    });
+  }
+  return res.slice(0,n);
+}
+
+function render(){
+  var box=document.getElementById("result");
+  document.querySelectorAll("#dir button").forEach(function(b){ b.classList.toggle("is-active", b.getAttribute("data-dir")===STATE.dir); });
+
+  if(STATE.date<KAT_SEASON_START || STATE.date>KAT_SEASON_END){
+    box.innerHTML='<div class="notice">Für dieses Datum gilt der <b>Winterfahrplan</b>. Diese Zeiten stehen auf der offiziellen Seite der Katamaran-Reederei (Link unten).</div>';
+    return;
+  }
+
+  var base=new Date(STATE.date+"T00:00:00");
+  var fromMin=parseInt(STATE.time.slice(0,2),10)*60+parseInt(STATE.time.slice(3,5),10);
+  if(isNaN(fromMin)) fromMin=0;
+  var list=collect(STATE.dir,base,fromMin,7);
+  var now=new Date();
+
+  if(!list.length){ box.innerHTML='<div class="notice">Für den Rest des Tages sind keine Abfahrten hinterlegt. Bitte Datum oder Uhrzeit ändern.</div>'; return; }
+
+  var ziel = STATE.dir==="kn" ? "nach Friedrichshafen" : "nach Konstanz";
+  var html='<div class="dephead">Abfahrten '+ziel+' · Fahrzeit 52 Min.</div><ul class="deps">';
+  for(var i=0;i<list.length;i++){
+    var it=list[i];
+    var dep=new Date(base.getTime()); dep.setDate(dep.getDate()+it.off); dep.setHours(it.h,0,0,0);
+    var delta=Math.round((dep.getTime()-now.getTime())/60000);
+    var soon = delta>=0 && delta<=90;
+    var meta = it.off? "morgen" : "";
+    var inTxt = soon ? '<span class="in">'+(delta<=0?"jetzt":"in "+delta+" Min")+'</span>' : '';
+    html+='<li class="dep'+(soon?' soon':'')+'"><span class="t">'+pad(it.h)+':00</span><span class="meta">'+meta+'</span>'+inTxt+'</li>';
+  }
+  html+='</ul>';
+  box.innerHTML=html;
+}
+
+function setDir(d){ STATE.dir=d; render(); }
+function refreshNow(){
+  var n=new Date();
+  STATE.date=iso(n); STATE.time=hhmm(n);
+  document.getElementById("date").value=STATE.date;
+  document.getElementById("time").value=STATE.time;
+  render();
+}
+function zurueck(){ location.href="./"; }
+
+(function init(){
+  var p=new URLSearchParams(location.search);
+  var lat=parseFloat(p.get("lat")), lng=parseFloat(p.get("lng"));
+  if(!isNaN(lat)&&!isNaN(lng)){
+    var here={lat:lat,lng:lng};
+    STATE.dir = distKm(here,KAT_PORTS.fn) < distKm(here,KAT_PORTS.kn) ? "fn" : "kn";
+  }
+  document.getElementById("date").addEventListener("change",function(e){ STATE.date=e.target.value||STATE.date; render(); });
+  document.getElementById("time").addEventListener("change",function(e){ STATE.time=e.target.value||STATE.time; render(); });
+  refreshNow();
+})();
+
+document.addEventListener("visibilitychange",function(){ if(!document.hidden) refreshNow(); });
+window.addEventListener("pageshow",function(){ refreshNow(); });
+</script>
+</body>
+</html>

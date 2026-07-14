@@ -1,4 +1,15 @@
-/* Bootsmann – Service Worker (v12) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v16) – Stand: 14. Juli 2026
+   Neu gegenüber v15:
+   - Katamaran Konstanz–Friedrichshafen ergänzt: eigene Seite
+     (katamaran.html), eigene Startseiten-Kachel, eigene Kursdaten in
+     der neuen gemeinsamen Datei katamaran-daten.js (analog
+     fahrplan-daten.js), Katamaran-Positionen in Lila auf der Live-Karte,
+     und Einbindung in die "Nächste Abfahrt"-Kachel bei Standort
+     Konstanz/Friedrichshafen.
+   - Karte ist jetzt zusätzlich direkt über eine eigene Startseiten-
+     Kachel erreichbar (bsb-fahrplan.html?tab=karte); der Karte-Tab in
+     der BSB-Seiten-Navigation selbst wurde entfernt (nur noch
+     Verbindung/Schweiz/Hinweise dort).
    Neu gegenüber v11:
    - Startseite: "Im Notfall"-Feld durch "Nächste Abfahrt" ersetzt (ab
      nächstgelegenem Hafen, große Uhrzeit im selben Kartenstil). Dazu
@@ -52,13 +63,15 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v15';
+const CACHE = 'bootsmann-v16';
 const SHELL = [
   './',
   './index.html',
   './bsb-fahrplan.html',
   './autofaehre.html',
+  './katamaran.html',
   './fahrplan-daten.js',
+  './katamaran-daten.js',
   './bootsmann.webmanifest',
   './bootsmann-icon-180.png',
   './bootsmann-icon-192.png',
@@ -89,7 +102,8 @@ self.addEventListener('fetch', e => {
     // Seite unter ihrem eigenen, sauberen Schlüssel ablegen (ohne ?lat=..&lng=..)
     const pageKey =
       url.pathname.endsWith('/bsb-fahrplan.html') ? './bsb-fahrplan.html' :
-      url.pathname.endsWith('/autofaehre.html')   ? './autofaehre.html'   : './index.html';
+      url.pathname.endsWith('/autofaehre.html')   ? './autofaehre.html'   :
+      url.pathname.endsWith('/katamaran.html')    ? './katamaran.html'    : './index.html';
     // zuerst Netz (frischer Stand), bei Offline die passende Kopie
     e.respondWith(
       fetch(req).then(resp => {
