@@ -1391,7 +1391,7 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
     var lat=parseFloat(q.get("lat")),lng=parseFloat(q.get("lng"));
     if(!isNaN(lat)&&!isNaN(lng)){
       var n=nearestPort(lat,lng);
-      if(!n.far){state.from=n.idx;state.locStatus="Standort \u00fcbernommen: "+PORTS[n.idx];}
+      if(!n.far){state.from=n.idx;}
       else{state.locStatus="\u00dcbergebener Standort liegt nicht am Bodensee \u2013 bitte Hafen w\u00e4hlen.";}
     }else{
       var fp=resolvePort(q.get("from"));if(fp>=0)state.from=fp;

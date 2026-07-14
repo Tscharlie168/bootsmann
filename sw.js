@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v10) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v11) – Stand: 14. Juli 2026
+   Neu gegenüber v10:
+   - BSB-Fahrplan: Bestätigungstext "Standort übernommen: XY" entfernt,
+     wenn der Hafen von der Startseite übernommen wird - die Auswahl
+     selbst passiert weiterhin, nur ohne Hinweiszeile.
    Neu gegenüber v9:
    - Feinschliff Startseite/Hinweise: Abschnittstitel "Unterwegs auf dem
      See" und Kachel-Unterzeilen entfernt, Kachel-Beschriftung und
@@ -41,7 +45,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v13';
+const CACHE = 'bootsmann-v14';
 const SHELL = [
   './',
   './index.html',
