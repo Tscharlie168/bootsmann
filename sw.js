@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v6) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v7) – Stand: 14. Juli 2026
+   Neu gegenüber v6:
+   - Karte: Vollbild-Modus ergänzt; Info zum ausgewählten Schiff (Von →
+     Bis) liegt jetzt direkt auf der Karte statt darunter (wie bei Lotse).
    Neu gegenüber v5:
    - Flotten-Bildergalerie (Fotos/Baujahr/Länge/Tiefgang aller Schiffe)
      wieder entfernt: eigenständige Entscheidung für Bootsmann (bläht als
@@ -24,7 +27,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v9';
+const CACHE = 'bootsmann-v10';
 const SHELL = [
   './',
   './index.html',
