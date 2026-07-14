@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v11) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v12) – Stand: 14. Juli 2026
+   Neu gegenüber v11:
+   - Startseite: "Im Notfall"-Feld durch "Nächste Abfahrt" ersetzt (ab
+     nächstgelegenem Hafen, große Uhrzeit im selben Kartenstil). Dazu
+     die Fahrplan-Daten/Gültigkeitslogik aus bsb-fahrplan.html in die
+     neue gemeinsame Datei fahrplan-daten.js ausgelagert, damit
+     Startseite und Fahrplan-Seite dieselben Kursdaten nutzen statt
+     zwei Kopien pflegen zu müssen.
    Neu gegenüber v10:
    - BSB-Fahrplan: Bestätigungstext "Standort übernommen: XY" entfernt,
      wenn der Hafen von der Startseite übernommen wird - die Auswahl
@@ -45,12 +52,13 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v14';
+const CACHE = 'bootsmann-v15';
 const SHELL = [
   './',
   './index.html',
   './bsb-fahrplan.html',
   './autofaehre.html',
+  './fahrplan-daten.js',
   './bootsmann.webmanifest',
   './bootsmann-icon-180.png',
   './bootsmann-icon-192.png',
