@@ -38,6 +38,26 @@ warten. Faustregel:
   Preis-/Rechtstext, etwas mit unklarer Absicht): vor dem Umsetzen
   nachfragen statt einfach loszulegen.
 
+## Vorlage-basierte Änderungen: selbst gegenprüfen statt nur technisch testen
+
+Wenn eine neue Seite/ein neuer Abschnitt von einer bestehenden Seite
+kopiert wird (z. B. neue Fahrplan-Seite nach Muster von `autofaehre.html`),
+reicht ein technischer Test (lädt die Seite, keine JS-Fehler, Screenshot)
+NICHT aus. Zusätzlich vor dem Abschluss aktiv gegen die Geschwisterseiten
+prüfen:
+- Passt jedes Text-/Label-Detail inhaltlich zum neuen Kontext, oder ist es
+  nur unverändert mitkopiert (z. B. zwei Buttons mit demselben generischen
+  Label statt echter unterscheidender Angaben)?
+- Sind alle mitkopierten CSS-Variablen/Klassen tatsächlich noch in
+  Gebrauch, oder bleiben Leichen aus der Vorlage zurück?
+- Folgt Überschriften-Hierarchie/Wortwahl demselben Muster wie auf den
+  anderen Seiten der App (z. B. Produktname vs. Strecke als große
+  Überschrift)?
+Das ist mehrfach nicht passiert und musste vom Auftraggeber nachträglich
+gefunden werden ("Kopierreste") – kostet unnötig Zeit und Nerven auf
+beiden Seiten. Diese Kontrolle aktiv selbst machen, bevor das Ergebnis
+präsentiert wird.
+
 ## Projektabgrenzung: Lotse
 
 Bootsmann war ursprünglich Teil des Lotse-Projekts (1a-lotse.de) und wurde
