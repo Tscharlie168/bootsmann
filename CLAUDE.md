@@ -1,17 +1,29 @@
 # Bootsmann – Hinweise für Claude Code
 
-## Immer zuerst synchronisieren
+## Wo die aktuellen Daten liegen (verbindlich, keine Ausnahmen)
 
-Bevor Code-Änderungen an diesem Repo begonnen werden: `git fetch origin main`
-ausführen und prüfen, ob der aktuelle Arbeits-Branch hinter `origin/main`
-zurückliegt (`git log HEAD..origin/main`). Grund: An Bootsmann arbeiten
-öfter mehrere Claude-Code-Sessions parallel bzw. nacheinander; Branches
-sind Momentaufnahmen und bekommen von bereits gemergten PRs nichts mit.
-Bei Rückstand vor Beginn neuer Arbeit erst gegen `main` rebasen bzw. den
-Stand abgleichen, um Duplikate/Konflikte mit bereits gemergten Features
-zu vermeiden (ist schon einmal passiert: eine eigene "Nächste Abfahrt"-
-Kachel wurde gebaut, obwohl auf `main` längst eine bessere, generische
-Version existierte).
+Die **einzige Quelle der Wahrheit** für den Live-Stand von Bootsmann ist
+`origin/main` im Repo `Tscharlie168/bootsmann`. Kein anderer Branch, keine
+lokale Kopie, kein Gedächtnis aus einer früheren Session zählt. Wer hier
+arbeitet, ohne das zu prüfen, verschwendet nachweislich Zeit – das ist
+schon mehrfach passiert (z. B. eine eigene "Nächste Abfahrt"-Kachel
+gebaut, obwohl auf `main` längst eine bessere, generische Version
+existierte; einmal musste ein kompletter Branch per `git reset --hard
+origin/main` neu aufgesetzt werden, weil er auf einem veralteten Stand
+gebaut war).
+
+**Vor JEDER Code-Änderung, ausnahmslos, als allererster Schritt:**
+1. `git fetch origin main`
+2. `git log HEAD..origin/main` bzw. `git merge-base --is-ancestor origin/main HEAD` prüfen
+3. Bei Rückstand: erst gegen `main` synchronisieren (rebasen oder, bei
+   stark abweichendem/veraltetem Branch, `git reset --hard origin/main`
+   und die eigene Arbeit sauber neu aufbauen), bevor irgendetwas Neues
+   begonnen wird.
+
+Das gilt unabhängig davon, wie lange die Session schon läuft oder was in
+einer früheren Nachricht dieser Konversation über den Datei-Stand gesagt
+wurde – der Stand kann sich durch andere, parallel laufende Sessions
+jederzeit geändert haben. Im Zweifel lieber einmal zu oft fetchen.
 
 ## Projektabgrenzung: Lotse
 
