@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v20) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v21) – Stand: 14. Juli 2026
+   Neu gegenüber v20:
+   - Katamaran-Seite: Überschrift zeigt jetzt "Katamaran" (Produktname),
+     Strecke Konstanz–Friedrichshafen steht in der kleinen Eyebrow-Zeile.
    Neu gegenüber v19:
    - Live-Karte: Untertext zu "Schiffspositionen laut Fahrplan" geändert.
    Neu gegenüber v18:
@@ -75,7 +78,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v20';
+const CACHE = 'bootsmann-v21';
 const SHELL = [
   './',
   './index.html',
