@@ -1,4 +1,6 @@
-/* Bootsmann – Service Worker (v19) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v20) – Stand: 14. Juli 2026
+   Neu gegenüber v19:
+   - Live-Karte: Untertext zu "Schiffspositionen laut Fahrplan" geändert.
    Neu gegenüber v18:
    - BSB-Fahrplan-Fußzeile gekürzt: "Persönlicher Planer · kein
      offizieller Fahrplan" entfernt, nur noch "Angaben ohne Gewähr".
@@ -73,7 +75,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v19';
+const CACHE = 'bootsmann-v20';
 const SHELL = [
   './',
   './index.html',
