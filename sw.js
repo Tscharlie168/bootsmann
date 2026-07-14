@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v18) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v19) – Stand: 14. Juli 2026
+   Neu gegenüber v18:
+   - BSB-Fahrplan-Fußzeile gekürzt: "Persönlicher Planer · kein
+     offizieller Fahrplan" entfernt, nur noch "Angaben ohne Gewähr".
    Neu gegenüber v17:
    - Karte-Direkteinstieg (von der Startseiten-Kachel): eigener Titel
      "Live-Karte" statt "BSB Fahrplan", Tab-Leiste (Verbindung/Schweiz/
@@ -70,7 +73,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v18';
+const CACHE = 'bootsmann-v19';
 const SHELL = [
   './',
   './index.html',
