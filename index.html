@@ -11,6 +11,7 @@
 <link rel="manifest" href="bootsmann.webmanifest">
 <title>Bootsmann · Bodensee</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<script src="fahrplan-daten.js"></script>
 <style>
 :root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;}
 *{box-sizing:border-box;}
@@ -52,14 +53,13 @@ a{color:inherit;}
 
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;}
-.nrow{display:flex;align-items:center;justify-content:space-between;text-decoration:none;color:var(--ink);padding:11px 13px;border-radius:12px;background:var(--paper);border:1px solid var(--line);margin-bottom:8px;}
-.nrow span{font-size:15px;font-weight:500;}
-.nrow b{font-family:'IBM Plex Mono',monospace;font-size:23px;color:var(--navy);}
-.cardnote{font-size:13px;color:var(--muted);margin:8px 2px 0;}
-.nsub{display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px;}
-.nsub a{display:flex;flex-direction:column;align-items:center;gap:2px;text-decoration:none;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:9px 4px;}
-.nsub a span{font-size:11px;color:var(--muted);}
-.nsub a b{font-family:'IBM Plex Mono',monospace;font-size:18px;color:var(--navy);}
+.lg-dep{display:flex;align-items:center;gap:14px;}
+.lg-dep-time{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:36px;color:var(--navy);line-height:1;white-space:nowrap;}
+.lg-dep-info{display:flex;flex-direction:column;gap:3px;min-width:0;}
+.lg-dep-route{font-size:14.5px;font-weight:600;color:var(--ink);}
+.lg-dep-sub{font-size:12.5px;color:var(--muted);}
+.lg-dep-next{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
+.lg-dep-load,.lg-dep-empty{font-size:14px;color:var(--muted);text-align:center;padding:4px 0;}
 
 .foot{font-size:12px;color:var(--muted);text-align:center;padding:8px 22px 0;}
 </style>
@@ -93,13 +93,8 @@ a{color:inherit;}
   </div>
 
   <div class="card">
-    <p class="lbl">Im Notfall</p>
-    <a class="nrow" href="tel:112"><span>Notruf (Europa)</span><b>112</b></a>
-    <div class="nsub">
-      <a href="tel:110"><span>Polizei DE</span><b>110</b></a>
-      <a href="tel:133"><span>Polizei AT</span><b>133</b></a>
-      <a href="tel:117"><span>Polizei CH</span><b>117</b></a>
-    </div>
+    <p class="lbl">Nächste Abfahrt</p>
+    <div id="lg-naechste"><div class="lg-dep-load">Fahrplan wird geladen …</div></div>
   </div>
 
   <div class="card">
@@ -196,14 +191,71 @@ function startWx(){
     navigator.geolocation.getCurrentPosition(function(p){
       GEO.lat=p.coords.latitude; GEO.lng=p.coords.longitude;
       wxPlaceName(GEO.lat,GEO.lng,function(nm){ loadWx(GEO.lat,GEO.lng,nm); });
+      naechsteAbfahrtStarten(GEO.lat,GEO.lng);
     },function(){
       loadWx(WX_DEFAULT.lat,WX_DEFAULT.lng,WX_DEFAULT.name);
+      naechsteAbfahrtStarten(WX_DEFAULT.lat,WX_DEFAULT.lng);
     },{timeout:6000, maximumAge:300000});
   } else {
     loadWx(WX_DEFAULT.lat,WX_DEFAULT.lng,WX_DEFAULT.name);
+    naechsteAbfahrtStarten(WX_DEFAULT.lat,WX_DEFAULT.lng);
   }
 }
 startWx();
+
+/* ---------- Nächste Abfahrt ab nächstgelegenem Hafen (nutzt fahrplan-daten.js) ---------- */
+var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
+function pad(t){var p=t.split(":");return (p[0].length<2?"0"+p[0]:p[0])+":"+p[1];}
+function abfahrtenAbHafen(fromIdx,dStr,abMin,limit){
+  var dObj=new Date(dStr+"T12:00:00");
+  var treffer=[];
+  for(var i=0;i<COURSES.length;i++){
+    var c=COURSES[i];
+    if(!courseValidOn(c,dObj,dStr)) continue;
+    var stops=c.stops, j=-1;
+    for(var k=0;k<stops.length;k++){ if(stops[k][0]===fromIdx){ j=k; break; } }
+    if(j===-1||j===stops.length-1) continue; // kein Zwischenstopp mit Weiterfahrt bzw. Endstation
+    var depMin=toMin(stops[j][2]);
+    if(depMin<abMin) continue;
+    var zielIdx=stops[stops.length-1][0];
+    if(exception(c.no,fromIdx,zielIdx,dStr).removed) continue;
+    treffer.push({dep:stops[j][2],depMin:depMin,ziel:PORTS[zielIdx]});
+  }
+  treffer.sort(function(a,b){return a.depMin-b.depMin;});
+  return treffer.slice(0,limit||5);
+}
+function naechsteAbfahrtRender(hafenIdx){
+  var box=document.getElementById("lg-naechste");
+  if(!box) return;
+  var heute=todayISO();
+  if(heute<SAISON_MIN||heute>SAISON_MAX){
+    box.innerHTML='<div class="lg-dep-empty">Außerhalb der Saison (3. Apr – 18. Okt) keine Fahrten.</div>';
+    return;
+  }
+  var liste=abfahrtenAbHafen(hafenIdx,heute,nowMin(),2);
+  var praefix="";
+  if(!liste.length){
+    var morgen=new Date(); morgen.setDate(morgen.getDate()+1);
+    var morgenStr=morgen.getFullYear()+"-"+pad2(morgen.getMonth()+1)+"-"+pad2(morgen.getDate());
+    if(morgenStr<=SAISON_MAX){ liste=abfahrtenAbHafen(hafenIdx,morgenStr,0,2); praefix="morgen "; }
+  }
+  if(!liste.length){
+    box.innerHTML='<div class="lg-dep-empty">Ab '+esc(PORTS[hafenIdx])+' sind gerade keine weiteren Fahrten hinterlegt.</div>';
+    return;
+  }
+  var erste=liste[0];
+  var minLabel=praefix?praefix.trim():(erste.depMin-nowMin()<=0?"jetzt":"in "+(erste.depMin-nowMin())+" Min");
+  var h='<div class="lg-dep"><span class="lg-dep-time">'+pad(erste.dep)+'</span><div class="lg-dep-info">'+
+    '<span class="lg-dep-route">'+esc(PORTS[hafenIdx])+' → '+esc(erste.ziel)+'</span>'+
+    '<span class="lg-dep-sub">'+minLabel+'</span></div></div>';
+  if(liste[1]) h+='<div class="lg-dep-next">danach '+praefix+pad(liste[1].dep)+' Uhr nach '+esc(liste[1].ziel)+'</div>';
+  box.innerHTML=h;
+}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function naechsteAbfahrtStarten(lat,lng){
+  var n=nearestPort(lat,lng);
+  naechsteAbfahrtRender(n.far?LANGENARGEN_IDX:n.idx);
+}
 </script>
 <script>
 if('serviceWorker' in navigator){ window.addEventListener('load', function(){ navigator.serviceWorker.register('sw.js'); }); }
