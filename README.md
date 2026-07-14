@@ -1,30 +1,44 @@
 # Bootsmann
 
-Eigenständige Web-App (PWA) mit Schifffahrtsplänen für den Bodensee –
-Gäste-Service vom Seehotel Uferglück.
+Eigenständige Web-App (PWA) mit Schifffahrtsplänen für den Bodensee.
 
 Bootsmann war ursprünglich Teil des [Lotse](https://1a-lotse.de)-Projekts
-(im Unterordner `lotse/bootsmann/`) und wird hier als unabhängiges Tool
-weiterentwickelt. Lotse behält seine eigene Fahrplan-Funktion; beide Tools
-entwickeln sich getrennt voneinander.
+und wurde daraus gelöst. Lotse bleibt komplett unabhängig und
+unbeeinflusst von der Weiterentwicklung von Bootsmann – kein Code-Sharing,
+keine gemeinsame Weiterentwicklung.
 
 ## Funktionen
 
-- **Ausflugsschiffe** (`bsb-fahrplan.html`) – Kursschiffe auf dem See
+- **Ausflugsschiffe** (`bsb-fahrplan.html`) – Verbindungsplaner, Schweiz-Reiter,
+  Live-Karte mit berechneten Schiffspositionen (auch über die Startseiten-
+  Kachel „Karte" direkt erreichbar), Hinweise-Tab
 - **Autofähre** (`autofaehre.html`) – Konstanz–Meersburg
-- **Wetter** – 3-Tage-Vorschau (Open-Meteo) auf der Startseite
+- **Katamaran** (`katamaran.html`) – Konstanz–Friedrichshafen, eigener
+  Betreiber (Katamaran-Reederei Bodensee), eigener Fahrplan
+- **Wetter** – aktuelles Wetter samt Tageshöchst-/Tiefsttemperatur
+  (Open-Meteo) auf der Startseite
+- **Nächste Abfahrt** – zeigt automatisch die nächste Schiffsabfahrt ab
+  dem nächstgelegenen Hafen (mischt BSB- und Katamaran-Abfahrten bei
+  Konstanz/Friedrichshafen nach Uhrzeit)
 - **PWA** – installierbar, offline nutzbar per Service Worker (`sw.js`)
 
 ## Struktur
 
 | Datei | Zweck |
 |-------|-------|
-| `index.html` | Startseite mit Wetter und Kacheln |
-| `bsb-fahrplan.html` | Fahrplan der Ausflugsschiffe |
+| `index.html` | Startseite mit Wetter, Kacheln und Nächste-Abfahrt |
+| `bsb-fahrplan.html` | Fahrplan der Ausflugsschiffe, inkl. Live-Karte |
 | `autofaehre.html` | Fahrplan der Autofähre Konstanz–Meersburg |
+| `katamaran.html` | Fahrplan des Katamaran Konstanz–Friedrichshafen |
+| `fahrplan-daten.js` | Gemeinsame BSB-Kursdaten (Häfen, Koordinaten, Kurse, Gültigkeitslogik) – genutzt von `index.html` und `bsb-fahrplan.html` |
+| `katamaran-daten.js` | Gemeinsame Katamaran-Kursdaten – genutzt von `index.html`, `bsb-fahrplan.html` und `katamaran.html` |
 | `sw.js` | Service Worker (Offline-Cache) |
 | `bootsmann.webmanifest` | PWA-Manifest |
 | `bootsmann-icon-*.png` | App-Symbole |
+
+Fahrplan-/Kursdaten **nur** in `fahrplan-daten.js` bzw. `katamaran-daten.js`
+ändern, nicht in den einzelnen Seiten duplizieren – sonst laufen sie
+auseinander.
 
 ## Hosting
 
@@ -43,5 +57,10 @@ python3 -m http.server 8000
 
 > Bei jeder Änderung an den im Service Worker gecachten Dateien die
 > Versionsnummer in `sw.js` (`const CACHE = 'bootsmann-vN'`) um eins erhöhen.
+
+Siehe `CLAUDE.md` für den verbindlichen Arbeitsablauf (main als einzige
+Datenquelle, PR-Workflow) sowie `STRATEGIE-APP-STORE.md`,
+`PRODUKT-IDEEN.md` und `KATAMARAN-DATEN.md` für den laufenden
+Diskussions- und Umsetzungsstand.
 
 Angaben ohne Gewähr.

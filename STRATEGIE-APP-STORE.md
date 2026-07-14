@@ -8,9 +8,9 @@ sondern Gedächtnisstütze für den aktuellen Entscheidungsstand.
 
 - Bootsmann ist eine statische PWA (HTML/CSS/JS, kein Backend), gehostet auf
   GitHub Pages (`tscharlie168.github.io/bootsmann/`).
-- Ursprünglich als kostenloses Whitelabel-Tool für Hotels gedacht
-  (README erwähnt noch "Gäste-Service vom Seehotel Uferglück" – **veraltet,
-  muss aktualisiert werden**, sobald das Store-Modell steht).
+- Ursprünglich als kostenloses Whitelabel-Tool für Hotels gedacht, inzwischen
+  vollständig zur eigenständigen Endkunden-App umgebaut (Hotel-Branding
+  entfernt, README aktualisiert, Stand 14.07.2026).
 - Neues Ziel: eigenständiger Verkauf über App Store/Play Store an
   Endkunden rund um den Bodensee, für kleines Geld.
 - Datenquellen: Open-Meteo (Wetter), BigDataCloud (Ortsname), eigene
@@ -136,7 +136,7 @@ Store-Provision.
 
 - [ ] Impressum von Privatperson auf e.K. umstellen (benötigt: genauer
       Firmenname, HRA-Nummer, Registergericht, ggf. USt-IdNr.)
-- [ ] README.md aktualisieren (Hotel-Bezug "Seehotel Uferglück" entfernen)
+- [x] README.md aktualisiert (Hotel-Bezug entfernt, Stand 14.07.2026)
 - [ ] Prüfen, ob die e.K. bereits eine D-U-N-S-Nummer hat; falls nicht,
       sofort beantragen
 - [ ] Konkrete Checkliste mit Zeitplan für Store-Launch erstellen
