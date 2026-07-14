@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v21) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v22) – Stand: 14. Juli 2026
+   Neu gegenüber v21:
+   - Kopfzeilen gestrafft: Wort "Bodensee" aus den Unterzeilen von BSB
+     Fahrplan und Live-Karte entfernt. Katamaran-Seite: Eyebrow-Zeile
+     über der Überschrift entfernt, Untertext zeigt jetzt "Sommerfahrplan
+     gültig bis 04.10.2026".
    Neu gegenüber v20:
    - Katamaran-Seite: Überschrift zeigt jetzt "Katamaran" (Produktname),
      Strecke Konstanz–Friedrichshafen steht in der kleinen Eyebrow-Zeile.
@@ -78,7 +83,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v21';
+const CACHE = 'bootsmann-v22';
 const SHELL = [
   './',
   './index.html',
