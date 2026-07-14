@@ -1,4 +1,6 @@
-/* Bootsmann – Service Worker (v16) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v17) – Stand: 14. Juli 2026
+   Neu gegenüber v16:
+   - Katamaran-Seite: nicht angeforderte Preisliste wieder entfernt.
    Neu gegenüber v15:
    - Katamaran Konstanz–Friedrichshafen ergänzt: eigene Seite
      (katamaran.html), eigene Startseiten-Kachel, eigene Kursdaten in
@@ -63,7 +65,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v16';
+const CACHE = 'bootsmann-v17';
 const SHELL = [
   './',
   './index.html',
