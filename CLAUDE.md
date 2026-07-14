@@ -25,6 +25,19 @@ einer früheren Nachricht dieser Konversation über den Datei-Stand gesagt
 wurde – der Stand kann sich durch andere, parallel laufende Sessions
 jederzeit geändert haben. Im Zweifel lieber einmal zu oft fetchen.
 
+## PR-Workflow: mergen oder nachfragen, nicht offen herumliegen lassen
+
+Nach einer Code-Änderung PR erstellen und dann **entweder automatisch
+mergen, oder vorher nachfragen** – nicht den PR einfach offen stehen
+lassen und stillschweigend auf eine separate "ja, mergen"-Bestätigung
+warten. Faustregel:
+- Kleine, eindeutige, risikoarme Änderung (Text/Wording, offensichtlicher
+  Bugfix, Fortsetzung eines bereits abgestimmten Musters): PR erstellen
+  und direkt selbst mergen, danach kurz Bescheid geben, was gemacht wurde.
+- Größere/mehrdeutige Änderung (neue Funktion, Architekturentscheidung,
+  Preis-/Rechtstext, etwas mit unklarer Absicht): vor dem Umsetzen
+  nachfragen statt einfach loszulegen.
+
 ## Projektabgrenzung: Lotse
 
 Bootsmann war ursprünglich Teil des Lotse-Projekts (1a-lotse.de) und wurde
