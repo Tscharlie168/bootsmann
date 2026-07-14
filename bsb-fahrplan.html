@@ -18,7 +18,6 @@ select,input,button{font-family:inherit;}
 .lg-head-inner{position:relative;z-index:2;}
 .lg-back{display:inline-flex;align-items:center;gap:6px;color:#0A2233;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;text-transform:uppercase;background:#7FD5EA;border:1.5px solid #62D0E8;border-radius:999px;padding:9px 16px;margin-bottom:14px;-webkit-tap-highlight-color:transparent;transition:.15s;}
 .lg-back:hover,.lg-back:active{background:#62D0E8;border-color:#2BA6C9;}
-.lg-eyebrow{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:600;color:#9FD4E6;}
 .lg-head h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:38px;line-height:1.02;margin:6px 0 0;letter-spacing:.01em;}
 .lg-head h1 span{color:#62D0E8;}
 .lg-sub{margin:8px 0 0;font-size:14px;color:#D5E6F1;max-width:38ch;}
@@ -31,7 +30,6 @@ select,input,button{font-family:inherit;}
 .lg-panel{padding:18px 16px 8px;}
 .lg-szw-head{margin:0 0 12px;}
 .lg-szw-label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.lg-szw-sub{margin:0;font-size:14px;color:var(--muted);}
 .lg-szw-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
 .lg-szw-chip{border:2px solid var(--azure);background:#fff;border-radius:999px;padding:11px 18px;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;transition:.15s;box-shadow:0 1px 2px rgba(16,58,90,.08);}
 .lg-szw-chip:hover{background:var(--sky);}
@@ -199,9 +197,8 @@ select,input,button{font-family:inherit;}
   <header class="lg-head">
     <div class="lg-head-inner">
       <a class="lg-back" href="./">&#8249; Zur&uuml;ck</a>
-      <div class="lg-eyebrow">Bodensee · Saison 2026 · 3. Apr – 18. Okt</div>
       <h1>BSB <span>Fahrplan</span></h1>
-      <p class="lg-sub">Beide Richtungen, Zwischenhäfen und die Schweiz — sauber an einem Ort.</p>
+      <p class="lg-sub">Bodensee · Saison 2026 · 3. Apr – 18. Okt</p>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 Q 180 0 360 30 T 720 30 T 1080 30 T 1440 30 V60 H0 Z"/></svg>
   </header>
@@ -893,7 +890,7 @@ function schweizRueckfahrtHTML(destIdx, date){
 function schweizHTML(){
   var dest=state.schweizDest;
   var h='<section class="lg-panel">';
-  h+='<div class="lg-szw-head"><span class="lg-szw-label">Ziel w&auml;hlen</span><p class="lg-szw-sub">Alle Abfahrtsorte und -zeiten f&uuml;r diesen Tag werden angezeigt.</p></div>';
+  h+='<div class="lg-szw-head"><span class="lg-szw-label">Ziel w&auml;hlen</span></div>';
   h+='<div class="lg-szw-chips">';
   for(var i=0;i<SCHWEIZ_ZIELE.length;i++){
     var z=SCHWEIZ_ZIELE[i];
@@ -927,7 +924,6 @@ function schweizHTML(){
     '<li><strong>VSU Saison-Card:</strong> gilt auf allen Linienschiffen von BSB, SBS, URh und VL &mdash; nur die Autof&auml;hre Konstanz&ndash;Meersburg hat einen eigenen Tarif.</li>'+
     '<li><strong>R&uuml;ckweg extra pr&uuml;fen</strong> &mdash; l&auml;uft oft nicht spiegelbildlich.</li>'+
     '</ul></div>';
-  h+='<div class="lg-note">Alle Angaben ohne Gew&auml;hr &mdash; im Zweifel beim Anbieter pr&uuml;fen.</div>';
   h+='</section>';
   return h;
 }

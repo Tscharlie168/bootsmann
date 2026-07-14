@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v7) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v8) – Stand: 14. Juli 2026
+   Neu gegenüber v7:
+   - Umstellung vom Hotel-Whitelabel auf eigenständige Endkunden-App:
+     Hotel-Branding (Name, Rezeption) entfernt, Startseite/Fahrplan-
+     Seiten heißen jetzt "Bootsmann"/"Bodensee Fähre", diverse
+     Erklärtexte gekürzt (Schweiz-Hinweis, Wartezeit-Hafen-Text).
    Neu gegenüber v6:
    - Karte: Vollbild-Modus ergänzt; Info zum ausgewählten Schiff (Von →
      Bis) liegt jetzt direkt auf der Karte statt darunter (wie bei Lotse).
@@ -27,7 +32,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v10';
+const CACHE = 'bootsmann-v11';
 const SHELL = [
   './',
   './index.html',
