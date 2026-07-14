@@ -102,9 +102,22 @@ Friedrichshafen wichtige Häfen sind.
       Karte mit aktiven Katamaran-Positionen, Nächste-Abfahrt-Karte) –
       keine JS-Fehler, Funktionalität visuell verifiziert
 
+### Nachtrag (14.07.2026): Branch neu gegen aktuellen main-Stand aufgebaut
+
+Der ursprüngliche Umsetzungsstand wurde auf einem veralteten Branch
+gebaut (main war zwischenzeitlich schon deutlich weiter: Rebranding,
+fahrplan-daten.js-Auslagerung, generische "Nächste Abfahrt", Karte-
+Vollbildmodus). Branch wurde auf `origin/main` zurückgesetzt und die
+Katamaran-Integration sauber neu aufgebaut, u. a.:
+- Kursdaten in eigene gemeinsame Datei `katamaran-daten.js` ausgelagert
+  (analog `fahrplan-daten.js`), statt in mehreren Seiten zu duplizieren
+- Katamaran fließt jetzt in die bereits bestehende generische "Nächste
+  Abfahrt"-Kachel ein (BSB- und Katamaran-Abfahrten werden bei Konstanz/
+  Friedrichshafen nach absoluter Zeit gemischt), statt eine zweite,
+  separate Karte zu duplizieren
+- sw.js Cache-Version auf v16 erhöht
+
 ### Noch offen
 
 - [ ] Sonderfahrten/Events (Seehasenfest, Kulturufer, Seenachtsfest) noch
       nicht im Hinweise-Bereich der BSB-Seite berücksichtigt
-- [ ] sw.js Cache-Version wurde auf v9 erhöht (neue Datei katamaran.html
-      ergänzt)
