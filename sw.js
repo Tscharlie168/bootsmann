@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v5) – Stand: 13. Juli 2026
+/* Bootsmann – Service Worker (v6) – Stand: 14. Juli 2026
+   Neu gegenüber v5:
+   - Flotten-Bildergalerie (Fotos/Baujahr/Länge/Tiefgang aller Schiffe)
+     wieder entfernt: eigenständige Entscheidung für Bootsmann (bläht als
+     Base64-Fotos die Seite auf gut 1 MB auf), Lotse behält die Galerie.
+   - Impressum, Datenschutzerklärung, Haftungsausschluss und Urheberrecht
+     ergänzt (Startseite sowie Hinweise auf den Fahrplan-Seiten).
    Neu gegenüber v4:
    - Fahrplan der Ausflugsschiffe (bsb-fahrplan.html) aus dem Lotse-
      Projekt übernommen: Nebensaison-Fahrzeiten, neuer "Karte"-Tab mit
@@ -18,7 +24,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v8';
+const CACHE = 'bootsmann-v9';
 const SHELL = [
   './',
   './index.html',
