@@ -59,6 +59,6 @@ Sehenswürdigkeiten, Gamification, Nutzerkonten, Community-Bewertungen.
 
 ## Nächste Schritte
 
-- [ ] Katamaran-Fahrplan liegt noch nicht vor (separat, Punkt A)
+- [x] Katamaran-Fahrplan integriert (siehe `KATAMARAN-DATEN.md`)
 - [ ] Punkte der Reihe nach durchgehen/abarbeiten (Reihenfolge mit
       Auftraggeber klären)

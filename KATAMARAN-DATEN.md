@@ -1,8 +1,9 @@
 # Katamaran Konstanz–Friedrichshafen – Rohdaten Sommerfahrplan 2026
 
 Quelle: hochgeladener PDF-Flyer "Katamaran_Sommerfahrplan_2026.pdf",
-Tarifstand 01.04.2026, Änderungen vorbehalten. Noch nicht in die App
-integriert – dient als Basis für die Integrationsentscheidung.
+Tarifstand 01.04.2026, Änderungen vorbehalten. **Status: integriert**
+(siehe Umsetzung unten) – diese Datei dient jetzt als Referenz für die
+Rohdaten, nicht mehr als offene Aufgabe.
 
 ## Betreiber
 
@@ -50,6 +51,10 @@ Takt: stündlich von 9–18 Uhr täglich, plus Frühfahrten 7/8 Uhr werktags,
 plus Spätfahrten Fr–So 19/20 Uhr, plus AbendKAT Fr/Sa 21/22 Uhr im Sommer.
 
 ## Preise (Auszug, Tarifstand 01.04.2026)
+
+> Hinweis: Diese Preisliste stand ursprünglich auch auf der Katamaran-Seite
+> in der App, wurde aber am 14.07.2026 wieder entfernt (nicht angefordert,
+> siehe PR #20). Bleibt hier nur als Rohdaten-Referenz stehen.
 
 | Ticket | Preis |
 |---|---|
@@ -116,6 +121,15 @@ Katamaran-Integration sauber neu aufgebaut, u. a.:
   Friedrichshafen nach absoluter Zeit gemischt), statt eine zweite,
   separate Karte zu duplizieren
 - sw.js Cache-Version auf v16 erhöht
+
+### Weitere Anpassungen (14.07.2026)
+
+- Überschrift zeigt jetzt "Katamaran" (Produktname) statt der Strecke,
+  Eyebrow-Zeile darüber entfernt, Untertext zeigt "Sommerfahrplan gültig
+  bis 04.10.2026" (PR #24, #25)
+- Kopierreste aus der Vorlage (`autofaehre.html`) bereinigt: echte
+  Hafenadressen statt doppeltem "Katamaran-Hafen", ungenutzte
+  CSS-Variablen entfernt (PR #20)
 
 ### Noch offen
 
