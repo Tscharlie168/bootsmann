@@ -198,13 +198,13 @@ select,input,button{font-family:inherit;}
   <header class="lg-head">
     <div class="lg-head-inner">
       <a class="lg-back" href="./">&#8249; Zur&uuml;ck</a>
-      <h1>BSB <span>Fahrplan</span></h1>
-      <p class="lg-sub">Bodensee · Saison 2026 · 3. Apr – 18. Okt</p>
+      <h1 id="lg-h1">BSB <span>Fahrplan</span></h1>
+      <p class="lg-sub" id="lg-headsub">Bodensee · Saison 2026 · 3. Apr – 18. Okt</p>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 Q 180 0 360 30 T 720 30 T 1080 30 T 1440 30 V60 H0 Z"/></svg>
   </header>
 
-  <nav class="lg-tabs">
+  <nav class="lg-tabs" id="lg-tabs">
     <button data-tab="planer">Verbindung</button>
     <button data-tab="schweiz">Schweiz</button>
     <button data-tab="hinweise">Hinweise</button>
@@ -1084,6 +1084,15 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
 document.querySelectorAll(".lg-tabs button").forEach(function(b){
   b.classList.toggle("is-active", b.getAttribute("data-tab")===state.tab);
 });
+// Direkteinstieg über die Karte-Kachel der Startseite: eigener Titel,
+// keine Tab-Leiste (die drei verbliebenen Tabs gehören zum Fahrplan-
+// Planer, nicht zur Karte).
+if(state.tab==="karte"){
+  document.title="Karte – Bodensee Live-Schiffspositionen";
+  document.getElementById("lg-h1").innerHTML='Live-<span>Karte</span>';
+  document.getElementById("lg-headsub").textContent="Bodensee · Schiffspositionen aus dem Fahrplan berechnet";
+  document.getElementById("lg-tabs").style.display="none";
+}
 
 function zurueckLotse(){ if(history.length>1){ history.back(); } else { location.href='index.html'; } }
 

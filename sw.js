@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v17) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v18) – Stand: 14. Juli 2026
+   Neu gegenüber v17:
+   - Karte-Direkteinstieg (von der Startseiten-Kachel): eigener Titel
+     "Live-Karte" statt "BSB Fahrplan", Tab-Leiste (Verbindung/Schweiz/
+     Hinweise) dort ausgeblendet, da sie zum Planer gehört, nicht zur
+     Karte.
    Neu gegenüber v16:
    - Katamaran-Seite: nicht angeforderte Preisliste wieder entfernt.
    Neu gegenüber v15:
@@ -65,7 +70,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v17';
+const CACHE = 'bootsmann-v18';
 const SHELL = [
   './',
   './index.html',
