@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v32) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v33) – Stand: 15. Juli 2026
+   Neu gegenüber v32:
+   - Ziel-Text neben der Uhrzeit in der "Nächste Abfahrt"-Kachel
+     (z. B. "nach Friedrichshafen") auf 17px erhöht. Richtungs-Buttons
+     ("ab Konstanz"/"ab Meersburg"/"ab Friedrichshafen") bei Autofähre
+     und Katamaran ebenfalls auf 17px.
    Neu gegenüber v31:
    - Hinweistexte von 16px auf 15px reduziert (16px war zu groß) –
      betrifft alle in v30/v31 vergrößerten Stellen auf allen vier Seiten.
@@ -129,7 +134,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v32';
+const CACHE = 'bootsmann-v33';
 const SHELL = [
   './',
   './index.html',
