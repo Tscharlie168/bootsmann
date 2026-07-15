@@ -1,5 +1,18 @@
 # Bootsmann – Hinweise für Claude Code
 
+## Seitenstruktur der App (verbindlich)
+
+Das ist die festgelegte Struktur von Bootsmann – neue Features werden in
+diese Struktur eingeordnet, nicht als zusätzliche Top-Level-Seiten daneben:
+
+- **Hauptseite** (`index.html`) mit 4 Kacheln: BSB, Fähre, Katamaran, Karte
+- **BSB** (`bsb-fahrplan.html`) hat drei Unterseiten/Tabs: Verbindung,
+  Schweiz, Hinweise
+- **Fähre** (`autofaehre.html`) ist eine Seite
+- **Katamaran** (`katamaran.html`) ist eine Seite
+- **Karte** ist eine Seite (Live-Karte, per Tab in `bsb-fahrplan.html?tab=karte`
+  erreichbar)
+
 ## Wo die aktuellen Daten liegen (verbindlich, keine Ausnahmen)
 
 Die **einzige Quelle der Wahrheit** für den Live-Stand von Bootsmann ist
