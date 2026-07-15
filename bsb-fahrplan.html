@@ -133,6 +133,7 @@ select,input,button{font-family:inherit;}
 .lg-mini b{font-family:'IBM Plex Mono',monospace;color:var(--blue);}
 
 .lg-note{font-size:15px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;}
+.lg-info{font-size:15px;color:var(--navy);background:var(--sky);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
 
 .lg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:13px;}
 .lg-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin:0 0 7px;}
@@ -412,7 +413,7 @@ function rueckfahrtHeuteHTML(fromIdx,toIdx,date,hinRows){
   if(toMin(letzte.dep)<nowMin()){
     h+='<div class="lg-note">Die letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b> ('+pad(letzte.dep)+' Uhr) ist schon vorbei.</div>';
   }else{
-    h+='<div>Letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
+    h+='<div class="lg-info">Letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
     if(hinRows&&hinRows.length){
       var ersteHin=hinRows[0], naechsteRet=null;
       for(var i=0;i<retRows.length;i++){ if(toMin(retRows[i].dep)>toMin(ersteHin.arr)){ naechsteRet=retRows[i]; break; } }
