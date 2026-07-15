@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v46) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v47) – Stand: 15. Juli 2026
+   Neu gegenüber v46:
+   - Mehrsprachigkeit (DE/EN/FR/NL) jetzt auch auf Autofähre und
+     Katamaran: Sprachumschalter im Header, alle Texte übersetzt
+     (Richtung, Abfahrten, Hinweise, Footer/Impressum).
    Neu gegenüber v45:
    - Mehrsprachigkeit (DE/EN/FR/NL), Start mit der Startseite: neue
      eigenständige Datei i18n.js (Wörterbuch + Sprachumschalter, ganz
@@ -195,7 +199,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v46';
+const CACHE = 'bootsmann-v47';
 const SHELL = [
   './',
   './index.html',
