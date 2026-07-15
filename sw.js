@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v42) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v43) – Stand: 15. Juli 2026
+   Neu gegenüber v42:
+   - Schweiz-Tab: Hilfetext gekürzt (kein "in der Schweiz"/Fettung bei
+     "Ziel", kein "das Angebot ist begrenzt", kein "(meist am
+     Folgetag)").
    Neu gegenüber v41:
    - Schweiz-Tab: neuer Hilfetext unter der Ziel-Auswahl, erklärt das
      Prinzip (erst Ziel wählen, dann selbst den passenden Abfahrtsort
@@ -179,7 +183,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v42';
+const CACHE = 'bootsmann-v43';
 const SHELL = [
   './',
   './index.html',
