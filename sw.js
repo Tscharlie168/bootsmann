@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v40) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v41) – Stand: 15. Juli 2026
+   Neu gegenüber v40:
+   - Verbindung-Tab: Hinweistext "Vergangene Abfahrten für heute sind
+     ausgeblendet." zu "Vergangene Abfahrten sind ausgeblendet." gekürzt.
    Neu gegenüber v39:
    - Kurzaufenthalt-Warnung ("Bei Hinfahrt ... bleiben dir bis zur
      nächsten Rückfahrt nur rund X Minuten vor Ort.") aus der
@@ -172,7 +175,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v40';
+const CACHE = 'bootsmann-v41';
 const SHELL = [
   './',
   './index.html',
