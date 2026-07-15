@@ -29,20 +29,24 @@ immer mehr zu können.
    Ankunftszeit, Restzeit, Machbarkeits-Check ("schaffe ich es noch").
    Beispiel: „Ab Meersburg nach Konstanz: nächste Fahrt 14:35, Ankunft
    15:05, Fußweg zum Hafen 7 Minuten."
-2. **Route planen** – einfache Eingabe (Von/Nach/Wann: jetzt, später,
-   Ankunft bis Uhrzeit), Ausgabe nur 2–3 gute Optionen (schnellste,
-   nächste, letzte sinnvolle Verbindung des Tages). Muss erkennen, wenn
-   eine Route mit dem Schiff nicht sinnvoll/direkt möglich ist.
+2. **Route planen** – **Entscheidung (15.07.2026): erledigt/OK so.** Nur
+   BSB braucht einen Verbindungsplaner (betrifft die Urlauber mit
+   längeren Strecken); Autofähre und Katamaran haben kurze, einfache
+   Fahrzeiten und brauchen keinen eigenen Planer.
 3. **Heute noch zurückkommen** – "Hin und zurück heute" /
    "Rückfahrt prüfen" / "Letzte Rückfahrt", inkl. Warnung bei knapper
    Aufenthaltsdauer. Beispiel: „Achtung: Wenn du diese Hinfahrt nimmst,
-   bleiben dir nur 55 Minuten Aufenthalt."
+   bleiben dir nur 55 Minuten Aufenthalt." **Zurückgestellt (15.07.2026):
+   wird als Letztes der fünf Kernfunktionen angegangen.**
 4. **Nächster Hafen** – per Standort, mit Entfernung, Gehzeit, nächsten
-   Abfahrten ab dort, alternative Häfen in der Nähe.
+   Abfahrten ab dort, alternative Häfen in der Nähe. **In Arbeit
+   (15.07.2026).**
 5. **Fähre vs. Kursschiff vs. Katamaran** – klare Kennzeichnung im
    Ergebnis statt langer Erklärung (z. B. „Fähre: fährt häufig, schnelle
    Überfahrt" / „Kursschiff: Ausflugsfahrt, seltener" / „Letzte Fahrt
-   beachten").
+   beachten"). **Entscheidung (15.07.2026): Autofähre bleibt bewusst
+   außen vor** (kurze Fahrzeit Konstanz–Meersburg, für dieses Feature
+   uninteressant) – nur Kursschiff/Katamaran werden unterschieden.
 
 ### Explizit NICHT (vorerst keine Feature-Ausweitung)
 

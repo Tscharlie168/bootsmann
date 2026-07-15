@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v24) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v25) – Stand: 15. Juli 2026
+   Neu gegenüber v24:
+   - "Nächste Abfahrt"-Kachel: Gehzeit zum nächsten Hafen ergänzt sowie
+     ein Alternativhafen in der Nähe (falls einer innerhalb von 8 km
+     liegt), z. B. "9 Gehmin. entfernt · Alternative: Bregenz (14 Gehmin.)".
    Neu gegenüber v23:
    - "Nächste Abfahrt"-Kachel: Überschrift nennt jetzt explizit den
      nächstgelegenen Hafen ("Nächste Abfahrt ab Langenargen" statt nur
@@ -93,7 +97,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v24';
+const CACHE = 'bootsmann-v25';
 const SHELL = [
   './',
   './index.html',

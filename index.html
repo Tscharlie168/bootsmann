@@ -56,6 +56,7 @@ a{color:inherit;}
 .lg-dep-sub{font-size:12.5px;color:var(--muted);}
 .lg-dep-next{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
 .lg-dep-load,.lg-dep-empty{font-size:14px;color:var(--muted);text-align:center;padding:4px 0;}
+.lg-hafen-info{font-size:12.5px;color:var(--muted);margin:-6px 0 12px;}
 
 .foot{font-size:12px;color:var(--muted);text-align:center;padding:8px 22px 0;}
 </style>
@@ -98,6 +99,7 @@ a{color:inherit;}
 
   <div class="card">
     <p class="lbl" id="lg-naechste-lbl">Nächste Abfahrt</p>
+    <p class="lg-hafen-info" id="lg-hafen-info" style="display:none"></p>
     <div id="lg-naechste"><div class="lg-dep-load">Fahrplan wird geladen …</div></div>
   </div>
 
@@ -209,6 +211,39 @@ startWx();
 /* ---------- Nächste Abfahrt ab nächstgelegenem Hafen (nutzt fahrplan-daten.js) ---------- */
 var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
 function pad(t){var p=t.split(":");return (p[0].length<2?"0"+p[0]:p[0])+":"+p[1];}
+function distKm(a,b){
+  var R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;
+  var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
+  return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
+}
+function gehminuten(km){ return Math.max(1,Math.round(km*12)); } // ~5 km/h zu Fuß
+/* Die n nächstgelegenen Häfen zu einer Position, sortiert nach Entfernung. */
+function naechsteHaefen(lat,lng,n){
+  var liste=[];
+  for(var i=0;i<COORDS.length;i++){
+    liste.push({idx:i,km:distKm({lat:lat,lng:lng},{lat:COORDS[i][0],lng:COORDS[i][1]})});
+  }
+  liste.sort(function(a,b){return a.km-b.km;});
+  return liste.slice(0,n);
+}
+/* Entfernung/Gehzeit zum gewählten Hafen plus ein Alternativhafen in der
+   Nähe (nur wenn ein echter Standort vorliegt, nicht beim Langenargen-
+   Fallback ohne Standort). */
+function hafenInfoRender(hafenIdx,pos){
+  var el=document.getElementById("lg-hafen-info");
+  if(!el) return;
+  if(!pos){ el.style.display="none"; return; }
+  var haefen=naechsteHaefen(pos.lat,pos.lng,4);
+  var eigener=null;
+  for(var i=0;i<haefen.length;i++){ if(haefen[i].idx===hafenIdx){ eigener=haefen[i]; break; } }
+  if(!eigener) eigener={idx:hafenIdx,km:distKm(pos,{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]})};
+  var txt=gehminuten(eigener.km)+" Gehmin. entfernt";
+  var alt=null;
+  for(var j=0;j<haefen.length;j++){ if(haefen[j].idx!==hafenIdx && haefen[j].km<=3){ alt=haefen[j]; break; } }
+  if(alt) txt+=" · Alternative: "+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+" Gehmin.)";
+  el.textContent=txt;
+  el.style.display="";
+}
 function abfahrtenAbHafen(fromIdx,dStr,abMin,limit){
   var dObj=new Date(dStr+"T12:00:00");
   var treffer=[];
@@ -287,7 +322,9 @@ function naechsteAbfahrtRender(hafenIdx){
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 function naechsteAbfahrtStarten(lat,lng){
   var n=nearestPort(lat,lng);
-  naechsteAbfahrtRender(n.far?LANGENARGEN_IDX:n.idx);
+  var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
+  naechsteAbfahrtRender(hafenIdx);
+  hafenInfoRender(hafenIdx, n.far?null:{lat:lat,lng:lng});
 }
 </script>
 <script>
