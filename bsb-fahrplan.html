@@ -396,24 +396,30 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
 }
 
 /* "Heute noch zurückkommen": zusammenfassende Karte unter der
-   Hinfahrt-Liste, nur am aktuellen Tag relevant. Zeigt die letzte
-   Rückfahrt des Tages und warnt, falls sie schon vorbei ist oder die
-   erste Hinfahrt nur eine sehr kurze Aufenthaltsdauer vor Ort lässt. */
-function rueckfahrtHeuteHTML(fromIdx,toIdx,date,hinRows){
-  if(date!==todayISO()) return "";
+   Hinfahrt-Liste für das jeweils gewählte Datum (auch an künftigen
+   Tagen, z. B. nach "Nächster Tag"). Zeigt die letzte Rückfahrt des
+   Tages und warnt (nur am aktuellen Tag) falls sie schon vorbei ist,
+   oder falls die erste Hinfahrt nur eine sehr kurze Aufenthaltsdauer
+   vor Ort lässt. */
+function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
+  var istHeute=date===todayISO();
+  var d=new Date(date+"T12:00:00");
+  var dateLabel=WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
+  var wannGross=istHeute?"Heute":"Am "+dateLabel;
+  var wannKlein=istHeute?"heute":"am "+dateLabel;
   var retRows=planJourneys(toIdx,fromIdx,date);
   var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 8px';
-  var h='<div class="lg-card" style="margin-top:14px"><p style="'+hd+'">R&uuml;ckfahrt heute</p>';
+  var h='<div class="lg-card" style="margin-top:14px"><p style="'+hd+'">'+(istHeute?"R&uuml;ckfahrt heute":"R&uuml;ckfahrt am "+esc(dateLabel))+'</p>';
   if(!retRows.length){
-    h+='<div class="lg-note">Heute keine R&uuml;ckfahrt von <b>'+esc(PORTS[toIdx])+'</b> nach <b>'+esc(PORTS[fromIdx])+'</b> im Fahrplan.</div>';
+    h+='<div class="lg-note">'+esc(wannGross)+' keine R&uuml;ckfahrt von <b>'+esc(PORTS[toIdx])+'</b> nach <b>'+esc(PORTS[fromIdx])+'</b> im Fahrplan.</div>';
     h+='</div>';
     return h;
   }
   var letzte=retRows[retRows.length-1];
-  if(toMin(letzte.dep)<nowMin()){
+  if(istHeute&&toMin(letzte.dep)<nowMin()){
     h+='<div class="lg-note">Die letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b> ('+pad(letzte.dep)+' Uhr) ist schon vorbei.</div>';
   }else{
-    h+='<div class="lg-info">Letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
+    h+='<div class="lg-info">Die letzte R&uuml;ckfahrt '+esc(wannKlein)+' ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
     if(hinRows&&hinRows.length){
       var ersteHin=hinRows[0], naechsteRet=null;
       for(var i=0;i<retRows.length;i++){ if(toMin(retRows[i].dep)>toMin(ersteHin.arr)){ naechsteRet=retRows[i]; break; } }
@@ -454,7 +460,7 @@ function planerHTML(){
   h+='<div class="lg-result-head"><span class="lg-result-route">'+PORTS[state.from]+' <em>&rarr;</em> '+PORTS[state.to]+'</span><span class="lg-result-day">'+dateLabel+'</span></div>';
   if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">Vergangene Abfahrten f&uuml;r heute sind ausgeblendet.</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
-  h+=rueckfahrtHeuteHTML(state.from,state.to,state.date,rows);
+  h+=rueckfahrtCardHTML(state.from,state.to,state.date,rows);
   h+='</section>';
   h+=pickerHTML();
   return h;
