@@ -67,11 +67,11 @@ select,input,button{font-family:inherit;}
 .lg-star{margin-left:auto;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;height:46px;white-space:nowrap;transition:.15s;}
 .lg-star.is-on{color:var(--gold);border-color:var(--gold);background:#FBF4E6;}
 
-.lg-banner{margin-top:14px;background:#FCEFE9;border:1px solid #EBC3B5;color:#8C3B25;border-radius:10px;padding:11px 13px;font-size:13.5px;}
+.lg-banner{margin-top:14px;background:#FCEFE9;border:1px solid #EBC3B5;color:#8C3B25;border-radius:10px;padding:11px 13px;font-size:16px;}
 .lg-loc{width:100%;margin-top:12px;border:1.5px dashed var(--azure);background:#fff;color:var(--blue);border-radius:10px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;}
 .lg-loc:hover{background:var(--sky);}
 .lg-loc:active{transform:scale(.99);}
-.lg-loc-status{margin-top:8px;font-size:13px;color:var(--muted);}
+.lg-loc-status{margin-top:8px;font-size:16px;color:var(--muted);}
 
 .lg-favs{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
 .lg-fav{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;color:var(--navy);cursor:pointer;transition:.15s;}
@@ -111,7 +111,7 @@ select,input,button{font-family:inherit;}
 .lg-empty{text-align:center;padding:34px 20px;background:#fff;border:1px dashed var(--line);border-radius:12px;color:var(--muted);}
 .lg-empty-mark{font-size:30px;color:var(--azure);margin-bottom:6px;}
 .lg-empty p{margin:4px 0;font-size:14px;}
-.lg-empty-hint{font-size:13px;color:var(--muted);}
+.lg-empty-hint{font-size:16px;color:var(--muted);}
 
 .lg-trip{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:14px;box-shadow:0 1px 3px rgba(16,58,90,.07);}
 .lg-trip-badge{display:inline-block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:12px;font-weight:700;color:#fff;background:var(--blue);padding:4px 10px;border-radius:6px;}
@@ -123,7 +123,7 @@ select,input,button{font-family:inherit;}
 .lg-trip-line b,.lg-trip-line2 b{font-family:'IBM Plex Mono',monospace;color:var(--blue);}
 .lg-trip-line em,.lg-trip-line2 em{color:var(--azure);font-style:normal;}
 .lg-trip-line2{margin-bottom:9px;}
-.lg-trip-foot{margin-top:8px;font-size:13px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;}
+.lg-trip-foot{margin-top:8px;font-size:16px;color:var(--muted);border-top:1px solid var(--line);padding-top:9px;}
 .lg-trip--alt{background:#FAFCFD;}
 
 .lg-mini{background:#fff;border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin-bottom:14px;}
@@ -132,7 +132,7 @@ select,input,button{font-family:inherit;}
 .lg-mini p{margin:0;font-size:15px;}
 .lg-mini b{font-family:'IBM Plex Mono',monospace;color:var(--blue);}
 
-.lg-note{font-size:13.5px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;}
+.lg-note{font-size:16px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;}
 
 .lg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:13px;}
 .lg-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin:0 0 7px;}
@@ -140,7 +140,7 @@ select,input,button{font-family:inherit;}
 .lg-card ul{margin:0;padding-left:18px;font-size:14px;}
 .lg-card li{margin-bottom:7px;}
 .lg-card--alert{border-left:4px solid var(--red);}
-.lg-card-tip{margin-top:9px;font-size:13px;color:var(--muted);}
+.lg-card-tip{margin-top:9px;font-size:16px;color:var(--muted);}
 .lg-muted{color:var(--muted);}
 .lg-disclaimer{font-size:12px;color:var(--muted);margin:6px 2px 0;}
 
@@ -537,7 +537,7 @@ function schweizAbfahrtenHTML(destIdx, date){
     }
     h+='</div></div>';
   }
-  h+='<div class="lg-note" style="margin-top:4px;font-size:12.5px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
+  h+='<div class="lg-note" style="margin-top:4px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
   h+='</div>';
   return h;
 }
@@ -595,7 +595,7 @@ function schweizRueckfahrtHTML(destIdx, date){
     }
     h+='</div></div>';
   }
-  h+='<div class="lg-note" style="margin-top:4px;font-size:12.5px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
+  h+='<div class="lg-note" style="margin-top:4px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
   h+='</div>';
   return h;
 }
