@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v43) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v44) – Stand: 15. Juli 2026
+   Neu gegenüber v43:
+   - Hinweise-Tab: Disclaimer-Text ("Daten aus dem VSU-Fahrplan...") von
+     12px auf 15px, wie "Angaben ohne Gewähr" auf allen Seiten.
    Neu gegenüber v42:
    - Schweiz-Tab: Hilfetext gekürzt (kein "in der Schweiz"/Fettung bei
      "Ziel", kein "das Angebot ist begrenzt", kein "(meist am
@@ -183,7 +186,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v43';
+const CACHE = 'bootsmann-v44';
 const SHELL = [
   './',
   './index.html',
