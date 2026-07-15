@@ -211,7 +211,6 @@ startWx();
 
 /* ---------- Nächste Abfahrt ab nächstgelegenem Hafen (nutzt fahrplan-daten.js) ---------- */
 var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
-function pad(t){var p=t.split(":");return (p[0].length<2?"0"+p[0]:p[0])+":"+p[1];}
 function distKm(a,b){
   var R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;
   var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
@@ -258,7 +257,7 @@ function abfahrtenAbHafen(fromIdx,dStr,abMin,limit){
     if(depMin<abMin) continue;
     var zielIdx=stops[stops.length-1][0];
     if(exception(c.no,fromIdx,zielIdx,dStr).removed) continue;
-    treffer.push({dep:stops[j][2],depMin:depMin,ziel:PORTS[zielIdx],ank:pad(stops[stops.length-1][1])});
+    treffer.push({dep:stops[j][2],depMin:depMin,ziel:PORTS[zielIdx]});
   }
   treffer.sort(function(a,b){return a.depMin-b.depMin;});
   return treffer.slice(0,limit||5);
@@ -270,12 +269,10 @@ function katamaranKandidaten(hafenIdx){
   var dir = hafenIdx===0 ? "kn" : (hafenIdx===5 ? "fn" : null);
   if(!dir) return [];
   return katNextDepartures(dir,2).map(function(dt){
-    var ank=new Date(dt.getTime()+52*60000);
     return {
       dep: pad2(dt.getHours())+":"+pad2(dt.getMinutes()),
       ts: dt.getTime(),
       ziel: (dir==="kn" ? "Friedrichshafen" : "Konstanz") + " (Katamaran)",
-      ank: pad2(ank.getHours())+":"+pad2(ank.getMinutes()),
       praefix: ""
     };
   });
@@ -290,7 +287,7 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
   if(heute>=SAISON_MIN&&heute<=SAISON_MAX){
     bsbListe=abfahrtenAbHafen(hafenIdx,heute,nowMin(),2).map(function(x){
       var d=new Date(); d.setHours(0,0,0,0); d.setMinutes(x.depMin);
-      return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,ank:x.ank,praefix:""};
+      return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:""};
     });
     if(!bsbListe.length){
       var morgen=new Date(); morgen.setDate(morgen.getDate()+1);
@@ -298,7 +295,7 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
       if(morgenStr<=SAISON_MAX){
         bsbListe=abfahrtenAbHafen(hafenIdx,morgenStr,0,2).map(function(x){
           var d=new Date(); d.setDate(d.getDate()+1); d.setHours(0,0,0,0); d.setMinutes(x.depMin);
-          return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,ank:x.ank,praefix:"morgen "};
+          return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:"morgen "};
         });
       }
     }
@@ -315,11 +312,10 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
   }
   var erste=alle[0];
   var deltaMin=Math.round((erste.ts-Date.now())/60000);
-  var minLabel=erste.praefix?erste.praefix.trim():(deltaMin<=0?"jetzt":"in "+deltaMin+" Min");
-  var ankTxt=erste.ank?(" · an "+erste.ank+" Uhr"):"";
   var h='<div class="lg-dep"><span class="lg-dep-time">'+erste.dep+'</span><div class="lg-dep-info">'+
-    '<span class="lg-dep-route">nach '+esc(erste.ziel)+ankTxt+'</span>'+
-    '<span class="lg-dep-sub">'+minLabel+'</span></div></div>';
+    '<span class="lg-dep-route">nach '+esc(erste.ziel)+'</span>'+
+    (erste.praefix?'<span class="lg-dep-sub">'+erste.praefix.trim()+'</span>':'')+
+    '</div></div>';
   // Machbarkeits-Check: schafft man die Abfahrt noch zu Fuß?
   if(gehMin!=null && !erste.praefix){
     if(gehMin>deltaMin){

@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v26) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v27) – Stand: 15. Juli 2026
+   Neu gegenüber v26:
+   - "Nächste Abfahrt"-Kachel wieder vereinfacht: Ankunftszeit und
+     Restzeit-Countdown ("in X Min") wieder entfernt, zu viel auf
+     einmal. Der Machbarkeits-Check ("Knapp"/"schaffst du vermutlich
+     nicht mehr") bleibt, "morgen"-Hinweis bleibt zur Unterscheidung.
    Neu gegenüber v25:
    - "Nächste Abfahrt"-Kachel: Ankunftszeit ergänzt ("nach Friedrichshafen
      · an 10:52 Uhr") sowie ein Machbarkeits-Check, der die Gehzeit zum
@@ -102,7 +107,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v26';
+const CACHE = 'bootsmann-v27';
 const SHELL = [
   './',
   './index.html',
