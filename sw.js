@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v45) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v46) – Stand: 15. Juli 2026
+   Neu gegenüber v45:
+   - Mehrsprachigkeit (DE/EN/FR/NL), Start mit der Startseite: neue
+     eigenständige Datei i18n.js (Wörterbuch + Sprachumschalter, ganz
+     getrennt von den Fahrplan-Dateien). Sprachumschalter (Flagge +
+     Kürzel) oben rechts im Header, Auswahl in localStorage gespeichert
+     und seitenübergreifend gültig. BSB/Fähre/Katamaran folgen.
    Neu gegenüber v44:
    - Hinweise-Tab: Disclaimer-Text zentriert. Impressum & Datenschutz
      ist jetzt zum Aufklappen (details/summary) statt dauerhaft offen.
@@ -189,7 +195,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v45';
+const CACHE = 'bootsmann-v46';
 const SHELL = [
   './',
   './index.html',
@@ -198,6 +204,7 @@ const SHELL = [
   './katamaran.html',
   './fahrplan-daten.js',
   './katamaran-daten.js',
+  './i18n.js',
   './bootsmann.webmanifest',
   './bootsmann-icon-180.png',
   './bootsmann-icon-192.png',
