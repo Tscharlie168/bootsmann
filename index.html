@@ -11,6 +11,7 @@
 <link rel="manifest" href="bootsmann.webmanifest">
 <title>Bootsmann · Bodensee</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<script src="i18n.js"></script>
 <script src="fahrplan-daten.js"></script>
 <script src="katamaran-daten.js"></script>
 <style>
@@ -22,12 +23,19 @@ a{color:inherit;}
 
 .lg-head{position:relative;background:linear-gradient(160deg,#0E3553 0%,#15679E 100%);color:#fff;padding:24px 22px 46px;overflow:hidden;}
 .lg-head-inner{position:relative;z-index:2;}
-.lg-head-top{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.lg-head-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;}
+.lg-head-left{display:flex;align-items:center;gap:12px;}
 .lg-logo{width:44px;height:44px;flex:none;}
 .lg-logo svg{display:block;width:44px;height:44px;}
 .lg-hotel{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:#fff;line-height:1.05;}
 .lg-head h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:32px;line-height:1.04;margin:2px 0 0;}
-.lg-head h1 span{color:#62D0E8;}
+.lg-head h1 .hl{color:#62D0E8;}
+.lg-lang{display:flex;gap:6px;flex:none;}
+.lg-lang button{display:flex;flex-direction:column;align-items:center;gap:2px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);border-radius:10px;padding:5px 7px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.lg-lang button .flag{font-size:16px;line-height:1;}
+.lg-lang button .code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.04em;color:#D5E6F1;}
+.lg-lang button.is-on{background:#fff;border-color:#fff;}
+.lg-lang button.is-on .code{color:var(--navy);}
 .lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:42px;z-index:1;fill:var(--paper);}
 
 .lg-weather{background:#fff;border:1px solid var(--line);border-radius:14px;margin:16px 16px 6px;padding:13px 15px;box-shadow:0 1px 3px rgba(16,58,90,.07);}
@@ -67,89 +75,74 @@ a{color:inherit;}
   <header class="lg-head">
     <div class="lg-head-inner">
       <div class="lg-head-top">
-        <span class="lg-logo">
-          <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E3553"/><stop offset="1" stop-color="#15679E"/></linearGradient><clipPath id="bc"><rect x="0" y="0" width="512" height="512" rx="112"/></clipPath></defs><rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bm)"/><g transform="translate(256 268) scale(1.12) translate(-256 -268)"><rect x="252" y="166" width="8" height="42" rx="4" fill="#fff"/><path d="M260 170 h 34 l -12 12 l 12 12 h -34 Z" fill="#C8472F"/><rect x="216" y="204" width="80" height="30" rx="8" fill="#fff"/><rect x="182" y="232" width="148" height="56" rx="10" fill="#fff"/><circle cx="212" cy="260" r="11" fill="#0E3553"/><circle cx="256" cy="260" r="11" fill="#0E3553"/><circle cx="300" cy="260" r="11" fill="#0E3553"/><path d="M150 300 H 362 L 330 356 Q 320 366 304 366 H 208 Q 192 366 182 356 Z" fill="#fff"/><rect x="150" y="286" width="212" height="16" rx="6" fill="#62D0E8"/></g><g clip-path="url(#bc)"><path d="M-30 346 q 95 -30 190 0 t 190 0 t 190 0 L 560 540 L -30 540 Z" fill="#1B6EA0"/><path d="M-30 372 q 100 -28 200 0 t 200 0 t 200 0 L 570 540 L -30 540 Z" fill="#2BA6C9"/></g></svg>
-        </span>
-        <div class="lg-hotel">Bootsmann</div>
+        <div class="lg-head-left">
+          <span class="lg-logo">
+            <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="bm" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0E3553"/><stop offset="1" stop-color="#15679E"/></linearGradient><clipPath id="bc"><rect x="0" y="0" width="512" height="512" rx="112"/></clipPath></defs><rect x="0" y="0" width="512" height="512" rx="112" fill="url(#bm)"/><g transform="translate(256 268) scale(1.12) translate(-256 -268)"><rect x="252" y="166" width="8" height="42" rx="4" fill="#fff"/><path d="M260 170 h 34 l -12 12 l 12 12 h -34 Z" fill="#C8472F"/><rect x="216" y="204" width="80" height="30" rx="8" fill="#fff"/><rect x="182" y="232" width="148" height="56" rx="10" fill="#fff"/><circle cx="212" cy="260" r="11" fill="#0E3553"/><circle cx="256" cy="260" r="11" fill="#0E3553"/><circle cx="300" cy="260" r="11" fill="#0E3553"/><path d="M150 300 H 362 L 330 356 Q 320 366 304 366 H 208 Q 192 366 182 356 Z" fill="#fff"/><rect x="150" y="286" width="212" height="16" rx="6" fill="#62D0E8"/></g><g clip-path="url(#bc)"><path d="M-30 346 q 95 -30 190 0 t 190 0 t 190 0 L 560 540 L -30 540 Z" fill="#1B6EA0"/><path d="M-30 372 q 100 -28 200 0 t 200 0 t 200 0 L 570 540 L -30 540 Z" fill="#2BA6C9"/></g></svg>
+          </span>
+          <div class="lg-hotel">Bootsmann</div>
+        </div>
+        <div id="lg-lang-slot"></div>
       </div>
-      <h1>Willkommen am <span>Bodensee</span></h1>
+      <h1><span data-i18n="h1_prefix">Willkommen am</span> <span class="hl" data-i18n="h1_lake">Bodensee</span></h1>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 42" preserveAspectRatio="none"><path d="M0 42V20c120-16 260-16 380 0s260 16 380 0 260-16 380 0 200 12 300 6v16z"/></svg>
   </header>
 
-  <div class="lg-weather" id="lg-weather"><div class="lg-weather-load">Wetter wird geladen …</div></div>
+  <div class="lg-weather" id="lg-weather"><div class="lg-weather-load" data-i18n="wx_loading">Wetter wird geladen …</div></div>
 
   <div class="tiles">
     <button class="tile" onclick="openPage('bsb-fahrplan.html')">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h16l-1.6 4.4a2 2 0 0 1-1.9 1.3H7.5a2 2 0 0 1-1.9-1.3L4 13z"/><path d="M6 13V8a1 1 0 0 1 1-1h7l3 6"/><path d="M10 7V4h3"/><path d="M3 21c1.2-1 2-1 3.2 0 1.2 1 2 1 3.2 0 1.2-1 2-1 3.2 0 1.2 1 2 1 3.2 0"/></svg></span>
-      <b>BSB Fahrplan</b>
+      <b data-i18n="tile_bsb">BSB Fahrplan</b>
     </button>
     <button class="tile" onclick="openPage('autofaehre.html')">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 15h18l-1.3 3.4a1.5 1.5 0 0 1-1.4 1H5.7a1.5 1.5 0 0 1-1.4-1L3 15z"/><path d="M6 12h12"/><path d="M7.5 12l1.3-2.6A1.3 1.3 0 0 1 10 8.6h4a1.3 1.3 0 0 1 1.2.8L16.5 12"/></svg></span>
-      <b>Bodensee Fähre</b>
+      <b data-i18n="tile_faehre">Bodensee Fähre</b>
     </button>
     <button class="tile" onclick="openPage('katamaran.html')">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h4l1-3h8l1 3h4"/><path d="M9 14V9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5"/><path d="M13 3l3 3M17 3l3 3"/></svg></span>
-      <b>Katamaran</b>
+      <b data-i18n="tile_kat">Katamaran</b>
     </button>
     <button class="tile" onclick="openPage('bsb-fahrplan.html','tab=karte')">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
-      <b>Karte</b>
+      <b data-i18n="tile_karte">Karte</b>
     </button>
   </div>
 
   <div class="card">
-    <p class="lbl" id="lg-naechste-lbl">Nächste Abfahrt</p>
+    <p class="lbl" id="lg-naechste-lbl" data-i18n="next_dep">Nächste Abfahrt</p>
     <p class="lg-hafen-info" id="lg-hafen-info" style="display:none"></p>
-    <div id="lg-naechste"><div class="lg-dep-load">Fahrplan wird geladen …</div></div>
+    <div id="lg-naechste"><div class="lg-dep-load" data-i18n="fahrplan_loading">Fahrplan wird geladen …</div></div>
   </div>
 
   <div class="card">
-    <p class="lbl">Rechtliches</p>
+    <p class="lbl" data-i18n="rechtliches_lbl">Rechtliches</p>
     <details>
-      <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Impressum</summary>
-      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6">
-        <p>Angaben gemäß § 5 DDG</p>
-        <p>Udo Maier<br>Alfred-Weiß-Str. 2<br>88085 Langenargen<br>Deutschland</p>
-        <p>Kontakt: E-Mail info@udo-maier.de</p>
-        <p>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV: Udo Maier (Anschrift wie oben).</p>
-      </div>
+      <summary style="cursor:pointer;font-weight:600;color:var(--navy)" data-i18n="impressum_h">Impressum</summary>
+      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6" data-i18n-html="impressum_html"></div>
     </details>
     <details style="margin-top:12px">
-      <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Datenschutzerklärung</summary>
-      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6">
-        <p><b>Verantwortlicher:</b> Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen, info@udo-maier.de</p>
-        <p><b>Kurz gesagt:</b> Bootsmann hat keine Benutzerkonten, setzt keine Cookies, zeigt keine Werbung und verfolgt Ihr Verhalten nicht.</p>
-        <p><b>Standort:</b> Wenn Sie es erlauben, ermittelt die App Ihren Standort, um das Wetter für Ihren Ort zu zeigen und den nächstgelegenen Hafen für Ausflugsschiffe/Autofähre vorzuschlagen. Der Standort wird dafür an Open-Meteo (Wetter) sowie an BigDataCloud (Ortsname) übertragen. Er wird nicht dauerhaft gespeichert. Erteilen Sie keine Erlaubnis, zeigt die App ersatzweise das Wetter für Langenargen.</p>
-        <p><b>Eingebundene Bausteine (CDN):</b> Für die Schrift lädt die App Schriftarten vom Google-Dienst fonts.googleapis.com nach. Dabei wird technisch bedingt Ihre IP-Adresse an Google übertragen, teils in die USA (Drittland).</p>
-        <p><b>Hosting:</b> Die App liegt auf GitHub Pages (GitHub Inc., USA). Beim Abruf können technisch notwendige Daten wie die IP-Adresse in Server-Protokollen anfallen.</p>
-        <p><b>Ihre Rechte:</b> Sie haben nach DSGVO das Recht auf Auskunft, Berichtigung und Löschung. Wenden Sie sich dazu an die oben genannte E-Mail-Adresse.</p>
-        <p style="font-size:14px">Hinweis: Dies ist eine in einfacher Sprache gehaltene Fassung. Für volle rechtliche Sicherheit empfiehlt sich eine anwaltlich geprüfte Datenschutzerklärung.</p>
-      </div>
+      <summary style="cursor:pointer;font-weight:600;color:var(--navy)" data-i18n="datenschutz_h">Datenschutzerklärung</summary>
+      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6" data-i18n-html="datenschutz_html"></div>
     </details>
     <details style="margin-top:12px">
-      <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Haftungsausschluss</summary>
-      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6">
-        <p><b>Wetterdaten</b> (Open-Meteo) sind Vorhersagen ohne Gewähr für Richtigkeit und Aktualität.</p>
-        <p><b>Fahrplanangaben</b> (Ausflugsschiffe, Autofähre) sind persönlich zusammengestellte Hilfen ohne Gewähr; maßgeblich sind die Angaben der jeweiligen Betreiber (BSB, Stadtwerke Konstanz).</p>
-        <p><b>Notrufnummern:</b> Bitte vor Nutzung prüfen, dass die hinterlegten Telefonnummern für Ihr Land korrekt sind. Im Notfall wählen Sie den europaweiten Notruf 112.</p>
-      </div>
+      <summary style="cursor:pointer;font-weight:600;color:var(--navy)" data-i18n="haftung_h">Haftungsausschluss</summary>
+      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6" data-i18n-html="haftung_html"></div>
     </details>
     <details style="margin-top:12px">
-      <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Urheberrecht</summary>
-      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6">
-        <p>© 2026 Udo Maier. Eigene Texte und Gestaltung dieser App sind urheberrechtlich geschützt.</p>
-        <p>Wetterdaten: © Open-Meteo.com, verfügbar unter der Lizenz CC BY 4.0.</p>
-        <p>Kartendarstellung (Bodensee-Umriss): vereinfachte Küstenlinie, abgeleitet aus OpenStreetMap-Daten, © OpenStreetMap-Mitwirkende, verfügbar unter der Open Database License (ODbL).</p>
-      </div>
+      <summary style="cursor:pointer;font-weight:600;color:var(--navy)" data-i18n="urheber_h">Urheberrecht</summary>
+      <div style="margin-top:8px;font-size:15px;color:var(--muted);line-height:1.6" data-i18n-html="urheber_html"></div>
     </details>
   </div>
 
-  <p class="foot">Angaben ohne Gewähr</p>
+  <p class="foot" data-i18n="footer_disclaimer">Angaben ohne Gewähr</p>
 </div>
 
 <script>
 "use strict";
+document.getElementById("lg-lang-slot").innerHTML=i18nSwitcherHTML();
+i18nApplyStatic();
+i18nInitSwitcher();
 var GEO={lat:null,lng:null};
 function openPage(f,extra){
   var params=[];
@@ -158,18 +151,18 @@ function openPage(f,extra){
   location.href = f + (params.length? '?'+params.join('&') : '');
 }
 function wxCode(c){
-  if(c===0)return{t:"klar",i:"☀️"};
-  if(c===1)return{t:"heiter",i:"🌤️"};
-  if(c===2)return{t:"wolkig",i:"⛅"};
-  if(c===3)return{t:"bedeckt",i:"☁️"};
-  if(c===45||c===48)return{t:"Nebel",i:"🌫️"};
-  if(c>=51&&c<=57)return{t:"Nieselregen",i:"🌦️"};
-  if(c>=61&&c<=67)return{t:"Regen",i:"🌧️"};
-  if(c>=71&&c<=77)return{t:"Schnee",i:"❄️"};
-  if(c>=80&&c<=82)return{t:"Schauer",i:"🌦️"};
-  if(c>=85&&c<=86)return{t:"Schneeschauer",i:"🌨️"};
-  if(c>=95)return{t:"Gewitter",i:"⛈️"};
-  return{t:"—",i:"🌡️"};
+  if(c===0)return{t:t("wx_clear"),i:"☀️"};
+  if(c===1)return{t:t("wx_mostly_clear"),i:"🌤️"};
+  if(c===2)return{t:t("wx_cloudy"),i:"⛅"};
+  if(c===3)return{t:t("wx_overcast"),i:"☁️"};
+  if(c===45||c===48)return{t:t("wx_fog"),i:"🌫️"};
+  if(c>=51&&c<=57)return{t:t("wx_drizzle"),i:"🌦️"};
+  if(c>=61&&c<=67)return{t:t("wx_rain"),i:"🌧️"};
+  if(c>=71&&c<=77)return{t:t("wx_snow"),i:"❄️"};
+  if(c>=80&&c<=82)return{t:t("wx_showers"),i:"🌦️"};
+  if(c>=85&&c<=86)return{t:t("wx_snow_showers"),i:"🌨️"};
+  if(c>=95)return{t:t("wx_thunder"),i:"⛈️"};
+  return{t:t("wx_unknown"),i:"🌡️"};
 }
 var WX_DEFAULT={lat:47.598,lng:9.547,name:"Langenargen"};
 function loadWx(lat,lng,place){
@@ -180,16 +173,16 @@ function loadWx(lat,lng,place){
     if(!d||!d.current||!d.daily)throw 0;
     var now=wxCode(d.current.weather_code);
     var hi=Math.round(d.daily.temperature_2m_max[0]), lo=Math.round(d.daily.temperature_2m_min[0]);
-    var h='<div class="lg-wx-now"><span class="lg-wx-ico">'+now.i+'</span><div class="lg-wx-nowtxt"><span class="lg-wx-temp">'+Math.round(d.current.temperature_2m)+'°<em>'+hi+'° / '+lo+'°</em></span><span class="lg-wx-place">jetzt in <b>'+place+'</b> · '+now.t+'</span></div></div>';
+    var h='<div class="lg-wx-now"><span class="lg-wx-ico">'+now.i+'</span><div class="lg-wx-nowtxt"><span class="lg-wx-temp">'+Math.round(d.current.temperature_2m)+'°<em>'+hi+'° / '+lo+'°</em></span><span class="lg-wx-place">'+t("wx_in")+' <b>'+place+'</b> · '+now.t+'</span></div></div>';
     el.innerHTML=h;
-  }).catch(function(){ el.innerHTML='<div class="lg-wx-fail">Wetter gerade nicht verfügbar.</div>'; });
+  }).catch(function(){ el.innerHTML='<div class="lg-wx-fail">'+t("wx_fail")+'</div>'; });
 }
 // Ortsnamen zum Standort ermitteln (kostenlos, ohne Schlüssel); bei Fehler neutraler Text
 function wxPlaceName(lat,lng,cb){
-  fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+lat+"&longitude="+lng+"&localityLanguage=de")
+  fetch("https://api.bigdatacloud.net/data/reverse-geocode-client?latitude="+lat+"&longitude="+lng+"&localityLanguage="+i18nGetLang())
     .then(function(r){return r.json();})
-    .then(function(d){ cb(d.city||d.locality||d.principalSubdivision||"Ihrer Nähe"); })
-    .catch(function(){ cb("Ihrer Nähe"); });
+    .then(function(d){ cb(d.city||d.locality||d.principalSubdivision||t("near_you_fallback")); })
+    .catch(function(){ cb(t("near_you_fallback")); });
 }
 // Wetter am aktuellen Standort; ohne Freigabe/Standort ersatzweise Langenargen
 function startWx(){
@@ -240,10 +233,10 @@ function hafenInfoRender(hafenIdx,pos){
   if(!eigener) eigener={idx:hafenIdx,km:distKm(pos,{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]})};
   var eigeneMin=gehminuten(eigener.km);
   if(eigeneMin>GEHZEIT_MAX){ el.style.display="none"; return; }
-  var txt=eigeneMin+" Gehmin. entfernt";
+  var txt=eigeneMin+t("gehmin_suffix");
   var alt=null;
   for(var j=0;j<haefen.length;j++){ if(haefen[j].idx!==hafenIdx && haefen[j].km<=3){ alt=haefen[j]; break; } }
-  if(alt) txt+=" · Alternative: "+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+" Gehmin.)";
+  if(alt) txt+=t("alt_label")+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+t("gehmin_paren_suffix");
   el.textContent=txt;
   el.style.display="";
 }
@@ -275,7 +268,7 @@ function katamaranKandidaten(hafenIdx){
     return {
       dep: pad2(dt.getHours())+":"+pad2(dt.getMinutes()),
       ts: dt.getTime(),
-      ziel: (dir==="kn" ? "Friedrichshafen" : "Konstanz") + " (Katamaran)",
+      ziel: (dir==="kn" ? "Friedrichshafen" : "Konstanz") + " (" + t("tile_kat") + ")",
       praefix: ""
     };
   });
@@ -284,7 +277,7 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
   var box=document.getElementById("lg-naechste");
   if(!box) return;
   var lbl=document.getElementById("lg-naechste-lbl");
-  if(lbl) lbl.textContent="Nächste Abfahrt ab "+PORTS[hafenIdx];
+  if(lbl) lbl.textContent=t("next_dep_from")+" "+PORTS[hafenIdx];
   var heute=todayISO();
   var bsbListe=[];
   if(heute>=SAISON_MIN&&heute<=SAISON_MAX){
@@ -298,7 +291,7 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
       if(morgenStr<=SAISON_MAX){
         bsbListe=abfahrtenAbHafen(hafenIdx,morgenStr,0,2).map(function(x){
           var d=new Date(); d.setDate(d.getDate()+1); d.setHours(0,0,0,0); d.setMinutes(x.depMin);
-          return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:"morgen "};
+          return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:t("morgen")+" "};
         });
       }
     }
@@ -307,27 +300,27 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
   var alle=bsbListe.concat(katListe).sort(function(a,b){return a.ts-b.ts;});
   if(!alle.length){
     if((heute<SAISON_MIN||heute>SAISON_MAX) && !katListe.length){
-      box.innerHTML='<div class="lg-dep-empty">Außerhalb der Saison (3. Apr – 18. Okt) keine Fahrten.</div>';
+      box.innerHTML='<div class="lg-dep-empty">'+t("out_of_season")+'</div>';
     }else{
-      box.innerHTML='<div class="lg-dep-empty">Gerade keine weiteren Fahrten hinterlegt.</div>';
+      box.innerHTML='<div class="lg-dep-empty">'+t("no_more_trips")+'</div>';
     }
     return;
   }
   var erste=alle[0];
   var deltaMin=Math.round((erste.ts-Date.now())/60000);
   var h='<div class="lg-dep"><span class="lg-dep-time">'+erste.dep+'</span><div class="lg-dep-info">'+
-    '<span class="lg-dep-route">nach '+esc(erste.ziel)+'</span>'+
+    '<span class="lg-dep-route">'+t("nach_prefix")+esc(erste.ziel)+'</span>'+
     (erste.praefix?'<span class="lg-dep-sub">'+erste.praefix.trim()+'</span>':'')+
     '</div></div>';
   // Machbarkeits-Check: schafft man die Abfahrt noch zu Fuß?
   if(gehMin!=null && !erste.praefix){
     if(gehMin>deltaMin){
-      h+='<div class="lg-dep-warn">Zu Fuß (~'+gehMin+' Min) schaffst du diese Abfahrt vermutlich nicht mehr.</div>';
+      h+='<div class="lg-dep-warn">'+tf("warn_missed",{min:gehMin})+'</div>';
     }else if(gehMin>=deltaMin-3){
-      h+='<div class="lg-dep-warn">Knapp – am besten gleich losgehen (~'+gehMin+' Min zu Fuß).</div>';
+      h+='<div class="lg-dep-warn">'+tf("warn_tight",{min:gehMin})+'</div>';
     }
   }
-  if(alle[1]) h+='<div class="lg-dep-next">danach '+alle[1].praefix+alle[1].dep+' Uhr nach '+esc(alle[1].ziel)+'</div>';
+  if(alle[1]) h+='<div class="lg-dep-next">'+t("next_after_prefix")+alle[1].praefix+alle[1].dep+t("time_unit")+' '+t("nach_prefix")+esc(alle[1].ziel)+'</div>';
   box.innerHTML=h;
 }
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}

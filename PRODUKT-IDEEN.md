@@ -5,15 +5,22 @@ Status je Punkt: **offen** (noch nicht entschieden/umgesetzt).
 
 ## 1. Sprachen (gestaffelte Einführung)
 
-**Empfehlung des Auftraggebers**: Start mit Deutsch + Englisch, dann
-Französisch + Niederländisch, Rest erst bei belegtem Bedarf.
+**Entscheidung (15.07.2026)**: Alle vier Sprachen gleichzeitig einziehen
+(nicht gestaffelt), Rest erst bei belegtem Bedarf. Technischer Aufbau:
+eigenständige Datei `i18n.js` (Wörterbuch pro Sprache + `t()`/`tf()`-
+Hilfsfunktionen + Sprachumschalter-Baustein), komplett getrennt von den
+Fahrplan-Dateien – jährliches Fahrplan-Update bleibt ein reiner
+Dateiaustausch ohne Berührung mit der Sprachlogik. Sprachwahl wird in
+`localStorage` gespeichert und gilt seitenübergreifend. Umschalter:
+Flagge + Kürzel (🇩🇪 DE · 🇬🇧 EN · 🇫🇷 FR · 🇳🇱 NL), oben rechts im
+Header. Orts-/Hafennamen bleiben unübersetzt (Eigennamen).
 
 | Prio | Sprache | Begründung | Status |
 |---|---|---|---|
-| 1 – Muss rein | Deutsch | Kernsprache Bodensee D/A/CH, offizielle Orts-/Hafennamen | offen |
-| 1 – Muss rein | Englisch | Internationale Standardsprache | offen |
-| 2 – Sehr sinnvoll | Französisch | Nähe Schweiz/Frankreich; lokale Daten Überlingen: ausländische Gäste dominiert von CH/FR ([Quelle](https://www.ueberlingen-bodensee.de/geschaeftsbericht)) | offen |
-| 2 – Sehr sinnvoll | Niederländisch | Wichtiger Auslandsmarkt laut Statistischem Landesamt BW, v. a. Camping-/Familientourismus ([Quelle](https://www.statistik-bw.de/presse/pressemitteilungen/pressemitteilung/tourismus-in-baden-wuerttemberg-erreicht-2019-neue-hoechstwerte/)) | offen |
+| 1 – Muss rein | Deutsch | Kernsprache Bodensee D/A/CH, offizielle Orts-/Hafennamen | **Startseite erledigt (15.07.2026)**, BSB/Fähre/Katamaran offen |
+| 1 – Muss rein | Englisch | Internationale Standardsprache | **Startseite erledigt (15.07.2026)**, BSB/Fähre/Katamaran offen |
+| 2 – Sehr sinnvoll | Französisch | Nähe Schweiz/Frankreich; lokale Daten Überlingen: ausländische Gäste dominiert von CH/FR ([Quelle](https://www.ueberlingen-bodensee.de/geschaeftsbericht)) | **Startseite erledigt (15.07.2026)**, BSB/Fähre/Katamaran offen |
+| 2 – Sehr sinnvoll | Niederländisch | Wichtiger Auslandsmarkt laut Statistischem Landesamt BW, v. a. Camping-/Familientourismus ([Quelle](https://www.statistik-bw.de/presse/pressemitteilungen/pressemitteilung/tourismus-in-baden-wuerttemberg-erreicht-2019-neue-hoechstwerte/)) | **Startseite erledigt (15.07.2026)**, BSB/Fähre/Katamaran offen |
 | 3 – später prüfen | Italienisch | Relevant, aber nachrangig | offen |
 | 3 – später prüfen | Tschechisch/Polnisch | Nur bei belegtem Bedarf durch Nutzungsdaten/Partner | offen |
 
