@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v38) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v39) – Stand: 15. Juli 2026
+   Neu gegenüber v38:
+   - "Rückfahrt heute"-Karte gilt jetzt auch an künftigen Tagen (nach
+     "Nächster Tag"): Titel/Text zeigen dann "Rückfahrt am [Datum]"
+     statt "Rückfahrt heute"; die Warnung "ist schon vorbei" erscheint
+     weiterhin nur am aktuellen Tag.
    Neu gegenüber v37:
    - Bugfix "Nächsten Hafen verwenden": wenn der erkannte Standort mit
      dem bereits gewählten Ziel-Hafen übereinstimmt, wird jetzt die
@@ -163,7 +168,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v38';
+const CACHE = 'bootsmann-v39';
 const SHELL = [
   './',
   './index.html',
