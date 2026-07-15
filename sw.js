@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v23) – Stand: 14. Juli 2026
+/* Bootsmann – Service Worker (v24) – Stand: 15. Juli 2026
+   Neu gegenüber v23:
+   - "Nächste Abfahrt"-Kachel: Überschrift nennt jetzt explizit den
+     nächstgelegenen Hafen ("Nächste Abfahrt ab Langenargen" statt nur
+     "Nächste Abfahrt"), Hafenname in der Zeile darunter dadurch entfernt
+     (war redundant).
    Neu gegenüber v22:
    - Wetter-Kachel gekürzt: 3-Tage-Vorschau (Heute/Morgen/Übermorgen)
      entfernt, stattdessen Tageshöchst-/Tiefsttemperatur direkt neben
@@ -88,7 +93,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v23';
+const CACHE = 'bootsmann-v24';
 const SHELL = [
   './',
   './index.html',

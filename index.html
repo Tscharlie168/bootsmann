@@ -97,7 +97,7 @@ a{color:inherit;}
   </div>
 
   <div class="card">
-    <p class="lbl">Nächste Abfahrt</p>
+    <p class="lbl" id="lg-naechste-lbl">Nächste Abfahrt</p>
     <div id="lg-naechste"><div class="lg-dep-load">Fahrplan wird geladen …</div></div>
   </div>
 
@@ -245,6 +245,8 @@ function katamaranKandidaten(hafenIdx){
 function naechsteAbfahrtRender(hafenIdx){
   var box=document.getElementById("lg-naechste");
   if(!box) return;
+  var lbl=document.getElementById("lg-naechste-lbl");
+  if(lbl) lbl.textContent="Nächste Abfahrt ab "+PORTS[hafenIdx];
   var heute=todayISO();
   var bsbListe=[];
   if(heute>=SAISON_MIN&&heute<=SAISON_MAX){
@@ -269,7 +271,7 @@ function naechsteAbfahrtRender(hafenIdx){
     if((heute<SAISON_MIN||heute>SAISON_MAX) && !katListe.length){
       box.innerHTML='<div class="lg-dep-empty">Außerhalb der Saison (3. Apr – 18. Okt) keine Fahrten.</div>';
     }else{
-      box.innerHTML='<div class="lg-dep-empty">Ab '+esc(PORTS[hafenIdx])+' sind gerade keine weiteren Fahrten hinterlegt.</div>';
+      box.innerHTML='<div class="lg-dep-empty">Gerade keine weiteren Fahrten hinterlegt.</div>';
     }
     return;
   }
@@ -277,7 +279,7 @@ function naechsteAbfahrtRender(hafenIdx){
   var deltaMin=Math.round((erste.ts-Date.now())/60000);
   var minLabel=erste.praefix?erste.praefix.trim():(deltaMin<=0?"jetzt":"in "+deltaMin+" Min");
   var h='<div class="lg-dep"><span class="lg-dep-time">'+erste.dep+'</span><div class="lg-dep-info">'+
-    '<span class="lg-dep-route">'+esc(PORTS[hafenIdx])+' → '+esc(erste.ziel)+'</span>'+
+    '<span class="lg-dep-route">nach '+esc(erste.ziel)+'</span>'+
     '<span class="lg-dep-sub">'+minLabel+'</span></div></div>';
   if(alle[1]) h+='<div class="lg-dep-next">danach '+alle[1].praefix+alle[1].dep+' Uhr nach '+esc(alle[1].ziel)+'</div>';
   box.innerHTML=h;
