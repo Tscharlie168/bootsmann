@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v37) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v38) – Stand: 15. Juli 2026
+   Neu gegenüber v37:
+   - Bugfix "Nächsten Hafen verwenden": wenn der erkannte Standort mit
+     dem bereits gewählten Ziel-Hafen übereinstimmt, wird jetzt die
+     Richtung getauscht statt Von=Nach auf denselben Hafen zu setzen
+     (verhinderte vorher eine unsinnige Route wie "Bregenz → Bregenz"
+     samt Falschmeldung in der Rückfahrt-heute-Karte).
    Neu gegenüber v36:
    - "Angaben ohne Gewähr" auf allen vier Seiten vereinheitlicht:
      zentriert (fehlte bei Fähre/Katamaran) und 15px (BSB war bei
@@ -157,7 +163,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v37';
+const CACHE = 'bootsmann-v38';
 const SHELL = [
   './',
   './index.html',
