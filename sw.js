@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v27) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v28) – Stand: 15. Juli 2026
+   Neu gegenüber v27:
+   - Gehzeit-/Machbarkeits-Anzeige wird ab 60 Gehminuten (~5 km)
+     ausgeblendet statt absurde Werte wie "484 Gehmin." zu zeigen (Fall:
+     Standort weit vom See entfernt, aber innerhalb der 66-km-Schwelle
+     für "nächster Hafen").
    Neu gegenüber v26:
    - "Nächste Abfahrt"-Kachel wieder vereinfacht: Ankunftszeit und
      Restzeit-Countdown ("in X Min") wieder entfernt, zu viel auf
@@ -107,7 +112,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v27';
+const CACHE = 'bootsmann-v28';
 const SHELL = [
   './',
   './index.html',
