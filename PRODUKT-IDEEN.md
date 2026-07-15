@@ -25,10 +25,10 @@ immer mehr zu können.
 
 ### Fünf Kernfunktionen (Soll-Zustand)
 
-1. **Nächste Abfahrt** – nächster Hafen, nächste Abfahrt, Richtung/Ziel,
-   Ankunftszeit, Restzeit, Machbarkeits-Check ("schaffe ich es noch").
-   Beispiel: „Ab Meersburg nach Konstanz: nächste Fahrt 14:35, Ankunft
-   15:05, Fußweg zum Hafen 7 Minuten."
+1. **Nächste Abfahrt** – **Erledigt (15.07.2026).** Nächster Hafen,
+   nächste Abfahrt, Richtung/Ziel, Ankunftszeit und Machbarkeits-Check
+   ("Knapp – am besten gleich losgehen" bzw. "schaffst du vermutlich
+   nicht mehr") sind jetzt in der Startseiten-Kachel enthalten.
 2. **Route planen** – **Entscheidung (15.07.2026): erledigt/OK so.** Nur
    BSB braucht einen Verbindungsplaner (betrifft die Urlauber mit
    längeren Strecken); Autofähre und Katamaran haben kurze, einfache
