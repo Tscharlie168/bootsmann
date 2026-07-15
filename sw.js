@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v47) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v48) – Stand: 15. Juli 2026
+   Neu gegenüber v47:
+   - Mehrsprachigkeit (DE/EN/FR/NL) jetzt auch auf dem BSB-Fahrplan
+     (Verbindung, Schweiz, Hinweise, Live-Karte): Sprachumschalter im
+     Header, alle Texte übersetzt. Fahrplandaten (fahrplan-daten.js)
+     enthalten jetzt nur noch Übersetzungsschlüssel statt fertigem
+     Text für die zwei Sonderfahrten-Warnungen (umstieg_am in
+     i18n.js) – bleibt dadurch weiterhin ein reiner Datenaustausch.
+     Damit sind alle vier Seiten der App vollständig mehrsprachig.
    Neu gegenüber v46:
    - Mehrsprachigkeit (DE/EN/FR/NL) jetzt auch auf Autofähre und
      Katamaran: Sprachumschalter im Header, alle Texte übersetzt
@@ -199,7 +207,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v47';
+const CACHE = 'bootsmann-v48';
 const SHELL = [
   './',
   './index.html',
