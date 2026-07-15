@@ -217,6 +217,7 @@ function distKm(a,b){
   return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
 }
 function gehminuten(km){ return Math.max(1,Math.round(km*12)); } // ~5 km/h zu Fuß
+var GEHZEIT_MAX=60; // ab hier ist "zu Fuß" keine sinnvolle Angabe mehr
 /* Die n nächstgelegenen Häfen zu einer Position, sortiert nach Entfernung. */
 function naechsteHaefen(lat,lng,n){
   var liste=[];
@@ -237,7 +238,9 @@ function hafenInfoRender(hafenIdx,pos){
   var eigener=null;
   for(var i=0;i<haefen.length;i++){ if(haefen[i].idx===hafenIdx){ eigener=haefen[i]; break; } }
   if(!eigener) eigener={idx:hafenIdx,km:distKm(pos,{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]})};
-  var txt=gehminuten(eigener.km)+" Gehmin. entfernt";
+  var eigeneMin=gehminuten(eigener.km);
+  if(eigeneMin>GEHZEIT_MAX){ el.style.display="none"; return; }
+  var txt=eigeneMin+" Gehmin. entfernt";
   var alt=null;
   for(var j=0;j<haefen.length;j++){ if(haefen[j].idx!==hafenIdx && haefen[j].km<=3){ alt=haefen[j]; break; } }
   if(alt) txt+=" · Alternative: "+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+" Gehmin.)";
@@ -332,6 +335,7 @@ function naechsteAbfahrtStarten(lat,lng){
   var n=nearestPort(lat,lng);
   var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
   var gehMin=n.far?null:gehminuten(distKm({lat:lat,lng:lng},{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]}));
+  if(gehMin!=null && gehMin>GEHZEIT_MAX) gehMin=null; // zu weit weg, "zu Fuß" ergibt keinen Sinn mehr
   naechsteAbfahrtRender(hafenIdx,gehMin);
   hafenInfoRender(hafenIdx, n.far?null:{lat:lat,lng:lng});
 }
