@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v36) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v37) – Stand: 15. Juli 2026
+   Neu gegenüber v36:
+   - "Angaben ohne Gewähr" auf allen vier Seiten vereinheitlicht:
+     zentriert (fehlte bei Fähre/Katamaran) und 15px (BSB war bei
+     11,5px, jetzt wie überall sonst).
    Neu gegenüber v35:
    - Autofähre: "Angaben ohne Gewähr" im Footer ohne Punkt am Ende
      (einheitlich mit Startseite/BSB).
@@ -153,7 +157,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v36';
+const CACHE = 'bootsmann-v37';
 const SHELL = [
   './',
   './index.html',
