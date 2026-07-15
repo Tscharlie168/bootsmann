@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v39) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v40) – Stand: 15. Juli 2026
+   Neu gegenüber v39:
+   - Kurzaufenthalt-Warnung ("Bei Hinfahrt ... bleiben dir bis zur
+     nächsten Rückfahrt nur rund X Minuten vor Ort.") aus der
+     Rückfahrt-Karte entfernt – bewusste Entscheidung, unnötig.
    Neu gegenüber v38:
    - "Rückfahrt heute"-Karte gilt jetzt auch an künftigen Tagen (nach
      "Nächster Tag"): Titel/Text zeigen dann "Rückfahrt am [Datum]"
@@ -168,7 +172,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v39';
+const CACHE = 'bootsmann-v40';
 const SHELL = [
   './',
   './index.html',
