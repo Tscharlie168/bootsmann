@@ -12,6 +12,18 @@ existierte; einmal musste ein kompletter Branch per `git reset --hard
 origin/main` neu aufgesetzt werden, weil er auf einem veralteten Stand
 gebaut war).
 
+**Ursache gefunden und behoben (14.07.2026)**: Der eigentliche Grund für
+den veralteten Ausgangsstand war, dass der **Default-Branch des
+GitHub-Repos** monatelang auf einem alten Setup-Branch
+(`claude/bootsmann-repo-setup-2hqkvr`, ~40 Commits hinter `main`) stand
+statt auf `main`. Neue Sessions/Klone orientieren sich am Default-Branch
+– das ist die vermutliche Wurzel des Problems, nicht (nur) parallel
+laufende Sessions. Der Default-Branch wurde inzwischen auf `main`
+umgestellt und alle 15 toten, bereits gemergten Branches gelöscht. Trotzdem
+gilt die Regel unten weiter uneingeschränkt – zur Sicherheit, falls der
+Default-Branch je wieder falsch gesetzt wird oder aus einem alten Fork/
+einer alten Session heraus gearbeitet wird.
+
 **Vor JEDER Code-Änderung, ausnahmslos, als allererster Schritt:**
 1. `git fetch origin main`
 2. `git log HEAD..origin/main` bzw. `git merge-base --is-ancestor origin/main HEAD` prüfen
@@ -24,6 +36,10 @@ Das gilt unabhängig davon, wie lange die Session schon läuft oder was in
 einer früheren Nachricht dieser Konversation über den Datei-Stand gesagt
 wurde – der Stand kann sich durch andere, parallel laufende Sessions
 jederzeit geändert haben. Im Zweifel lieber einmal zu oft fetchen.
+
+**GitHub Pages**: Die Live-Seite (`https://tscharlie168.github.io/bootsmann/`)
+wird aus `main` (Root-Verzeichnis) gebaut – das war schon immer korrekt
+eingestellt und ist nicht die Fehlerquelle gewesen.
 
 ## PR-Workflow: mergen oder nachfragen, nicht offen herumliegen lassen
 
