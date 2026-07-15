@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v35) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v36) – Stand: 15. Juli 2026
+   Neu gegenüber v35:
+   - Autofähre: "Angaben ohne Gewähr" im Footer ohne Punkt am Ende
+     (einheitlich mit Startseite/BSB).
+   - Katamaran: Unterzeile im Kopf von "Sommerfahrplan gültig bis
+     04.10.2026" auf "Saison 2026 · 1. Apr – 4. Okt" geändert (wie bei
+     BSB/Fähre). Fußzeile gekürzt auf "Angaben ohne Gewähr · Betreiber:
+     Katamaran-Reederei Bodensee GmbH & Co.KG." (Saisondaten dort
+     entfernt, stehen jetzt oben).
    Neu gegenüber v34:
    - Startseite: Zielort in der "Nächste Abfahrt"-Kachel (.lg-dep-route,
      z. B. "nach Bregenz") von 17px auf 18px erhöht.
@@ -145,7 +153,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v35';
+const CACHE = 'bootsmann-v36';
 const SHELL = [
   './',
   './index.html',
