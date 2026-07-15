@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v41) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v42) – Stand: 15. Juli 2026
+   Neu gegenüber v41:
+   - Schweiz-Tab: neuer Hilfetext unter der Ziel-Auswahl, erklärt das
+     Prinzip (erst Ziel wählen, dann selbst den passenden Abfahrtsort
+     nach Uhrzeit/Anreise auswählen; gilt auch für die Rückfahrt).
    Neu gegenüber v40:
    - Verbindung-Tab: Hinweistext "Vergangene Abfahrten für heute sind
      ausgeblendet." zu "Vergangene Abfahrten sind ausgeblendet." gekürzt.
@@ -175,7 +179,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v41';
+const CACHE = 'bootsmann-v42';
 const SHELL = [
   './',
   './index.html',
