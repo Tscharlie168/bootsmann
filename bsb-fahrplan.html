@@ -1077,7 +1077,8 @@ function bind(){
     navigator.geolocation.getCurrentPosition(function(pos){
       var n=nearestPort(pos.coords.latitude,pos.coords.longitude);
       if(n.far){state.locStatus="Du scheinst nicht am Bodensee zu sein \u2013 bitte Hafen manuell w\u00e4hlen.";render();return;}
-      state.from=n.idx;state.open=null;state.locStatus="N\u00e4chster Hafen erkannt: "+PORTS[n.idx];render();
+      if(n.idx===state.to){var t=state.from;state.from=n.idx;state.to=t;}else{state.from=n.idx;}
+      state.open=null;state.locStatus="N\u00e4chster Hafen erkannt: "+PORTS[n.idx];render();
     },function(){
       state.locStatus="Standort nicht verf\u00fcgbar (Freigabe n\u00f6tig) \u2013 bitte Hafen manuell w\u00e4hlen.";render();
     },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
