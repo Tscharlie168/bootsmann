@@ -67,6 +67,19 @@ warten. Faustregel:
   Preis-/Rechtstext, etwas mit unklarer Absicht): vor dem Umsetzen
   nachfragen statt einfach loszulegen.
 
+## Typografie-Konsistenz über alle Seiten hinweg
+
+Wenn Schriftgröße, Schriftart, Farbe oder ähnliche Style-Werte auf einer
+Seite geändert werden (z. B. `.foot`, `.notice`/Hinweis-Boxen, `.dir button
+b`/`small`, Überschriften-Größen, `.dep .t`/`.meta`), automatisch – ohne
+Nachfrage – auf allen vier Seiten (`index.html`, `bsb-fahrplan.html`,
+`autofaehre.html`, `katamaran.html`) prüfen, ob dieselbe/eine analoge Klasse
+dort denselben Wert hat. Bei Differenzen aktiv Rückmeldung geben (welche
+Seite weicht mit welchem Wert ab), statt die Änderung nur auf der
+angefragten Seite umzusetzen und die anderen unangetastet zu lassen. Ziel:
+einheitliches Erscheinungsbild über die ganze App, nicht nur auf der
+gerade bearbeiteten Seite.
+
 ## Vorlage-basierte Änderungen: selbst gegenprüfen statt nur technisch testen
 
 Wenn eine neue Seite/ein neuer Abschnitt von einer bestehenden Seite
