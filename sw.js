@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v29) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v30) – Stand: 15. Juli 2026
+   Neu gegenüber v29:
+   - BSB-Fahrplan: Hinweistexte (z. B. "Vergangene Abfahrten für heute
+     sind ausgeblendet.") von 13/13,5px auf 16px vergrößert – besser
+     lesbar unterwegs/in der Sonne.
    Neu gegenüber v28:
    - BSB-Fahrplan (Verbindung-Tab): neue Karte "Rückfahrt heute" unter
      der Hinfahrt-Ergebnisliste (nur am aktuellen Tag) – zeigt die letzte
@@ -117,7 +121,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v29';
+const CACHE = 'bootsmann-v30';
 const SHELL = [
   './',
   './index.html',
