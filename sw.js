@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v34) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v35) – Stand: 15. Juli 2026
+   Neu gegenüber v34:
+   - Startseite: Zielort in der "Nächste Abfahrt"-Kachel (.lg-dep-route,
+     z. B. "nach Bregenz") von 17px auf 18px erhöht.
+   - Autofähre: Unterzeile im Kopf von "Nächste Abfahrten · rund um die
+     Uhr" auf "Saison 2026 · 27. Mär – 4. Okt" geändert (wie bei BSB).
+     Fußzeile gekürzt auf nur noch "Angaben ohne Gewähr." (Saisondaten/
+     Überfahrtzeit dort entfernt, stehen jetzt oben).
    Neu gegenüber v33:
    - "Rückfahrt heute": die neutrale Info-Zeile ("Letzte Rückfahrt heute
      ab X: HH Uhr") steht jetzt auch in einem Kasten (neue Klasse
@@ -138,7 +145,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v34';
+const CACHE = 'bootsmann-v35';
 const SHELL = [
   './',
   './index.html',
