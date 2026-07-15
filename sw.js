@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v30) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v31) – Stand: 15. Juli 2026
+   Neu gegenüber v30:
+   - Gleiche Schriftvergrößerung (16px) jetzt auch auf Startseite,
+     Autofähre und Katamaran angewendet: Wetter-/Hafen-Hinweise,
+     Nächste-Abfahrt-Kachel, Rechtliches-Texte, Fußzeilen, Meta-Text bei
+     Abfahrten, "Nebensaison"-Hinweise.
    Neu gegenüber v29:
    - BSB-Fahrplan: Hinweistexte (z. B. "Vergangene Abfahrten für heute
      sind ausgeblendet.") von 13/13,5px auf 16px vergrößert – besser
@@ -121,7 +126,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v30';
+const CACHE = 'bootsmann-v31';
 const SHELL = [
   './',
   './index.html',
