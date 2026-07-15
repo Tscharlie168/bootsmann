@@ -33,11 +33,13 @@ immer mehr zu können.
    BSB braucht einen Verbindungsplaner (betrifft die Urlauber mit
    längeren Strecken); Autofähre und Katamaran haben kurze, einfache
    Fahrzeiten und brauchen keinen eigenen Planer.
-3. **Heute noch zurückkommen** – "Hin und zurück heute" /
-   "Rückfahrt prüfen" / "Letzte Rückfahrt", inkl. Warnung bei knapper
-   Aufenthaltsdauer. Beispiel: „Achtung: Wenn du diese Hinfahrt nimmst,
-   bleiben dir nur 55 Minuten Aufenthalt." **Zurückgestellt (15.07.2026):
-   wird als Letztes der fünf Kernfunktionen angegangen.**
+3. **Heute noch zurückkommen** – **Erledigt (15.07.2026).** Im
+   BSB-Verbindungsplaner (Reiter "Verbindung") erscheint unter der
+   Hinfahrt-Ergebnisliste eine Karte "Rückfahrt heute" (nur am aktuellen
+   Tag): letzte Rückfahrt des Tages, Warnung falls sie schon vorbei ist,
+   Warnung bei sehr kurzer Aufenthaltsdauer bis zur nächsten Rückfahrt
+   nach der ersten Hinfahrt. Bewusst als eine zusammenfassende Karte
+   statt pro-Zeile-Anzeige (Entscheidung des Auftraggebers).
 4. **Nächster Hafen** – per Standort, mit Entfernung, Gehzeit, nächsten
    Abfahrten ab dort, alternative Häfen in der Nähe. **In Arbeit
    (15.07.2026).**
