@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v28) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v29) – Stand: 15. Juli 2026
+   Neu gegenüber v28:
+   - BSB-Fahrplan (Verbindung-Tab): neue Karte "Rückfahrt heute" unter
+     der Hinfahrt-Ergebnisliste (nur am aktuellen Tag) – zeigt die letzte
+     Rückfahrt des Tages, warnt wenn sie schon vorbei ist oder die
+     Aufenthaltsdauer bei der ersten Hinfahrt sehr kurz wäre.
    Neu gegenüber v27:
    - Gehzeit-/Machbarkeits-Anzeige wird ab 60 Gehminuten (~5 km)
      ausgeblendet statt absurde Werte wie "484 Gehmin." zu zeigen (Fall:
@@ -112,7 +117,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v28';
+const CACHE = 'bootsmann-v29';
 const SHELL = [
   './',
   './index.html',
