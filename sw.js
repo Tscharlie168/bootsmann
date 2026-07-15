@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v31) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v32) – Stand: 15. Juli 2026
+   Neu gegenüber v31:
+   - Hinweistexte von 16px auf 15px reduziert (16px war zu groß) –
+     betrifft alle in v30/v31 vergrößerten Stellen auf allen vier Seiten.
    Neu gegenüber v30:
    - Gleiche Schriftvergrößerung (16px) jetzt auch auf Startseite,
      Autofähre und Katamaran angewendet: Wetter-/Hafen-Hinweise,
@@ -126,7 +129,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v31';
+const CACHE = 'bootsmann-v32';
 const SHELL = [
   './',
   './index.html',
