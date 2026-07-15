@@ -143,7 +143,7 @@ select,input,button{font-family:inherit;}
 .lg-card--alert{border-left:4px solid var(--red);}
 .lg-card-tip{margin-top:9px;font-size:15px;color:var(--muted);}
 .lg-muted{color:var(--muted);}
-.lg-disclaimer{font-size:15px;color:var(--muted);margin:6px 2px 0;}
+.lg-disclaimer{font-size:15px;color:var(--muted);text-align:center;margin:6px 2px 0;}
 
 .lg-foot{text-align:center;font-size:15px;color:var(--muted);padding:18px 16px 30px;}
 
@@ -827,11 +827,12 @@ function hinweiseHTML(){
   '<p class="lg-card-tip">W&auml;hle im Reiter &bdquo;Verbindung&ldquo; einfach das Datum — der Planer blendet betroffene Kurse aus oder markiert den Umstieg.</p></div>'+
   '<div class="lg-card"><h3>Feiertage in der Saison</h3><p>Chr. Himmelfahrt 14.5. · Pfingstsonntag 24.5. · Pfingstmontag 25.5. · Fronleichnam 4.6. · Schweizer Nationalfeiertag 1.8. <span class="lg-muted">(Linie f&auml;hrt normal weiter.)</span></p></div>'+
   '<p class="lg-disclaimer">Daten aus dem VSU-Fahrplan, Stand 11/2025. Alle Angaben ohne Gew&auml;hr — bei Nebel, Sturm oder hohem Andrang sind Versp&auml;tungen/Ausf&auml;lle m&ouml;glich.</p>'+
-  '<div class="lg-card"><h3>Impressum &amp; Datenschutz</h3>'+
+  '<div class="lg-card"><details><summary style="cursor:pointer;font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:700;color:var(--navy)">Impressum &amp; Datenschutz</summary>'+
+  '<div style="margin-top:8px">'+
   '<p>Angaben gem&auml;&szlig; &sect; 5 DDG: Udo Maier, Alfred-Wei&szlig;-Str. 2, 88085 Langenargen &middot; E-Mail: info@udo-maier.de.</p>'+
   '<p>Diese Seite fragt mit Ihrer Erlaubnis Ihren Standort ab, um den n&auml;chstgelegenen Hafen vorzuschlagen; er wird nicht dauerhaft gespeichert. F&uuml;r die Schrift werden Schriftarten von Google (fonts.googleapis.com) nachgeladen, wobei technisch Ihre IP-Adresse an Google &uuml;bertragen wird.</p>'+
   '<p>Die ausf&uuml;hrliche Datenschutzerkl&auml;rung mit allen genutzten Diensten finden Sie in <a href="index.html">Bootsmann</a> ganz unten auf der Startseite.</p>'+
-  '</div>'+
+  '</div></details></div>'+
   '</section>';
 }
 

@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v44) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v45) – Stand: 15. Juli 2026
+   Neu gegenüber v44:
+   - Hinweise-Tab: Disclaimer-Text zentriert. Impressum & Datenschutz
+     ist jetzt zum Aufklappen (details/summary) statt dauerhaft offen.
    Neu gegenüber v43:
    - Hinweise-Tab: Disclaimer-Text ("Daten aus dem VSU-Fahrplan...") von
      12px auf 15px, wie "Angaben ohne Gewähr" auf allen Seiten.
@@ -186,7 +189,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v44';
+const CACHE = 'bootsmann-v45';
 const SHELL = [
   './',
   './index.html',
