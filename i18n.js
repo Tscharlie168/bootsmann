@@ -78,7 +78,7 @@ function i18nApplyStatic(){
       el.setAttribute(p[0],t(p[1]));
     }
   });
-  document.title=t("doc_title");
+  document.title=t(window.I18N_TITLE_KEY||"doc_title");
   document.documentElement.lang=i18nGetLang();
 }
 
@@ -121,7 +121,35 @@ var I18N={
     haftung_html:"<p><b>Wetterdaten</b> (Open-Meteo) sind Vorhersagen ohne Gewähr für Richtigkeit und Aktualität.</p><p><b>Fahrplanangaben</b> (Ausflugsschiffe, Autofähre) sind persönlich zusammengestellte Hilfen ohne Gewähr; maßgeblich sind die Angaben der jeweiligen Betreiber (BSB, Stadtwerke Konstanz).</p><p><b>Notrufnummern:</b> Bitte vor Nutzung prüfen, dass die hinterlegten Telefonnummern für Ihr Land korrekt sind. Im Notfall wählen Sie den europaweiten Notruf 112.</p>",
     urheber_h:"Urheberrecht",
     urheber_html:"<p>© 2026 Udo Maier. Eigene Texte und Gestaltung dieser App sind urheberrechtlich geschützt.</p><p>Wetterdaten: © Open-Meteo.com, verfügbar unter der Lizenz CC BY 4.0.</p><p>Kartendarstellung (Bodensee-Umriss): vereinfachte Küstenlinie, abgeleitet aus OpenStreetMap-Daten, © OpenStreetMap-Mitwirkende, verfügbar unter der Open Database License (ODbL).</p>",
-    footer_disclaimer:"Angaben ohne Gewähr"
+    footer_disclaimer:"Angaben ohne Gewähr",
+
+    back_btn:"‹ Zurück",
+    richtung_lbl:"Richtung",
+    ab_wann_lbl:"Ab wann?",
+    datum_lbl:"Datum",
+    uhrzeit_lbl:"Uhrzeit",
+    ab_prefix:"ab ",
+    abfahrten_prefix:"Abfahrten ",
+    jetzt_lbl:"jetzt",
+    in_min_prefix:"in ",
+    min_unit:" Min",
+    notice_empty_day:"Für den Rest des Tages sind keine Abfahrten hinterlegt. Bitte Datum oder Uhrzeit ändern.",
+    impressum_datenschutz_h:"Impressum & Datenschutz",
+
+    faehre_doc_title:"Autofähre Konstanz – Meersburg",
+    faehre_h1_plain:"Bodensee",
+    faehre_h1_hl:"Fähre",
+    faehre_season:"Saison 2026 · 27. Mär – 4. Okt",
+    faehre_notice_offseason_html:"Für dieses Datum gilt der <b>Nebensaison- oder Sonderfahrplan</b>. Diese Zeiten stehen auf der offiziellen Seite der Stadtwerke Konstanz (Link unten).",
+    faehre_ext_html:"Störungen, Ausfälle und der Sonderfahrplan werden nur auf der <b>offiziellen Seite der Stadtwerke Konstanz</b> angezeigt. Dort gelten deren Regeln – nicht die von Bootsmann.",
+    faehre_impressum_html:"<p>Angaben gemäß § 5 DDG: Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen · E-Mail: info@udo-maier.de.</p><p>Diese Seite fragt selbst keinen Standort beim Gerät ab; wird sie aus Bootsmann heraus geöffnet, kann ein dort ermittelter Standort als Adresszeilen-Parameter übergeben werden, um den nächstgelegenen Hafen vorzuschlagen. Für die Schrift werden Schriftarten von Google (fonts.googleapis.com) nachgeladen, wobei technisch Ihre IP-Adresse an Google übertragen wird.</p><p>Die ausführliche Datenschutzerklärung mit allen genutzten Diensten finden Sie in <a href=\"index.html\">Bootsmann</a> ganz unten auf der Startseite.</p>",
+
+    kat_doc_title:"Katamaran Konstanz – Friedrichshafen",
+    kat_season:"Saison 2026 · 1. Apr – 4. Okt",
+    kat_notice_winter_html:"Für dieses Datum gilt der <b>Winterfahrplan</b>. Diese Zeiten stehen auf der offiziellen Seite der Katamaran-Reederei (Link unten).",
+    fahrzeit_suffix:" · Fahrzeit 52 Min.",
+    kat_ext_html:"Tickets, aktuelle Preise, Störungen und Sonderfahrten (z. B. Seehasenfest, Seenachtsfest) gelten nur auf der <b>offiziellen Seite der Katamaran-Reederei</b>. Dort gelten deren Regeln – nicht die von Bootsmann.",
+    kat_betreiber_suffix:" · Betreiber: Katamaran-Reederei Bodensee GmbH & Co.KG."
   },
   en:{
     doc_title:"Bootsmann · Lake Constance",
@@ -161,7 +189,35 @@ var I18N={
     haftung_html:"<p><b>Weather data</b> (Open-Meteo) are forecasts provided without guarantee of accuracy or timeliness.</p><p><b>Timetable information</b> (excursion boats, car ferry) is a personally compiled aid provided without guarantee; the information from the respective operators (BSB, Stadtwerke Konstanz) is authoritative.</p><p><b>Emergency numbers:</b> Please check before use that the listed phone numbers are correct for your country. In an emergency, dial the Europe-wide emergency number 112.</p>",
     urheber_h:"Copyright",
     urheber_html:"<p>© 2026 Udo Maier. Original texts and design of this app are protected by copyright.</p><p>Weather data: © Open-Meteo.com, available under the CC BY 4.0 licence.</p><p>Map (Lake Constance outline): simplified coastline, derived from OpenStreetMap data, © OpenStreetMap contributors, available under the Open Database Licence (ODbL).</p>",
-    footer_disclaimer:"All information without guarantee"
+    footer_disclaimer:"All information without guarantee",
+
+    back_btn:"‹ Back",
+    richtung_lbl:"Direction",
+    ab_wann_lbl:"When?",
+    datum_lbl:"Date",
+    uhrzeit_lbl:"Time",
+    ab_prefix:"from ",
+    abfahrten_prefix:"Departures ",
+    jetzt_lbl:"now",
+    in_min_prefix:"in ",
+    min_unit:" min",
+    notice_empty_day:"No further departures are listed for the rest of the day. Please change the date or time.",
+    impressum_datenschutz_h:"Legal notice & Privacy",
+
+    faehre_doc_title:"Car Ferry Konstanz – Meersburg",
+    faehre_h1_plain:"Lake Constance",
+    faehre_h1_hl:"Ferry",
+    faehre_season:"Season 2026 · 27 Mar – 4 Oct",
+    faehre_notice_offseason_html:"The <b>off-season or special timetable</b> applies to this date. These times are on the official Stadtwerke Konstanz website (link below).",
+    faehre_ext_html:"Disruptions, cancellations and the special timetable are shown only on the <b>official Stadtwerke Konstanz website</b>. Their rules apply there – not Bootsmann's.",
+    faehre_impressum_html:"<p>Information according to German law (§ 5 DDG): Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen · email: info@udo-maier.de.</p><p>This page does not itself request a device location; if opened from within Bootsmann, a location determined there may be passed on as a URL parameter to suggest the nearest harbour. For the typeface, the app loads fonts from Google (fonts.googleapis.com), which technically transmits your IP address to Google.</p><p>The full privacy policy listing all services used can be found in <a href=\"index.html\">Bootsmann</a> at the very bottom of the home page.</p>",
+
+    kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
+    kat_season:"Season 2026 · 1 Apr – 4 Oct",
+    kat_notice_winter_html:"The <b>winter timetable</b> applies to this date. These times are on the official Katamaran-Reederei website (link below).",
+    fahrzeit_suffix:" · Journey time 52 min.",
+    kat_ext_html:"Tickets, current prices, disruptions and special sailings (e.g. Seehasenfest, Seenachtsfest) are shown only on the <b>official Katamaran-Reederei website</b>. Their rules apply there – not Bootsmann's.",
+    kat_betreiber_suffix:" · Operator: Katamaran-Reederei Bodensee GmbH & Co.KG."
   },
   fr:{
     doc_title:"Bootsmann · lac de Constance",
@@ -201,7 +257,35 @@ var I18N={
     haftung_html:"<p><b>Données météo</b> (Open-Meteo) : prévisions fournies sans garantie d'exactitude ni d'actualité.</p><p><b>Horaires</b> (bateaux d'excursion, ferry) : aide personnelle compilée sans garantie ; les informations des exploitants respectifs (BSB, Stadtwerke Konstanz) font foi.</p><p><b>Numéros d'urgence :</b> veuillez vérifier avant utilisation que les numéros indiqués sont corrects pour votre pays. En cas d'urgence, composez le numéro d'urgence européen 112.</p>",
     urheber_h:"Droits d'auteur",
     urheber_html:"<p>© 2026 Udo Maier. Les textes et la conception de cette application sont protégés par le droit d'auteur.</p><p>Données météo : © Open-Meteo.com, disponibles sous licence CC BY 4.0.</p><p>Carte (contour du lac de Constance) : littoral simplifié, dérivé de données OpenStreetMap, © contributeurs d'OpenStreetMap, disponibles sous la licence Open Database (ODbL).</p>",
-    footer_disclaimer:"Informations sans garantie"
+    footer_disclaimer:"Informations sans garantie",
+
+    back_btn:"‹ Retour",
+    richtung_lbl:"Direction",
+    ab_wann_lbl:"À partir de quand ?",
+    datum_lbl:"Date",
+    uhrzeit_lbl:"Heure",
+    ab_prefix:"de ",
+    abfahrten_prefix:"Départs ",
+    jetzt_lbl:"maintenant",
+    in_min_prefix:"dans ",
+    min_unit:" min",
+    notice_empty_day:"Aucun autre départ n'est prévu pour le reste de la journée. Veuillez changer la date ou l'heure.",
+    impressum_datenschutz_h:"Mentions légales & confidentialité",
+
+    faehre_doc_title:"Ferry Konstanz – Meersburg",
+    faehre_h1_plain:"Ferry du lac de",
+    faehre_h1_hl:"Constance",
+    faehre_season:"Saison 2026 · 27 mars – 4 oct.",
+    faehre_notice_offseason_html:"L'<b>horaire hors saison ou spécial</b> s'applique à cette date. Ces horaires figurent sur le site officiel des Stadtwerke Konstanz (lien ci-dessous).",
+    faehre_ext_html:"Les perturbations, annulations et l'horaire spécial ne sont indiqués que sur le <b>site officiel des Stadtwerke Konstanz</b>. Ce sont leurs règles qui s'appliquent là-bas – pas celles de Bootsmann.",
+    faehre_impressum_html:"<p>Informations selon le droit allemand (§ 5 DDG) : Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen · e-mail : info@udo-maier.de.</p><p>Cette page ne demande elle-même aucune localisation de l'appareil ; si elle est ouverte depuis Bootsmann, une position déterminée là-bas peut être transmise en paramètre d'URL afin de proposer le port le plus proche. Pour la police d'écriture, l'application charge des polices depuis Google (fonts.googleapis.com), ce qui transmet techniquement votre adresse IP à Google.</p><p>La politique de confidentialité complète listant tous les services utilisés se trouve dans <a href=\"index.html\">Bootsmann</a>, tout en bas de la page d'accueil.</p>",
+
+    kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
+    kat_season:"Saison 2026 · 1 avr. – 4 oct.",
+    kat_notice_winter_html:"L'<b>horaire d'hiver</b> s'applique à cette date. Ces horaires figurent sur le site officiel de la Katamaran-Reederei (lien ci-dessous).",
+    fahrzeit_suffix:" · Durée du trajet 52 min.",
+    kat_ext_html:"Billets, tarifs actuels, perturbations et traversées spéciales (p. ex. Seehasenfest, Seenachtsfest) ne sont indiqués que sur le <b>site officiel de la Katamaran-Reederei</b>. Ce sont leurs règles qui s'appliquent là-bas – pas celles de Bootsmann.",
+    kat_betreiber_suffix:" · Exploitant : Katamaran-Reederei Bodensee GmbH & Co.KG."
   },
   nl:{
     doc_title:"Bootsmann · Bodenmeer",
@@ -241,6 +325,34 @@ var I18N={
     haftung_html:"<p><b>Weergegevens</b> (Open-Meteo) zijn voorspellingen zonder garantie op juistheid en actualiteit.</p><p><b>Dienstregelingen</b> (uitstapboten, autoveer) zijn persoonlijk samengestelde hulpmiddelen zonder garantie; bepalend zijn de gegevens van de betreffende exploitanten (BSB, Stadtwerke Konstanz).</p><p><b>Alarmnummers:</b> controleer voor gebruik of de vermelde telefoonnummers correct zijn voor uw land. Bel in noodgevallen het Europese alarmnummer 112.</p>",
     urheber_h:"Auteursrecht",
     urheber_html:"<p>© 2026 Udo Maier. Eigen teksten en vormgeving van deze app zijn auteursrechtelijk beschermd.</p><p>Weergegevens: © Open-Meteo.com, beschikbaar onder de CC BY 4.0-licentie.</p><p>Kaartweergave (omtrek Bodenmeer): vereenvoudigde kustlijn, afgeleid van OpenStreetMap-data, © OpenStreetMap-bijdragers, beschikbaar onder de Open Database License (ODbL).</p>",
-    footer_disclaimer:"Gegevens zonder garantie"
+    footer_disclaimer:"Gegevens zonder garantie",
+
+    back_btn:"‹ Terug",
+    richtung_lbl:"Richting",
+    ab_wann_lbl:"Vanaf wanneer?",
+    datum_lbl:"Datum",
+    uhrzeit_lbl:"Tijd",
+    ab_prefix:"vanaf ",
+    abfahrten_prefix:"Afvaarten ",
+    jetzt_lbl:"nu",
+    in_min_prefix:"over ",
+    min_unit:" min",
+    notice_empty_day:"Voor de rest van de dag staan geen afvaarten meer gepland. Wijzig de datum of tijd.",
+    impressum_datenschutz_h:"Colofon & privacy",
+
+    faehre_doc_title:"Autoveer Konstanz – Meersburg",
+    faehre_h1_plain:"Bodenmeer",
+    faehre_h1_hl:"Veerboot",
+    faehre_season:"Seizoen 2026 · 27 mrt – 4 okt",
+    faehre_notice_offseason_html:"Voor deze datum geldt de <b>laagseizoen- of speciale dienstregeling</b>. Deze tijden staan op de officiële website van Stadtwerke Konstanz (link hieronder).",
+    faehre_ext_html:"Storingen, uitval en de speciale dienstregeling worden alleen getoond op de <b>officiële website van Stadtwerke Konstanz</b>. Daar gelden hun regels – niet die van Bootsmann.",
+    faehre_impressum_html:"<p>Gegevens volgens Duits recht (§ 5 DDG): Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen · e-mail: info@udo-maier.de.</p><p>Deze pagina vraagt zelf geen locatie van het apparaat op; wordt ze vanuit Bootsmann geopend, dan kan een daar bepaalde locatie als URL-parameter worden meegegeven om de dichtstbijzijnde haven voor te stellen. Voor het lettertype laadt de app lettertypen van Google (fonts.googleapis.com), waarbij technisch gezien uw IP-adres naar Google wordt verzonden.</p><p>De uitgebreide privacyverklaring met alle gebruikte diensten vindt u in <a href=\"index.html\">Bootsmann</a> helemaal onderaan de startpagina.</p>",
+
+    kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
+    kat_season:"Seizoen 2026 · 1 apr – 4 okt",
+    kat_notice_winter_html:"Voor deze datum geldt de <b>winterdienstregeling</b>. Deze tijden staan op de officiële website van de Katamaran-Reederei (link hieronder).",
+    fahrzeit_suffix:" · Vaartijd 52 min.",
+    kat_ext_html:"Tickets, actuele prijzen, storingen en speciale vaarten (bijv. Seehasenfest, Seenachtsfest) worden alleen getoond op de <b>officiële website van de Katamaran-Reederei</b>. Daar gelden hun regels – niet die van Bootsmann.",
+    kat_betreiber_suffix:" · Exploitant: Katamaran-Reederei Bodensee GmbH & Co.KG."
   }
 };
