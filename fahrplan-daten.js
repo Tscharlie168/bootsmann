@@ -210,16 +210,19 @@ function nowMin(){var d=new Date();return d.getHours()*60+d.getMinutes();}
 function defaultDate(){var t=todayISO();if(t<SAISON_MIN)return SAISON_MIN;if(t>SAISON_MAX)return SAISON_MAX;return t;}
 function toMin(t){var p=t.split(":");return (+p[0])*60+(+p[1]);}
 
+/* warnKey/warnVals statt fertigem Text, damit die Meldung (i18n.js) je
+   nach gewählter Sprache angezeigt wird - diese Datei enthält bewusst
+   nur Daten, keine Sprache. */
 function exception(no,fromIdx,toIdx,date){
   var FN=5;
   if(date==="2026-07-18"){
     if(no===143||no===144) return {removed:true};
-    if(no===111&&fromIdx<=FN&&toIdx>FN) return {warn:"Am 18.7.: Umstieg in Friedrichshafen"};
-    if(no===116&&fromIdx>FN&&toIdx<=FN) return {warn:"Am 18.7.: Umstieg in Friedrichshafen"};
+    if(no===111&&fromIdx<=FN&&toIdx>FN) return {warnKey:"umstieg_am",warnVals:{date:"18.7.",port:"Friedrichshafen"}};
+    if(no===116&&fromIdx>FN&&toIdx<=FN) return {warnKey:"umstieg_am",warnVals:{date:"18.7.",port:"Friedrichshafen"}};
   }
   if(date==="2026-08-08"){
-    if(no===153&&toIdx===11) return {warn:"Am 8.8.: Umstieg in Lindau"};
-    if(no===150&&fromIdx>=10&&toIdx<10) return {warn:"Am 8.8.: Umstieg in Lindau"};
+    if(no===153&&toIdx===11) return {warnKey:"umstieg_am",warnVals:{date:"8.8.",port:"Lindau"}};
+    if(no===150&&fromIdx>=10&&toIdx<10) return {warnKey:"umstieg_am",warnVals:{date:"8.8.",port:"Lindau"}};
     if(no===416) return {removed:true};
   }
   return {};

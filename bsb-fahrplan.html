@@ -7,6 +7,7 @@
 <meta name="theme-color" content="#0E3553">
 <title>BSB Fahrplan – Bodensee</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<script src="i18n.js"></script>
 <style>
 :root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--kat:#7B4FA0;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;--gold:#B9842B;}
 *{box-sizing:border-box;}
@@ -16,11 +17,18 @@ select,input,button{font-family:inherit;}
 
 .lg-head{position:relative;background:linear-gradient(160deg,#0E3553 0%,#15679E 100%);color:#fff;padding:26px 22px 42px;overflow:hidden;}
 .lg-head-inner{position:relative;z-index:2;}
-.lg-back{display:inline-flex;align-items:center;gap:6px;color:#0A2233;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;text-transform:uppercase;background:#7FD5EA;border:1.5px solid #62D0E8;border-radius:999px;padding:9px 16px;margin-bottom:14px;-webkit-tap-highlight-color:transparent;transition:.15s;}
+.lg-head-top{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;}
+.lg-back{display:inline-flex;align-items:center;gap:6px;color:#0A2233;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;text-transform:uppercase;background:#7FD5EA;border:1.5px solid #62D0E8;border-radius:999px;padding:9px 16px;-webkit-tap-highlight-color:transparent;transition:.15s;}
 .lg-back:hover,.lg-back:active{background:#62D0E8;border-color:#2BA6C9;}
 .lg-head h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:38px;line-height:1.02;margin:6px 0 0;letter-spacing:.01em;}
-.lg-head h1 span{color:#62D0E8;}
+.lg-head h1 .hl{color:#62D0E8;}
 .lg-sub{margin:8px 0 0;font-size:14px;color:#D5E6F1;max-width:38ch;}
+.lg-lang{display:flex;gap:6px;flex:none;}
+.lg-lang button{display:flex;flex-direction:column;align-items:center;gap:2px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);border-radius:10px;padding:5px 7px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
+.lg-lang button .flag{font-size:16px;line-height:1;}
+.lg-lang button .code{font-family:'Barlow Condensed',sans-serif;font-size:9px;font-weight:700;letter-spacing:.04em;color:#D5E6F1;}
+.lg-lang button.is-on{background:#fff;border-color:#fff;}
+.lg-lang button.is-on .code{color:var(--navy);}
 .lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:48px;z-index:1;fill:var(--paper);}
 
 .lg-tabs{display:flex;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;}
@@ -198,31 +206,39 @@ select,input,button{font-family:inherit;}
 <div class="lg-app">
   <header class="lg-head">
     <div class="lg-head-inner">
-      <a class="lg-back" href="./">&#8249; Zur&uuml;ck</a>
-      <h1 id="lg-h1">BSB <span>Fahrplan</span></h1>
-      <p class="lg-sub" id="lg-headsub">Saison 2026 · 3. Apr – 18. Okt</p>
+      <div class="lg-head-top">
+        <a class="lg-back" href="./" data-i18n="back_btn">&#8249; Zur&uuml;ck</a>
+        <div id="lg-lang-slot"></div>
+      </div>
+      <h1 id="lg-h1"><span data-i18n="bsb_h1_plain">BSB</span> <span class="hl" data-i18n="bsb_h1_hl">Fahrplan</span></h1>
+      <p class="lg-sub" id="lg-headsub" data-i18n="bsb_season">Saison 2026 · 3. Apr – 18. Okt</p>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 Q 180 0 360 30 T 720 30 T 1080 30 T 1440 30 V60 H0 Z"/></svg>
   </header>
 
   <nav class="lg-tabs" id="lg-tabs">
-    <button data-tab="planer">Verbindung</button>
-    <button data-tab="schweiz">Schweiz</button>
-    <button data-tab="hinweise">Hinweise</button>
+    <button data-tab="planer" data-i18n="tab_verbindung">Verbindung</button>
+    <button data-tab="schweiz" data-i18n="tab_schweiz">Schweiz</button>
+    <button data-tab="hinweise" data-i18n="tab_hinweise">Hinweise</button>
   </nav>
 
   <main id="lg-main"></main>
-  <footer class="lg-foot">Angaben ohne Gewähr</footer>
+  <footer class="lg-foot" data-i18n="footer_disclaimer">Angaben ohne Gewähr</footer>
 </div>
 
 <script src="fahrplan-daten.js"></script>
 <script src="katamaran-daten.js"></script>
 <script>
 "use strict";
+var I18N_TITLE_KEY="bsb_doc_title";
+document.getElementById("lg-lang-slot").innerHTML=i18nSwitcherHTML();
+i18nApplyStatic();
+i18nInitSwitcher();
 
 function pad(t){var p=t.split(":");return (p[0].length<2?"0"+p[0]:p[0])+":"+p[1];}
-function fmtDur(m){if(m>=60){var h=Math.floor(m/60),r=m%60;return h+" h"+(r?" "+r+" min":"");}return m+" min";}
+function fmtDur(m){if(m>=60){var h=Math.floor(m/60),r=m%60;return h+t("dur_h_unit")+(r?" "+r+t("dur_min_unit"):"");}return m+t("dur_min_unit");}
 function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
+function warnText(ex){ return (ex&&ex.warnKey) ? tf(ex.warnKey,ex.warnVals) : null; }
 
 
 function findConnections(fromIdx,toIdx,date){
@@ -236,7 +252,7 @@ function findConnections(fromIdx,toIdx,date){
     if(ex.removed) continue;
     var dep=c.stops[pf][2],arr=c.stops[pt][1],legs=[];
     for(var k=pf;k<=pt;k++) legs.push({name:PORTS[c.stops[k][0]],t:c.stops[k][1]});
-    out.push({no:c.no,svc:c.svc,dep:dep,arr:arr,dur:toMin(arr)-toMin(dep),warn:ex.warn,legs:legs});
+    out.push({no:c.no,svc:c.svc,dep:dep,arr:arr,dur:toMin(arr)-toMin(dep),warn:warnText(ex),legs:legs});
   }
   out.sort(function(a,b){return toMin(a.dep)-toMin(b.dep);});
   return out;
@@ -263,7 +279,7 @@ function planJourneys(fromIdx,toIdx,dStr){
     if(!leg) continue;
     var ex=exception(leg.no,fromIdx,toIdx,dStr);
     if(ex.removed) continue;
-    J.push({dep:leg.dep,arr:leg.arr,dur:toMin(leg.arr)-toMin(leg.dep),transfers:0,via:null,wait:0,xops:false,legs:[leg],warn:ex.warn});
+    J.push({dep:leg.dep,arr:leg.arr,dur:toMin(leg.arr)-toMin(leg.dep),transfers:0,via:null,wait:0,xops:false,legs:[leg],warn:warnText(ex)});
   }
   for(i=0;i<valid.length;i++){
     var cA=valid[i],pfA=-1,a;
@@ -287,7 +303,7 @@ function planJourneys(fromIdx,toIdx,dStr){
         if(!legA||!legB) continue;
         var exA=exception(legA.no,fromIdx,hub,dStr),exB=exception(legB.no,hub,toIdx,dStr);
         if(exA.removed||exB.removed) continue;
-        var warns=[]; if(exA.warn)warns.push(exA.warn); if(exB.warn)warns.push(exB.warn);
+        var warns=[]; var wA=warnText(exA),wB=warnText(exB); if(wA)warns.push(wA); if(wB)warns.push(wB);
         J.push({dep:legA.dep,arr:legB.arr,dur:toMin(legB.arr)-toMin(legA.dep),transfers:1,via:PORTS[hub],wait:wait,xops:(legA.line!==legB.line),legs:[legA,legB],warn:warns.length?warns.join(" \u00b7 "):null});
       }
     }
@@ -322,10 +338,10 @@ function svcTag(svc){return svc==="restaurant"?'<span class="lg-tag lg-tag--rest
 // bleiben aber in COURSES für Umstiegsberechnungen erhalten)
 var SELECTABLE = [0,1,2,3,4,5,6,7,8,9,10,11, 13,15, 24, 27, 28,29,30, 32,33,34,35,36,37,38, 39,40, 41,42,43];
 var SELECT_GROUPS = [
-  ["Obersee & Bregenz", [0,1,2,3,4,5,6,7,8,9,10,11]],
-  ["Überlinger See", [41,42,43]],
-  ["Untersee (Auswahl)", [13,15,24,27,39,40]],
-  ["Schweizer Ufer (SBS)", [28,29,30,32,33,34,35,36,37,38]]
+  ["grp_obersee", [0,1,2,3,4,5,6,7,8,9,10,11]],
+  ["grp_ueberlingen", [41,42,43]],
+  ["grp_untersee", [13,15,24,27,39,40]],
+  ["grp_schweiz", [28,29,30,32,33,34,35,36,37,38]]
 ];
 // Farbschema pro Gruppe (Hintergrund/Label) für den Hafen-Auswahldialog, gleiche Reihenfolge wie SELECT_GROUPS
 var SELECT_GROUP_COLORS = [
@@ -337,12 +353,12 @@ var SELECT_GROUP_COLORS = [
 function pickerHTML(){
   if(!state.picker) return "";
   var sel=state.picker==="from"?state.from:state.to;
-  var title=state.picker==="from"?"Von":"Nach";
+  var title=state.picker==="from"?t("von_lbl"):t("nach_lbl");
   var h='<div class="lg-picker-backdrop" id="lg-picker-backdrop"><div class="lg-picker-panel" id="lg-picker-panel">';
-  h+='<div class="lg-picker-head"><span class="lg-picker-title">'+title+'</span><button type="button" class="lg-picker-close" id="lg-picker-close" aria-label="Schließen">&times;</button></div>';
+  h+='<div class="lg-picker-head"><span class="lg-picker-title">'+title+'</span><button type="button" class="lg-picker-close" id="lg-picker-close" aria-label="'+t("pk_schliessen_aria")+'">&times;</button></div>';
   for(var g=0;g<SELECT_GROUPS.length;g++){
     var grp=SELECT_GROUPS[g],col=SELECT_GROUP_COLORS[g];
-    h+='<div class="lg-picker-group" style="background:'+col.bg+'"><div class="lg-picker-group-label" style="color:'+col.label+'">'+grp[0]+'</div>';
+    h+='<div class="lg-picker-group" style="background:'+col.bg+'"><div class="lg-picker-group-label" style="color:'+col.label+'">'+t(grp[0])+'</div>';
     for(var j=0;j<grp[1].length;j++){
       var i=grp[1][j],isSel=(i===sel);
       h+='<button type="button" class="lg-picker-opt'+(isSel?" is-sel":"")+'" data-port="'+i+'">'+(isSel?"&#10003; ":"")+PORTS[i]+'</button>';
@@ -352,27 +368,27 @@ function pickerHTML(){
   h+='</div></div>';
   return h;
 }
-function selectOptions(sel){var h="";for(var g=0;g<SELECT_GROUPS.length;g++){var grp=SELECT_GROUPS[g];h+='<optgroup label="'+grp[0]+'">';for(var j=0;j<grp[1].length;j++){var i=grp[1][j];h+='<option value="'+i+'"'+(i===sel?" selected":"")+'>'+PORTS[i]+'</option>';}h+='</optgroup>';}return h;}
+function selectOptions(sel){var h="";for(var g=0;g<SELECT_GROUPS.length;g++){var grp=SELECT_GROUPS[g];h+='<optgroup label="'+t(grp[0])+'">';for(var j=0;j<grp[1].length;j++){var i=grp[1][j];h+='<option value="'+i+'"'+(i===sel?" selected":"")+'>'+PORTS[i]+'</option>';}h+='</optgroup>';}return h;}
 
 function journeyRow(r,i){
   var isOpen=(state.open===i);
   var h='<div class="lg-row'+(isOpen?" is-open":"")+'" data-row="'+i+'">';
   h+='<div class="lg-row-main"><div class="lg-times"><span class="lg-clock">'+pad(r.dep)+'</span><span class="lg-track"><span class="lg-dot"></span><span class="lg-line"></span><span class="lg-boat">&#9972;</span><span class="lg-line"></span><span class="lg-dot lg-dot--end"></span></span><span class="lg-clock">'+pad(r.arr)+'</span></div>';
   h+='<div class="lg-meta">';
-  if(r.transfers===0){ h+='<span class="lg-kurs">Kurs '+r.legs[0].no+'</span>'+svcTag(r.legs[0].svc); }
-  else { h+='<span class="lg-tag lg-tag--xfer">1&times; Umstieg</span>'; }
+  if(r.transfers===0){ h+='<span class="lg-kurs">'+t("pl_kurs_prefix")+r.legs[0].no+'</span>'+svcTag(r.legs[0].svc); }
+  else { h+='<span class="lg-tag lg-tag--xfer">'+t("pl_umstieg_tag")+'</span>'; }
   h+='<span class="lg-dur">'+fmtDur(r.dur)+'</span></div></div>';
   if(r.transfers===1){
-    h+='<div class="lg-via">&#8634; &uuml;ber <b>'+esc(r.via)+'</b> &middot; '+r.wait+' min Aufenthalt'+(r.wait<KNAPP?' &middot; knapp, Schiff liegt meist nebenan':'')+(r.xops?' &middot; anderer Anbieter (eigenes Ticket)':'')+'</div>';
+    h+='<div class="lg-via">&#8634; '+t("pl_ueber_prefix")+'<b>'+esc(r.via)+'</b> &middot; '+r.wait+t("pl_aufenthalt_suffix")+(r.wait<KNAPP?t("pl_knapp_hint"):'')+(r.xops?t("pl_anderer_anbieter"):'')+'</div>';
   }
   if(r.warn) h+='<div class="lg-warn">&#9888; '+esc(r.warn)+'</div>';
   if(isOpen){
     h+='<div class="lg-legs">';
     for(var L=0;L<r.legs.length;L++){
       var lg=r.legs[L];
-      if(r.transfers===1){ h+='<div class="lg-leg-kurs"><span class="lg-kurs sm">Kurs '+lg.no+'</span>'+svcTag(lg.svc)+'</div>'; }
+      if(r.transfers===1){ h+='<div class="lg-leg-kurs"><span class="lg-kurs sm">'+t("pl_kurs_prefix")+lg.no+'</span>'+svcTag(lg.svc)+'</div>'; }
       for(var k=0;k<lg.stops.length;k++){ h+='<div class="lg-leg"><span class="lg-leg-t">'+pad(lg.stops[k].t)+'</span><span class="lg-leg-n">'+esc(lg.stops[k].name)+'</span></div>'; }
-      if(r.transfers===1&&L===0){ h+='<div class="lg-xfer">&#8634; Umstieg in '+esc(r.via)+' &middot; '+r.wait+' min Aufenthalt'+(r.xops?' &middot; anderer Anbieter (SBS/URh), eigenes Ticket':'')+'</div>'; }
+      if(r.transfers===1&&L===0){ h+='<div class="lg-xfer">'+t("pl_umstieg_in_prefix")+esc(r.via)+' &middot; '+r.wait+t("pl_aufenthalt_suffix")+(r.xops?t("pl_anderer_anbieter_sbs"):'')+'</div>'; }
     }
     h+='</div>';
   }
@@ -385,12 +401,12 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
     var isSbs=SBS_PORTS.indexOf(fromIdx)>=0||SBS_PORTS.indexOf(toIdx)>=0;
     if(isSbs){
       var sbsPort=SBS_PORTS.indexOf(toIdx)>=0?PORTS[toIdx]:PORTS[fromIdx];
-      return '<div class="lg-empty"><div class="lg-empty-mark">&#127464;&#127469;</div><p>Keine direkte Verbindung nach/von <strong>'+esc(sbsPort)+'</strong> an diesem Tag &mdash; oder Route nicht im Plan abgebildet.</p><p class="lg-empty-hint">Vollst&auml;ndiger SBS-Fahrplan: <a href="https://bodensee-schiffe.ch" target="_blank" style="color:#15679e">bodensee-schiffe.ch</a> &middot; BSB-Tageskarte gilt dort nicht.</p></div>';
+      return '<div class="lg-empty"><div class="lg-empty-mark">&#127464;&#127469;</div><p>'+tf("pl_empty_sbs_html",{port:esc(sbsPort)})+'</p><p class="lg-empty-hint">'+t("pl_empty_sbs_hint_html")+'</p></div>';
     }
     if(emptyKind==="past"){
-      return '<div class="lg-empty"><div class="lg-empty-mark">&#128338;</div><p>F&uuml;r heute f&auml;hrt auf dieser Strecke kein Schiff mehr.</p><p class="lg-empty-hint">W&auml;hle <strong>morgen</strong> oder einen anderen Tag &mdash; dann erscheinen wieder alle Fahrten.</p></div>';
+      return '<div class="lg-empty"><div class="lg-empty-mark">&#128338;</div><p>'+t("pl_empty_past_html")+'</p><p class="lg-empty-hint">'+t("pl_empty_past_hint_html")+'</p></div>';
     }
-    return '<div class="lg-empty"><div class="lg-empty-mark">&#8709;</div><p>Keine Schiffsverbindung an diesem Tag &mdash; auch nicht mit einmal Umsteigen.</p><p class="lg-empty-hint">Tipp: ein anderes Datum w&auml;hlen, oder einen Start n&auml;her am Ziel (z. B. ab <strong>Meersburg</strong> statt Langenargen). Untersee-Ziele (Gottlieben, Reichenau &hellip;) fahren 27.6.&ndash;13.9. nur Mi&ndash;So.</p></div>';
+    return '<div class="lg-empty"><div class="lg-empty-mark">&#8709;</div><p>'+t("pl_empty_none_html")+'</p><p class="lg-empty-hint">'+t("pl_empty_none_hint_html")+'</p></div>';
   }
   var h=""; for(var i=0;i<rows.length;i++){ h+=journeyRow(rows[i],i); } return h;
 }
@@ -402,22 +418,21 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
 function rueckfahrtCardHTML(fromIdx,toIdx,date){
   var istHeute=date===todayISO();
   var d=new Date(date+"T12:00:00");
-  var dateLabel=WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
-  var wannGross=istHeute?"Heute":"Am "+dateLabel;
-  var wannKlein=istHeute?"heute":"am "+dateLabel;
+  var WD=t("weekdays");
+  var dateLabel=WD[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
   var retRows=planJourneys(toIdx,fromIdx,date);
   var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 8px';
-  var h='<div class="lg-card" style="margin-top:14px"><p style="'+hd+'">'+(istHeute?"R&uuml;ckfahrt heute":"R&uuml;ckfahrt am "+esc(dateLabel))+'</p>';
+  var h='<div class="lg-card" style="margin-top:14px"><p style="'+hd+'">'+esc(istHeute?t("ruf_h_heute"):tf("ruf_h_am",{date:dateLabel}))+'</p>';
   if(!retRows.length){
-    h+='<div class="lg-note">'+esc(wannGross)+' keine R&uuml;ckfahrt von <b>'+esc(PORTS[toIdx])+'</b> nach <b>'+esc(PORTS[fromIdx])+'</b> im Fahrplan.</div>';
+    h+='<div class="lg-note">'+tf(istHeute?"ruf_keine_heute_html":"ruf_keine_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),from:esc(PORTS[fromIdx])})+'</div>';
     h+='</div>';
     return h;
   }
   var letzte=retRows[retRows.length-1];
   if(istHeute&&toMin(letzte.dep)<nowMin()){
-    h+='<div class="lg-note">Die letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b> ('+pad(letzte.dep)+' Uhr) ist schon vorbei.</div>';
+    h+='<div class="lg-note">'+tf("ruf_vorbei_html",{to:esc(PORTS[toIdx]),time:pad(letzte.dep)})+'</div>';
   }else{
-    h+='<div class="lg-info">Die letzte R&uuml;ckfahrt '+esc(wannKlein)+' ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
+    h+='<div class="lg-info">'+tf(istHeute?"ruf_info_heute_html":"ruf_info_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep),from:esc(PORTS[fromIdx]),arr:pad(letzte.arr)})+'</div>';
   }
   h+='</div>';
   return h;
@@ -431,22 +446,23 @@ function planerHTML(){
     if(rows.length<n0) pastFiltered=true;
   }
   var d=new Date(state.date+"T12:00:00");
-  var dateLabel=WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
-  var special=state.date==="2026-07-18"?"Sondertag 18.7.":state.date==="2026-08-08"?"Sondertag 8.8.":null;
+  var WD=t("weekdays");
+  var dateLabel=WD[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
+  var special=state.date==="2026-07-18"?t("pl_sondertag_lbl")+"18.7.":state.date==="2026-08-08"?t("pl_sondertag_lbl")+"8.8.":null;
   var isFav=state.favs.some(function(x){return x.f===state.from&&x.t===state.to;});
   var h='<section class="lg-panel">';
-  h+='<div class="lg-route"><label class="lg-field"><span>Von</span><button type="button" class="lg-field-btn" data-picker-open="from">'+PORTS[state.from]+'<span class="lg-field-chev">&#9662;</span></button></label>';
-  h+='<button class="lg-swap" id="lg-swap" aria-label="Richtung tauschen">&#8645;</button>';
-  h+='<label class="lg-field"><span>Nach</span><button type="button" class="lg-field-btn" data-picker-open="to">'+PORTS[state.to]+'<span class="lg-field-chev">&#9662;</span></button></label></div>';
-  h+='<button class="lg-loc" id="lg-loc">&#128205; N&auml;chsten Hafen verwenden</button>';
+  h+='<div class="lg-route"><label class="lg-field"><span>'+t("von_lbl")+'</span><button type="button" class="lg-field-btn" data-picker-open="from">'+PORTS[state.from]+'<span class="lg-field-chev">&#9662;</span></button></label>';
+  h+='<button class="lg-swap" id="lg-swap" aria-label="'+t("pl_swap_aria")+'">&#8645;</button>';
+  h+='<label class="lg-field"><span>'+t("nach_lbl")+'</span><button type="button" class="lg-field-btn" data-picker-open="to">'+PORTS[state.to]+'<span class="lg-field-chev">&#9662;</span></button></label></div>';
+  h+='<button class="lg-loc" id="lg-loc">'+t("pl_naechster_hafen_btn")+'</button>';
   if(state.locStatus) h+='<div class="lg-loc-status">'+esc(state.locStatus)+'</div>';
-  h+='<div class="lg-controls"><label class="lg-field lg-field--date"><span>Tag</span><input type="date" id="lg-date" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
-  h+='<button class="lg-daynext" id="lg-daynext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="Einen Tag weiter">N&auml;chster Tag &#8250;</button>';
-  h+='<button class="lg-star'+(isFav?" is-on":"")+'" id="lg-star">'+(isFav?"&#9733; Gemerkt":"&#9734; Merken")+'</button></div>';
-  if(special) h+='<div class="lg-banner">'+special+' — einzelne Kurse fallen aus oder fahren mit Umstieg. Details stehen direkt an der Verbindung.</div>';
+  h+='<div class="lg-controls"><label class="lg-field lg-field--date"><span>'+t("pl_tag_lbl")+'</span><input type="date" id="lg-date" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
+  h+='<button class="lg-daynext" id="lg-daynext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button>';
+  h+='<button class="lg-star'+(isFav?" is-on":"")+'" id="lg-star">'+(isFav?t("pl_gemerkt_btn"):t("pl_merken_btn"))+'</button></div>';
+  if(special) h+='<div class="lg-banner">'+special+t("pl_sondertag_info")+'</div>';
   if(state.favs.length){h+='<div class="lg-favs">';for(var i=0;i<state.favs.length;i++){h+='<button class="lg-fav" data-fav="'+i+'">'+PORTS[state.favs[i].f]+' &rarr; '+PORTS[state.favs[i].t]+'</button>';}h+='</div>';}
   h+='<div class="lg-result-head"><span class="lg-result-route">'+PORTS[state.from]+' <em>&rarr;</em> '+PORTS[state.to]+'</span><span class="lg-result-day">'+dateLabel+'</span></div>';
-  if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">Vergangene Abfahrten sind ausgeblendet.</div>';
+  if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">'+t("pl_vergangene_ausgeblendet")+'</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
   h+=rueckfahrtCardHTML(state.from,state.to,state.date);
   h+='</section>';
@@ -500,14 +516,15 @@ function schweizAbfahrtenHTML(destIdx, date){
     var w=dObj.getDay();
     var noDay=(date>"2026-06-26"&&date<="2026-09-13"&&w!==0&&w<3);
     return '<div class="lg-empty" style="margin-top:14px"><div class="lg-empty-mark">&#9785;</div>'+
-      '<p>Kein Schiff nach <strong>'+PORTS[destIdx]+'</strong> an diesem Tag.</p>'+
-      (noDay?'<p class="lg-empty-hint">Die Untersee-Linie f&auml;hrt ab 27.6. nur <strong>Mi&ndash;So</strong>.</p>':'')+
+      '<p>'+tf("szw_leer_hin_html",{dest:PORTS[destIdx]})+'</p>'+
+      (noDay?'<p class="lg-empty-hint">'+t("szw_untersee_hint_html")+'</p>':'')+
     '</div>';
   }
   var d=new Date(date+"T12:00:00");
+  var WD=t("weekdays");
   var h='<div style="margin-top:16px">';
-  h+='<div class="lg-result-head"><span class="lg-result-route">Nach <em>'+esc(PORTS[destIdx])+'</em></span>';
-  h+='<span class="lg-result-day">'+WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+"."+'</span></div>';
+  h+='<div class="lg-result-head"><span class="lg-result-route">'+t("nach_lbl")+' <em>'+esc(PORTS[destIdx])+'</em></span>';
+  h+='<span class="lg-result-day">'+WD[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+"."+'</span></div>';
   // Sort port keys by earliest departure
   portKeys.sort(function(a,b){
     var ad=byPort[a].reduce(function(m,x){return Math.min(m,toMin(x.dep));},9999);
@@ -518,21 +535,21 @@ function schweizAbfahrtenHTML(destIdx, date){
     var pIdx=+portKeys[pi];
     var trips=byPort[pIdx].slice().sort(function(a,b){return toMin(a.dep)-toMin(b.dep);});
     h+='<div class="lg-mini" style="margin-bottom:10px">';
-    h+='<div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:17px;color:var(--navy);margin-bottom:8px">Ab '+esc(PORTS[pIdx])+'</div>';
+    h+='<div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:17px;color:var(--navy);margin-bottom:8px">'+t("ab_lbl")+' '+esc(PORTS[pIdx])+'</div>';
     h+='<div style="display:flex;flex-direction:column;gap:6px">';
     for(var ti=0;ti<trips.length;ti++){
       var tr=trips[ti];
       var dur=toMin(tr.arr)-toMin(tr.dep);
       h+='<div style="display:flex;align-items:center;gap:10px;padding:8px 11px;background:var(--sky);border-radius:8px;flex-wrap:wrap">';
       h+='<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;font-size:18px;color:#0E3553">'+pad(tr.dep)+'</span>';
-      h+='<span style="color:var(--muted);font-size:13px">&#8594; an '+pad(tr.arr)+' &middot; '+fmtDur(dur)+'</span>';
+      h+='<span style="color:var(--muted);font-size:13px">'+t("szw_an_prefix")+pad(tr.arr)+' &middot; '+fmtDur(dur)+'</span>';
       h+=svcTag(tr.svc);
       h+=sbsTag(tr.line);
       h+='</div>';
     }
     h+='</div></div>';
   }
-  h+='<div class="lg-note" style="margin-top:4px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
+  h+='<div class="lg-note" style="margin-top:4px">'+t("szw_footer_note_html")+'</div>';
   h+='</div>';
   return h;
 }
@@ -558,14 +575,15 @@ function schweizRueckfahrtHTML(destIdx, date){
     var w=dObj.getDay();
     var noDay=(date>"2026-06-26"&&date<="2026-09-13"&&w!==0&&w<3);
     return '<div class="lg-empty" style="margin-top:14px"><div class="lg-empty-mark">&#9785;</div>'+
-      '<p>Keine R&uuml;ckfahrt ab <strong>'+PORTS[destIdx]+'</strong> an diesem Tag.</p>'+
-      (noDay?'<p class="lg-empty-hint">Die Untersee-Linie f&auml;hrt ab 27.6. nur <strong>Mi&ndash;So</strong>.</p>':'')+
+      '<p>'+tf("szw_leer_rueck_html",{dest:PORTS[destIdx]})+'</p>'+
+      (noDay?'<p class="lg-empty-hint">'+t("szw_untersee_hint_html")+'</p>':'')+
     '</div>';
   }
   var d=new Date(date+"T12:00:00");
+  var WD=t("weekdays");
   var h='<div style="margin-top:16px">';
-  h+='<div class="lg-result-head"><span class="lg-result-route">Ab <em>'+esc(PORTS[destIdx])+'</em></span>';
-  h+='<span class="lg-result-day">'+WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+"."+'</span></div>';
+  h+='<div class="lg-result-head"><span class="lg-result-route">'+t("ab_lbl")+' <em>'+esc(PORTS[destIdx])+'</em></span>';
+  h+='<span class="lg-result-day">'+WD[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+"."+'</span></div>';
   // Sort arrival ports by earliest departure
   portKeys.sort(function(a,b){
     var ad=byPort[a].reduce(function(m,x){return Math.min(m,toMin(x.dep));},9999);
@@ -576,21 +594,21 @@ function schweizRueckfahrtHTML(destIdx, date){
     var pIdx=+portKeys[pi];
     var trips=byPort[pIdx].slice().sort(function(a,b){return toMin(a.dep)-toMin(b.dep);});
     h+='<div class="lg-mini" style="margin-bottom:10px">';
-    h+='<div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:17px;color:var(--navy);margin-bottom:8px">Nach '+esc(PORTS[pIdx])+'</div>';
+    h+='<div style="font-family:\'Barlow Condensed\',sans-serif;font-weight:700;font-size:17px;color:var(--navy);margin-bottom:8px">'+t("nach_lbl")+' '+esc(PORTS[pIdx])+'</div>';
     h+='<div style="display:flex;flex-direction:column;gap:6px">';
     for(var ti=0;ti<trips.length;ti++){
       var tr=trips[ti];
       var dur=toMin(tr.arr)-toMin(tr.dep);
       h+='<div style="display:flex;align-items:center;gap:10px;padding:8px 11px;background:var(--sky);border-radius:8px;flex-wrap:wrap">';
       h+='<span style="font-family:\'IBM Plex Mono\',monospace;font-weight:600;font-size:18px;color:#0E3553">'+pad(tr.dep)+'</span>';
-      h+='<span style="color:var(--muted);font-size:13px">&#8594; an '+pad(tr.arr)+' &middot; '+fmtDur(dur)+'</span>';
+      h+='<span style="color:var(--muted);font-size:13px">'+t("szw_an_prefix")+pad(tr.arr)+' &middot; '+fmtDur(dur)+'</span>';
       h+=svcTag(tr.svc);
       h+=sbsTag(tr.line);
       h+='</div>';
     }
     h+='</div></div>';
   }
-  h+='<div class="lg-note" style="margin-top:4px">SBS/URh: eigenes Ticket erforderlich &middot; Untersee Mi&ndash;So ab 27.6. &middot; SBS-Freitags-Kurs 27.6.&ndash;13.9. &middot; Angaben ohne Gew&auml;hr &middot; <a href="https://bodensee-schiffe.ch" target="_blank" style="color:var(--blue)">bodensee-schiffe.ch</a></div>';
+  h+='<div class="lg-note" style="margin-top:4px">'+t("szw_footer_note_html")+'</div>';
   h+='</div>';
   return h;
 }
@@ -598,7 +616,7 @@ function schweizRueckfahrtHTML(destIdx, date){
 function schweizHTML(){
   var dest=state.schweizDest;
   var h='<section class="lg-panel">';
-  h+='<div class="lg-szw-head"><span class="lg-szw-label">Ziel w&auml;hlen</span></div>';
+  h+='<div class="lg-szw-head"><span class="lg-szw-label">'+t("szw_ziel_waehlen")+'</span></div>';
   h+='<div class="lg-szw-chips">';
   for(var i=0;i<SCHWEIZ_ZIELE.length;i++){
     var z=SCHWEIZ_ZIELE[i];
@@ -607,31 +625,31 @@ function schweizHTML(){
     h+=esc(z.name)+'</button>';
   }
   h+='</div>';
-  h+='<div class="lg-info" style="margin-bottom:16px">Hier zuerst das Ziel w&auml;hlen. Du siehst dann alle Abfahrtsorte und -zeiten dorthin und kannst selbst w&auml;hlen, welcher Abfahrtsort zu deiner Uhrzeit und Anreise passt. F&uuml;r die R&uuml;ckfahrt gilt dasselbe.</div>';
+  h+='<div class="lg-info" style="margin-bottom:16px">'+t("szw_hilfe")+'</div>';
   if(dest!==null){
     var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
     var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';
     // Hinfahrt
-    h+='<div style="'+hd+'">Hinfahrt &mdash; nach '+esc(PORTS[dest])+'</div>';
+    h+='<div style="'+hd+'">'+t("szw_hinfahrt_titel")+esc(PORTS[dest])+'</div>';
     h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
-    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">Tag der Hinfahrt</span>';
+    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_hinfahrt")+'</span>';
     h+='<input type="date" id="lg-szwdate" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
-    h+='<button class="lg-daynext" id="lg-szwdatenext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="Einen Tag weiter">N&auml;chster Tag &#8250;</button></div>';
+    h+='<button class="lg-daynext" id="lg-szwdatenext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
     h+=schweizAbfahrtenHTML(dest,state.date);
     // Rückfahrt
     var retDate=state.schweizRet||state.date;
-    h+='<div style="'+hd+';margin-top:26px;padding-top:18px;border-top:2px solid var(--sky)">R&uuml;ckfahrt &mdash; ab '+esc(PORTS[dest])+'</div>';
+    h+='<div style="'+hd+';margin-top:26px;padding-top:18px;border-top:2px solid var(--sky)">'+t("szw_rueckfahrt_titel")+esc(PORTS[dest])+'</div>';
     h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
-    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">Tag der R&uuml;ckfahrt</span>';
+    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_rueckfahrt")+'</span>';
     h+='<input type="date" id="lg-szwretdate" min="2026-05-14" max="2026-09-13" value="'+retDate+'"></label>';
-    h+='<button class="lg-daynext" id="lg-szwretdatenext"'+(retDate>=SAISON_MAX?" disabled":"")+' aria-label="Einen Tag weiter">N&auml;chster Tag &#8250;</button></div>';
+    h+='<button class="lg-daynext" id="lg-szwretdatenext"'+(retDate>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
     h+=schweizRueckfahrtHTML(dest,retDate);
   }
-  h+='<div class="lg-card" style="margin-top:18px"><h3>Praktisch beim Schweiz-Ausflug</h3><ul>'+
-    '<li><strong>Ausweis mitnehmen</strong> &mdash; es ist eine Grenze.</li>'+
-    '<li><strong>Geld:</strong> Schweizer Franken (CHF) &mdash; viele Schiffe nehmen auch Euro.</li>'+
-    '<li><strong>VSU Saison-Card:</strong> gilt auf allen Linienschiffen von BSB, SBS, URh und VL &mdash; nur die Autof&auml;hre Konstanz&ndash;Meersburg hat einen eigenen Tarif.</li>'+
-    '<li><strong>R&uuml;ckweg extra pr&uuml;fen</strong> &mdash; l&auml;uft oft nicht spiegelbildlich.</li>'+
+  h+='<div class="lg-card" style="margin-top:18px"><h3>'+t("szw_praktisch_h")+'</h3><ul>'+
+    '<li>'+t("szw_li_ausweis_html")+'</li>'+
+    '<li>'+t("szw_li_geld_html")+'</li>'+
+    '<li>'+t("szw_li_card_html")+'</li>'+
+    '<li>'+t("szw_li_rueckweg_html")+'</li>'+
     '</ul></div>';
   h+='</section>';
   return h;
@@ -793,25 +811,25 @@ function karteHTML(){
   if(karteLocStatus){
     infoTxt=esc(karteLocStatus);
   }else if(!schiffe.length){
-    infoTxt="Gerade ist kein Kurs aus dem Fahrplan unterwegs.";
+    infoTxt=t("krt_kein_kurs");
   }else{
     var sel=schiffe[state.schiffSel]?state.schiffSel:null;
     if(sel===null){
-      infoTxt=schiffe.length+' Schiff'+(schiffe.length===1?"":"e")+' gerade unterwegs &mdash; tippe auf ein Symbol auf der Karte.';
+      infoTxt=tf(schiffe.length===1?"krt_schiffe_sg":"krt_schiffe_pl",{n:schiffe.length});
     }else{
       var sh=schiffe[sel];
       infoSel=true;
-      infoTxt='<b>'+(sh.kat?"Katamaran: ":"")+esc(sh.von)+' &rarr; '+esc(sh.bis)+'</b>';
+      infoTxt='<b>'+(sh.kat?t("krt_kat_prefix"):"")+esc(sh.von)+' &rarr; '+esc(sh.bis)+'</b>';
     }
   }
   var h2='<section class="lg-panel">'+
     '<div class="lg-map-wrap'+(karteVollbild?" is-vollbild":"")+'" id="lg-map-wrap">'+
     '<svg viewBox="'+(karteView?karteView.x.toFixed(1)+" "+karteView.y.toFixed(1)+" "+karteView.w.toFixed(1)+" "+karteView.h.toFixed(1):"0 0 "+KARTE_BASIS.w+" "+KARTE_BASIS.h)+'" preserveAspectRatio="xMidYMid meet">'+seeBg+lines+dots+boote+mein+'</svg>'+
-    '<button type="button" class="lg-map-fs" id="lg-map-fs" title="'+(karteVollbild?"Vollbild verlassen":"Vollbild anzeigen")+'">'+(karteVollbild?"&#10005;":"&#9974;")+'</button>'+
-    '<button type="button" class="lg-map-locate" id="lg-map-locate" title="Meinen Standort anzeigen">📍</button>'+
+    '<button type="button" class="lg-map-fs" id="lg-map-fs" title="'+(karteVollbild?t("krt_vollbild_verlassen"):t("krt_vollbild_anzeigen"))+'">'+(karteVollbild?"&#10005;":"&#9974;")+'</button>'+
+    '<button type="button" class="lg-map-locate" id="lg-map-locate" title="'+t("krt_standort_title")+'">📍</button>'+
     '<div class="lg-map-info'+(infoSel?" is-sel":"")+'">'+infoTxt+'</div>'+
     '</div>'+
-    '<p class="lg-map-hint">Rot: Kursschiffe &middot; Lila: Katamaran (Konstanz&ndash;Friedrichshafen). Mit dem Finger verschieben, mit zwei Fingern zoomen. Tippen zeigt Start &amp; Ziel.</p>'+
+    '<p class="lg-map-hint">'+t("krt_hint_html")+'</p>'+
     '<p class="lg-map-stand" id="lg-karte-stand"></p>';
   h2+='</section>';
   return h2;
@@ -819,20 +837,16 @@ function karteHTML(){
 
 function hinweiseHTML(){
   return '<section class="lg-panel">'+
-  '<div class="lg-card"><h3>Wann fahren die Schiffe?</h3><p>Die Linie Konstanz&harr;Bregenz f&auml;hrt vom 3.4.&ndash;18.10. <strong>t&auml;glich</strong> &mdash; in der Hauptsaison (14.5.&ndash;13.9.) am h&auml;ufigsten, in der Nebensaison (3.4.&ndash;13.5. und 14.9.&ndash;18.10.) mit weniger Kursen. Feiertage &auml;ndern daran nichts — anders als auf dem Untersee (Schaffhausen/Stein am Rhein), wo Wochentag/Feiertag den Plan bestimmen.</p></div>'+
-  '<div class="lg-card"><h3>Untersee &amp; Rhein (Reichenau, Stein am Rhein)</h3><p>Diese Strecke ber&uuml;hrt <strong>Konstanz</strong> &mdash; dort wird umgestiegen. Sie f&auml;hrt <strong>14.5.&ndash;26.6. t&auml;glich</strong> und <strong>27.6.&ndash;13.9. nur Mi&ndash;So</strong>. Eigener Anbieter (URh) mit <strong>eigenen Tickets</strong>. Einzelne Sp&auml;tkurse fahren am 8.8. verk&uuml;rzt. Der Planer rechnet das Datum automatisch mit.</p></div>'+
-  '<div class="lg-card lg-card--alert"><h3>Die zwei Sondertage</h3><ul>'+
-  '<li><strong>18.7.</strong> — der 12:55-Kurs nach Bregenz (Kurs 143) und der 16:00-Kurs Richtung Friedrichshafen (Kurs 144) <strong>fallen aus</strong>. Durchgehende Fahrten Konstanz&harr;Bregenz nur mit Umstieg in Friedrichshafen.</li>'+
-  '<li><strong>8.8.</strong> — der 18:00-Kurs Langenargen&rarr;Bregenz (Kurs 153) f&auml;hrt nur mit <strong>Umstieg in Lindau</strong>.</li></ul>'+
-  '<p class="lg-card-tip">W&auml;hle im Reiter &bdquo;Verbindung&ldquo; einfach das Datum — der Planer blendet betroffene Kurse aus oder markiert den Umstieg.</p></div>'+
-  '<div class="lg-card"><h3>Feiertage in der Saison</h3><p>Chr. Himmelfahrt 14.5. · Pfingstsonntag 24.5. · Pfingstmontag 25.5. · Fronleichnam 4.6. · Schweizer Nationalfeiertag 1.8. <span class="lg-muted">(Linie f&auml;hrt normal weiter.)</span></p></div>'+
-  '<p class="lg-disclaimer">Daten aus dem VSU-Fahrplan, Stand 11/2025. Alle Angaben ohne Gew&auml;hr — bei Nebel, Sturm oder hohem Andrang sind Versp&auml;tungen/Ausf&auml;lle m&ouml;glich.</p>'+
-  '<div class="lg-card"><details><summary style="cursor:pointer;font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:700;color:var(--navy)">Impressum &amp; Datenschutz</summary>'+
-  '<div style="margin-top:8px">'+
-  '<p>Angaben gem&auml;&szlig; &sect; 5 DDG: Udo Maier, Alfred-Wei&szlig;-Str. 2, 88085 Langenargen &middot; E-Mail: info@udo-maier.de.</p>'+
-  '<p>Diese Seite fragt mit Ihrer Erlaubnis Ihren Standort ab, um den n&auml;chstgelegenen Hafen vorzuschlagen; er wird nicht dauerhaft gespeichert. F&uuml;r die Schrift werden Schriftarten von Google (fonts.googleapis.com) nachgeladen, wobei technisch Ihre IP-Adresse an Google &uuml;bertragen wird.</p>'+
-  '<p>Die ausf&uuml;hrliche Datenschutzerkl&auml;rung mit allen genutzten Diensten finden Sie in <a href="index.html">Bootsmann</a> ganz unten auf der Startseite.</p>'+
-  '</div></details></div>'+
+  '<div class="lg-card"><h3>'+t("hw_1_h")+'</h3><p>'+t("hw_1_p_html")+'</p></div>'+
+  '<div class="lg-card"><h3>'+t("hw_2_h")+'</h3><p>'+t("hw_2_p_html")+'</p></div>'+
+  '<div class="lg-card lg-card--alert"><h3>'+t("hw_3_h")+'</h3><ul>'+
+  '<li>'+t("hw_3_li1_html")+'</li>'+
+  '<li>'+t("hw_3_li2_html")+'</li></ul>'+
+  '<p class="lg-card-tip">'+t("hw_3_tip")+'</p></div>'+
+  '<div class="lg-card"><h3>'+t("hw_4_h")+'</h3><p>'+t("hw_4_p_html")+'</p></div>'+
+  '<p class="lg-disclaimer">'+t("hw_disclaimer")+'</p>'+
+  '<div class="lg-card"><details><summary style="cursor:pointer;font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:700;color:var(--navy)">'+t("impressum_datenschutz_h")+'</summary>'+
+  '<div style="margin-top:8px">'+t("hw_impressum_html")+'</div></details></div>'+
   '</section>';
 }
 
@@ -841,7 +855,7 @@ function karteStandText(){
   var el=document.getElementById("lg-karte-stand");
   if(!el) return;
   var n=new Date();
-  el.textContent="Stand: "+pad2(n.getHours())+":"+pad2(n.getMinutes())+" Uhr · aktualisiert sich von selbst";
+  el.textContent=tf("krt_stand_html",{time:pad2(n.getHours())+":"+pad2(n.getMinutes())});
 }
 var KARTE_MIN_W=45; // groesster Zoom (kleinster Ausschnitt)
 function karteKlemmen(v){
@@ -879,13 +893,13 @@ function karteBindMap(){
   });
   var locateBtn=document.getElementById("lg-map-locate");
   if(locateBtn) locateBtn.addEventListener("click",function(){
-    if(!navigator.geolocation){karteLocStatus="Standort wird vom Browser nicht unterstützt.";render();return;}
-    karteLocStatus="Standort wird ermittelt …";render();
+    if(!navigator.geolocation){karteLocStatus=t("krt_loc_unsupported");render();return;}
+    karteLocStatus=t("krt_loc_ermittelt");render();
     navigator.geolocation.getCurrentPosition(function(pos){
       karteMyPos={lat:pos.coords.latitude,lng:pos.coords.longitude};
       var nn=nearestPort(karteMyPos.lat,karteMyPos.lng);
       if(nn.far){
-        karteLocStatus="Du scheinst nicht am Bodensee zu sein.";
+        karteLocStatus=t("krt_loc_far");
       }else{
         karteLocStatus=null;
         var mp=karteXY(karteMyPos.lat,karteMyPos.lng);
@@ -895,7 +909,7 @@ function karteBindMap(){
       }
       render();
     },function(){
-      karteLocStatus="Standort nicht verfügbar (Freigabe nötig).";
+      karteLocStatus=t("krt_loc_unavailable");
       render();
     },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
   });
@@ -1065,18 +1079,18 @@ function bind(){
     if(iso>SAISON_MAX)iso=SAISON_MAX;
     state.date=iso;state.open=null;render();
   });
-  document.getElementById("lg-swap").addEventListener("click",function(){var t=state.from;state.from=state.to;state.to=t;state.open=null;render();});
+  document.getElementById("lg-swap").addEventListener("click",function(){var tmp=state.from;state.from=state.to;state.to=tmp;state.open=null;render();});
   var loc=document.getElementById("lg-loc");
   if(loc) loc.addEventListener("click",function(){
-    if(!navigator.geolocation){state.locStatus="Standort wird vom Browser nicht unterst\u00fctzt \u2013 bitte Hafen manuell w\u00e4hlen.";render();return;}
-    state.locStatus="Standort wird ermittelt \u2026";render();
+    if(!navigator.geolocation){state.locStatus=t("pl_loc_unsupported");render();return;}
+    state.locStatus=t("krt_loc_ermittelt");render();
     navigator.geolocation.getCurrentPosition(function(pos){
       var n=nearestPort(pos.coords.latitude,pos.coords.longitude);
-      if(n.far){state.locStatus="Du scheinst nicht am Bodensee zu sein \u2013 bitte Hafen manuell w\u00e4hlen.";render();return;}
-      if(n.idx===state.to){var t=state.from;state.from=n.idx;state.to=t;}else{state.from=n.idx;}
-      state.open=null;state.locStatus="N\u00e4chster Hafen erkannt: "+PORTS[n.idx];render();
+      if(n.far){state.locStatus=t("pl_loc_far");render();return;}
+      if(n.idx===state.to){var tmp=state.from;state.from=n.idx;state.to=tmp;}else{state.from=n.idx;}
+      state.open=null;state.locStatus=t("pl_loc_erkannt")+PORTS[n.idx];render();
     },function(){
-      state.locStatus="Standort nicht verf\u00fcgbar (Freigabe n\u00f6tig) \u2013 bitte Hafen manuell w\u00e4hlen.";render();
+      state.locStatus=t("pl_loc_unavailable");render();
     },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
   });
   document.getElementById("lg-star").addEventListener("click",function(){
@@ -1106,7 +1120,7 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
     if(!isNaN(lat)&&!isNaN(lng)){
       var n=nearestPort(lat,lng);
       if(!n.far){state.from=n.idx;}
-      else{state.locStatus="\u00dcbergebener Standort liegt nicht am Bodensee \u2013 bitte Hafen w\u00e4hlen.";}
+      else{state.locStatus=t("pl_loc_uebergeben_far");}
     }else{
       var fp=resolvePort(q.get("from"));if(fp>=0)state.from=fp;
     }
@@ -1121,9 +1135,9 @@ document.querySelectorAll(".lg-tabs button").forEach(function(b){
 // keine Tab-Leiste (die drei verbliebenen Tabs gehören zum Fahrplan-
 // Planer, nicht zur Karte).
 if(state.tab==="karte"){
-  document.title="Karte – Bodensee Live-Schiffspositionen";
-  document.getElementById("lg-h1").innerHTML='Live-<span>Karte</span>';
-  document.getElementById("lg-headsub").textContent="Schiffspositionen laut Fahrplan";
+  document.title=t("krt_doc_title");
+  document.getElementById("lg-h1").innerHTML=esc(t("krt_h1_plain"))+'<span class="hl">'+esc(t("krt_h1_hl"))+'</span>';
+  document.getElementById("lg-headsub").textContent=t("krt_sub");
   document.getElementById("lg-tabs").style.display="none";
 }
 
