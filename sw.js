@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v33) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v34) – Stand: 15. Juli 2026
+   Neu gegenüber v33:
+   - "Rückfahrt heute": die neutrale Info-Zeile ("Letzte Rückfahrt heute
+     ab X: HH Uhr") steht jetzt auch in einem Kasten (neue Klasse
+     .lg-info, dezentes Hellblau statt des gelben Warn-Kastens).
    Neu gegenüber v32:
    - Ziel-Text neben der Uhrzeit in der "Nächste Abfahrt"-Kachel
      (z. B. "nach Friedrichshafen") auf 17px erhöht. Richtungs-Buttons
@@ -134,7 +138,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v33';
+const CACHE = 'bootsmann-v34';
 const SHELL = [
   './',
   './index.html',
