@@ -31,13 +31,13 @@ a{color:inherit;}
 .lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:42px;z-index:1;fill:var(--paper);}
 
 .lg-weather{background:#fff;border:1px solid var(--line);border-radius:14px;margin:16px 16px 6px;padding:13px 15px;box-shadow:0 1px 3px rgba(16,58,90,.07);}
-.lg-weather-load,.lg-wx-fail{font-size:14px;color:var(--muted);text-align:center;padding:4px 0;}
+.lg-weather-load,.lg-wx-fail{font-size:16px;color:var(--muted);text-align:center;padding:4px 0;}
 .lg-wx-now{display:flex;align-items:center;gap:13px;}
 .lg-wx-ico{font-size:34px;line-height:1;}
 .lg-wx-nowtxt{display:flex;flex-direction:column;gap:2px;}
 .lg-wx-temp{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:30px;color:var(--navy);line-height:1;}
 .lg-wx-temp em{font-family:'Inter',sans-serif;font-style:normal;font-weight:500;font-size:15px;color:var(--muted);margin-left:6px;}
-.lg-wx-place{font-size:13px;color:var(--muted);}
+.lg-wx-place{font-size:16px;color:var(--muted);}
 .lg-wx-place b{color:var(--ink);}
 
 .tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;margin-top:20px;}
@@ -52,14 +52,14 @@ a{color:inherit;}
 .lg-dep{display:flex;align-items:center;gap:14px;}
 .lg-dep-time{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:36px;color:var(--navy);line-height:1;white-space:nowrap;}
 .lg-dep-info{display:flex;flex-direction:column;gap:3px;min-width:0;}
-.lg-dep-route{font-size:14.5px;font-weight:600;color:var(--ink);}
-.lg-dep-sub{font-size:12.5px;color:var(--muted);}
-.lg-dep-next{font-size:12.5px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
-.lg-dep-warn{font-size:12.5px;color:#8a5a10;background:#FFF7E9;border:1px solid #F0D9A8;border-radius:8px;padding:7px 10px;margin-top:10px;}
-.lg-dep-load,.lg-dep-empty{font-size:14px;color:var(--muted);text-align:center;padding:4px 0;}
-.lg-hafen-info{font-size:12.5px;color:var(--muted);margin:-6px 0 12px;}
+.lg-dep-route{font-size:16px;font-weight:600;color:var(--ink);}
+.lg-dep-sub{font-size:16px;color:var(--muted);}
+.lg-dep-next{font-size:16px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
+.lg-dep-warn{font-size:16px;color:#8a5a10;background:#FFF7E9;border:1px solid #F0D9A8;border-radius:8px;padding:7px 10px;margin-top:10px;}
+.lg-dep-load,.lg-dep-empty{font-size:16px;color:var(--muted);text-align:center;padding:4px 0;}
+.lg-hafen-info{font-size:16px;color:var(--muted);margin:-6px 0 12px;}
 
-.foot{font-size:12px;color:var(--muted);text-align:center;padding:8px 22px 0;}
+.foot{font-size:16px;color:var(--muted);text-align:center;padding:8px 22px 0;}
 </style>
 </head>
 <body>
@@ -108,7 +108,7 @@ a{color:inherit;}
     <p class="lbl">Rechtliches</p>
     <details>
       <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Impressum</summary>
-      <div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.6">
+      <div style="margin-top:8px;font-size:16px;color:var(--muted);line-height:1.6">
         <p>Angaben gemäß § 5 DDG</p>
         <p>Udo Maier<br>Alfred-Weiß-Str. 2<br>88085 Langenargen<br>Deutschland</p>
         <p>Kontakt: E-Mail info@udo-maier.de</p>
@@ -117,19 +117,19 @@ a{color:inherit;}
     </details>
     <details style="margin-top:12px">
       <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Datenschutzerklärung</summary>
-      <div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.6">
+      <div style="margin-top:8px;font-size:16px;color:var(--muted);line-height:1.6">
         <p><b>Verantwortlicher:</b> Udo Maier, Alfred-Weiß-Str. 2, 88085 Langenargen, info@udo-maier.de</p>
         <p><b>Kurz gesagt:</b> Bootsmann hat keine Benutzerkonten, setzt keine Cookies, zeigt keine Werbung und verfolgt Ihr Verhalten nicht.</p>
         <p><b>Standort:</b> Wenn Sie es erlauben, ermittelt die App Ihren Standort, um das Wetter für Ihren Ort zu zeigen und den nächstgelegenen Hafen für Ausflugsschiffe/Autofähre vorzuschlagen. Der Standort wird dafür an Open-Meteo (Wetter) sowie an BigDataCloud (Ortsname) übertragen. Er wird nicht dauerhaft gespeichert. Erteilen Sie keine Erlaubnis, zeigt die App ersatzweise das Wetter für Langenargen.</p>
         <p><b>Eingebundene Bausteine (CDN):</b> Für die Schrift lädt die App Schriftarten vom Google-Dienst fonts.googleapis.com nach. Dabei wird technisch bedingt Ihre IP-Adresse an Google übertragen, teils in die USA (Drittland).</p>
         <p><b>Hosting:</b> Die App liegt auf GitHub Pages (GitHub Inc., USA). Beim Abruf können technisch notwendige Daten wie die IP-Adresse in Server-Protokollen anfallen.</p>
         <p><b>Ihre Rechte:</b> Sie haben nach DSGVO das Recht auf Auskunft, Berichtigung und Löschung. Wenden Sie sich dazu an die oben genannte E-Mail-Adresse.</p>
-        <p style="font-size:12px">Hinweis: Dies ist eine in einfacher Sprache gehaltene Fassung. Für volle rechtliche Sicherheit empfiehlt sich eine anwaltlich geprüfte Datenschutzerklärung.</p>
+        <p style="font-size:14px">Hinweis: Dies ist eine in einfacher Sprache gehaltene Fassung. Für volle rechtliche Sicherheit empfiehlt sich eine anwaltlich geprüfte Datenschutzerklärung.</p>
       </div>
     </details>
     <details style="margin-top:12px">
       <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Haftungsausschluss</summary>
-      <div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.6">
+      <div style="margin-top:8px;font-size:16px;color:var(--muted);line-height:1.6">
         <p><b>Wetterdaten</b> (Open-Meteo) sind Vorhersagen ohne Gewähr für Richtigkeit und Aktualität.</p>
         <p><b>Fahrplanangaben</b> (Ausflugsschiffe, Autofähre) sind persönlich zusammengestellte Hilfen ohne Gewähr; maßgeblich sind die Angaben der jeweiligen Betreiber (BSB, Stadtwerke Konstanz).</p>
         <p><b>Notrufnummern:</b> Bitte vor Nutzung prüfen, dass die hinterlegten Telefonnummern für Ihr Land korrekt sind. Im Notfall wählen Sie den europaweiten Notruf 112.</p>
@@ -137,7 +137,7 @@ a{color:inherit;}
     </details>
     <details style="margin-top:12px">
       <summary style="cursor:pointer;font-weight:600;color:var(--navy)">Urheberrecht</summary>
-      <div style="margin-top:8px;font-size:13px;color:var(--muted);line-height:1.6">
+      <div style="margin-top:8px;font-size:16px;color:var(--muted);line-height:1.6">
         <p>© 2026 Udo Maier. Eigene Texte und Gestaltung dieser App sind urheberrechtlich geschützt.</p>
         <p>Wetterdaten: © Open-Meteo.com, verfügbar unter der Lizenz CC BY 4.0.</p>
         <p>Kartendarstellung (Bodensee-Umriss): vereinfachte Küstenlinie, abgeleitet aus OpenStreetMap-Daten, © OpenStreetMap-Mitwirkende, verfügbar unter der Open Database License (ODbL).</p>
