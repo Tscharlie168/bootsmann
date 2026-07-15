@@ -398,10 +398,8 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
 /* "Heute noch zurückkommen": zusammenfassende Karte unter der
    Hinfahrt-Liste für das jeweils gewählte Datum (auch an künftigen
    Tagen, z. B. nach "Nächster Tag"). Zeigt die letzte Rückfahrt des
-   Tages und warnt (nur am aktuellen Tag) falls sie schon vorbei ist,
-   oder falls die erste Hinfahrt nur eine sehr kurze Aufenthaltsdauer
-   vor Ort lässt. */
-function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
+   Tages und warnt (nur am aktuellen Tag) falls sie schon vorbei ist. */
+function rueckfahrtCardHTML(fromIdx,toIdx,date){
   var istHeute=date===todayISO();
   var d=new Date(date+"T12:00:00");
   var dateLabel=WEEKDAYS[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
@@ -420,16 +418,6 @@ function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
     h+='<div class="lg-note">Die letzte R&uuml;ckfahrt heute ab <b>'+esc(PORTS[toIdx])+'</b> ('+pad(letzte.dep)+' Uhr) ist schon vorbei.</div>';
   }else{
     h+='<div class="lg-info">Die letzte R&uuml;ckfahrt '+esc(wannKlein)+' ab <b>'+esc(PORTS[toIdx])+'</b>: <b>'+pad(letzte.dep)+' Uhr</b> &middot; Ankunft in '+esc(PORTS[fromIdx])+' um '+pad(letzte.arr)+' Uhr</div>';
-    if(hinRows&&hinRows.length){
-      var ersteHin=hinRows[0], naechsteRet=null;
-      for(var i=0;i<retRows.length;i++){ if(toMin(retRows[i].dep)>toMin(ersteHin.arr)){ naechsteRet=retRows[i]; break; } }
-      if(naechsteRet){
-        var aufenthalt=toMin(naechsteRet.dep)-toMin(ersteHin.arr);
-        if(aufenthalt<60){
-          h+='<div class="lg-note" style="margin-top:9px">Bei Hinfahrt '+pad(ersteHin.dep)+' Uhr bleiben dir bis zur n&auml;chsten R&uuml;ckfahrt nur rund '+aufenthalt+' Minuten vor Ort.</div>';
-        }
-      }
-    }
   }
   h+='</div>';
   return h;
@@ -460,7 +448,7 @@ function planerHTML(){
   h+='<div class="lg-result-head"><span class="lg-result-route">'+PORTS[state.from]+' <em>&rarr;</em> '+PORTS[state.to]+'</span><span class="lg-result-day">'+dateLabel+'</span></div>';
   if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">Vergangene Abfahrten f&uuml;r heute sind ausgeblendet.</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
-  h+=rueckfahrtCardHTML(state.from,state.to,state.date,rows);
+  h+=rueckfahrtCardHTML(state.from,state.to,state.date);
   h+='</section>';
   h+=pickerHTML();
   return h;
