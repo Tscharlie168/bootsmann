@@ -835,6 +835,55 @@ function karteHTML(){
   return h2;
 }
 
+/* Statische Orientierungskarte: alle wählbaren Häfen beschriftet, nach
+   Seebereich eingefärbt, keine Routenlinien/Schiffe (bewusst reduziert,
+   damit sie im Gegensatz zur Live-Karte übersichtlich bleibt). Eigene
+   Neuzeichnung aus unseren Geodaten (COORDS/Seeumrisse) – keine
+   Übernahme aus dem gedruckten VSU-Fahrplan. */
+function bodenseeKarteHTML(){
+  function ringPfad(ring){
+    return "M"+ring.map(function(p){var xy=karteXY(p[0],p[1]);return xy[0].toFixed(1)+","+xy[1].toFixed(1);}).join("L")+"Z";
+  }
+  function linPfad(ring){
+    return ring.map(function(p,i){var xy=karteXY(p[0],p[1]);return (i===0?"M":"L")+xy[0].toFixed(1)+","+xy[1].toFixed(1);}).join("");
+  }
+  var seeBg='<path class="lg-map-see lg-map-see--obersee" d="'+ringPfad(BODENSEE_UMRISS)+'"/>'+
+    '<path class="lg-map-see lg-map-see--untersee" d="'+ringPfad(BODENSEE_UNTERSEE)+'"/>'+
+    '<path class="lg-map-see lg-map-see--untersee" d="'+ringPfad(BODENSEE_RHEIN_WEST)+'"/>'+
+    '<path class="lg-map-see lg-map-see--ueberlingen" d="'+ringPfad(BODENSEE_UEBERLINGER_SEE)+'"/>'+
+    '<path class="lg-map-kontur" d="'+ringPfad(BODENSEE_UMRISS)+'"/>'+
+    '<path class="lg-map-kontur" d="'+ringPfad(BODENSEE_RHEIN_WEST)+'"/>'+
+    '<path class="lg-map-grenze" d="'+linPfad(GRENZE_CH)+'"/>';
+  var dots="", minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
+  for(var i=0;i<SELECTABLE.length;i++){
+    var h=SELECTABLE[i];
+    var pp=karteXY(COORDS[h][0],COORDS[h][1]);
+    if(pp[0]<minX)minX=pp[0]; if(pp[0]>maxX)maxX=pp[0];
+    if(pp[1]<minY)minY=pp[1]; if(pp[1]>maxY)maxY=pp[1];
+    var chCls=REGION_SCHWEIZ[h]?" lg-map-hafen--ch":"";
+    dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
+    // Beschriftung abwechselnd rechts/links vom Punkt, um Ueberlappungen bei dicht
+    // beieinanderliegenden Haefen etwas zu entzerren (kein manuelles Layout noetig).
+    var rechts=(i%2===0);
+    var lx=rechts?pp[0]+3.6:pp[0]-3.6;
+    var ly=pp[1]+2.3;
+    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+(rechts?"start":"end")+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
+  }
+  // Zuschnitt auf den tatsaechlich mit Haefen belegten Bereich (statt der vollen
+  // Zeichenflaeche, die viel leeres Wasser enthaelt) - mehr Platz fuer Beschriftung.
+  var padX=16, padY=14;
+  var vbX=(minX-padX).toFixed(1), vbY=(minY-padY).toFixed(1);
+  var vbW=(maxX-minX+2*padX).toFixed(1), vbH=(maxY-minY+2*padY).toFixed(1);
+  var h3='<section class="lg-panel">'+
+    '<div class="lg-map-wrap" id="lg-bkarte-wrap" style="touch-action:auto">'+
+    '<svg viewBox="'+vbX+' '+vbY+' '+vbW+' '+vbH+'" preserveAspectRatio="xMidYMid meet" style="height:auto;aspect-ratio:'+vbW+'/'+vbH+'">'+seeBg+dots+'</svg>'+
+    '</div>'+
+    '<p class="lg-map-hint">'+t("bkrt_hint_html")+'</p>';
+  h3+=bsbExtLinkHTML("14px 0 0");
+  h3+='</section>';
+  return h3;
+}
+
 function hinweiseHTML(){
   return '<section class="lg-panel">'+
   '<div class="lg-card"><h3>'+t("hw_1_h")+'</h3><p>'+t("hw_1_p_html")+'</p></div>'+
@@ -1017,6 +1066,7 @@ function render(){
       bind();
     },60000);
   }
+  else if(state.tab==="bodenseekarte") main.innerHTML=bodenseeKarteHTML();
   else main.innerHTML=hinweiseHTML();
   bind();
 }
@@ -1108,6 +1158,7 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
     var tp=resolvePort(q.get("to"));if(tp>=0)state.to=tp;
     if(q.get("tab")==="karte") state.tab="karte";
     else if(q.get("tab")==="hinweise") state.tab="hinweise";
+    else if(q.get("tab")==="bodenseekarte") state.tab="bodenseekarte";
   }catch(e){}
 })();
 document.querySelectorAll(".lg-tabs button").forEach(function(b){
@@ -1124,6 +1175,10 @@ if(state.tab==="karte"){
 }else if(state.tab==="hinweise"){
   document.title=t("hw_doc_title");
   document.getElementById("lg-h1").innerHTML=esc(t("hw_h1_plain"))+'<span class="hl">'+esc(t("hw_h1_hl"))+'</span>';
+  document.getElementById("lg-tabs").style.display="none";
+}else if(state.tab==="bodenseekarte"){
+  document.title=t("bkrt_doc_title");
+  document.getElementById("lg-h1").innerHTML=esc(t("bkrt_h1_plain"))+'<span class="hl">'+esc(t("bkrt_h1_hl"))+'</span>';
   document.getElementById("lg-tabs").style.display="none";
 }
 

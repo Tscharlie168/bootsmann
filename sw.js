@@ -1,4 +1,21 @@
-/* Bootsmann – Service Worker (v74) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v75) – Stand: 17. Juli 2026
+   Neu gegenüber v74 (Schritt 3 von 3 der BSB-Tab-Umstrukturierung):
+   - Neue "Bodenseekarte": statische Orientierungskarte, erreichbar über
+     bsb-fahrplan.html?tab=bodenseekarte und neue dritte Startseiten-
+     Kachel (links neben Live-Positionskarte/Hinweise). Zeigt alle 31
+     wählbaren Häfen beschriftet, Seefläche nach Obersee/Überlinger
+     See/Untersee eingefärbt, Schweizer Grenze gestrichelt – bewusst
+     OHNE Routenlinien, Schiffe oder Live-Funktionen (Unterschied zur
+     Live-Positionskarte). Eigene Neuzeichnung aus unseren Geodaten
+     (COORDS/Seeumrisse), keine Übernahme aus dem gedruckten
+     VSU-Fahrplan. viewBox auf den tatsächlichen Hafen-Bereich
+     zugeschnitten statt der vollen Zeichenfläche.
+   - Bugfix beim Bau der neuen Kacheln: einzelne lange Wörter ohne
+     Leerzeichen ("Bodenseekarte", "Live-Positionskarte") wurden in der
+     3er-Kachelreihe abgeschnitten statt umzubrechen. Schriftgröße der
+     Kacheln von 20px auf 17px reduziert (hyphens:auto lieferte in
+     Tests keine zuverlässige Silbentrennung), damit alle Labels ohne
+     Abschneiden zweizeilig passen.
    Neu gegenüber v73 (Schritt 2 von 3 der BSB-Tab-Umstrukturierung):
    - BSB-Seite, Tab "Überlinger See / Untersee / Schweiz": Ziel-Liste um
      5 deutsche Ziele erweitert (Unteruhldingen, Dingelsdorf, Überlingen,
@@ -417,7 +434,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v74';
+const CACHE = 'bootsmann-v75';
 const SHELL = [
   './',
   './index.html',
