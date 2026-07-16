@@ -91,6 +91,7 @@ var I18N={
     tile_faehre:"Bodensee Fähre",
     tile_kat:"Katamaran",
     tile_karte:"Live-Positionskarte",
+    tile_hinweise:"Hinweise",
     womit_fahren:"Womit wollen Sie fahren?",
     naechster_hafen_lbl:"Nächster Hafen",
     route_btn:"Route",
@@ -152,9 +153,11 @@ var I18N={
 
     krt_doc_title:"Karte – Bodensee Live-Schiffspositionen",
     krt_h1_plain:"Live-", krt_h1_hl:"Karte",
+    hw_doc_title:"BSB Hinweise – Bodensee",
+    hw_h1_plain:"BSB ", hw_h1_hl:"Hinweise",
     krt_sub:"Schiffspositionen laut Fahrplan",
 
-    tab_verbindung:"Verbindung", tab_schweiz:"Schweiz", tab_hinweise:"Hinweise",
+    tab_verbindung:"Obersee & Bregenz", tab_schweiz:"Überlinger See / Untersee / Schweiz",
 
     pl_swap_aria:"Richtung tauschen",
     pl_tag_lbl:"Tag",
@@ -173,7 +176,7 @@ var I18N={
     pl_umstieg_in_prefix:"↴ Umstieg in ",
     pl_anderer_anbieter_sbs:" · anderer Anbieter (SBS/URh), eigenes Ticket",
     pl_empty_sbs_html:"Keine direkte Verbindung nach/von <strong>{port}</strong> an diesem Tag — oder Route nicht im Plan abgebildet.",
-    pl_empty_sbs_switch_html:"Klicken Sie oben auf <strong>SCHWEIZ</strong>, um alle Verbindungen dorthin zu sehen.",
+    pl_empty_sbs_switch_html:"Klicken Sie oben auf <strong>ÜBERLINGER SEE / UNTERSEE / SCHWEIZ</strong>, um alle Verbindungen dorthin zu sehen.",
     pl_empty_sbs_hint_html:"Vollständiger SBS-Fahrplan: <a href=\"https://bodensee-schiffe.ch\" target=\"_blank\" style=\"color:#15679e\">bodensee-schiffe.ch</a> · BSB-Tageskarte gilt dort nicht.",
     pl_empty_past_html:"Für heute fährt auf dieser Strecke kein Schiff mehr.",
     pl_empty_past_hint_html:"Wähle <strong>morgen</strong> oder einen anderen Tag — dann erscheinen wieder alle Fahrten.",
@@ -234,7 +237,7 @@ var I18N={
     hw_3_h:"Die zwei Sondertage",
     hw_3_li1_html:"<strong>18.7.</strong> — der 12:55-Kurs nach Bregenz (Kurs 143) und der 16:00-Kurs Richtung Friedrichshafen (Kurs 144) <strong>fallen aus</strong>. Durchgehende Fahrten Konstanz↔Bregenz nur mit Umstieg in Friedrichshafen.",
     hw_3_li2_html:"<strong>8.8.</strong> — der 18:00-Kurs Langenargen→Bregenz (Kurs 153) fährt nur mit <strong>Umstieg in Lindau</strong>.",
-    hw_3_tip:"Wähle im Reiter „Verbindung“ einfach das Datum — der Planer blendet betroffene Kurse aus oder markiert den Umstieg.",
+    hw_3_tip:"Wähle im Reiter „Obersee & Bregenz“ einfach das Datum — der Planer blendet betroffene Kurse aus oder markiert den Umstieg.",
     hw_4_h:"Feiertage in der Saison",
     hw_4_p_html:"Chr. Himmelfahrt 14.5. · Pfingstsonntag 24.5. · Pfingstmontag 25.5. · Fronleichnam 4.6. · Schweizer Nationalfeiertag 1.8. <span class=\"lg-muted\">(Linie fährt normal weiter.)</span>",
     hw_disclaimer:"Daten aus dem VSU-Fahrplan, Stand 11/2025. Alle Angaben ohne Gewähr — bei Nebel, Sturm oder hohem Andrang sind Verspätungen/Ausfälle möglich.",

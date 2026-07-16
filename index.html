@@ -45,10 +45,7 @@ a{color:inherit;}
 .tile .ic{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--blue);box-shadow:0 3px 8px rgba(21,103,158,.32);}
 .tile .ic svg{width:22px;height:22px;stroke:#fff;}
 .tile b{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:var(--navy);letter-spacing:.01em;line-height:1.1;}
-.tile-wide{width:calc(100% - 32px);flex-direction:row;align-items:center;gap:12px;min-height:auto;margin:16px;padding:16px 14px;}
-.tile-wide .ic{width:44px;height:44px;flex:none;border-radius:12px;}
-.tile-wide .ic svg{width:26px;height:26px;}
-.tile-wide b{font-size:20px;}
+.tiles-half{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px;margin-top:16px;}
 
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;}
@@ -122,10 +119,16 @@ a{color:inherit;}
 
   <div class="ruf-note" data-i18n="ruf_hint">Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.</div>
 
-  <button class="tile tile-wide" onclick="openPage('bsb-fahrplan.html','tab=karte')">
-    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
-    <b data-i18n="tile_karte">Positionskarte</b>
-  </button>
+  <div class="tiles-half">
+    <button class="tile" onclick="openPage('bsb-fahrplan.html','tab=karte')">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+      <b data-i18n="tile_karte">Live-Positionskarte</b>
+    </button>
+    <button class="tile" onclick="openPage('bsb-fahrplan.html','tab=hinweise')">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.7" r="1" fill="#15679E" stroke="none"/></svg></span>
+      <b data-i18n="tile_hinweise">Hinweise</b>
+    </button>
+  </div>
 
   <div class="card">
     <p class="lbl" data-i18n="rechtliches_lbl">Rechtliches</p>
