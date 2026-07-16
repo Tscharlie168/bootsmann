@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v67) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v68) – Stand: 16. Juli 2026
+   Neu gegenüber v67:
+   - BSB-Seite, Verbindung/Schweiz-Tab: Abstand zwischen letzter Karte
+     im Panel und dem persistenten BSB-Link-Kasten war deutlich größer
+     als sonstige Kartenabstände (35px statt ~14-20px), weil sich
+     Karten-Margin, Panel-Innenabstand und der eigene obere Rand des
+     Kastens addiert haben. Oberen Rand des Kastens auf 0 gesetzt
+     (jetzt 21px Gesamtabstand).
    Neu gegenüber v66:
    - BSB-Seite, Hinweise-Tab: BSB-Link-Kasten steht jetzt oberhalb von
      "Impressum & Datenschutz" statt darunter. Umgesetzt, indem der
@@ -352,7 +359,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v67';
+const CACHE = 'bootsmann-v68';
 const SHELL = [
   './',
   './index.html',
