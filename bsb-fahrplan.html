@@ -215,7 +215,7 @@ select,input,button{font-family:inherit;}
   </nav>
 
   <main id="lg-main"></main>
-  <a class="lg-ext-link" href="https://www.bsb.de/de" target="_blank" rel="noopener">
+  <a class="lg-ext-link" id="lg-ext-persist" href="https://www.bsb.de/de" target="_blank" rel="noopener">
     <span>🔗</span><span data-i18n-html="bsb_ext_html">Aktuelle Störungen, Kursausfälle und Sonderfahrten werden nur auf der <b>offiziellen Seite der BSB</b> angezeigt. Dort gelten deren Regeln – nicht die von Bootsmann.</span>
   </a>
   <footer class="lg-foot" data-i18n="footer_disclaimer">Angaben ohne Gewähr</footer>
@@ -834,6 +834,8 @@ function hinweiseHTML(){
   '<p class="lg-card-tip">'+t("hw_3_tip")+'</p></div>'+
   '<div class="lg-card"><h3>'+t("hw_4_h")+'</h3><p>'+t("hw_4_p_html")+'</p></div>'+
   '<p class="lg-disclaimer">'+t("hw_disclaimer")+'</p>'+
+  '<a class="lg-ext-link" style="margin:0 0 14px" href="https://www.bsb.de/de" target="_blank" rel="noopener">'+
+  '<span>🔗</span><span>'+t("bsb_ext_html")+'</span></a>'+
   '<div class="lg-card"><details><summary style="cursor:pointer;font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:700;color:var(--navy)">'+t("impressum_datenschutz_h")+'</summary>'+
   '<div style="margin-top:8px">'+t("hw_impressum_html")+'</div></details></div>'+
   '</section>';
@@ -1006,6 +1008,8 @@ function render(){
     },60000);
   }
   else main.innerHTML=hinweiseHTML();
+  var extPersist=document.getElementById("lg-ext-persist");
+  if(extPersist) extPersist.style.display = (state.tab==="hinweise") ? "none" : "";
   bind();
 }
 
