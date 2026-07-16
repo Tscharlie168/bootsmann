@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v49) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v50) – Stand: 15. Juli 2026
+   Neu gegenüber v49:
+   - Startseite: "Nächster Hafen" und "Nächste Abfahrt" zu einer Kachel
+     zusammengefasst, direkt unter dem Header (Kacheln rutschen dafür
+     nach unten). Nächster Hafen jetzt mit explizitem Namen, Gehzeit und
+     einem Route-Button (Google-Maps-Routenlink). Macht Kernaufgabe 4
+     ("Nächster Hafen") aus dem Mini-Produkttest sichtbarer.
    Neu gegenüber v48:
    - Startseite: Wetter-Kachel komplett entfernt (Open-Meteo/BigDataCloud
      nicht mehr genutzt) – Fokus liegt jetzt ausschließlich auf den fünf
@@ -214,7 +220,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v49';
+const CACHE = 'bootsmann-v50';
 const SHELL = [
   './',
   './index.html',
