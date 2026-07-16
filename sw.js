@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v70) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v71) – Stand: 16. Juli 2026
+   Neu gegenüber v70:
+   - BSB-Seite, Verbindung-Tab: Bei "Keine direkte Verbindung" zu einem
+     Schweizer SBS-Ziel (z. B. Rorschach) steht jetzt ein zusätzlicher
+     Hinweis zwischen den beiden bestehenden Texten: "Klicken Sie oben
+     auf SCHWEIZ, um alle Verbindungen dorthin zu sehen." (neuer
+     i18n-Key pl_empty_sbs_switch_html, SCHWEIZ großgeschrieben passend
+     zum Tab-Label).
    Neu gegenüber v69:
    - BSB-Seite, Schweiz-Tab: Anleitungstext komplett ersetzt (neuer
      Wortlaut vom Auftraggeber, jetzt Sie-Form statt du-Form, zwei
@@ -374,7 +381,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v70';
+const CACHE = 'bootsmann-v71';
 const SHELL = [
   './',
   './index.html',
