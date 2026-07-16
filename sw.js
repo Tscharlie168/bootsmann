@@ -1,4 +1,15 @@
-/* Bootsmann – Service Worker (v68) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v69) – Stand: 16. Juli 2026
+   Neu gegenüber v68:
+   - BSB-Seite: Abstandsproblem beim BSB-Link-Kasten strukturell gelöst
+     statt nur Werte nachzujustieren (v68-Fix war noch nicht
+     ausreichend, 21px blieb spürbar größer als die übrigen ~14px-
+     Abstände). Ursache war, dass der Kasten als persistentes Element
+     außerhalb von .lg-panel lag. Jetzt wird er direkt in jeder
+     Tab-Funktion (planerHTML/schweizHTML/karteHTML/hinweiseHTML) als
+     normales Geschwisterelement eingebettet – dadurch exakt 14px
+     Abstand wie alle anderen Übergänge, auf allen vier Tabs (inkl.
+     Live-Karte, bisher nicht separat geprüft). Neue gemeinsame
+     Helper-Funktion bsbExtLinkHTML(margin).
    Neu gegenüber v67:
    - BSB-Seite, Verbindung/Schweiz-Tab: Abstand zwischen letzter Karte
      im Panel und dem persistenten BSB-Link-Kasten war deutlich größer
@@ -359,7 +370,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v68';
+const CACHE = 'bootsmann-v69';
 const SHELL = [
   './',
   './index.html',

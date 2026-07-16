@@ -145,7 +145,7 @@ select,input,button{font-family:inherit;}
 .lg-disclaimer{font-size:15px;color:var(--muted);text-align:center;margin:6px 2px 0;}
 
 .lg-foot{text-align:center;font-size:15px;color:var(--muted);padding:18px 16px 30px;}
-.lg-ext-link{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;margin:0 16px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.45;}
+.lg-ext-link{display:flex;gap:8px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:12px;padding:11px 13px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.45;}
 .lg-ext-link b{color:var(--blue);}
 
 @media (max-width:420px){
@@ -215,9 +215,6 @@ select,input,button{font-family:inherit;}
   </nav>
 
   <main id="lg-main"></main>
-  <a class="lg-ext-link" id="lg-ext-persist" href="https://www.bsb.de/de" target="_blank" rel="noopener">
-    <span>🔗</span><span data-i18n-html="bsb_ext_html">Aktuelle Störungen, Kursausfälle und Sonderfahrten werden nur auf der <b>offiziellen Seite der BSB</b> angezeigt. Dort gelten deren Regeln – nicht die von Bootsmann.</span>
-  </a>
   <footer class="lg-foot" data-i18n="footer_disclaimer">Angaben ohne Gewähr</footer>
 </div>
 
@@ -408,6 +405,13 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
    Hinfahrt-Liste für das jeweils gewählte Datum (auch an künftigen
    Tagen, z. B. nach "Nächster Tag"). Zeigt die letzte Rückfahrt des
    Tages und warnt (nur am aktuellen Tag) falls sie schon vorbei ist. */
+/* Link-Kasten zur offiziellen BSB-Seite (Störungen/Kursausfälle/Sonderfahrten).
+   margin per Parameter, damit er sich in jedem Panel wie ein normales
+   Geschwisterelement einreiht statt als externer Fremdkörper. */
+function bsbExtLinkHTML(margin){
+  return '<a class="lg-ext-link" style="margin:'+margin+'" href="https://www.bsb.de/de" target="_blank" rel="noopener">'+
+    '<span>🔗</span><span>'+t("bsb_ext_html")+'</span></a>';
+}
 function rueckfahrtCardHTML(fromIdx,toIdx,date){
   var istHeute=date===todayISO();
   var d=new Date(date+"T12:00:00");
@@ -454,6 +458,7 @@ function planerHTML(){
   if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">'+t("pl_vergangene_ausgeblendet")+'</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
   h+=rueckfahrtCardHTML(state.from,state.to,state.date);
+  h+=bsbExtLinkHTML("14px 0 0");
   h+='</section>';
   h+=pickerHTML();
   return h;
@@ -640,6 +645,7 @@ function schweizHTML(){
     '<li>'+t("szw_li_card_html")+'</li>'+
     '<li>'+t("szw_li_rueckweg_html")+'</li>'+
     '</ul></div>';
+  h+=bsbExtLinkHTML("14px 0 0");
   h+='</section>';
   return h;
 }
@@ -820,6 +826,7 @@ function karteHTML(){
     '</div>'+
     '<p class="lg-map-hint">'+t("krt_hint_html")+'</p>'+
     '<p class="lg-map-stand" id="lg-karte-stand"></p>';
+  h2+=bsbExtLinkHTML("14px 0 0");
   h2+='</section>';
   return h2;
 }
@@ -834,8 +841,7 @@ function hinweiseHTML(){
   '<p class="lg-card-tip">'+t("hw_3_tip")+'</p></div>'+
   '<div class="lg-card"><h3>'+t("hw_4_h")+'</h3><p>'+t("hw_4_p_html")+'</p></div>'+
   '<p class="lg-disclaimer">'+t("hw_disclaimer")+'</p>'+
-  '<a class="lg-ext-link" style="margin:0 0 14px" href="https://www.bsb.de/de" target="_blank" rel="noopener">'+
-  '<span>🔗</span><span>'+t("bsb_ext_html")+'</span></a>'+
+  bsbExtLinkHTML("0 0 14px")+
   '<div class="lg-card"><details><summary style="cursor:pointer;font-family:\'Barlow Condensed\',sans-serif;font-size:20px;font-weight:700;color:var(--navy)">'+t("impressum_datenschutz_h")+'</summary>'+
   '<div style="margin-top:8px">'+t("hw_impressum_html")+'</div></details></div>'+
   '</section>';
@@ -1008,8 +1014,6 @@ function render(){
     },60000);
   }
   else main.innerHTML=hinweiseHTML();
-  var extPersist=document.getElementById("lg-ext-persist");
-  if(extPersist) extPersist.style.display = (state.tab==="hinweise") ? "none" : "";
   bind();
 }
 
