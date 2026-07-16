@@ -145,9 +145,9 @@ var I18N={
     von_lbl:"Von", nach_lbl:"Nach", ab_lbl:"Ab",
     dur_h_unit:" h", dur_min_unit:" min",
 
-    bsb_h1_plain:"BSB", bsb_h1_hl:"Fahrplan",
+    bsb_h1_plain:"BSB", bsb_h1_hl:"Schifffahrt",
     bsb_season:"Saison 2026 · 3. Apr – 18. Okt",
-    bsb_doc_title:"BSB Fahrplan – Bodensee",
+    bsb_doc_title:"BSB Schifffahrt – Bodensee",
 
     krt_doc_title:"Karte – Bodensee Live-Schiffspositionen",
     krt_h1_plain:"Live-", krt_h1_hl:"Karte",
@@ -185,6 +185,8 @@ var I18N={
     ruf_vorbei_html:"Die letzte Rückfahrt heute ab <b>{to}</b> ({time} Uhr) ist schon vorbei.",
     ruf_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
     ruf_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
+    ruf2_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b>",
+    ruf2_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b>",
 
     pk_schliessen_aria:"Schließen",
     grp_obersee:"Obersee & Bregenz",

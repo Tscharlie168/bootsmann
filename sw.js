@@ -1,4 +1,19 @@
-/* Bootsmann – Service Worker (v63) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v64) – Stand: 16. Juli 2026
+   Neu gegenüber v63:
+   - BSB-Seite: Titel/Überschrift "BSB Fahrplan" -> "BSB Schifffahrt"
+     (Tab-Titel, <title>, H1), passend zur Startseiten-Kachel.
+   - Schweiz-Tab: Anleitungstext von hellblauer (.lg-info) auf gelbe/
+     cremefarbene (.lg-note) Optik umgestellt.
+   - Bodensee Fähre und Katamaran: neue Rückfahrt-Hinweis-Box am Ende
+     der Seite (unter der Abfahrten-Karte). Zeigt die letzte Abfahrt des
+     Tages in Gegenrichtung – cremefarben mit "ist schon vorbei", wenn
+     sie in der Vergangenheit liegt, sonst blau mit der Uhrzeit. Reuse
+     der bestehenden ruf_*-i18n-Texte von der BSB-Seite plus zwei neuen
+     Keys ohne Ankunftszeit (ruf2_info_heute_html/ruf2_info_am_html).
+     Bugfix während der Umsetzung: collect()-Aufruf mit zu kleinem
+     Limit (n=50) hätte bei der Autofähre (>50 Abfahrten/Tag an
+     Meersburg) die späten Abendfahrten abgeschnitten und eine falsche
+     "letzte Abfahrt" gezeigt – auf n=300 erhöht.
    Neu gegenüber v62:
    - Startseite: "Positionskarte" umbenannt in "Live-Positionskarte".
      Schriftgröße der 3er-Kachelreihe (BSB Schifffahrt/Bodensee Fähre/
@@ -313,7 +328,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v63';
+const CACHE = 'bootsmann-v64';
 const SHELL = [
   './',
   './index.html',

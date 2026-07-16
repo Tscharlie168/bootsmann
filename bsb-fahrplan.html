@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="theme-color" content="#0E3553">
-<title>BSB Fahrplan – Bodensee</title>
+<title>BSB Schifffahrt – Bodensee</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <script src="i18n.js"></script>
 <style>
@@ -200,7 +200,7 @@ select,input,button{font-family:inherit;}
         <a class="lg-back" href="./" data-i18n="back_btn">&#8249; Zur&uuml;ck</a>
         <div id="lg-lang-slot"></div>
       </div>
-      <h1 id="lg-h1"><span data-i18n="bsb_h1_plain">BSB</span> <span class="hl" data-i18n="bsb_h1_hl">Fahrplan</span></h1>
+      <h1 id="lg-h1"><span data-i18n="bsb_h1_plain">BSB</span> <span class="hl" data-i18n="bsb_h1_hl">Schifffahrt</span></h1>
       <p class="lg-sub" id="lg-headsub" data-i18n="bsb_season">Saison 2026 · 3. Apr – 18. Okt</p>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 Q 180 0 360 30 T 720 30 T 1080 30 T 1440 30 V60 H0 Z"/></svg>
@@ -609,7 +609,7 @@ function schweizHTML(){
     h+=esc(z.name)+'</button>';
   }
   h+='</div>';
-  h+='<div class="lg-info" style="margin-bottom:16px">'+t("szw_hilfe")+'</div>';
+  h+='<div class="lg-note" style="margin-bottom:16px">'+t("szw_hilfe")+'</div>';
   if(dest!==null){
     var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
     var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';

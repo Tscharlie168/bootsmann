@@ -57,6 +57,8 @@ select,input,button{font-family:inherit;}
 .dephead{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:600;color:var(--muted);padding:6px 6px 2px;}
 
 .notice{background:#FFF7E9;border:1px solid #F0D9A8;border-radius:12px;padding:13px 14px;font-size:15px;color:#6b4e18;}
+.notice-info{background:#EAF2F8;border:1px solid #D8E5EF;border-radius:12px;padding:13px 14px;font-size:15px;color:#103A5A;}
+#ruf:not(:empty){margin-bottom:14px;}
 .foot{font-size:15px;color:var(--muted);padding:2px 6px 26px;}
 .foot .disclaimer{text-align:center;}
 .foot a{color:var(--blue);}
@@ -96,6 +98,7 @@ select,input,button{font-family:inherit;}
     </div>
 
     <div class="card" id="result"></div>
+    <div id="ruf"></div>
 
     <div class="foot">
       <a class="ext" href="https://der-katamaran.de" target="_blank" rel="noopener">
@@ -140,9 +143,35 @@ function collect(dir,baseDate,fromMin,n){
   return res.slice(0,n);
 }
 
+/* Letzte Abfahrt einer Richtung an einem bestimmten Kalendertag (kein Tage-Rollover). */
+function letzteAmTag(dir,baseDate){
+  var list=collect(dir,baseDate,0,300).filter(function(x){return x.off===0;});
+  return list.length ? list[list.length-1] : null;
+}
+function rueckfahrtHTML(){
+  if(STATE.date<KAT_SEASON_START || STATE.date>KAT_SEASON_END) return "";
+  var base=new Date(STATE.date+"T00:00:00");
+  var revDir = STATE.dir==="kn" ? "fn" : "kn";
+  var vonName = revDir==="kn" ? "Konstanz" : "Friedrichshafen";
+  var nachName = STATE.dir==="kn" ? "Konstanz" : "Friedrichshafen";
+  var istHeute = STATE.date===iso(new Date());
+  var WD=t("weekdays");
+  var dateLabel=WD[base.getDay()]+", "+base.getDate()+"."+(base.getMonth()+1)+".";
+  var letzte=letzteAmTag(revDir,base);
+  if(!letzte){
+    return '<div class="notice-info">'+tf(istHeute?"ruf_keine_heute_html":"ruf_keine_am_html",{date:dateLabel,to:vonName,from:nachName})+'</div>';
+  }
+  var dep=new Date(base.getTime()); dep.setHours(letzte.h,0,0,0);
+  if(istHeute && dep.getTime()<Date.now()){
+    return '<div class="notice">'+tf("ruf_vorbei_html",{to:vonName,time:pad(letzte.h)+":00"})+'</div>';
+  }
+  return '<div class="notice-info">'+tf(istHeute?"ruf2_info_heute_html":"ruf2_info_am_html",{date:dateLabel,to:vonName,time:pad(letzte.h)+":00"})+'</div>';
+}
+
 function render(){
   var box=document.getElementById("result");
   document.querySelectorAll("#dir button").forEach(function(b){ b.classList.toggle("is-active", b.getAttribute("data-dir")===STATE.dir); });
+  document.getElementById("ruf").innerHTML=rueckfahrtHTML();
 
   if(STATE.date<KAT_SEASON_START || STATE.date>KAT_SEASON_END){
     box.innerHTML='<div class="notice">'+t("kat_notice_winter_html")+'</div>';
