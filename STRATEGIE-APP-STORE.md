@@ -13,9 +13,10 @@ sondern Gedächtnisstütze für den aktuellen Entscheidungsstand.
   entfernt, README aktualisiert, Stand 14.07.2026).
 - Neues Ziel: eigenständiger Verkauf über App Store/Play Store an
   Endkunden rund um den Bodensee, für kleines Geld.
-- Datenquellen: Open-Meteo (Wetter), BigDataCloud (Ortsname), eigene
-  statische Fahrplandaten (VSU-Fahrplan 2026, Stand 11/2025, muss saisonal
-  von Hand gepflegt werden).
+- Datenquellen: ausschließlich eigene statische Fahrplandaten (VSU-Fahrplan
+  2026, Stand 11/2025, muss saisonal von Hand gepflegt werden) – die
+  Wetter-Kachel (Open-Meteo/BigDataCloud) wurde am 15.07.2026 entfernt, da
+  sie zu keiner der fünf Kernaufgaben aus dem Mini-Produkttest gehört.
 
 ## Getroffene Entscheidungen
 

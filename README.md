@@ -15,18 +15,19 @@ keine gemeinsame Weiterentwicklung.
 - **Autofähre** (`autofaehre.html`) – Konstanz–Meersburg
 - **Katamaran** (`katamaran.html`) – Konstanz–Friedrichshafen, eigener
   Betreiber (Katamaran-Reederei Bodensee), eigener Fahrplan
-- **Wetter** – aktuelles Wetter samt Tageshöchst-/Tiefsttemperatur
-  (Open-Meteo) auf der Startseite
 - **Nächste Abfahrt** – zeigt automatisch die nächste Schiffsabfahrt ab
   dem nächstgelegenen Hafen (mischt BSB- und Katamaran-Abfahrten bei
   Konstanz/Friedrichshafen nach Uhrzeit)
+- **Mehrsprachigkeit** – Deutsch, Englisch, Französisch, Niederländisch
+  (`i18n.js`), Sprachumschalter oben rechts im Header auf allen Seiten
 - **PWA** – installierbar, offline nutzbar per Service Worker (`sw.js`)
 
 ## Struktur
 
 | Datei | Zweck |
 |-------|-------|
-| `index.html` | Startseite mit Wetter, Kacheln und Nächste-Abfahrt |
+| `index.html` | Startseite mit Kacheln und Nächste-Abfahrt |
+| `i18n.js` | Übersetzungen (DE/EN/FR/NL) – genutzt von allen vier Seiten |
 | `bsb-fahrplan.html` | Fahrplan der Ausflugsschiffe, inkl. Live-Karte |
 | `autofaehre.html` | Fahrplan der Autofähre Konstanz–Meersburg |
 | `katamaran.html` | Fahrplan des Katamaran Konstanz–Friedrichshafen |
