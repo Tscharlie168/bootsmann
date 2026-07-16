@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v66) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v67) – Stand: 16. Juli 2026
+   Neu gegenüber v66:
+   - BSB-Seite, Hinweise-Tab: BSB-Link-Kasten steht jetzt oberhalb von
+     "Impressum & Datenschutz" statt darunter. Umgesetzt, indem der
+     Kasten dort direkt in hinweiseHTML() eingebettet wird (statt der
+     persistenten Version), die persistente Version wird auf dem
+     Hinweise-Tab ausgeblendet, bleibt aber auf Verbindung/Schweiz
+     unverändert sichtbar.
    Neu gegenüber v65:
    - BSB-Seite: neuer Hinweis-Kasten mit Link zur offiziellen BSB-Seite
      (bsb.de) für aktuelle Störungen/Kursausfälle/Sonderfahrten – analog
@@ -345,7 +352,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v66';
+const CACHE = 'bootsmann-v67';
 const SHELL = [
   './',
   './index.html',
