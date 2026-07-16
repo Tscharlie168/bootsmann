@@ -391,7 +391,7 @@ function boardHTML(rows,emptyKind,fromIdx,toIdx){
     var isSbs=SBS_PORTS.indexOf(fromIdx)>=0||SBS_PORTS.indexOf(toIdx)>=0;
     if(isSbs){
       var sbsPort=SBS_PORTS.indexOf(toIdx)>=0?PORTS[toIdx]:PORTS[fromIdx];
-      return '<div class="lg-empty"><div class="lg-empty-mark">&#127464;&#127469;</div><p>'+tf("pl_empty_sbs_html",{port:esc(sbsPort)})+'</p><p class="lg-empty-hint">'+t("pl_empty_sbs_hint_html")+'</p></div>';
+      return '<div class="lg-empty"><div class="lg-empty-mark">&#127464;&#127469;</div><p>'+tf("pl_empty_sbs_html",{port:esc(sbsPort)})+'</p><p>'+t("pl_empty_sbs_switch_html")+'</p><p class="lg-empty-hint">'+t("pl_empty_sbs_hint_html")+'</p></div>';
     }
     if(emptyKind==="past"){
       return '<div class="lg-empty"><div class="lg-empty-mark">&#128338;</div><p>'+t("pl_empty_past_html")+'</p><p class="lg-empty-hint">'+t("pl_empty_past_hint_html")+'</p></div>';

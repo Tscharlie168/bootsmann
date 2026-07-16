@@ -173,6 +173,7 @@ var I18N={
     pl_umstieg_in_prefix:"↴ Umstieg in ",
     pl_anderer_anbieter_sbs:" · anderer Anbieter (SBS/URh), eigenes Ticket",
     pl_empty_sbs_html:"Keine direkte Verbindung nach/von <strong>{port}</strong> an diesem Tag — oder Route nicht im Plan abgebildet.",
+    pl_empty_sbs_switch_html:"Klicken Sie oben auf <strong>Schweiz</strong>, um alle Verbindungen dorthin zu sehen.",
     pl_empty_sbs_hint_html:"Vollständiger SBS-Fahrplan: <a href=\"https://bodensee-schiffe.ch\" target=\"_blank\" style=\"color:#15679e\">bodensee-schiffe.ch</a> · BSB-Tageskarte gilt dort nicht.",
     pl_empty_past_html:"Für heute fährt auf dieser Strecke kein Schiff mehr.",
     pl_empty_past_hint_html:"Wähle <strong>morgen</strong> oder einen anderen Tag — dann erscheinen wieder alle Fahrten.",
