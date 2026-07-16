@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v55) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v56) – Stand: 16. Juli 2026
+   Neu gegenüber v55:
+   - Startseite: Reihenfolge geändert – Nächster-Hafen-Kachel bleibt oben,
+     danach die Überschrift "Womit wollen Sie fahren?" über den 4 Kacheln,
+     danach erst die Rückfahrt-Hinweis-Kachel (vorher zwischen
+     Nächster-Hafen-Kachel und den 4 Kacheln).
    Neu gegenüber v54:
    - Startseite: neue Kachel "Verfügbare Rückfahrten werden direkt bei
      den Hinfahrt-Zeiten angezeigt." mit eigenem Doppelpfeil-Icon,
@@ -246,7 +251,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v55';
+const CACHE = 'bootsmann-v56';
 const SHELL = [
   './',
   './index.html',
