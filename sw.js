@@ -1,4 +1,18 @@
-/* Bootsmann – Service Worker (v72) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v73) – Stand: 17. Juli 2026
+   Neu gegenüber v72 (Schritt 1 von 3 der BSB-Tab-Umstrukturierung):
+   - BSB-Seite: Tab-Leiste von 3 auf 2 Reiter reduziert. "Verbindung"
+     heißt jetzt "Obersee & Bregenz" (unveränderte Funktion), "Schweiz"
+     heißt jetzt "Überlinger See / Untersee / Schweiz" (Funktion noch
+     unverändert, Erweiterung um Überlinger-See-/Untersee-Ziele folgt in
+     Schritt 2). "Hinweise" ist kein eigener Tab mehr, aber weiterhin per
+     Deep-Link bsb-fahrplan.html?tab=hinweise erreichbar (eigener Titel
+     "BSB Hinweise", keine Tab-Leiste, gleiches Muster wie die Karte).
+   - Startseite: "Live-Positionskarte"-Kachel ist jetzt halbbreit, neue
+     Kachel "Hinweise" daneben (führt zum neuen Deep-Link). Neue
+     `.tiles-half`-CSS-Klasse (2-spaltiges Grid). Dritte Kachel
+     "Bodenseekarte" folgt in Schritt 3.
+   - Textstellen mit altem Tab-Namen "Verbindung"/"Schweiz" korrigiert
+     (Sondertage-Tipp, SBS-Ziel-ohne-Verbindung-Hinweis).
    Neu gegenüber v71:
    - Bugfix Caching-Strategie: i18n.js, fahrplan-daten.js und
      katamaran-daten.js liefen bisher unter "Cache-zuerst" (wie Icons/
@@ -395,7 +409,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v72';
+const CACHE = 'bootsmann-v73';
 const SHELL = [
   './',
   './index.html',

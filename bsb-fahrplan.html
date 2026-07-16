@@ -209,9 +209,8 @@ select,input,button{font-family:inherit;}
   </header>
 
   <nav class="lg-tabs" id="lg-tabs">
-    <button data-tab="planer" data-i18n="tab_verbindung">Verbindung</button>
-    <button data-tab="schweiz" data-i18n="tab_schweiz">Schweiz</button>
-    <button data-tab="hinweise" data-i18n="tab_hinweise">Hinweise</button>
+    <button data-tab="planer" data-i18n="tab_verbindung">Obersee &amp; Bregenz</button>
+    <button data-tab="schweiz" data-i18n="tab_schweiz">Überlinger See / Untersee / Schweiz</button>
   </nav>
 
   <main id="lg-main"></main>
@@ -1103,18 +1102,23 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
     }
     var tp=resolvePort(q.get("to"));if(tp>=0)state.to=tp;
     if(q.get("tab")==="karte") state.tab="karte";
+    else if(q.get("tab")==="hinweise") state.tab="hinweise";
   }catch(e){}
 })();
 document.querySelectorAll(".lg-tabs button").forEach(function(b){
   b.classList.toggle("is-active", b.getAttribute("data-tab")===state.tab);
 });
-// Direkteinstieg über die Karte-Kachel der Startseite: eigener Titel,
-// keine Tab-Leiste (die drei verbliebenen Tabs gehören zum Fahrplan-
-// Planer, nicht zur Karte).
+// Direkteinstieg über die Karte- bzw. Hinweise-Kachel der Startseite:
+// eigener Titel, keine Tab-Leiste (die beiden verbliebenen Tabs gehören
+// zum Fahrplan-Planer, nicht zur Karte/den Hinweisen).
 if(state.tab==="karte"){
   document.title=t("krt_doc_title");
   document.getElementById("lg-h1").innerHTML=esc(t("krt_h1_plain"))+'<span class="hl">'+esc(t("krt_h1_hl"))+'</span>';
   document.getElementById("lg-headsub").textContent=t("krt_sub");
+  document.getElementById("lg-tabs").style.display="none";
+}else if(state.tab==="hinweise"){
+  document.title=t("hw_doc_title");
+  document.getElementById("lg-h1").innerHTML=esc(t("hw_h1_plain"))+'<span class="hl">'+esc(t("hw_h1_hl"))+'</span>';
   document.getElementById("lg-tabs").style.display="none";
 }
 
