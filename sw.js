@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v65) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v66) – Stand: 16. Juli 2026
+   Neu gegenüber v65:
+   - BSB-Seite: neuer Hinweis-Kasten mit Link zur offiziellen BSB-Seite
+     (bsb.de) für aktuelle Störungen/Kursausfälle/Sonderfahrten – analog
+     zum bereits bestehenden Muster bei Autofähre (Stadtwerke Konstanz)
+     und Katamaran (Katamaran-Reederei). Persistent unterhalb von
+     "Nächste Abfahrt"/"Schweiz"/"Hinweise", auf allen drei Tabs
+     sichtbar. Grund: Bootsmann kann/darf bsb.de nicht automatisiert
+     nach Störungsmeldungen durchsuchen (kein Backend, fragil, rechtlich
+     heikel) – der klare Verweis auf die offizielle Quelle ist der
+     etablierte Lösungsweg dieser App.
    Neu gegenüber v64:
    - Startseite: Rückfahrt-Hinweisfeld von gelb/cremefarben auf Weiß mit
      hellgrauer Schrift umgestellt (weniger alarmierend, da reine Info
@@ -335,7 +345,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v65';
+const CACHE = 'bootsmann-v66';
 const SHELL = [
   './',
   './index.html',

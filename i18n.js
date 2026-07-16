@@ -148,6 +148,7 @@ var I18N={
     bsb_h1_plain:"BSB", bsb_h1_hl:"Schifffahrt",
     bsb_season:"Saison 2026 · 3. Apr – 18. Okt",
     bsb_doc_title:"BSB Schifffahrt – Bodensee",
+    bsb_ext_html:"Aktuelle Störungen, Kursausfälle und Sonderfahrten werden nur auf der <b>offiziellen Seite der BSB</b> angezeigt. Dort gelten deren Regeln – nicht die von Bootsmann.",
 
     krt_doc_title:"Karte – Bodensee Live-Schiffspositionen",
     krt_h1_plain:"Live-", krt_h1_hl:"Karte",
