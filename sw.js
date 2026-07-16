@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v73) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v74) – Stand: 17. Juli 2026
+   Neu gegenüber v73 (Schritt 2 von 3 der BSB-Tab-Umstrukturierung):
+   - BSB-Seite, Tab "Überlinger See / Untersee / Schweiz": Ziel-Liste um
+     5 deutsche Ziele erweitert (Unteruhldingen, Dingelsdorf, Überlingen,
+     Radolfzell, Iznang) – vorher nur Schweizer/Untersee-Grenzorte.
+     "Praktische Hinweise"-Box zeigt Ausweis-/Grenze-Tipps jetzt nur noch
+     bei tatsächlich Schweizer Zielen (REGION_SCHWEIZ-Check); VSU-Card-
+     und Rückweg-Tipp bleiben immer sichtbar. Überschrift von "Praktisch
+     beim Schweiz-Ausflug" auf neutrales "Praktische Hinweise" geändert.
    Neu gegenüber v72 (Schritt 1 von 3 der BSB-Tab-Umstrukturierung):
    - BSB-Seite: Tab-Leiste von 3 auf 2 Reiter reduziert. "Verbindung"
      heißt jetzt "Obersee & Bregenz" (unveränderte Funktion), "Schweiz"
@@ -409,7 +417,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v73';
+const CACHE = 'bootsmann-v74';
 const SHELL = [
   './',
   './index.html',
