@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v52) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v53) – Stand: 15. Juli 2026
+   Neu gegenüber v52:
+   - Fähre und Katamaran: Hinweis "Vergangene Abfahrten sind
+     ausgeblendet." wieder entfernt (Entscheidung zurückgenommen) –
+     der Nutzer kann die Uhrzeit selbst wählen, keine Erklärung nötig.
+     Bleibt bei BSB weiterhin bestehen.
    Neu gegenüber v51:
    - Katamaran: "· Fahrzeit 52 Min." aus der Abfahrten-Überschrift
      entfernt (weniger zu lesen).
@@ -229,7 +234,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v52';
+const CACHE = 'bootsmann-v53';
 const SHELL = [
   './',
   './index.html',
