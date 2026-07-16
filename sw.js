@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v56) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v57) – Stand: 16. Juli 2026
+   Neu gegenüber v56:
+   - BSB Fahrplan (Verbindung-Tab): Button "Nächsten Hafen verwenden" und
+     die Merken-Funktion (Stern-Button + gespeicherte Favoriten-Chips)
+     entfernt – erklärungsbedürftig, und der nächste Hafen ist über die
+     Startseite ohnehin schon verfügbar. Zugehörige tote i18n-Keys in
+     allen 4 Sprachen bereinigt (pl_naechster_hafen_btn, pl_merken_btn,
+     pl_gemerkt_btn, pl_loc_unsupported, pl_loc_far, pl_loc_unavailable,
+     pl_loc_erkannt).
    Neu gegenüber v55:
    - Startseite: Reihenfolge geändert – Nächster-Hafen-Kachel bleibt oben,
      danach die Überschrift "Womit wollen Sie fahren?" über den 4 Kacheln,
@@ -251,7 +259,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v56';
+const CACHE = 'bootsmann-v57';
 const SHELL = [
   './',
   './index.html',

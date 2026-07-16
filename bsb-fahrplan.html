@@ -72,18 +72,9 @@ select,input,button{font-family:inherit;}
 .lg-daynext:hover{background:var(--navy);border-color:var(--navy);}
 .lg-daynext:active{transform:scale(.98);}
 .lg-daynext:disabled{opacity:.4;cursor:default;}
-.lg-star{margin-left:auto;border:1.5px solid var(--line);background:#fff;border-radius:10px;padding:12px 14px;font-size:14px;font-weight:600;color:var(--muted);cursor:pointer;height:46px;white-space:nowrap;transition:.15s;}
-.lg-star.is-on{color:var(--gold);border-color:var(--gold);background:#FBF4E6;}
 
 .lg-banner{margin-top:14px;background:#FCEFE9;border:1px solid #EBC3B5;color:#8C3B25;border-radius:10px;padding:11px 13px;font-size:15px;}
-.lg-loc{width:100%;margin-top:12px;border:1.5px dashed var(--azure);background:#fff;color:var(--blue);border-radius:10px;padding:12px;font-size:14px;font-weight:600;cursor:pointer;transition:.15s;}
-.lg-loc:hover{background:var(--sky);}
-.lg-loc:active{transform:scale(.99);}
 .lg-loc-status{margin-top:8px;font-size:15px;color:var(--muted);}
-
-.lg-favs{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px;}
-.lg-fav{border:1px solid var(--line);background:#fff;border-radius:999px;padding:7px 13px;font-size:13px;font-weight:500;color:var(--navy);cursor:pointer;transition:.15s;}
-.lg-fav:hover{border-color:var(--azure);color:var(--blue);}
 
 .lg-result-head{display:flex;justify-content:space-between;align-items:baseline;margin:20px 2px 10px;}
 .lg-result-route{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy);}
@@ -159,7 +150,6 @@ select,input,button{font-family:inherit;}
   .lg-head h1{font-size:32px;}
   .lg-clock{font-size:19px;}
   .lg-controls{flex-wrap:wrap;}
-  .lg-star{margin-left:0;width:100%;}
 }
 .lg-tag--xfer{background:#CFE9F2;color:#0A3A4E;}
 .lg-via{margin-top:8px;font-size:13px;color:#A9CBDD;display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
@@ -328,9 +318,7 @@ function planJourneys(fromIdx,toIdx,dStr){
 }
 
 // ---- state ----
-var state={tab:"planer",from:6,to:11,date:defaultDate(),open:null,favs:[],locStatus:null,schweizDest:null,schweizRet:null,picker:null,schiffSel:null};
-try{var f=localStorage.getItem("lgg-favs");if(f)state.favs=JSON.parse(f);}catch(e){}
-function saveFavs(){try{localStorage.setItem("lgg-favs",JSON.stringify(state.favs));}catch(e){}}
+var state={tab:"planer",from:6,to:11,date:defaultDate(),open:null,locStatus:null,schweizDest:null,schweizRet:null,picker:null,schiffSel:null};
 
 function svcTag(svc){return svc==="restaurant"?'<span class="lg-tag lg-tag--rest">Restaurant</span>':'<span class="lg-tag lg-tag--snack">Snacks</span>';}
 
@@ -449,18 +437,14 @@ function planerHTML(){
   var WD=t("weekdays");
   var dateLabel=WD[d.getDay()]+", "+d.getDate()+"."+(d.getMonth()+1)+".";
   var special=state.date==="2026-07-18"?t("pl_sondertag_lbl")+"18.7.":state.date==="2026-08-08"?t("pl_sondertag_lbl")+"8.8.":null;
-  var isFav=state.favs.some(function(x){return x.f===state.from&&x.t===state.to;});
   var h='<section class="lg-panel">';
   h+='<div class="lg-route"><label class="lg-field"><span>'+t("von_lbl")+'</span><button type="button" class="lg-field-btn" data-picker-open="from">'+PORTS[state.from]+'<span class="lg-field-chev">&#9662;</span></button></label>';
   h+='<button class="lg-swap" id="lg-swap" aria-label="'+t("pl_swap_aria")+'">&#8645;</button>';
   h+='<label class="lg-field"><span>'+t("nach_lbl")+'</span><button type="button" class="lg-field-btn" data-picker-open="to">'+PORTS[state.to]+'<span class="lg-field-chev">&#9662;</span></button></label></div>';
-  h+='<button class="lg-loc" id="lg-loc">'+t("pl_naechster_hafen_btn")+'</button>';
   if(state.locStatus) h+='<div class="lg-loc-status">'+esc(state.locStatus)+'</div>';
   h+='<div class="lg-controls"><label class="lg-field lg-field--date"><span>'+t("pl_tag_lbl")+'</span><input type="date" id="lg-date" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
-  h+='<button class="lg-daynext" id="lg-daynext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button>';
-  h+='<button class="lg-star'+(isFav?" is-on":"")+'" id="lg-star">'+(isFav?t("pl_gemerkt_btn"):t("pl_merken_btn"))+'</button></div>';
+  h+='<button class="lg-daynext" id="lg-daynext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
   if(special) h+='<div class="lg-banner">'+special+t("pl_sondertag_info")+'</div>';
-  if(state.favs.length){h+='<div class="lg-favs">';for(var i=0;i<state.favs.length;i++){h+='<button class="lg-fav" data-fav="'+i+'">'+PORTS[state.favs[i].f]+' &rarr; '+PORTS[state.favs[i].t]+'</button>';}h+='</div>';}
   h+='<div class="lg-result-head"><span class="lg-result-route">'+PORTS[state.from]+' <em>&rarr;</em> '+PORTS[state.to]+'</span><span class="lg-result-day">'+dateLabel+'</span></div>';
   if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">'+t("pl_vergangene_ausgeblendet")+'</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
@@ -1080,26 +1064,6 @@ function bind(){
     state.date=iso;state.open=null;render();
   });
   document.getElementById("lg-swap").addEventListener("click",function(){var tmp=state.from;state.from=state.to;state.to=tmp;state.open=null;render();});
-  var loc=document.getElementById("lg-loc");
-  if(loc) loc.addEventListener("click",function(){
-    if(!navigator.geolocation){state.locStatus=t("pl_loc_unsupported");render();return;}
-    state.locStatus=t("krt_loc_ermittelt");render();
-    navigator.geolocation.getCurrentPosition(function(pos){
-      var n=nearestPort(pos.coords.latitude,pos.coords.longitude);
-      if(n.far){state.locStatus=t("pl_loc_far");render();return;}
-      if(n.idx===state.to){var tmp=state.from;state.from=n.idx;state.to=tmp;}else{state.from=n.idx;}
-      state.open=null;state.locStatus=t("pl_loc_erkannt")+PORTS[n.idx];render();
-    },function(){
-      state.locStatus=t("pl_loc_unavailable");render();
-    },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
-  });
-  document.getElementById("lg-star").addEventListener("click",function(){
-    var idx=-1;for(var i=0;i<state.favs.length;i++){if(state.favs[i].f===state.from&&state.favs[i].t===state.to){idx=i;break;}}
-    if(idx>=0) state.favs.splice(idx,1); else state.favs.push({f:state.from,t:state.to});
-    saveFavs();render();
-  });
-  var favBtns=document.querySelectorAll("[data-fav]");
-  favBtns.forEach(function(b){b.addEventListener("click",function(){var fv=state.favs[+this.getAttribute("data-fav")];state.from=fv.f;state.to=fv.t;state.open=null;render();});});
   var rows=document.querySelectorAll("[data-row]");
   rows.forEach(function(r){r.addEventListener("click",function(){var n=+this.getAttribute("data-row");state.open=(state.open===n?null:n);render();});});
 }
