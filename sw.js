@@ -3,8 +3,9 @@
    - BSB-Seite, Verbindung-Tab: Bei "Keine direkte Verbindung" zu einem
      Schweizer SBS-Ziel (z. B. Rorschach) steht jetzt ein zusätzlicher
      Hinweis zwischen den beiden bestehenden Texten: "Klicken Sie oben
-     auf Schweiz, um alle Verbindungen dorthin zu sehen." (neuer
-     i18n-Key pl_empty_sbs_switch_html).
+     auf SCHWEIZ, um alle Verbindungen dorthin zu sehen." (neuer
+     i18n-Key pl_empty_sbs_switch_html, SCHWEIZ großgeschrieben passend
+     zum Tab-Label).
    Neu gegenüber v69:
    - BSB-Seite, Schweiz-Tab: Anleitungstext komplett ersetzt (neuer
      Wortlaut vom Auftraggeber, jetzt Sie-Form statt du-Form, zwei
