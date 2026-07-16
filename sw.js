@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v48) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v49) – Stand: 15. Juli 2026
+   Neu gegenüber v48:
+   - Startseite: Wetter-Kachel komplett entfernt (Open-Meteo/BigDataCloud
+     nicht mehr genutzt) – Fokus liegt jetzt ausschließlich auf den fünf
+     Kernaufgaben (Nächste Abfahrt, Route planen, Heute zurückkommen,
+     Nächster Hafen, Fähre/Kursschiff unterscheiden). Datenschutz-,
+     Haftungs- und Urheberrechtstexte entsprechend bereinigt. Live-Karte
+     bleibt als eigenständiges Feature bestehen.
    Neu gegenüber v47:
    - Mehrsprachigkeit (DE/EN/FR/NL) jetzt auch auf dem BSB-Fahrplan
      (Verbindung, Schweiz, Hinweise, Live-Karte): Sprachumschalter im
@@ -207,7 +214,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v48';
+const CACHE = 'bootsmann-v49';
 const SHELL = [
   './',
   './index.html',
