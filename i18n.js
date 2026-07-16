@@ -141,7 +141,6 @@ var I18N={
     kat_doc_title:"Katamaran Konstanz – Friedrichshafen",
     kat_season:"Saison 2026 · 1. Apr – 4. Okt",
     kat_notice_winter_html:"Für dieses Datum gilt der <b>Winterfahrplan</b>. Diese Zeiten stehen auf der offiziellen Seite der Katamaran-Reederei (Link unten).",
-    fahrzeit_suffix:" · Fahrzeit 52 Min.",
     kat_ext_html:"Tickets, aktuelle Preise, Störungen und Sonderfahrten (z. B. Seehasenfest, Seenachtsfest) gelten nur auf der <b>offiziellen Seite der Katamaran-Reederei</b>. Dort gelten deren Regeln – nicht die von Bootsmann.",
     kat_betreiber_suffix:" · Betreiber: Katamaran-Reederei Bodensee GmbH & Co.KG.",
 
@@ -307,7 +306,6 @@ var I18N={
     kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
     kat_season:"Season 2026 · 1 Apr – 4 Oct",
     kat_notice_winter_html:"The <b>winter timetable</b> applies to this date. These times are on the official Katamaran-Reederei website (link below).",
-    fahrzeit_suffix:" · Journey time 52 min.",
     kat_ext_html:"Tickets, current prices, disruptions and special sailings (e.g. Seehasenfest, Seenachtsfest) are shown only on the <b>official Katamaran-Reederei website</b>. Their rules apply there – not Bootsmann's.",
     kat_betreiber_suffix:" · Operator: Katamaran-Reederei Bodensee GmbH & Co.KG.",
 
@@ -473,7 +471,6 @@ var I18N={
     kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
     kat_season:"Saison 2026 · 1 avr. – 4 oct.",
     kat_notice_winter_html:"L'<b>horaire d'hiver</b> s'applique à cette date. Ces horaires figurent sur le site officiel de la Katamaran-Reederei (lien ci-dessous).",
-    fahrzeit_suffix:" · Durée du trajet 52 min.",
     kat_ext_html:"Billets, tarifs actuels, perturbations et traversées spéciales (p. ex. Seehasenfest, Seenachtsfest) ne sont indiqués que sur le <b>site officiel de la Katamaran-Reederei</b>. Ce sont leurs règles qui s'appliquent là-bas – pas celles de Bootsmann.",
     kat_betreiber_suffix:" · Exploitant : Katamaran-Reederei Bodensee GmbH & Co.KG.",
 
@@ -639,7 +636,6 @@ var I18N={
     kat_doc_title:"Catamaran Konstanz – Friedrichshafen",
     kat_season:"Seizoen 2026 · 1 apr – 4 okt",
     kat_notice_winter_html:"Voor deze datum geldt de <b>winterdienstregeling</b>. Deze tijden staan op de officiële website van de Katamaran-Reederei (link hieronder).",
-    fahrzeit_suffix:" · Vaartijd 52 min.",
     kat_ext_html:"Tickets, actuele prijzen, storingen en speciale vaarten (bijv. Seehasenfest, Seenachtsfest) worden alleen getoond op de <b>officiële website van de Katamaran-Reederei</b>. Daar gelden hun regels – niet die van Bootsmann.",
     kat_betreiber_suffix:" · Exploitant: Katamaran-Reederei Bodensee GmbH & Co.KG.",
 
