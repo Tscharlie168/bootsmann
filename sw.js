@@ -1,4 +1,18 @@
-/* Bootsmann – Service Worker (v71) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v72) – Stand: 16. Juli 2026
+   Neu gegenüber v71:
+   - Bugfix Caching-Strategie: i18n.js, fahrplan-daten.js und
+     katamaran-daten.js liefen bisher unter "Cache-zuerst" (wie Icons/
+     Manifest) statt "Netz-zuerst" (wie die HTML-Seiten). Dadurch konnte
+     ein Browser mit noch nicht aktualisiertem Service Worker eine ganz
+     frische HTML-Seite (Netz-zuerst) mit einem veralteten, gecachten
+     i18n.js kombinieren – sichtbar z. B. als roher i18n-Key-Name
+     ("pl_empty_sbs_switch_html") statt übersetztem Text, wenn ein
+     Release HTML- und i18n.js-Änderungen im selben Schritt bringt (was
+     hier die Regel ist). Diese drei Kern-Skripte laufen jetzt wie die
+     HTML-Seiten auf Netz-zuerst, sodass sie immer zur gerade
+     ausgelieferten HTML-Version passen. Cache bleibt nur Offline-
+     Fallback. Icons/Manifest bleiben bewusst Cache-zuerst (ändern sich
+     praktisch nie, Vorteil: schnelleres Laden).
    Neu gegenüber v70:
    - BSB-Seite, Verbindung-Tab: Bei "Keine direkte Verbindung" zu einem
      Schweizer SBS-Ziel (z. B. Rorschach) steht jetzt ein zusätzlicher
@@ -381,7 +395,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v71';
+const CACHE = 'bootsmann-v72';
 const SHELL = [
   './',
   './index.html',
@@ -416,13 +430,23 @@ self.addEventListener('fetch', e => {
   if (url.origin !== location.origin) return; // Wetter/Karten o. Ä. nie abfangen
 
   const istSeite = req.mode === 'navigate' || (req.headers.get('accept') || '').includes('text/html');
+  // i18n.js/fahrplan-daten.js/katamaran-daten.js muessen IMMER zur gerade
+  // ausgelieferten HTML-Version passen (neue Texte/Kurse erscheinen oft im
+  // selben Release wie HTML-Aenderungen). Cache-zuerst wuerde hier veraltete
+  // Uebersetzungs-Keys/Fahrplandaten neben frischem HTML ausliefern koennen
+  // (z. B. i18n-Key erscheint als Rohtext statt uebersetzt). Deshalb wie
+  // Seiten behandeln: Netz zuerst, Cache nur als Offline-Fallback.
+  const istKernSkript = /\/(i18n|fahrplan-daten|katamaran-daten)\.js$/.test(url.pathname);
 
-  if (istSeite) {
-    // Seite unter ihrem eigenen, sauberen Schlüssel ablegen (ohne ?lat=..&lng=..)
+  if (istSeite || istKernSkript) {
+    // Seite/Kernskript unter eigenem, sauberem Schluessel ablegen (ohne ?lat=..&lng=..)
     const pageKey =
-      url.pathname.endsWith('/bsb-fahrplan.html') ? './bsb-fahrplan.html' :
-      url.pathname.endsWith('/autofaehre.html')   ? './autofaehre.html'   :
-      url.pathname.endsWith('/katamaran.html')    ? './katamaran.html'    : './index.html';
+      url.pathname.endsWith('/bsb-fahrplan.html')      ? './bsb-fahrplan.html'      :
+      url.pathname.endsWith('/autofaehre.html')        ? './autofaehre.html'        :
+      url.pathname.endsWith('/katamaran.html')         ? './katamaran.html'         :
+      url.pathname.endsWith('/i18n.js')                ? './i18n.js'                :
+      url.pathname.endsWith('/fahrplan-daten.js')       ? './fahrplan-daten.js'      :
+      url.pathname.endsWith('/katamaran-daten.js')      ? './katamaran-daten.js'     : './index.html';
     // zuerst Netz (frischer Stand), bei Offline die passende Kopie
     e.respondWith(
       fetch(req).then(resp => {
@@ -430,7 +454,7 @@ self.addEventListener('fetch', e => {
         caches.open(CACHE).then(c => c.put(pageKey, copy)).catch(() => {});
         return resp;
       }).catch(() =>
-        caches.match(req, { ignoreSearch: true }).then(hit => hit || caches.match('./index.html'))
+        caches.match(req, { ignoreSearch: true }).then(hit => hit || (istSeite ? caches.match('./index.html') : undefined))
       )
     );
     return;
