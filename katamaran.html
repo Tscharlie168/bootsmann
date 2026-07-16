@@ -55,7 +55,6 @@ select,input,button{font-family:inherit;}
 .dep .in{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:14px;letter-spacing:.03em;text-transform:uppercase;color:#fff;background:var(--kat);border-radius:999px;padding:4px 11px;white-space:nowrap;}
 .dep.soon .t{color:var(--kat);}
 .dephead{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:12px;font-weight:600;color:var(--muted);padding:6px 6px 2px;}
-.past-hint{font-size:15px;color:var(--muted);padding:2px 6px 6px;}
 
 .notice{background:#FFF7E9;border:1px solid #F0D9A8;border-radius:12px;padding:13px 14px;font-size:15px;color:#6b4e18;}
 .foot{font-size:15px;color:var(--muted);padding:2px 6px 26px;}
@@ -140,14 +139,6 @@ function collect(dir,baseDate,fromMin,n){
   }
   return res.slice(0,n);
 }
-/* Gab es an baseDate für dir/fromMin schon Abfahrten, die deshalb nicht mehr angezeigt werden? */
-function hasPast(dir,baseDate,fromMin){
-  var dStr=iso(baseDate);
-  if(dStr<KAT_SEASON_START||dStr>KAT_SEASON_END) return false;
-  var hours=(dir==="kn"?katDepartsKN:katDepartsFN)(baseDate.getDay(),dStr);
-  for(var i=0;i<hours.length;i++){ if(hours[i]*60<fromMin) return true; }
-  return false;
-}
 
 function render(){
   var box=document.getElementById("result");
@@ -167,9 +158,7 @@ function render(){
   if(!list.length){ box.innerHTML='<div class="notice">'+t("notice_empty_day")+'</div>'; return; }
 
   var ziel = t("nach_prefix") + (STATE.dir==="kn" ? "Friedrichshafen" : "Konstanz");
-  var html='<div class="dephead">'+t("abfahrten_prefix")+ziel+'</div>';
-  if(hasPast(STATE.dir,base,fromMin)) html+='<div class="past-hint">'+t("pl_vergangene_ausgeblendet")+'</div>';
-  html+='<ul class="deps">';
+  var html='<div class="dephead">'+t("abfahrten_prefix")+ziel+'</div><ul class="deps">';
   for(var i=0;i<list.length;i++){
     var it=list[i];
     var dep=new Date(base.getTime()); dep.setDate(dep.getDate()+it.off); dep.setHours(it.h,0,0,0);
