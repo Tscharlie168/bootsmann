@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v57) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v58) – Stand: 16. Juli 2026
+   Neu gegenüber v57:
+   - Startseite: Route-Button zeigt jetzt exakt auf den Anleger. Vorher
+     nutzte er die groben COORDS-Koordinaten (nur für die
+     Nächster-Hafen-Erkennung gedacht) direkt als Google-Maps-Ziel, was
+     den Pin spürbar neben den tatsächlichen Anleger setzen konnte. Jetzt
+     wird der Hafenname als Suchbegriff ("Schiffsanlegestelle <Ort>
+     Bodensee") an Google Maps übergeben, das den Anleger selbst korrekt
+     auflöst.
    Neu gegenüber v56:
    - BSB Fahrplan (Verbindung-Tab): Button "Nächsten Hafen verwenden" und
      die Merken-Funktion (Stern-Button + gespeicherte Favoriten-Chips)
@@ -259,7 +267,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v57';
+const CACHE = 'bootsmann-v58';
 const SHELL = [
   './',
   './index.html',
