@@ -54,7 +54,6 @@ a{color:inherit;}
 .lg-dep-route{font-size:18px;font-weight:600;color:var(--ink);}
 .lg-dep-sub{font-size:15px;color:var(--muted);}
 .lg-dep-next{font-size:15px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
-.lg-dep-warn{font-size:15px;color:#8a5a10;background:#FFF7E9;border:1px solid #F0D9A8;border-radius:8px;padding:7px 10px;margin-top:10px;}
 .lg-dep-load,.lg-dep-empty{font-size:15px;color:var(--muted);text-align:center;padding:4px 0;}
 
 .hafen-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
@@ -181,16 +180,9 @@ startGeo();
 
 /* ---------- Nächste Abfahrt ab nächstgelegenem Hafen (nutzt fahrplan-daten.js) ---------- */
 var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
-function distKm(a,b){
-  var R=6371,dLat=(b.lat-a.lat)*Math.PI/180,dLng=(b.lng-a.lng)*Math.PI/180;
-  var s=Math.sin(dLat/2)*Math.sin(dLat/2)+Math.cos(a.lat*Math.PI/180)*Math.cos(b.lat*Math.PI/180)*Math.sin(dLng/2)*Math.sin(dLng/2);
-  return R*2*Math.atan2(Math.sqrt(s),Math.sqrt(1-s));
-}
-function gehminuten(km){ return Math.max(1,Math.round(km*12)); } // ~5 km/h zu Fuß
-var GEHZEIT_MAX=60; // ab hier ist "zu Fuß" keine sinnvolle Angabe mehr
 /* Zeigt den nächstgelegenen Hafen: Name + Google-Maps-Route.
    Keine Gehzeit-Schätzung mehr (Luftlinien-Berechnung war in der Praxis
-   spürbar ungenau, siehe sw.js-Changelog v60). */
+   spürbar ungenau, siehe sw.js-Changelog v60/v61). */
 function hafenRender(hafenIdx){
   var rowEl=document.getElementById("lg-hafen-row");
   var loadEl=document.getElementById("lg-hafen-load");
@@ -233,7 +225,7 @@ function katamaranKandidaten(hafenIdx){
     };
   });
 }
-function naechsteAbfahrtRender(hafenIdx,gehMin){
+function naechsteAbfahrtRender(hafenIdx){
   var box=document.getElementById("lg-naechste");
   if(!box) return;
   var heute=todayISO();
@@ -265,19 +257,10 @@ function naechsteAbfahrtRender(hafenIdx,gehMin){
     return;
   }
   var erste=alle[0];
-  var deltaMin=Math.round((erste.ts-Date.now())/60000);
   var h='<div class="lg-dep"><span class="lg-dep-time">'+erste.dep+'</span><div class="lg-dep-info">'+
     '<span class="lg-dep-route">'+t("nach_prefix")+esc(erste.ziel)+'</span>'+
     (erste.praefix?'<span class="lg-dep-sub">'+erste.praefix.trim()+'</span>':'')+
     '</div></div>';
-  // Machbarkeits-Check: schafft man die Abfahrt noch zu Fuß?
-  if(gehMin!=null && !erste.praefix){
-    if(gehMin>deltaMin){
-      h+='<div class="lg-dep-warn">'+tf("warn_missed",{min:gehMin})+'</div>';
-    }else if(gehMin>=deltaMin-3){
-      h+='<div class="lg-dep-warn">'+tf("warn_tight",{min:gehMin})+'</div>';
-    }
-  }
   if(alle[1]) h+='<div class="lg-dep-next">'+t("next_after_prefix")+alle[1].praefix+alle[1].dep+t("time_unit")+' '+t("nach_prefix")+esc(alle[1].ziel)+'</div>';
   box.innerHTML=h;
 }
@@ -285,9 +268,7 @@ function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").repl
 function naechsteAbfahrtStarten(lat,lng){
   var n=nearestPort(lat,lng);
   var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
-  var gehMin=n.far?null:gehminuten(distKm({lat:lat,lng:lng},{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]}));
-  if(gehMin!=null && gehMin>GEHZEIT_MAX) gehMin=null; // zu weit weg, "zu Fuß" ergibt keinen Sinn mehr
-  naechsteAbfahrtRender(hafenIdx,gehMin);
+  naechsteAbfahrtRender(hafenIdx);
   hafenRender(hafenIdx);
 }
 </script>

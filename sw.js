@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v60) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v61) – Stand: 16. Juli 2026
+   Neu gegenüber v60:
+   - Startseite: Machbarkeits-Check ("Zu Fuß schaffst du diese Abfahrt
+     vermutlich nicht mehr" / "Knapp") aus der Nächste-Abfahrt-Karte
+     entfernt. Beruhte auf derselben unzuverlässigen Luftlinien-Gehzeit
+     wie die in v60 entfernte Anzeige – eine falsche "du schaffst es
+     noch"-Warnung wäre hier besonders riskant gewesen (Boot verpasst).
+     distKm(), gehminuten(), GEHZEIT_MAX sowie die i18n-Keys
+     warn_missed/warn_tight (alle 4 Sprachen) entfernt, da nun ungenutzt.
    Neu gegenüber v59:
    - Startseite: Gehzeit-Anzeige ("ca. X Gehmin. entfernt" + Alternativ-
      hafen) komplett entfernt. Auch nach dem enableHighAccuracy-Fix in
@@ -288,7 +296,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v60';
+const CACHE = 'bootsmann-v61';
 const SHELL = [
   './',
   './index.html',
