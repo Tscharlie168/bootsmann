@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v69) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v70) – Stand: 16. Juli 2026
+   Neu gegenüber v69:
+   - BSB-Seite, Schweiz-Tab: Anleitungstext komplett ersetzt (neuer
+     Wortlaut vom Auftraggeber, jetzt Sie-Form statt du-Form, zwei
+     Absätze mit <br><br> getrennt).
    Neu gegenüber v68:
    - BSB-Seite: Abstandsproblem beim BSB-Link-Kasten strukturell gelöst
      statt nur Werte nachzujustieren (v68-Fix war noch nicht
@@ -370,7 +374,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v69';
+const CACHE = 'bootsmann-v70';
 const SHELL = [
   './',
   './index.html',
