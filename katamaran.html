@@ -167,7 +167,7 @@ function render(){
   if(!list.length){ box.innerHTML='<div class="notice">'+t("notice_empty_day")+'</div>'; return; }
 
   var ziel = t("nach_prefix") + (STATE.dir==="kn" ? "Friedrichshafen" : "Konstanz");
-  var html='<div class="dephead">'+t("abfahrten_prefix")+ziel+t("fahrzeit_suffix")+'</div>';
+  var html='<div class="dephead">'+t("abfahrten_prefix")+ziel+'</div>';
   if(hasPast(STATE.dir,base,fromMin)) html+='<div class="past-hint">'+t("pl_vergangene_ausgeblendet")+'</div>';
   html+='<ul class="deps">';
   for(var i=0;i<list.length;i++){

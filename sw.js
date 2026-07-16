@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v51) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v52) – Stand: 15. Juli 2026
+   Neu gegenüber v51:
+   - Katamaran: "· Fahrzeit 52 Min." aus der Abfahrten-Überschrift
+     entfernt (weniger zu lesen).
+   - Startseite: Hafenname (z. B. "Langenargen") von 22px auf 18px –
+     jetzt gleich groß wie der Zieltext neben der Uhrzeit.
    Neu gegenüber v50:
    - Fähre und Katamaran zeigen jetzt ebenfalls den Hinweis "Vergangene
      Abfahrten sind ausgeblendet.", wenn welche gefiltert wurden – wie
@@ -224,7 +229,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v51';
+const CACHE = 'bootsmann-v52';
 const SHELL = [
   './',
   './index.html',
