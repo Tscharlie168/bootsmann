@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v53) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v54) – Stand: 15. Juli 2026
+   Neu gegenüber v53:
+   - Startseite: Hafenname ("Langenargen") nutzt jetzt exakt dieselbe
+     Schrift/Stärke wie der Zieltext neben der Uhrzeit ("nach Lindau")
+     – vorher nur gleiche Größe, aber andere Schriftart (Barlow
+     Condensed statt Inter) und anderes Gewicht (700 statt 600).
    Neu gegenüber v52:
    - Fähre und Katamaran: Hinweis "Vergangene Abfahrten sind
      ausgeblendet." wieder entfernt (Entscheidung zurückgenommen) –
@@ -234,7 +239,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v53';
+const CACHE = 'bootsmann-v54';
 const SHELL = [
   './',
   './index.html',
