@@ -48,8 +48,12 @@ immer mehr zu können.
    nach der ersten Hinfahrt. Bewusst als eine zusammenfassende Karte
    statt pro-Zeile-Anzeige (Entscheidung des Auftraggebers).
 4. **Nächster Hafen** – per Standort, mit Entfernung, Gehzeit, nächsten
-   Abfahrten ab dort, alternative Häfen in der Nähe. **In Arbeit
-   (15.07.2026).**
+   Abfahrten ab dort, alternative Häfen in der Nähe. **Erledigt
+   (15.07.2026).** Auf Basis des Mini-Produkttests (dort war der Hafen nur
+   implizit in der "Nächste Abfahrt ab X"-Überschrift sichtbar, nicht
+   sichtbar genug) jetzt als eigener Abschnitt "Nächster Hafen" ganz oben
+   auf der Startseite: Hafenname, Gehzeit, Route-Button (Google Maps).
+   Direkt darunter die "Nächste Abfahrt"-Zeile in derselben Kachel.
 5. **Fähre vs. Kursschiff vs. Katamaran** – klare Kennzeichnung im
    Ergebnis statt langer Erklärung (z. B. „Fähre: fährt häufig, schnelle
    Überfahrt" / „Kursschiff: Ausflugsfahrt, seltener" / „Letzte Fahrt
