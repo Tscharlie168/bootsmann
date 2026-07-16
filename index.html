@@ -40,11 +40,11 @@ a{color:inherit;}
 
 .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy);margin:22px 16px 10px;letter-spacing:.01em;}
 .tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px;}
-.tile{background:#E7F2FA;border:1.5px solid #B7D6EB;border-radius:16px;padding:14px 10px;text-align:left;cursor:pointer;box-shadow:0 2px 7px rgba(16,58,90,.09);display:flex;flex-direction:column;gap:8px;min-height:104px;font:inherit;-webkit-tap-highlight-color:transparent;transition:.15s;}
+.tile{background:#E7F2FA;border:1.5px solid #B7D6EB;border-radius:16px;padding:14px 10px;text-align:left;cursor:pointer;box-shadow:0 2px 7px rgba(16,58,90,.09);display:flex;flex-direction:column;gap:8px;min-height:104px;min-width:0;font:inherit;-webkit-tap-highlight-color:transparent;transition:.15s;}
 .tile:active{background:#DCEBF6;border-color:#9FC7E2;}
 .tile .ic{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--blue);box-shadow:0 3px 8px rgba(21,103,158,.32);}
 .tile .ic svg{width:22px;height:22px;stroke:#fff;}
-.tile b{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;color:var(--navy);letter-spacing:.01em;line-height:1.15;}
+.tile b{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:var(--navy);letter-spacing:.01em;line-height:1.1;}
 .tile-wide{width:calc(100% - 32px);flex-direction:row;align-items:center;gap:12px;min-height:auto;margin:16px;padding:16px 14px;}
 .tile-wide .ic{width:44px;height:44px;flex:none;border-radius:12px;}
 .tile-wide .ic svg{width:26px;height:26px;}
@@ -65,10 +65,7 @@ a{color:inherit;}
 .maps-btn{display:flex;align-items:center;gap:5px;flex:none;background:var(--sky);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--blue);text-decoration:none;white-space:nowrap;}
 .divider{border-top:1px solid var(--line);margin:14px 0;}
 
-.ruf-card{display:flex;align-items:flex-start;gap:12px;}
-.ruf-ico{width:38px;height:38px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--blue);box-shadow:0 3px 8px rgba(21,103,158,.28);}
-.ruf-ico svg{width:22px;height:22px;}
-.ruf-text{font-size:15px;color:var(--ink);line-height:1.45;padding-top:2px;}
+.ruf-note{margin:16px;font-size:15px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;line-height:1.45;}
 
 .foot{font-size:15px;color:var(--muted);text-align:center;padding:8px 22px 0;}
 </style>
@@ -123,10 +120,7 @@ a{color:inherit;}
     </button>
   </div>
 
-  <div class="card ruf-card">
-    <span class="ruf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h13m0 0-4-4m4 4-4 4"/><path d="M17 17H4m0 0 4 4m-4-4 4-4"/></svg></span>
-    <span class="ruf-text" data-i18n="ruf_hint">Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.</span>
-  </div>
+  <div class="ruf-note" data-i18n="ruf_hint">Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.</div>
 
   <button class="tile tile-wide" onclick="openPage('bsb-fahrplan.html','tab=karte')">
     <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>

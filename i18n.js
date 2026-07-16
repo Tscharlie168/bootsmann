@@ -90,7 +90,7 @@ var I18N={
     tile_bsb:"BSB Schifffahrt",
     tile_faehre:"Bodensee Fähre",
     tile_kat:"Katamaran",
-    tile_karte:"Positionskarte",
+    tile_karte:"Live-Positionskarte",
     womit_fahren:"Womit wollen Sie fahren?",
     naechster_hafen_lbl:"Nächster Hafen",
     route_btn:"Route",

@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v62) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v63) – Stand: 16. Juli 2026
+   Neu gegenüber v62:
+   - Startseite: "Positionskarte" umbenannt in "Live-Positionskarte".
+     Schriftgröße der 3er-Kachelreihe (BSB Schifffahrt/Bodensee Fähre/
+     Katamaran) auf 20px erhöht, gleich groß wie die Live-Positionskarte-
+     Kachel (vorher 16px) – dabei Grid-Overflow-Bug gefixt (min-width:0
+     auf .tile, sonst hätte "Katamaran" die Spalte gesprengt).
+     Rückfahrt-Hinweis-Kachel neu gestaltet: Icon entfernt, cremefarbene
+     Notiz-Optik wie die bestehende "Rückfahrt vorbei"-Box auf der
+     BSB-Seite (neue `.ruf-note`-Klasse ersetzt `.ruf-card`/`.ruf-ico`/
+     `.ruf-text`).
    Neu gegenüber v61:
    - Startseite: 4 Hauptkacheln umgebaut. "BSB Fahrplan" heißt jetzt
      "BSB Schifffahrt". Die 3 Kacheln BSB Schifffahrt/Bodensee Fähre/
@@ -303,7 +313,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v62';
+const CACHE = 'bootsmann-v63';
 const SHELL = [
   './',
   './index.html',
