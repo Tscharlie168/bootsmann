@@ -208,7 +208,7 @@ function hafenRender(hafenIdx,pos){
   if(!rowEl) return;
   var coord=COORDS[hafenIdx];
   document.getElementById("lg-hafen-name").textContent=PORTS[hafenIdx];
-  document.getElementById("lg-hafen-maps").href="https://www.google.com/maps/dir/?api=1&destination="+coord[0]+","+coord[1]+"&travelmode=walking";
+  document.getElementById("lg-hafen-maps").href="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent("Schiffsanlegestelle "+PORTS[hafenIdx]+" Bodensee")+"&travelmode=walking";
   var metaTxt="";
   if(pos){
     var haefen=naechsteHaefen(pos.lat,pos.lng,4);
