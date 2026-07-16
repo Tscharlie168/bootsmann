@@ -174,7 +174,7 @@ function startGeo(){
       naechsteAbfahrtStarten(GEO.lat,GEO.lng);
     },function(){
       naechsteAbfahrtStarten(GEO_FALLBACK.lat,GEO_FALLBACK.lng);
-    },{timeout:6000, maximumAge:300000});
+    },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
   } else {
     naechsteAbfahrtStarten(GEO_FALLBACK.lat,GEO_FALLBACK.lng);
   }
@@ -217,7 +217,7 @@ function hafenRender(hafenIdx,pos){
     if(!eigener) eigener={idx:hafenIdx,km:distKm(pos,{lat:coord[0],lng:coord[1]})};
     var eigeneMin=gehminuten(eigener.km);
     if(eigeneMin<=GEHZEIT_MAX){
-      metaTxt=eigeneMin+t("gehmin_suffix");
+      metaTxt=t("ca_prefix")+eigeneMin+t("gehmin_suffix");
       var alt=null;
       for(var j=0;j<haefen.length;j++){ if(haefen[j].idx!==hafenIdx && haefen[j].km<=3){ alt=haefen[j]; break; } }
       if(alt) metaTxt+=t("alt_label")+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+t("gehmin_paren_suffix");

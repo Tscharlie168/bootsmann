@@ -1,4 +1,15 @@
-/* Bootsmann – Service Worker (v58) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v59) – Stand: 16. Juli 2026
+   Neu gegenüber v58:
+   - Startseite: Bugfix Gehzeit-Berechnung ("X Gehmin. entfernt"). Die
+     Geolocation-Abfrage lief bisher ohne enableHighAccuracy und mit bis
+     zu 5 Min. altem Cache (anders als bei BSB/Karte, wo bereits
+     enableHighAccuracy:true genutzt wird) – dadurch konnte eine grobe
+     WLAN-/Funkzellen-Ortung statt echtem GPS verwendet werden, was zu
+     einer falschen Ausgangsposition und damit falscher Gehzeit führte
+     (Praxisfall: App zeigte 2 Min., echter Fußweg laut Google Maps 11
+     Min.). Jetzt einheitlich enableHighAccuracy:true, maximumAge 60s.
+     Zusätzlich "ca." vor der Gehzeit ergänzt, da es weiterhin eine
+     Luftlinien-Schätzung ist, kein echtes Routing.
    Neu gegenüber v57:
    - Startseite: Route-Button zeigt jetzt exakt auf den Anleger. Vorher
      nutzte er die groben COORDS-Koordinaten (nur für die
@@ -267,7 +278,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v58';
+const CACHE = 'bootsmann-v59';
 const SHELL = [
   './',
   './index.html',
