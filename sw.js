@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v54) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v55) – Stand: 15. Juli 2026
+   Neu gegenüber v54:
+   - Startseite: neue Kachel "Verfügbare Rückfahrten werden direkt bei
+     den Hinfahrt-Zeiten angezeigt." mit eigenem Doppelpfeil-Icon,
+     zwischen der Nächster-Hafen-Kachel und den 4 Kacheln.
+   - Bugfix: Nächster-Hafen-Kachel + neue Rückfahrt-Kachel stehen jetzt
+     tatsächlich vor den 4 Kacheln (in PR #59 fälschlich als bereits
+     erledigt beschrieben, aber nie umgesetzt – jetzt nachgeholt).
    Neu gegenüber v53:
    - Startseite: Hafenname ("Langenargen") nutzt jetzt exakt dieselbe
      Schrift/Stärke wie der Zieltext neben der Uhrzeit ("nach Lindau")
@@ -239,7 +246,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v54';
+const CACHE = 'bootsmann-v55';
 const SHELL = [
   './',
   './index.html',
