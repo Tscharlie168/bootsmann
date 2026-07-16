@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v50) – Stand: 15. Juli 2026
+/* Bootsmann – Service Worker (v51) – Stand: 15. Juli 2026
+   Neu gegenüber v50:
+   - Fähre und Katamaran zeigen jetzt ebenfalls den Hinweis "Vergangene
+     Abfahrten sind ausgeblendet.", wenn welche gefiltert wurden – wie
+     schon bei BSB, wortgleich.
    Neu gegenüber v49:
    - Startseite: "Nächster Hafen" und "Nächste Abfahrt" zu einer Kachel
      zusammengefasst, direkt unter dem Header (Kacheln rutschen dafür
@@ -220,7 +224,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v50';
+const CACHE = 'bootsmann-v51';
 const SHELL = [
   './',
   './index.html',
