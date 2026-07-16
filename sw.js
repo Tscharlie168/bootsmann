@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v59) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v60) – Stand: 16. Juli 2026
+   Neu gegenüber v59:
+   - Startseite: Gehzeit-Anzeige ("ca. X Gehmin. entfernt" + Alternativ-
+     hafen) komplett entfernt. Auch nach dem enableHighAccuracy-Fix in
+     v59 war die Angabe laut Praxistest des Auftraggebers weiterhin
+     falsch (App: 2 Min., Google Maps: 11 Min.). Entscheidung: lieber
+     keine Angabe als eine unzuverlässige – der Route-Button (führt
+     korrekt zum Anleger) deckt die Wegfindung bereits ab. Zugehörige
+     tote i18n-Keys (ca_prefix, gehmin_suffix, alt_label,
+     gehmin_paren_suffix) und die nun ungenutzte naechsteHaefen()-
+     Funktion entfernt.
    Neu gegenüber v58:
    - Startseite: Bugfix Gehzeit-Berechnung ("X Gehmin. entfernt"). Die
      Geolocation-Abfrage lief bisher ohne enableHighAccuracy und mit bis
@@ -278,7 +288,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v59';
+const CACHE = 'bootsmann-v60';
 const SHELL = [
   './',
   './index.html',

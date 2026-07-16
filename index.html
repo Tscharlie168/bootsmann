@@ -59,7 +59,6 @@ a{color:inherit;}
 
 .hafen-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
 .hafen-name{font-weight:600;font-size:18px;color:var(--navy);line-height:1.1;}
-.hafen-meta{font-size:14px;color:var(--muted);margin-top:2px;}
 .maps-btn{display:flex;align-items:center;gap:5px;flex:none;background:var(--sky);border:1px solid var(--line);border-radius:999px;padding:9px 14px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--blue);text-decoration:none;white-space:nowrap;}
 .divider{border-top:1px solid var(--line);margin:14px 0;}
 
@@ -94,7 +93,6 @@ a{color:inherit;}
     <div class="hafen-row" id="lg-hafen-row" style="display:none">
       <div>
         <div class="hafen-name" id="lg-hafen-name"></div>
-        <div class="hafen-meta" id="lg-hafen-meta"></div>
       </div>
       <a class="maps-btn" id="lg-hafen-maps" href="#" target="_blank" rel="noopener">📍 <span data-i18n="route_btn">Route</span></a>
     </div>
@@ -190,40 +188,15 @@ function distKm(a,b){
 }
 function gehminuten(km){ return Math.max(1,Math.round(km*12)); } // ~5 km/h zu Fuß
 var GEHZEIT_MAX=60; // ab hier ist "zu Fuß" keine sinnvolle Angabe mehr
-/* Die n nächstgelegenen Häfen zu einer Position, sortiert nach Entfernung. */
-function naechsteHaefen(lat,lng,n){
-  var liste=[];
-  for(var i=0;i<COORDS.length;i++){
-    liste.push({idx:i,km:distKm({lat:lat,lng:lng},{lat:COORDS[i][0],lng:COORDS[i][1]})});
-  }
-  liste.sort(function(a,b){return a.km-b.km;});
-  return liste.slice(0,n);
-}
-/* Zeigt den nächstgelegenen Hafen (Name + Google-Maps-Route immer,
-   Gehzeit + Alternativhafen nur wenn ein echter Standort vorliegt,
-   nicht beim Langenargen-Fallback ohne Standort). */
-function hafenRender(hafenIdx,pos){
+/* Zeigt den nächstgelegenen Hafen: Name + Google-Maps-Route.
+   Keine Gehzeit-Schätzung mehr (Luftlinien-Berechnung war in der Praxis
+   spürbar ungenau, siehe sw.js-Changelog v60). */
+function hafenRender(hafenIdx){
   var rowEl=document.getElementById("lg-hafen-row");
   var loadEl=document.getElementById("lg-hafen-load");
   if(!rowEl) return;
-  var coord=COORDS[hafenIdx];
   document.getElementById("lg-hafen-name").textContent=PORTS[hafenIdx];
   document.getElementById("lg-hafen-maps").href="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent("Schiffsanlegestelle "+PORTS[hafenIdx]+" Bodensee")+"&travelmode=walking";
-  var metaTxt="";
-  if(pos){
-    var haefen=naechsteHaefen(pos.lat,pos.lng,4);
-    var eigener=null;
-    for(var i=0;i<haefen.length;i++){ if(haefen[i].idx===hafenIdx){ eigener=haefen[i]; break; } }
-    if(!eigener) eigener={idx:hafenIdx,km:distKm(pos,{lat:coord[0],lng:coord[1]})};
-    var eigeneMin=gehminuten(eigener.km);
-    if(eigeneMin<=GEHZEIT_MAX){
-      metaTxt=t("ca_prefix")+eigeneMin+t("gehmin_suffix");
-      var alt=null;
-      for(var j=0;j<haefen.length;j++){ if(haefen[j].idx!==hafenIdx && haefen[j].km<=3){ alt=haefen[j]; break; } }
-      if(alt) metaTxt+=t("alt_label")+esc(PORTS[alt.idx])+" ("+gehminuten(alt.km)+t("gehmin_paren_suffix");
-    }
-  }
-  document.getElementById("lg-hafen-meta").textContent=metaTxt;
   loadEl.style.display="none";
   rowEl.style.display="";
 }
@@ -315,7 +288,7 @@ function naechsteAbfahrtStarten(lat,lng){
   var gehMin=n.far?null:gehminuten(distKm({lat:lat,lng:lng},{lat:COORDS[hafenIdx][0],lng:COORDS[hafenIdx][1]}));
   if(gehMin!=null && gehMin>GEHZEIT_MAX) gehMin=null; // zu weit weg, "zu Fuß" ergibt keinen Sinn mehr
   naechsteAbfahrtRender(hafenIdx,gehMin);
-  hafenRender(hafenIdx, n.far?null:{lat:lat,lng:lng});
+  hafenRender(hafenIdx);
 }
 </script>
 <script>
