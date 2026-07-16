@@ -464,6 +464,11 @@ function planerHTML(){
 }
 
 var SCHWEIZ_ZIELE = [
+  {idx:41, name:"Unteruhldingen"},
+  {idx:42, name:"Dingelsdorf"},
+  {idx:43, name:"Überlingen"},
+  {idx:39, name:"Radolfzell"},
+  {idx:40, name:"Iznang"},
   {idx:13, name:"Gottlieben"},
   {idx:15, name:"Reichenau"},
   {idx:24, name:"Stein am Rhein"},
@@ -638,9 +643,9 @@ function schweizHTML(){
     h+='<button class="lg-daynext" id="lg-szwretdatenext"'+(retDate>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
     h+=schweizRueckfahrtHTML(dest,retDate);
   }
+  var destIstSchweiz=dest!==null&&REGION_SCHWEIZ[dest];
   h+='<div class="lg-card" style="margin-top:18px"><h3>'+t("szw_praktisch_h")+'</h3><ul>'+
-    '<li>'+t("szw_li_ausweis_html")+'</li>'+
-    '<li>'+t("szw_li_geld_html")+'</li>'+
+    (destIstSchweiz?'<li>'+t("szw_li_ausweis_html")+'</li><li>'+t("szw_li_geld_html")+'</li>':'')+
     '<li>'+t("szw_li_card_html")+'</li>'+
     '<li>'+t("szw_li_rueckweg_html")+'</li>'+
     '</ul></div>';

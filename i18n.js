@@ -210,7 +210,7 @@ var I18N={
     szw_untersee_hint_html:"Die Untersee-Linie fährt ab 27.6. nur <strong>Mi–So</strong>.",
     szw_an_prefix:"→ an ",
     szw_footer_note_html:"SBS/URh: eigenes Ticket erforderlich · Untersee Mi–So ab 27.6. · SBS-Freitags-Kurs 27.6.–13.9. · Angaben ohne Gewähr · <a href=\"https://bodensee-schiffe.ch\" target=\"_blank\" style=\"color:var(--blue)\">bodensee-schiffe.ch</a>",
-    szw_praktisch_h:"Praktisch beim Schweiz-Ausflug",
+    szw_praktisch_h:"Praktische Hinweise",
     szw_li_ausweis_html:"<strong>Ausweis mitnehmen</strong> — es ist eine Grenze.",
     szw_li_geld_html:"<strong>Geld:</strong> Schweizer Franken (CHF) — viele Schiffe nehmen auch Euro.",
     szw_li_card_html:"<strong>VSU Saison-Card:</strong> gilt auf allen Linienschiffen von BSB, SBS, URh und VL — nur die Autofähre Konstanz–Meersburg hat einen eigenen Tarif.",
