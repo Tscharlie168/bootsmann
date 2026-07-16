@@ -39,12 +39,16 @@ a{color:inherit;}
 .lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:42px;z-index:1;fill:var(--paper);}
 
 .section-title{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:20px;color:var(--navy);margin:22px 16px 10px;letter-spacing:.01em;}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 16px;}
-.tile{background:#E7F2FA;border:1.5px solid #B7D6EB;border-radius:16px;padding:16px 14px;text-align:left;cursor:pointer;box-shadow:0 2px 7px rgba(16,58,90,.09);display:flex;flex-direction:column;gap:8px;min-height:118px;font:inherit;-webkit-tap-highlight-color:transparent;transition:.15s;}
+.tiles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;padding:0 16px;}
+.tile{background:#E7F2FA;border:1.5px solid #B7D6EB;border-radius:16px;padding:14px 10px;text-align:left;cursor:pointer;box-shadow:0 2px 7px rgba(16,58,90,.09);display:flex;flex-direction:column;gap:8px;min-height:104px;font:inherit;-webkit-tap-highlight-color:transparent;transition:.15s;}
 .tile:active{background:#DCEBF6;border-color:#9FC7E2;}
-.tile .ic{width:44px;height:44px;display:flex;align-items:center;justify-content:center;border-radius:12px;background:var(--blue);box-shadow:0 3px 8px rgba(21,103,158,.32);}
-.tile .ic svg{width:28px;height:28px;stroke:#fff;}
-.tile b{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:20px;color:var(--navy);letter-spacing:.01em;line-height:1.05;margin-top:8px;}
+.tile .ic{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border-radius:11px;background:var(--blue);box-shadow:0 3px 8px rgba(21,103,158,.32);}
+.tile .ic svg{width:22px;height:22px;stroke:#fff;}
+.tile b{font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;color:var(--navy);letter-spacing:.01em;line-height:1.15;}
+.tile-wide{width:calc(100% - 32px);flex-direction:row;align-items:center;gap:12px;min-height:auto;margin:16px;padding:16px 14px;}
+.tile-wide .ic{width:44px;height:44px;flex:none;border-radius:12px;}
+.tile-wide .ic svg{width:26px;height:26px;}
+.tile-wide b{font-size:20px;}
 
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;}
@@ -117,16 +121,17 @@ a{color:inherit;}
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17h4l1-3h8l1 3h4"/><path d="M9 14V9a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v5"/><path d="M13 3l3 3M17 3l3 3"/></svg></span>
       <b data-i18n="tile_kat">Katamaran</b>
     </button>
-    <button class="tile" onclick="openPage('bsb-fahrplan.html','tab=karte')">
-      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
-      <b data-i18n="tile_karte">Karte</b>
-    </button>
   </div>
 
   <div class="card ruf-card">
     <span class="ruf-ico"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7h13m0 0-4-4m4 4-4 4"/><path d="M17 17H4m0 0 4 4m-4-4 4-4"/></svg></span>
     <span class="ruf-text" data-i18n="ruf_hint">Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.</span>
   </div>
+
+  <button class="tile tile-wide" onclick="openPage('bsb-fahrplan.html','tab=karte')">
+    <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
+    <b data-i18n="tile_karte">Positionskarte</b>
+  </button>
 
   <div class="card">
     <p class="lbl" data-i18n="rechtliches_lbl">Rechtliches</p>

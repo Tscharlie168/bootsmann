@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v61) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v62) – Stand: 16. Juli 2026
+   Neu gegenüber v61:
+   - Startseite: 4 Hauptkacheln umgebaut. "BSB Fahrplan" heißt jetzt
+     "BSB Schifffahrt". Die 3 Kacheln BSB Schifffahrt/Bodensee Fähre/
+     Katamaran stehen nun in einer Dreier-Reihe. Die Karte-Kachel steht
+     jetzt separat unterhalb der Rückfahrt-Hinweis-Kachel, über die volle
+     Breite, mit neuem Label "Positionskarte" (statt "Karte"). Neue
+     `.tile-wide`-CSS-Klasse.
    Neu gegenüber v60:
    - Startseite: Machbarkeits-Check ("Zu Fuß schaffst du diese Abfahrt
      vermutlich nicht mehr" / "Knapp") aus der Nächste-Abfahrt-Karte
@@ -296,7 +303,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v61';
+const CACHE = 'bootsmann-v62';
 const SHELL = [
   './',
   './index.html',
