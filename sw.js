@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v64) – Stand: 16. Juli 2026
+/* Bootsmann – Service Worker (v65) – Stand: 16. Juli 2026
+   Neu gegenüber v64:
+   - Startseite: Rückfahrt-Hinweisfeld von gelb/cremefarben auf Weiß mit
+     hellgrauer Schrift umgestellt (weniger alarmierend, da reine Info
+     statt Warnung).
+   - Startseite: Nächster-Hafen-Kachel kompakter – Route-Button etwas
+     kleiner (Padding 9px/14px -> 7px/13px), Abstand bis zur Trennlinie
+     vor "Nächste Abfahrt" verkleinert (14px -> 10px).
    Neu gegenüber v63:
    - BSB-Seite: Titel/Überschrift "BSB Fahrplan" -> "BSB Schifffahrt"
      (Tab-Titel, <title>, H1), passend zur Startseiten-Kachel.
@@ -328,7 +335,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v64';
+const CACHE = 'bootsmann-v65';
 const SHELL = [
   './',
   './index.html',
