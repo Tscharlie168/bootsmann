@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v83) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v84) – Stand: 17. Juli 2026
+   Neu gegenüber v83:
+   - Kachel "Bodenseekarte" aus der Informationen-Liste auf der Startseite
+     entfernt (samt i18n-Key). Die Seite/der Tab dahinter
+     (bsb-fahrplan.html?tab=bodenseekarte) bleibt technisch bestehen, ist
+     aber nirgends mehr verlinkt.
    Neu gegenüber v82:
    - Bodenseekarte: programmatisch aus Geodaten gezeichnete SVG-Karte durch
      ein von Hand gezeichnetes Bild des Auftraggebers ersetzt (bodenseekarte.
@@ -511,7 +516,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v83';
+const CACHE = 'bootsmann-v84';
 const SHELL = [
   './',
   './index.html',
