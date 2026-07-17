@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v77) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v78) – Stand: 17. Juli 2026
+   Neu gegenüber v77:
+   - Bodenseekarte: Ortsnamen-Beschriftung komplett entfernt (weder Häfen-
+     noch Bereichsnamen). Die Kollisionsvermeidung für dicht beieinander-
+     liegende Namen erwies sich als unverhältnismäßig aufwändig und
+     fehleranfällig, ohne zuverlässig überlappungsfrei zu werden. Karte
+     zeigt jetzt nur noch die Seefläche eingefärbt nach Bereich (Obersee,
+     Überlinger See, Untersee, Schweizer Ufer) plus Hafenpunkte zur
+     Orientierung - die Namen stehen bereits in der Von/Nach-Auswahl.
    Neu gegenüber v76:
    - Bodenseekarte, Feinschliff nach Rückmeldung mit Screenshots:
      Ortsnamen überlappten sich teils stark (z.B. Konstanz/Gottlieben,
@@ -471,7 +479,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v77';
+const CACHE = 'bootsmann-v78';
 const SHELL = [
   './',
   './index.html',
