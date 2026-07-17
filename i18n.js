@@ -164,7 +164,7 @@ var I18N={
     bkrt_lbl_schweiz:"Schweizer Ufer",
     krt_sub:"Schiffspositionen laut Fahrplan",
 
-    tab_verbindung:"Obersee & Bregenz", tab_schweiz:"Überlinger See / Untersee / Schweiz",
+    tab_verbindung:"Obersee & Bregenz",
 
     pl_swap_aria:"Richtung tauschen",
     pl_tag_lbl:"Tag",
@@ -315,7 +315,7 @@ var I18N={
     krt_h1_plain:"Live ", krt_h1_hl:"Map",
     krt_sub:"Boat positions according to the timetable",
 
-    tab_verbindung:"Connection", tab_schweiz:"Switzerland", tab_hinweise:"Info",
+    tab_verbindung:"Connection",
 
     pl_swap_aria:"Swap direction",
     pl_tag_lbl:"Day",
@@ -461,7 +461,7 @@ var I18N={
     krt_h1_plain:"Carte ", krt_h1_hl:"en direct",
     krt_sub:"Positions des bateaux selon l'horaire",
 
-    tab_verbindung:"Liaison", tab_schweiz:"Suisse", tab_hinweise:"Infos",
+    tab_verbindung:"Liaison",
 
     pl_swap_aria:"Inverser le sens",
     pl_tag_lbl:"Jour",
@@ -607,7 +607,7 @@ var I18N={
     krt_h1_plain:"Live ", krt_h1_hl:"kaart",
     krt_sub:"Bootposities volgens dienstregeling",
 
-    tab_verbindung:"Verbinding", tab_schweiz:"Zwitserland", tab_hinweise:"Info",
+    tab_verbindung:"Verbinding",
 
     pl_swap_aria:"Richting omwisselen",
     pl_tag_lbl:"Dag",

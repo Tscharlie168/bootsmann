@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v92) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v93) – Stand: 17. Juli 2026
+   Neu gegenüber v92:
+   - Tab-Leiste ("Obersee & Bregenz" / "Überlinger See / Untersee /
+     Schweiz") auf bsb-fahrplan.html komplett entfernt. Beide Bereiche
+     sind jetzt ausschließlich über ihre eigene Home-Kachel erreichbar
+     (?tab=planer bzw. ?tab=schweiz), ein Umschalten innerhalb der Seite
+     ist nicht mehr vorgesehen. Die Von/Nach-Hafenauswahl im planer-Tab
+     bleibt unverändert (weiterhin alle vier Seebereiche wählbar).
+     Ungenutzte i18n-Keys tab_schweiz/tab_hinweise entfernt.
    Neu gegenüber v91:
    - Neue 4. Kachel "Obersee & Bregenz" über "Ausflüge West" auf der
      Startseite (gleiches Schiffs-Icon, Untertitel "Ausflugsschiffe/
@@ -567,7 +575,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v92';
+const CACHE = 'bootsmann-v93';
 const SHELL = [
   './',
   './index.html',
