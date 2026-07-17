@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v94) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v95) – Stand: 17. Juli 2026
+   Neu gegenüber v94:
+   - Kachel-Untertitel "Obersee & Bregenz" und "Überlinger See / Untersee /
+     Schweiz" jetzt beide "Ausflugsschiffe (Weiße Flotte)". Untertitel der
+     Fähre-Kachel "Bodensee Fähre" → "Bodensee Autofähre". Seitentitel von
+     bsb-fahrplan.html (beide Bereiche teilen sich die Seite) von
+     "BSB Schifffahrt" zu "Weiße Flotte" geändert, zweifarbig wie gehabt.
    Neu gegenüber v93:
    - Kachel-Beschriftungen auf der Startseite angepasst: "Ausflüge West"
      zeigt jetzt oben "Überlinger See / Untersee / Schweiz", unten
@@ -583,7 +589,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v94';
+const CACHE = 'bootsmann-v95';
 const SHELL = [
   './',
   './index.html',
