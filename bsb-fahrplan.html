@@ -38,7 +38,8 @@ select,input,button{font-family:inherit;}
 .lg-panel{padding:18px 16px 8px;}
 .lg-szw-head{margin:0 0 12px;}
 .lg-szw-label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.lg-szw-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.lg-szw-group{border-radius:14px;padding:12px 12px 2px;margin-bottom:14px;}
+.lg-szw-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
 .lg-szw-chip{border:2px solid var(--azure);background:#fff;border-radius:999px;padding:11px 18px;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;transition:.15s;box-shadow:0 1px 2px rgba(16,58,90,.08);}
 .lg-szw-chip:hover{background:var(--sky);}
 .lg-szw-chip.is-on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(21,103,158,.35);}
@@ -199,7 +200,6 @@ select,input,button{font-family:inherit;}
 .lg-bkarte-obersee{fill:#E3F2FA;stroke:#B7D6EB;}
 .lg-bkarte-ueberlingen{fill:#E9F5EC;stroke:#BFE0C9;}
 .lg-bkarte-untersee{fill:#FBF0E0;stroke:#EBD3A8;}
-.lg-bkarte-region-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.02em;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;}
 </style>
 </head>
 <body>
@@ -622,16 +622,25 @@ function schweizRueckfahrtHTML(destIdx, date){
 function schweizHTML(){
   var dest=state.schweizDest;
   var h='<section class="lg-panel">';
-  h+='<div class="lg-szw-head"><span class="lg-szw-label">'+t("szw_ziel_waehlen")+'</span></div>';
-  h+='<div class="lg-szw-chips">';
-  for(var i=0;i<SCHWEIZ_ZIELE.length;i++){
-    var z=SCHWEIZ_ZIELE[i];
-    var on=(dest===z.idx);
-    h+='<button class="lg-szw-chip'+(on?" is-on":"")+'" data-sdest="'+z.idx+'">';
-    h+=esc(z.name)+'</button>';
-  }
-  h+='</div>';
   h+='<div class="lg-note" style="margin-bottom:16px">'+t("szw_hilfe")+'</div>';
+  h+='<div class="lg-szw-head"><span class="lg-szw-label">'+t("szw_ziel_waehlen")+'</span></div>';
+  // Ziele nach Seebereich farblich gruppiert (dieselben Farben wie im Von/Nach-
+  // Auswahldialog: SELECT_GROUP_COLORS), damit die Zuordnung sofort erkennbar
+  // ist. Obersee (Gruppe 0) taucht hier nicht auf, SCHWEIZ_ZIELE ist bereits in
+  // dieser Gruppenreihenfolge sortiert.
+  for(var g=1;g<SELECT_GROUPS.length;g++){
+    var grp=SELECT_GROUPS[g],col=SELECT_GROUP_COLORS[g];
+    var mitglieder=SCHWEIZ_ZIELE.filter(function(z){ return grp[1].indexOf(z.idx)!==-1; });
+    if(!mitglieder.length) continue;
+    h+='<div class="lg-szw-group" style="background:'+col.bg+'"><div class="lg-szw-chips">';
+    for(var i=0;i<mitglieder.length;i++){
+      var z=mitglieder[i];
+      var on=(dest===z.idx);
+      h+='<button class="lg-szw-chip'+(on?" is-on":"")+'" data-sdest="'+z.idx+'">';
+      h+=esc(z.name)+'</button>';
+    }
+    h+='</div></div>';
+  }
   if(dest!==null){
     var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
     var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';
@@ -852,15 +861,6 @@ function karteHTML(){
    (COORDS/Seeumrisse) – keine Übernahme aus dem gedruckten
    VSU-Fahrplan. */
 var bkarteView=null, bkarteVollbild=false;
-// Grobe Ankerpunkte [lat,lng] fuer die grossen Bereichsnamen, von Hand gewaehlt
-// (die Seeflaechen-Polygone eignen sich nicht direkt als Textzentrum).
-var BKARTE_REGION_LABELS=[
-  {key:"bkrt_lbl_obersee", lat:47.635, lng:9.66, cls:"obersee"},
-  {key:"bkrt_lbl_ueberlingen", lat:47.78, lng:9.20, cls:"ueberlingen"},
-  {key:"bkrt_lbl_untersee", lat:47.635, lng:8.98, cls:"untersee"},
-  {key:"bkrt_lbl_schweiz", lat:47.53, lng:9.19, cls:"schweiz", flag:"🇨🇭"}
-];
-var BKARTE_REGION_COLORS={obersee:"#0F5C86",ueberlingen:"#1F6B3F",untersee:"#8C5A16",schweiz:"#7A3E82"};
 function bodenseeKarteHTML(){
   function ringPfad(ring){
     return "M"+ring.map(function(p){var xy=karteXY(p[0],p[1]);return xy[0].toFixed(1)+","+xy[1].toFixed(1);}).join("L")+"Z";
@@ -876,22 +876,16 @@ function bodenseeKarteHTML(){
     '<path class="lg-map-kontur" d="'+ringPfad(BODENSEE_RHEIN_WEST)+'"/>'+
     '<path class="lg-map-grenze" d="'+linPfad(GRENZE_CH)+'"/>';
   var regionLabels="";
-  for(var r=0;r<BKARTE_REGION_LABELS.length;r++){
-    var rl=BKARTE_REGION_LABELS[r], rp=karteXY(rl.lat,rl.lng);
-    regionLabels+='<text class="lg-bkarte-region-label" style="font-size:13px;fill:'+BKARTE_REGION_COLORS[rl.cls]+'" x="'+rp[0].toFixed(1)+'" y="'+rp[1].toFixed(1)+'">'+(rl.flag?rl.flag+' ':'')+esc(t(rl.key))+'</text>';
-  }
+  // Bewusst ohne jede Beschriftung (weder Bereichsnamen noch Ortsnamen) - nur
+  // Seeflaeche farblich nach Bereich eingefaerbt plus Hafenpunkte. Die Namen
+  // stehen ohnehin schon in der Von/Nach-Auswahl; hier zaehlt nur der schnelle
+  // Farb-Ueberblick, ohne das Label-Ueberlappungsproblem einer Kartenbeschriftung.
   var dots="";
   for(var i=0;i<SELECTABLE.length;i++){
     var h=SELECTABLE[i];
     var pp=karteXY(COORDS[h][0],COORDS[h][1]);
     var chCls=REGION_SCHWEIZ[h]?" lg-map-hafen--ch":"";
     dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
-    // Beschriftung abwechselnd rechts/links vom Punkt, um Ueberlappungen bei dicht
-    // beieinanderliegenden Haefen etwas zu entzerren (kein manuelles Layout noetig).
-    var rechts=(i%2===0);
-    var lx=rechts?pp[0]+3.6:pp[0]-3.6;
-    var ly=pp[1]+2.3;
-    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+(rechts?"start":"end")+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
   }
   var h3='<section class="lg-panel">'+
     '<div class="lg-map-wrap'+(bkarteVollbild?" is-vollbild":"")+'" id="lg-bkarte-wrap">'+
@@ -925,7 +919,7 @@ function bkarteBindMap(){
       if(pp[0]<minX)minX=pp[0]; if(pp[0]>maxX)maxX=pp[0];
       if(pp[1]<minY)minY=pp[1]; if(pp[1]>maxY)maxY=pp[1];
     }
-    var padX=16, padY=14;
+    var padX=30, padY=22;
     var w=maxX-minX+2*padX, h=maxY-minY+2*padY;
     var cx=(minX+maxX)/2, cy=(minY+maxY)/2;
     bkarteView=bkarteKlemmen({x:cx-w/2,y:cy-h/2,w:w,h:h});
