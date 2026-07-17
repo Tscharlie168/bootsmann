@@ -1,4 +1,13 @@
-/* Bootsmann – Service Worker (v91) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v92) – Stand: 17. Juli 2026
+   Neu gegenüber v91:
+   - Neue 4. Kachel "Obersee & Bregenz" über "Ausflüge West" auf der
+     Startseite (gleiches Schiffs-Icon, Untertitel "Ausflugsschiffe/
+     Kursschiffe"), führt zu bsb-fahrplan.html?tab=planer. "Ausflüge West"
+     führt jetzt gezielt zu ?tab=schweiz statt zum Default-Tab.
+   - Dabei Bug gefunden und behoben: bsb-fahrplan.html unterstützte die
+     URL-Parameter ?tab=planer/?tab=schweiz bisher gar nicht (nur karte/
+     hinweise/bodenseekarte), wurde beim Aufruf still ignoriert und landete
+     immer auf dem Default-Tab "planer" – jetzt ergänzt.
    Neu gegenüber v90:
    - Home-Kachel "BSB Schifffahrt" umbenannt in "Ausflüge West" (nur die
      Kachel auf der Startseite; der Seitentitel auf bsb-fahrplan.html
@@ -558,7 +567,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v91';
+const CACHE = 'bootsmann-v92';
 const SHELL = [
   './',
   './index.html',
