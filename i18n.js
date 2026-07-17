@@ -92,6 +92,7 @@ var I18N={
     tile_kat:"Katamaran",
     tile_karte:"Live-Positionskarte",
     tile_hinweise:"Hinweise",
+    tile_route_hafen:"Route zum nächstgelegenen Hafen",
     womit_fahren:"Womit wollen Sie fahren?",
     informationen_lbl:"Informationen",
     naechster_hafen_lbl:"Nächster Hafen",

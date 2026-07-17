@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v84) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v85) – Stand: 17. Juli 2026
+   Neu gegenüber v84:
+   - Neue Kachel "Route zum nächstgelegenen Hafen" ganz oben in der
+     Informationen-Liste auf der Startseite (an der Stelle der entfernten
+     Bodenseekarte-Kachel). Tippen ermittelt wie gehabt den nächstgelegenen
+     Hafen über den Standort und öffnet direkt die Google-Maps-Route –
+     dieselbe Funktion, die schon oben auf der Startseite existiert.
    Neu gegenüber v83:
    - Kachel "Bodenseekarte" aus der Informationen-Liste auf der Startseite
      entfernt (samt i18n-Key). Die Seite/der Tab dahinter
@@ -516,7 +522,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v84';
+const CACHE = 'bootsmann-v85';
 const SHELL = [
   './',
   './index.html',

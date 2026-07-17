@@ -127,6 +127,11 @@ a{color:inherit;}
 
   <p class="section-title" data-i18n="informationen_lbl">Informationen</p>
   <div class="tiles-stack">
+    <button class="tile-row" onclick="routeZumHafen()">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.5 7-12a7 7 0 0 0-14 0c0 5.5 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg></span>
+      <b data-i18n="tile_route_hafen">Route zum nächstgelegenen Hafen</b>
+      <span class="chev">&rsaquo;</span>
+    </button>
     <button class="tile-row" onclick="openPage('bsb-fahrplan.html','tab=karte')">
       <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="#15679E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/></svg></span>
       <b data-i18n="tile_karte">Live-Positionskarte</b>
@@ -281,6 +286,18 @@ function naechsteAbfahrtStarten(lat,lng){
   var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
   naechsteAbfahrtRender(hafenIdx);
   hafenRender(hafenIdx);
+}
+/* Kachel "Route zum nächstgelegenen Hafen": nutzt den bereits ermittelten
+   Standort (GEO, per startGeo() beim Laden der Seite angefragt) bzw. den
+   Fallback-Hafen, und öffnet direkt die Google-Maps-Route – dieselbe Logik
+   wie hafenRender() oben auf der Seite. */
+function routeZumHafen(){
+  var lat=GEO.lat!=null?GEO.lat:GEO_FALLBACK.lat;
+  var lng=GEO.lat!=null?GEO.lng:GEO_FALLBACK.lng;
+  var n=nearestPort(lat,lng);
+  var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
+  var url="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent("Schiffsanlegestelle "+PORTS[hafenIdx]+" Bodensee")+"&travelmode=walking";
+  window.open(url,"_blank","noopener");
 }
 </script>
 <script>
