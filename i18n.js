@@ -159,6 +159,10 @@ var I18N={
     bkrt_doc_title:"Bodenseekarte – Orte & Seebereiche",
     bkrt_h1_plain:"Bodensee", bkrt_h1_hl:"karte",
     bkrt_hint_html:"Alle Häfen im Überblick, eingefärbt nach Seebereich (Obersee, Überlinger See, Untersee, Schweizer Ufer). Ohne Linien und Live-Positionen — die zeigt die Live-Positionskarte.",
+    bkrt_lbl_obersee:"Obersee",
+    bkrt_lbl_ueberlingen:"Überlinger See",
+    bkrt_lbl_untersee:"Untersee",
+    bkrt_lbl_schweiz:"Schweizer Ufer",
     krt_sub:"Schiffspositionen laut Fahrplan",
 
     tab_verbindung:"Obersee & Bregenz", tab_schweiz:"Überlinger See / Untersee / Schweiz",
