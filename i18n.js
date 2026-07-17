@@ -209,7 +209,7 @@ var I18N={
     grp_schweiz:"Schweizer Ufer (SBS)",
 
     szw_ziel_waehlen:"Ziel wählen",
-    szw_hilfe:"Wählen Sie zuerst den Zielort. Anschließend werden alle Abfahrtsorte und -zeiten dorthin angezeigt.<br><br>Diese Zielhäfen werden selten angefahren. Wählen Sie die für Sie passende Anreise. Für die Rückfahrt gilt dasselbe.",
+    szw_hilfe:"Wählen Sie zuerst den Zielort. Anschließend werden alle Häfen angezeigt, von denen aus Sie zum Zielhafen fahren können — teils nur wenige Verbindungen am Tag. Für die Rückfahrt gilt dasselbe.",
     szw_hinfahrt_titel:"Hinfahrt — nach ",
     szw_tag_hinfahrt:"Tag der Hinfahrt",
     szw_rueckfahrt_titel:"Rückfahrt — ab ",
