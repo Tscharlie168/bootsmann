@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v85) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v86) – Stand: 17. Juli 2026
+   Neu gegenüber v85:
+   - Das Feld "Nächster Hafen" + "Nächste Abfahrt" ganz oben auf der
+     Startseite komplett entfernt (samt zugehöriger i18n-Keys, CSS-Klassen
+     und JS-Funktionen). Die Routing-Funktion lebt jetzt ausschließlich in
+     der Kachel "Route zum nächstgelegenen Hafen" in der Informationen-Liste.
+     Die Startseite geht direkt vom Header zu den Fahrzeug-Kacheln über.
    Neu gegenüber v84:
    - Neue Kachel "Route zum nächstgelegenen Hafen" ganz oben in der
      Informationen-Liste auf der Startseite (an der Stelle der entfernten
@@ -522,7 +528,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v85';
+const CACHE = 'bootsmann-v86';
 const SHELL = [
   './',
   './index.html',
