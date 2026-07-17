@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v79) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v80) – Stand: 17. Juli 2026
+   Neu gegenüber v79:
+   - Schweiz-Tab: Hinweistext gekürzt, sinngemäß erhalten ("teils nur wenige
+     Verbindungen am Tag" statt eigenem Absatz dazu).
    Neu gegenüber v78:
    - BSB-Seite, Tab "Überlinger See / Untersee / Schweiz": gelber Hinweiskasten
      ("Wählen Sie zuerst den Zielort...") jetzt oben vor "Ziel wählen" statt
@@ -486,7 +489,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v79';
+const CACHE = 'bootsmann-v80';
 const SHELL = [
   './',
   './index.html',
