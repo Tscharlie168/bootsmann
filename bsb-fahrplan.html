@@ -31,10 +31,6 @@ select,input,button{font-family:inherit;}
 .lg-lang button.is-on .code{color:var(--navy);}
 .lg-wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:48px;z-index:1;fill:var(--paper);}
 
-.lg-tabs{display:flex;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5;}
-.lg-tabs button{flex:1;border:none;background:none;padding:14px 6px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:16px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:3px solid transparent;transition:.15s;}
-.lg-tabs button.is-active{color:var(--blue);border-bottom-color:var(--azure);}
-
 .lg-panel{padding:18px 16px 8px;}
 .lg-szw-head{margin:0 0 12px;}
 .lg-szw-label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:4px;}
@@ -212,11 +208,6 @@ select,input,button{font-family:inherit;}
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0 30 Q 180 0 360 30 T 720 30 T 1080 30 T 1440 30 V60 H0 Z"/></svg>
   </header>
-
-  <nav class="lg-tabs" id="lg-tabs">
-    <button data-tab="planer" data-i18n="tab_verbindung">Obersee &amp; Bregenz</button>
-    <button data-tab="schweiz" data-i18n="tab_schweiz">Überlinger See / Untersee / Schweiz</button>
-  </nav>
 
   <main id="lg-main"></main>
   <footer class="lg-foot" data-i18n="footer_disclaimer">Angaben ohne Gewähr</footer>
@@ -1154,14 +1145,6 @@ function bind(){
   rows.forEach(function(r){r.addEventListener("click",function(){var n=+this.getAttribute("data-row");state.open=(state.open===n?null:n);render();});});
 }
 
-document.querySelectorAll(".lg-tabs button").forEach(function(btn){
-  btn.addEventListener("click",function(){
-    document.querySelectorAll(".lg-tabs button").forEach(function(b){b.classList.remove("is-active");});
-    this.classList.add("is-active");
-    state.tab=this.getAttribute("data-tab");state.open=null;state.picker=null;render();
-  });
-});
-
 // Übergabe von außen (Startseite/Deeplink): ?lat=..&lng=.. oder ?from=Wasserburg&to=Bregenz
 (function(){
   try{
@@ -1182,25 +1165,17 @@ document.querySelectorAll(".lg-tabs button").forEach(function(btn){
     else if(q.get("tab")==="planer") state.tab="planer";
   }catch(e){}
 })();
-document.querySelectorAll(".lg-tabs button").forEach(function(b){
-  b.classList.toggle("is-active", b.getAttribute("data-tab")===state.tab);
-});
-// Direkteinstieg über die Karte- bzw. Hinweise-Kachel der Startseite:
-// eigener Titel, keine Tab-Leiste (die beiden verbliebenen Tabs gehören
-// zum Fahrplan-Planer, nicht zur Karte/den Hinweisen).
+// Direkteinstieg über die Karte- bzw. Hinweise-Kachel der Startseite: eigener Titel.
 if(state.tab==="karte"){
   document.title=t("krt_doc_title");
   document.getElementById("lg-h1").innerHTML=esc(t("krt_h1_plain"))+'<span class="hl">'+esc(t("krt_h1_hl"))+'</span>';
   document.getElementById("lg-headsub").textContent=t("krt_sub");
-  document.getElementById("lg-tabs").style.display="none";
 }else if(state.tab==="hinweise"){
   document.title=t("hw_doc_title");
   document.getElementById("lg-h1").innerHTML=esc(t("hw_h1_plain"))+'<span class="hl">'+esc(t("hw_h1_hl"))+'</span>';
-  document.getElementById("lg-tabs").style.display="none";
 }else if(state.tab==="bodenseekarte"){
   document.title=t("bkrt_doc_title");
   document.getElementById("lg-h1").innerHTML=esc(t("bkrt_h1_plain"))+'<span class="hl">'+esc(t("bkrt_h1_hl"))+'</span>';
-  document.getElementById("lg-tabs").style.display="none";
 }
 
 function zurueckLotse(){ if(history.length>1){ history.back(); } else { location.href='index.html'; } }
