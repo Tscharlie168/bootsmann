@@ -199,7 +199,7 @@ select,input,button{font-family:inherit;}
 .lg-bkarte-obersee{fill:#E3F2FA;stroke:#B7D6EB;}
 .lg-bkarte-ueberlingen{fill:#E9F5EC;stroke:#BFE0C9;}
 .lg-bkarte-untersee{fill:#FBF0E0;stroke:#EBD3A8;}
-.lg-bkarte-region-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.02em;text-anchor:middle;paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;}
+.lg-bkarte-region-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;letter-spacing:.02em;text-anchor:middle;}
 </style>
 </head>
 <body>
@@ -856,9 +856,9 @@ var bkarteView=null, bkarteVollbild=false;
 // (die Seeflaechen-Polygone eignen sich nicht direkt als Textzentrum).
 var BKARTE_REGION_LABELS=[
   {key:"bkrt_lbl_obersee", lat:47.635, lng:9.66, cls:"obersee"},
-  {key:"bkrt_lbl_ueberlingen", lat:47.78, lng:9.20, cls:"ueberlingen"},
-  {key:"bkrt_lbl_untersee", lat:47.635, lng:8.98, cls:"untersee"},
-  {key:"bkrt_lbl_schweiz", lat:47.53, lng:9.19, cls:"schweiz", flag:"🇨🇭"}
+  {key:"bkrt_lbl_ueberlingen", lat:47.815, lng:9.245, cls:"ueberlingen"},
+  {key:"bkrt_lbl_untersee", lat:47.60, lng:8.865, cls:"untersee"},
+  {key:"bkrt_lbl_schweiz", lat:47.53, lng:9.19, cls:"schweiz"}
 ];
 var BKARTE_REGION_COLORS={obersee:"#0F5C86",ueberlingen:"#1F6B3F",untersee:"#8C5A16",schweiz:"#7A3E82"};
 function bodenseeKarteHTML(){
@@ -878,20 +878,79 @@ function bodenseeKarteHTML(){
   var regionLabels="";
   for(var r=0;r<BKARTE_REGION_LABELS.length;r++){
     var rl=BKARTE_REGION_LABELS[r], rp=karteXY(rl.lat,rl.lng);
-    regionLabels+='<text class="lg-bkarte-region-label" style="font-size:13px;fill:'+BKARTE_REGION_COLORS[rl.cls]+'" x="'+rp[0].toFixed(1)+'" y="'+rp[1].toFixed(1)+'">'+(rl.flag?rl.flag+' ':'')+esc(t(rl.key))+'</text>';
+    regionLabels+='<text class="lg-bkarte-region-label" style="font-size:13px;fill:'+BKARTE_REGION_COLORS[rl.cls]+'" x="'+rp[0].toFixed(1)+'" y="'+rp[1].toFixed(1)+'">'+esc(t(rl.key))+'</text>';
   }
+  // Mittelpunkt aller Haefen: Beschriftung wird radial von dort nach aussen
+  // versetzt (wie Speichen), statt nur stur links/rechts zu wechseln - das
+  // draengt Beschriftungen an den Raendern/Enden nach aussen weg vom dichten
+  // Zentrum, aehnlich der Vorlage mit den nach aussen zeigenden Ortsnamen.
+  var midX=0, midY=0, allXY=[];
+  for(var m=0;m<SELECTABLE.length;m++){
+    var mp=karteXY(COORDS[SELECTABLE[m]][0],COORDS[SELECTABLE[m]][1]);
+    allXY.push(mp); midX+=mp[0]; midY+=mp[1];
+  }
+  midX/=SELECTABLE.length; midY/=SELECTABLE.length;
+  // Nachbarschafts-Kollisionen sind mit reiner Radial-Richtung nicht zu vermeiden,
+  // da geografisch nahe Haefen (z.B. Konstanz/Gottlieben) im SELECTABLE-Array weit
+  // auseinanderliegen koennen. Deshalb je Label bei Ueberlappung mit bereits
+  // platzierten Labels den Abstand zum Zentrum schrittweise vergroessern, bis es
+  // frei steht (einfache greedy Kollisionsvermeidung statt fixer Versaetze).
+  function bboxVon(lx,ly,anchor,textW){
+    var x1=anchor==="start"?lx:(anchor==="end"?lx-textW:lx-textW/2);
+    var x2=x1+textW;
+    return {x1:x1,x2:x2,y1:ly-6.5,y2:ly+2.5};
+  }
+  function ueberlappt(a,b){
+    return !(a.x2<b.x1||a.x1>b.x2||a.y2<b.y1||a.y1>b.y2);
+  }
+  function ueberlappFlaeche(a,b){
+    var ox=Math.max(0,Math.min(a.x2,b.x2)-Math.max(a.x1,b.x1));
+    var oy=Math.max(0,Math.min(a.y2,b.y2)-Math.max(a.y1,b.y1));
+    return ox*oy;
+  }
+  // Alle Hafenpunkte selbst zaehlen ebenfalls als Hindernis, damit eine Beschriftung
+  // nicht auf einem fremden Punkt landet (nur den eigenen Punkt spart jedes Label aus).
+  var platziert=allXY.map(function(p){ return {x1:p[0]-2.6,x2:p[0]+2.6,y1:p[1]-2.6,y2:p[1]+2.6,eigen:-1}; });
+  for(var pi=0;pi<platziert.length;pi++) platziert[pi].eigen=pi;
   var dots="";
   for(var i=0;i<SELECTABLE.length;i++){
     var h=SELECTABLE[i];
-    var pp=karteXY(COORDS[h][0],COORDS[h][1]);
+    var pp=allXY[i];
     var chCls=REGION_SCHWEIZ[h]?" lg-map-hafen--ch":"";
     dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
-    // Beschriftung abwechselnd rechts/links vom Punkt, um Ueberlappungen bei dicht
-    // beieinanderliegenden Haefen etwas zu entzerren (kein manuelles Layout noetig).
-    var rechts=(i%2===0);
-    var lx=rechts?pp[0]+3.6:pp[0]-3.6;
-    var ly=pp[1]+2.3;
-    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+(rechts?"start":"end")+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
+    var dx=pp[0]-midX, dy=pp[1]-midY, dist=Math.max(Math.hypot(dx,dy),1);
+    dx/=dist; dy/=dist;
+    var jitterSign0=(i%2===0?1:-1);
+    var textW=PORTS[h].length*4.3;
+    var lx,ly,anchor,bbox;
+    var beste=null, besteFlaeche=Infinity;
+    // Bei Kollision zuerst am selben Abstand die Seite spiegeln, erst danach den
+    // Abstand vom Zentrum vergroessern - so bleiben Labels moeglichst nah am
+    // eigenen Hafen, statt sofort weit wegzuspringen. Findet sich in keinem
+    // Versuch eine komplett freie Position, wird die mit der geringsten
+    // Ueberlappungsflaeche verwendet (statt stur die letzte).
+    for(var versuch=0;versuch<16;versuch++){
+      var tier=Math.floor(versuch/2);
+      var radial=6.5+tier*2.3, jitter=(1.2+tier*2.6)*(versuch%2===0?jitterSign0:-jitterSign0);
+      lx=pp[0]+dx*radial-dy*jitter;
+      ly=pp[1]+dy*radial+dx*jitter+1.3;
+      anchor=dx>0.28?"start":(dx<-0.28?"end":"middle");
+      // Am Kartenrand (z.B. Schaffhausen ganz im Westen) wuerde die nach aussen
+      // zeigende Beschriftung ueber die feste 440x320-Zeichenflaeche hinauslaufen
+      // und abgeschnitten werden - dort Anker zur Kartenmitte hin umdrehen.
+      if(anchor==="end"&&lx-textW<2){ anchor="start"; lx=pp[0]+4.5; }
+      else if(anchor==="start"&&lx+textW>KARTE_BASIS.w-2){ anchor="end"; lx=pp[0]-4.5; }
+      if(ly<8) ly=8; else if(ly>KARTE_BASIS.h-3) ly=KARTE_BASIS.h-3;
+      bbox=bboxVon(lx,ly,anchor,textW);
+      var flaeche=0;
+      for(var p=0;p<platziert.length;p++){ if(platziert[p].eigen!==i) flaeche+=ueberlappFlaeche(bbox,platziert[p]); }
+      if(flaeche<besteFlaeche){ besteFlaeche=flaeche; beste={lx:lx,ly:ly,anchor:anchor,bbox:bbox}; }
+      if(flaeche===0) break;
+    }
+    lx=beste.lx; ly=beste.ly; anchor=beste.anchor; bbox=beste.bbox;
+    bbox.eigen=-2;
+    platziert.push(bbox);
+    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+anchor+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
   }
   var h3='<section class="lg-panel">'+
     '<div class="lg-map-wrap'+(bkarteVollbild?" is-vollbild":"")+'" id="lg-bkarte-wrap">'+
@@ -925,7 +984,7 @@ function bkarteBindMap(){
       if(pp[0]<minX)minX=pp[0]; if(pp[0]>maxX)maxX=pp[0];
       if(pp[1]<minY)minY=pp[1]; if(pp[1]>maxY)maxY=pp[1];
     }
-    var padX=16, padY=14;
+    var padX=30, padY=22;
     var w=maxX-minX+2*padX, h=maxY-minY+2*padY;
     var cx=(minX+maxX)/2, cy=(minY+maxY)/2;
     bkarteView=bkarteKlemmen({x:cx-w/2,y:cy-h/2,w:w,h:h});

@@ -1,4 +1,24 @@
-/* Bootsmann – Service Worker (v76) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v77) – Stand: 17. Juli 2026
+   Neu gegenüber v76:
+   - Bodenseekarte, Feinschliff nach Rückmeldung mit Screenshots:
+     Ortsnamen überlappten sich teils stark (z.B. Konstanz/Gottlieben,
+     Mainau/Meersburg, Langenargen/Kressbronn/Nonnenhorn, Rorschach/
+     Staad/Altenrhein) und Schaffhausen war oben links am Kartenrand
+     abgeschnitten. Beschriftung läuft jetzt strahlenförmig vom
+     Häfen-Mittelpunkt nach außen (wie Speichen, angelehnt an die
+     Referenzgrafik) mit einfacher Kollisionsvermeidung: bei
+     Überlappung wird zunächst die Seite gespiegelt, dann der Abstand
+     vergrößert; bleibt keine Position ganz frei, wird die mit der
+     kleinsten Überlappungsfläche gewählt. Zusätzlich zählen auch die
+     Hafenpunkte selbst als Hindernis, damit kein Name auf einem
+     fremden Punkt landet. Kartenrand-Anker (Schaffhausen) drehen bei
+     drohendem Abschneiden zur Kartenmitte um; Anfangs-Zuschnitt der
+     Karte etwas großzügiger gepolstert.
+   - "CH"-Kennzeichen vor "Schweizer Ufer" entfernt (Flag-Emoji kam auf
+     manchen Geräten nur als Text "CH" statt als Flagge an).
+   - Bereichsnamen (Obersee/Überlinger See/Untersee/Schweizer Ufer) ohne
+     weiße Textumrandung – reine Farbe ist besser lesbar. Die Namen
+     Überlinger See/Untersee zusätzlich weiter nach außen verschoben.
    Neu gegenüber v75:
    - Startseite: die 3 Info-Kacheln (Bodenseekarte/Live-Positionskarte/
      Hinweise) waren als 3-Spalten-Raster zu dominant im Vergleich zu
@@ -451,7 +471,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v76';
+const CACHE = 'bootsmann-v77';
 const SHELL = [
   './',
   './index.html',
