@@ -55,18 +55,6 @@ a{color:inherit;}
 
 .card{background:#fff;border:1px solid var(--line);border-radius:16px;margin:16px;padding:14px;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lbl{font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.08em;font-size:13px;font-weight:600;color:var(--muted);margin:0 0 10px;}
-.lg-dep{display:flex;align-items:center;gap:14px;}
-.lg-dep-time{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:36px;color:var(--navy);line-height:1;white-space:nowrap;}
-.lg-dep-info{display:flex;flex-direction:column;gap:3px;min-width:0;}
-.lg-dep-route{font-size:18px;font-weight:600;color:var(--ink);}
-.lg-dep-sub{font-size:15px;color:var(--muted);}
-.lg-dep-next{font-size:15px;color:var(--muted);margin-top:10px;padding-top:10px;border-top:1px solid var(--line);}
-.lg-dep-load,.lg-dep-empty{font-size:15px;color:var(--muted);text-align:center;padding:4px 0;}
-
-.hafen-row{display:flex;align-items:center;justify-content:space-between;gap:12px;}
-.hafen-name{font-weight:600;font-size:18px;color:var(--navy);line-height:1.1;}
-.maps-btn{display:flex;align-items:center;gap:5px;flex:none;background:var(--sky);border:1px solid var(--line);border-radius:999px;padding:7px 13px;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:13px;letter-spacing:.02em;color:var(--blue);text-decoration:none;white-space:nowrap;}
-.divider{border-top:1px solid var(--line);margin:10px 0;}
 
 .ruf-note{margin:16px;font-size:15px;color:var(--muted);background:#fff;border:1px solid var(--line);border-radius:12px;padding:13px 15px;line-height:1.45;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 
@@ -90,22 +78,6 @@ a{color:inherit;}
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 42" preserveAspectRatio="none"><path d="M0 42V20c120-16 260-16 380 0s260 16 380 0 260-16 380 0 200 12 300 6v16z"/></svg>
   </header>
-
-  <div class="card">
-    <p class="lbl" data-i18n="naechster_hafen_lbl">Nächster Hafen</p>
-    <div class="hafen-row" id="lg-hafen-row" style="display:none">
-      <div>
-        <div class="hafen-name" id="lg-hafen-name"></div>
-      </div>
-      <a class="maps-btn" id="lg-hafen-maps" href="#" target="_blank" rel="noopener">📍 <span data-i18n="route_btn">Route</span></a>
-    </div>
-    <div class="lg-dep-load" id="lg-hafen-load" data-i18n="fahrplan_loading">Fahrplan wird geladen …</div>
-
-    <div class="divider"></div>
-
-    <p class="lbl" data-i18n="next_dep">Nächste Abfahrt</p>
-    <div id="lg-naechste"><div class="lg-dep-load" data-i18n="fahrplan_loading">Fahrplan wird geladen …</div></div>
-  </div>
 
   <p class="section-title" data-i18n="womit_fahren">Womit wollen Sie fahren?</p>
   <div class="tiles">
@@ -184,113 +156,15 @@ function startGeo(){
   if(navigator.geolocation){
     navigator.geolocation.getCurrentPosition(function(p){
       GEO.lat=p.coords.latitude; GEO.lng=p.coords.longitude;
-      naechsteAbfahrtStarten(GEO.lat,GEO.lng);
-    },function(){
-      naechsteAbfahrtStarten(GEO_FALLBACK.lat,GEO_FALLBACK.lng);
-    },{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
-  } else {
-    naechsteAbfahrtStarten(GEO_FALLBACK.lat,GEO_FALLBACK.lng);
+    },function(){},{enableHighAccuracy:true,timeout:10000,maximumAge:60000});
   }
 }
 startGeo();
 
-/* ---------- Nächste Abfahrt ab nächstgelegenem Hafen (nutzt fahrplan-daten.js) ---------- */
-var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
-/* Zeigt den nächstgelegenen Hafen: Name + Google-Maps-Route.
-   Keine Gehzeit-Schätzung mehr (Luftlinien-Berechnung war in der Praxis
-   spürbar ungenau, siehe sw.js-Changelog v60/v61). */
-function hafenRender(hafenIdx){
-  var rowEl=document.getElementById("lg-hafen-row");
-  var loadEl=document.getElementById("lg-hafen-load");
-  if(!rowEl) return;
-  document.getElementById("lg-hafen-name").textContent=PORTS[hafenIdx];
-  document.getElementById("lg-hafen-maps").href="https://www.google.com/maps/dir/?api=1&destination="+encodeURIComponent("Schiffsanlegestelle "+PORTS[hafenIdx]+" Bodensee")+"&travelmode=walking";
-  loadEl.style.display="none";
-  rowEl.style.display="";
-}
-function abfahrtenAbHafen(fromIdx,dStr,abMin,limit){
-  var dObj=new Date(dStr+"T12:00:00");
-  var treffer=[];
-  for(var i=0;i<COURSES.length;i++){
-    var c=COURSES[i];
-    if(!courseValidOn(c,dObj,dStr)) continue;
-    var stops=c.stops, j=-1;
-    for(var k=0;k<stops.length;k++){ if(stops[k][0]===fromIdx){ j=k; break; } }
-    if(j===-1||j===stops.length-1) continue; // kein Zwischenstopp mit Weiterfahrt bzw. Endstation
-    var depMin=toMin(stops[j][2]);
-    if(depMin<abMin) continue;
-    var zielIdx=stops[stops.length-1][0];
-    if(exception(c.no,fromIdx,zielIdx,dStr).removed) continue;
-    treffer.push({dep:stops[j][2],depMin:depMin,ziel:PORTS[zielIdx]});
-  }
-  treffer.sort(function(a,b){return a.depMin-b.depMin;});
-  return treffer.slice(0,limit||5);
-}
-/* Katamaran-Kandidaten (Konstanz/Friedrichshafen) als {dep,ts,ziel}-Liste,
-   damit sie mit den BSB-Abfahrten nach absoluter Zeit gemischt werden
-   können. Für alle anderen Häfen leer. */
-function katamaranKandidaten(hafenIdx){
-  var dir = hafenIdx===0 ? "kn" : (hafenIdx===5 ? "fn" : null);
-  if(!dir) return [];
-  return katNextDepartures(dir,2).map(function(dt){
-    return {
-      dep: pad2(dt.getHours())+":"+pad2(dt.getMinutes()),
-      ts: dt.getTime(),
-      ziel: (dir==="kn" ? "Friedrichshafen" : "Konstanz") + " (" + t("tile_kat") + ")",
-      praefix: ""
-    };
-  });
-}
-function naechsteAbfahrtRender(hafenIdx){
-  var box=document.getElementById("lg-naechste");
-  if(!box) return;
-  var heute=todayISO();
-  var bsbListe=[];
-  if(heute>=SAISON_MIN&&heute<=SAISON_MAX){
-    bsbListe=abfahrtenAbHafen(hafenIdx,heute,nowMin(),2).map(function(x){
-      var d=new Date(); d.setHours(0,0,0,0); d.setMinutes(x.depMin);
-      return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:""};
-    });
-    if(!bsbListe.length){
-      var morgen=new Date(); morgen.setDate(morgen.getDate()+1);
-      var morgenStr=morgen.getFullYear()+"-"+pad2(morgen.getMonth()+1)+"-"+pad2(morgen.getDate());
-      if(morgenStr<=SAISON_MAX){
-        bsbListe=abfahrtenAbHafen(hafenIdx,morgenStr,0,2).map(function(x){
-          var d=new Date(); d.setDate(d.getDate()+1); d.setHours(0,0,0,0); d.setMinutes(x.depMin);
-          return {dep:x.dep,ts:d.getTime(),ziel:x.ziel,praefix:t("morgen")+" "};
-        });
-      }
-    }
-  }
-  var katListe=katamaranKandidaten(hafenIdx);
-  var alle=bsbListe.concat(katListe).sort(function(a,b){return a.ts-b.ts;});
-  if(!alle.length){
-    if((heute<SAISON_MIN||heute>SAISON_MAX) && !katListe.length){
-      box.innerHTML='<div class="lg-dep-empty">'+t("out_of_season")+'</div>';
-    }else{
-      box.innerHTML='<div class="lg-dep-empty">'+t("no_more_trips")+'</div>';
-    }
-    return;
-  }
-  var erste=alle[0];
-  var h='<div class="lg-dep"><span class="lg-dep-time">'+erste.dep+'</span><div class="lg-dep-info">'+
-    '<span class="lg-dep-route">'+t("nach_prefix")+esc(erste.ziel)+'</span>'+
-    (erste.praefix?'<span class="lg-dep-sub">'+erste.praefix.trim()+'</span>':'')+
-    '</div></div>';
-  if(alle[1]) h+='<div class="lg-dep-next">'+t("next_after_prefix")+alle[1].praefix+alle[1].dep+t("time_unit")+' '+t("nach_prefix")+esc(alle[1].ziel)+'</div>';
-  box.innerHTML=h;
-}
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-function naechsteAbfahrtStarten(lat,lng){
-  var n=nearestPort(lat,lng);
-  var hafenIdx=n.far?LANGENARGEN_IDX:n.idx;
-  naechsteAbfahrtRender(hafenIdx);
-  hafenRender(hafenIdx);
-}
 /* Kachel "Route zum nächstgelegenen Hafen": nutzt den bereits ermittelten
-   Standort (GEO, per startGeo() beim Laden der Seite angefragt) bzw. den
-   Fallback-Hafen, und öffnet direkt die Google-Maps-Route – dieselbe Logik
-   wie hafenRender() oben auf der Seite. */
+   Standort (GEO, per startGeo() oben angefragt) bzw. den Fallback-Hafen,
+   und öffnet direkt die Google-Maps-Route (nutzt fahrplan-daten.js). */
+var LANGENARGEN_IDX=6; // Fallback-Hafen, falls Standort zu weit vom See entfernt ist
 function routeZumHafen(){
   var lat=GEO.lat!=null?GEO.lat:GEO_FALLBACK.lat;
   var lng=GEO.lat!=null?GEO.lng:GEO_FALLBACK.lng;
