@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v80) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v81) – Stand: 17. Juli 2026
+   Neu gegenüber v80:
+   - Bugfix "Rückfahrt heute/am"-Karte im Haupt-Fahrplaner: zeigte bisher immer
+     die spätestmögliche Rückfahrt des Tages an, auch wenn die angezeigte
+     Hinfahrt erst NACH deren Abfahrt ankommt (z.B. Langenargen→Stein am Rhein:
+     Hinfahrt kommt 16:52 an, "letzte Rückfahrt" stand mit 11:15 Uhr drin -
+     längst nicht mehr erreichbar). Neue rote Warnbox statt der irreführenden
+     Info-Box, wenn keine der angezeigten Hinfahrten rechtzeitig vor Abfahrt
+     der letzten Rückfahrt ankommt.
    Neu gegenüber v79:
    - Schweiz-Tab: Hinweistext gekürzt, sinngemäß erhalten ("teils nur wenige
      Verbindungen am Tag" statt eigenem Absatz dazu).
@@ -489,7 +497,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v80';
+const CACHE = 'bootsmann-v81';
 const SHELL = [
   './',
   './index.html',

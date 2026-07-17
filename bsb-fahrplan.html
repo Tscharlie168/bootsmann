@@ -134,6 +134,7 @@ select,input,button{font-family:inherit;}
 
 .lg-note{font-size:15px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;}
 .lg-info{font-size:15px;color:var(--navy);background:var(--sky);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
+.lg-alert{font-size:15px;color:#7A2B1D;background:#FBE9E5;border:1px solid #F0C2B8;border-radius:12px;padding:13px 15px;}
 
 .lg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:13px;}
 .lg-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin:0 0 7px;}
@@ -419,7 +420,7 @@ function bsbExtLinkHTML(margin){
   return '<a class="lg-ext-link" style="margin:'+margin+'" href="https://www.bsb.de/de" target="_blank" rel="noopener">'+
     '<span>🔗</span><span>'+t("bsb_ext_html")+'</span></a>';
 }
-function rueckfahrtCardHTML(fromIdx,toIdx,date){
+function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
   var istHeute=date===todayISO();
   var d=new Date(date+"T12:00:00");
   var WD=t("weekdays");
@@ -433,7 +434,20 @@ function rueckfahrtCardHTML(fromIdx,toIdx,date){
     return h;
   }
   var letzte=retRows[retRows.length-1];
-  if(istHeute&&toMin(letzte.dep)<nowMin()){
+  // Erreichbarkeit pruefen: bringt keine der angezeigten Hinfahrten rechtzeitig
+  // vor Abfahrt der letzten Rueckfahrt an, ist eine Rueckfahrt am selben Tag
+  // gar nicht moeglich - das muss klar als Warnung kommen, statt die Uhrzeit
+  // der letzten Rueckfahrt einfach unkommentiert als Option zu zeigen.
+  var fruehesteAnkunft=null;
+  if(hinRows&&hinRows.length){
+    for(var i=0;i<hinRows.length;i++){
+      var a=toMin(hinRows[i].arr);
+      if(fruehesteAnkunft===null||a<fruehesteAnkunft) fruehesteAnkunft=a;
+    }
+  }
+  if(fruehesteAnkunft!==null&&toMin(letzte.dep)<fruehesteAnkunft){
+    h+='<div class="lg-alert">'+tf(istHeute?"ruf_unmoeglich_heute_html":"ruf_unmoeglich_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep)})+'</div>';
+  }else if(istHeute&&toMin(letzte.dep)<nowMin()){
     h+='<div class="lg-note">'+tf("ruf_vorbei_html",{to:esc(PORTS[toIdx]),time:pad(letzte.dep)})+'</div>';
   }else{
     h+='<div class="lg-info">'+tf(istHeute?"ruf_info_heute_html":"ruf_info_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep),from:esc(PORTS[fromIdx]),arr:pad(letzte.arr)})+'</div>';
@@ -464,7 +478,7 @@ function planerHTML(){
   h+='<div class="lg-result-head"><span class="lg-result-route">'+PORTS[state.from]+' <em>&rarr;</em> '+PORTS[state.to]+'</span><span class="lg-result-day">'+dateLabel+'</span></div>';
   if(pastFiltered&&rows.length) h+='<div class="lg-loc-status">'+t("pl_vergangene_ausgeblendet")+'</div>';
   h+='<div class="lg-board">'+boardHTML(rows,pastFiltered?"past":null,state.from,state.to)+'</div>';
-  h+=rueckfahrtCardHTML(state.from,state.to,state.date);
+  h+=rueckfahrtCardHTML(state.from,state.to,state.date,rows);
   h+=bsbExtLinkHTML("14px 0 0");
   h+='</section>';
   h+=pickerHTML();
