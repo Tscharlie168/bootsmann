@@ -913,6 +913,14 @@ function bodenseeKarteHTML(){
   var platziert=allXY.map(function(p){ return {x1:p[0]-2.6,x2:p[0]+2.6,y1:p[1]-2.6,y2:p[1]+2.6,eigen:-1}; });
   for(var pi=0;pi<platziert.length;pi++) platziert[pi].eigen=pi;
   var dots="";
+  // Nordufer Meersburg bis Bregenz: die Haefen liegen (und ihre Beschriftungen
+  // sollen entsprechend lesbar) in dieser Reihenfolge am Ufer. Die Punkte selbst
+  // sind bereits in dieser Reihenfolge y-aufsteigend (Rueckmeldung bestaetigt),
+  // die radiale Kollisionsvermeidung konnte sie beim Ausweichen aber vertauschen
+  // (z.B. Kressbronn zwischen Langenargen und Nonnenhorn). Deshalb hier zusaetzlich
+  // erzwingen, dass die Y-Position innerhalb dieser Kette nie sinkt.
+  var KETTE_NORDUFER={2:1,3:1,4:1,5:1,6:1,7:1,8:1,9:1,10:1,11:1};
+  var ketteNordLetzteY=-1e9;
   for(var i=0;i<SELECTABLE.length;i++){
     var h=SELECTABLE[i];
     var pp=allXY[i];
@@ -920,6 +928,10 @@ function bodenseeKarteHTML(){
     dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
     var dx=pp[0]-midX, dy=pp[1]-midY, dist=Math.max(Math.hypot(dx,dy),1);
     dx/=dist; dy/=dist;
+    // Unteruhldingen liegt zwischen Hagnau/Immenstaad und Friedrichshafen sehr
+    // dicht gedraengt; die zentrumsradiale Richtung zeigt dort ins vollbesetzte
+    // Ufer. Stattdessen nach Sueden (in die freie Wasserflaeche) ausweichen.
+    if(h===41){ dx=0; dy=1; }
     var jitterSign0=(i%2===0?1:-1);
     var textW=PORTS[h].length*4.3;
     var lx,ly,anchor,bbox;
@@ -928,8 +940,11 @@ function bodenseeKarteHTML(){
     // Abstand vom Zentrum vergroessern - so bleiben Labels moeglichst nah am
     // eigenen Hafen, statt sofort weit wegzuspringen. Findet sich in keinem
     // Versuch eine komplett freie Position, wird die mit der geringsten
-    // Ueberlappungsflaeche verwendet (statt stur die letzte).
-    for(var versuch=0;versuch<16;versuch++){
+    // Ueberlappungsflaeche verwendet (statt stur die letzte). Versuche bewusst
+    // begrenzt, damit sich ein Label bei viel Gedraenge nicht so weit von seinem
+    // eigenen Punkt entfernt, dass es wie zu einem anderen Hafen gehoerend wirkt
+    // (das war z.B. bei Unteruhldingen der Fall, Label landete nahe Friedrichshafen).
+    for(var versuch=0;versuch<10;versuch++){
       var tier=Math.floor(versuch/2);
       var radial=6.5+tier*2.3, jitter=(1.2+tier*2.6)*(versuch%2===0?jitterSign0:-jitterSign0);
       lx=pp[0]+dx*radial-dy*jitter;
@@ -948,10 +963,10 @@ function bodenseeKarteHTML(){
       if(flaeche===0) break;
     }
     lx=beste.lx; ly=beste.ly; anchor=beste.anchor; bbox=beste.bbox;
-    // Manuelle Feinkorrektur nach Rueckmeldung: Friedrichshafen beruehrte den
-    // "Obersee"-Bereichsnamen, Langenargen sass zu dicht an Kressbronn.
-    if(h===5){ ly-=8; bbox=bboxVon(lx,ly,anchor,textW); }
-    else if(h===6){ ly-=4; bbox=bboxVon(lx,ly,anchor,textW); }
+    if(KETTE_NORDUFER[h]){
+      if(ly<ketteNordLetzteY+9){ ly=ketteNordLetzteY+9; bbox=bboxVon(lx,ly,anchor,textW); }
+      ketteNordLetzteY=ly;
+    }
     bbox.eigen=-2;
     platziert.push(bbox);
     dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+anchor+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
