@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v82) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v83) – Stand: 17. Juli 2026
+   Neu gegenüber v82:
+   - Bodenseekarte: programmatisch aus Geodaten gezeichnete SVG-Karte durch
+     ein von Hand gezeichnetes Bild des Auftraggebers ersetzt (bodenseekarte.
+     webp, 1600px, ~110 KB, aus einer 4700px/5,2 MB-Ausgangsdatei verkleinert
+     und komprimiert). Löst das Beschriftungs-Kollisionsproblem endgültig,
+     da alle Namen schon fertig im Bild stehen. Pan/Zoom-Logik dafür entfernt
+     (nicht mehr nötig bei einem fertigen Bild statt einer Zeichenfläche),
+     Vollbild-Umschaltung bleibt erhalten. Live-Karte unverändert.
    Neu gegenüber v81:
    - Bugfix Schweiz-Tab (Überlinger See/Untersee/Schweiz): "Ziel wählen"-
      Ergebnisliste (Hin- und Rückfahrt) zeigte für heute immer den ganzen
@@ -503,7 +511,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v82';
+const CACHE = 'bootsmann-v83';
 const SHELL = [
   './',
   './index.html',
@@ -516,7 +524,8 @@ const SHELL = [
   './bootsmann.webmanifest',
   './bootsmann-icon-180.png',
   './bootsmann-icon-192.png',
-  './bootsmann-icon-512.png'
+  './bootsmann-icon-512.png',
+  './bodenseekarte.webp'
 ];
 
 self.addEventListener('install', e => {
