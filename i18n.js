@@ -87,7 +87,7 @@ var I18N={
     doc_title:"Bootsmann · Bodensee",
     h1_prefix:"Willkommen am",
     h1_lake:"Bodensee",
-    tile_bsb:"BSB Schifffahrt",
+    tile_bsb:"Ausflüge West",
     tile_bsb_sub:"Überlinger See / Untersee / Schweiz",
     tile_faehre:"Bodensee Fähre",
     tile_faehre_sub_html:"Konstanz <span class=\"arrow\">↔</span> Meersburg",
