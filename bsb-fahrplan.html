@@ -898,7 +898,11 @@ function bodenseeKarteHTML(){
   function bboxVon(lx,ly,anchor,textW){
     var x1=anchor==="start"?lx:(anchor==="end"?lx-textW:lx-textW/2);
     var x2=x1+textW;
-    return {x1:x1,x2:x2,y1:ly-6.5,y2:ly+2.5};
+    // Etwas grosszuegiger als das tatsaechlich gerenderte Glyphen-Rechteck
+    // (per getBBox() nachgemessen), damit die eigene "frei"-Pruefung nicht durch
+    // eine zu knapp geschaetzte Boundingbox knapp daneben liegende echte
+    // Ueberlappungen uebersieht.
+    return {x1:x1,x2:x2,y1:ly-7.8,y2:ly+3.2};
   }
   function ueberlappt(a,b){
     return !(a.x2<b.x1||a.x1>b.x2||a.y2<b.y1||a.y1>b.y2);
@@ -912,7 +916,17 @@ function bodenseeKarteHTML(){
   // nicht auf einem fremden Punkt landet (nur den eigenen Punkt spart jedes Label aus).
   var platziert=allXY.map(function(p){ return {x1:p[0]-2.6,x2:p[0]+2.6,y1:p[1]-2.6,y2:p[1]+2.6,eigen:-1}; });
   for(var pi=0;pi<platziert.length;pi++) platziert[pi].eigen=pi;
+  // Die grossen Bereichsnamen (Obersee usw.) muessen ebenfalls als Hindernis
+  // zaehlen, sonst kann ein Hafen-Label ungehindert durch sie hindurchlaufen
+  // (das ist frueher passiert: "Obersee" wurde von "Friedrichshafen" ueberschrieben,
+  // weil diese Pruefung fehlte).
+  for(var rl2=0;rl2<BKARTE_REGION_LABELS.length;rl2++){
+    var rlItem=BKARTE_REGION_LABELS[rl2], rlP=karteXY(rlItem.lat,rlItem.lng);
+    var rlTextW=t(rlItem.key).length*7.3;
+    platziert.push({x1:rlP[0]-rlTextW/2-1,x2:rlP[0]+rlTextW/2+1,y1:rlP[1]-12,y2:rlP[1]+3,eigen:-3});
+  }
   var dots="";
+  var hafenLabels=[];
   // Nordufer Meersburg bis Bregenz: die Haefen liegen (und ihre Beschriftungen
   // sollen entsprechend lesbar) in dieser Reihenfolge am Ufer. Die Punkte selbst
   // sind bereits in dieser Reihenfolge y-aufsteigend (Rueckmeldung bestaetigt),
@@ -940,7 +954,7 @@ function bodenseeKarteHTML(){
     // begrenzt, damit sich ein Label bei viel Gedraenge nicht so weit von seinem
     // eigenen Punkt entfernt, dass es wie zu einem anderen Hafen gehoerend wirkt
     // (das war z.B. bei Unteruhldingen der Fall, Label landete nahe Friedrichshafen).
-    for(var versuch=0;versuch<10;versuch++){
+    for(var versuch=0;versuch<18;versuch++){
       var tier=Math.floor(versuch/2);
       var radial=6.5+tier*2.3, jitter=(1.2+tier*2.6)*(versuch%2===0?jitterSign0:-jitterSign0);
       lx=pp[0]+dx*radial-dy*jitter;
@@ -961,11 +975,102 @@ function bodenseeKarteHTML(){
     lx=beste.lx; ly=beste.ly; anchor=beste.anchor; bbox=beste.bbox;
     if(KETTE_NORDUFER[h]){
       if(ly<ketteNordLetzteY+9){ ly=ketteNordLetzteY+9; bbox=bboxVon(lx,ly,anchor,textW); }
+      // Das Erzwingen der Reihenfolge darf kein neues Hindernis (z.B. einen
+      // Bereichsnamen) treffen - notfalls weiter nach unten ausweichen, bis frei.
+      for(var kv2=0;kv2<6;kv2++){
+        var kollidiert=false;
+        for(var kp2=0;kp2<platziert.length;kp2++){ if(platziert[kp2].eigen!==i&&ueberlappt(bbox,platziert[kp2])){ kollidiert=true; break; } }
+        if(!kollidiert) break;
+        ly+=3.5; bbox=bboxVon(lx,ly,anchor,textW);
+      }
       ketteNordLetzteY=ly;
     }
     bbox.eigen=-2;
     platziert.push(bbox);
-    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+anchor+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
+    hafenLabels.push({idx:i,lx:lx,ly:ly,anchor:anchor,textW:textW,bbox:bbox,text:PORTS[h]});
+  }
+  // Letzte Kontrolle ueber alle platzierten Labels hinweg (Hafen- UND Bereichs-
+  // namen): einzelne Sonderregeln oben (Ketten-Reihenfolge etc.) koennen sich
+  // gegenseitig neue Ueberschneidungen einhandeln, die die jeweils lokale Pruefung
+  // nicht sieht. Deshalb hier nochmal stumpf alle Paare pruefen und bei Kollision
+  // das juengere Label so lange nach aussen (weg vom eigenen Punkt) schieben, bis
+  // nichts mehr ueberlappt - das war der Punkt, an dem "Obersee" zuvor trotz
+  // Einzelpruefungen noch von einem Hafennamen ueberschrieben wurde.
+  // Kraft-basierte, gedaempfte Entzerrung statt einzelner sofortiger Vollausgleichs-
+  // Schritte: pro Durchlauf werden fuer jedes Label ALLE aktuellen Ueberlappungen
+  // zu einem Verschiebungsvektor aufsummiert und nur gedaempft (50%) angewendet.
+  // Ein einzelner Vollausgleich pro Kollision (wie zuvor) kann bei mehreren
+  // gleichzeitigen Kollisionen dauerhaft hin- und herpendeln, ohne je auf 0 zu
+  // kommen (beobachtet bei Bregenz/Altenrhein) - die Daempfung verhindert das.
+  // Nur gegen niedriger indizierte (schon "fixierte") Labels ausweichen, nie
+  // umgekehrt, damit die Reihenfolge/Ketten-Vorgaben oben erhalten bleiben.
+  var alleHindernisse=platziert.filter(function(b){ return b.eigen===-3; });
+  for(var relax=0;relax<60;relax++){
+    var maxVerschiebung=0;
+    for(var a=0;a<hafenLabels.length;a++){
+      var A=hafenLabels[a];
+      var fx=0, fy=0;
+      for(var b2=0;b2<a;b2++){
+        var B=hafenLabels[b2].bbox;
+        if(ueberlappt(A.bbox,B)){
+          var ox=Math.min(A.bbox.x2,B.x2)-Math.max(A.bbox.x1,B.x1);
+          var oy=Math.min(A.bbox.y2,B.y2)-Math.max(A.bbox.y1,B.y1);
+          var Amx=(A.bbox.x1+A.bbox.x2)/2, Bmx=(B.x1+B.x2)/2;
+          var Amy=(A.bbox.y1+A.bbox.y2)/2, Bmy=(B.y1+B.y2)/2;
+          if(ox<oy) fx+=(Amx<Bmx?-1:1)*(ox+2);
+          else fy+=(Amy<Bmy?-1:1)*(oy+2);
+        }
+      }
+      for(var rb=0;rb<alleHindernisse.length;rb++){
+        var B2=alleHindernisse[rb];
+        if(ueberlappt(A.bbox,B2)){
+          var ox2=Math.min(A.bbox.x2,B2.x2)-Math.max(A.bbox.x1,B2.x1);
+          var oy2=Math.min(A.bbox.y2,B2.y2)-Math.max(A.bbox.y1,B2.y1);
+          var Amx2=(A.bbox.x1+A.bbox.x2)/2, Bmx2=(B2.x1+B2.x2)/2;
+          var Amy2=(A.bbox.y1+A.bbox.y2)/2, Bmy2=(B2.y1+B2.y2)/2;
+          if(ox2<oy2) fx+=(Amx2<Bmx2?-1:1)*(ox2+2);
+          else fy+=(Amy2<Bmy2?-1:1)*(oy2+2);
+        }
+      }
+      if(fx!==0||fy!==0){
+        A.lx+=fx*0.5; A.ly+=fy*0.5;
+        A.bbox=bboxVon(A.lx,A.ly,A.anchor,A.textW);
+        maxVerschiebung=Math.max(maxVerschiebung,Math.abs(fx)+Math.abs(fy));
+      }
+    }
+    if(maxVerschiebung<0.3) break;
+  }
+  // Nachlauf-Bereinigung: bei mehreren gleichzeitigen Kollisionen kann sich die
+  // summierte Kraft oben rechnerisch fast aufheben, obwohl einzelne Paare noch
+  // ueberlappen (beobachtet bei Bregenz/Altenrhein/Rorschach in der engsten Ecke
+  // der Karte). Deshalb pro Label noch verbleibende Einzel-Kollisionen stur
+  // nacheinander mit vollem statt gedaempftem Ausgleich aufloesen.
+  for(var nachlauf=0;nachlauf<25;nachlauf++){
+    var nochKollision=false;
+    for(var na=0;na<hafenLabels.length;na++){
+      var NA=hafenLabels[na];
+      var nList=[];
+      for(var nb=0;nb<na;nb++) nList.push(hafenLabels[nb].bbox);
+      for(var nrb=0;nrb<alleHindernisse.length;nrb++) nList.push(alleHindernisse[nrb]);
+      for(var nk=0;nk<nList.length;nk++){
+        var NB=nList[nk];
+        if(ueberlappt(NA.bbox,NB)){
+          nochKollision=true;
+          var nox=Math.min(NA.bbox.x2,NB.x2)-Math.max(NA.bbox.x1,NB.x1);
+          var noy=Math.min(NA.bbox.y2,NB.y2)-Math.max(NA.bbox.y1,NB.y1);
+          var nAmx=(NA.bbox.x1+NA.bbox.x2)/2, nBmx=(NB.x1+NB.x2)/2;
+          var nAmy=(NA.bbox.y1+NA.bbox.y2)/2, nBmy=(NB.y1+NB.y2)/2;
+          if(nox<noy){ NA.lx+=(nAmx<nBmx?-1:1)*(nox+3); }
+          else{ NA.ly+=(nAmy<nBmy?-1:1)*(noy+3); }
+          NA.bbox=bboxVon(NA.lx,NA.ly,NA.anchor,NA.textW);
+        }
+      }
+    }
+    if(!nochKollision) break;
+  }
+  for(var hl=0;hl<hafenLabels.length;hl++){
+    var HL=hafenLabels[hl];
+    dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+HL.anchor+'" x="'+HL.lx.toFixed(1)+'" y="'+HL.ly.toFixed(1)+'">'+esc(HL.text)+'</text>';
   }
   var h3='<section class="lg-panel">'+
     '<div class="lg-map-wrap'+(bkarteVollbild?" is-vollbild":"")+'" id="lg-bkarte-wrap">'+
