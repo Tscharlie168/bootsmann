@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v93) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v94) – Stand: 17. Juli 2026
+   Neu gegenüber v93:
+   - Kachel-Beschriftungen auf der Startseite angepasst: "Ausflüge West"
+     zeigt jetzt oben "Überlinger See / Untersee / Schweiz", unten
+     "Ausflugsschiffe und Kursschiffe" (Name "Ausflüge West" nirgends mehr
+     angezeigt, i18n-Key tile_bsb entfernt). Bei den beiden unteren
+     Kacheln (Bodensee Fähre, Schnellschiff-Katamaran) Titel und
+     Untertitel getauscht: die Strecke (mit Pfeil) ist jetzt der fette
+     Titel, der Produktname der kleine Untertitel.
    Neu gegenüber v92:
    - Tab-Leiste ("Obersee & Bregenz" / "Überlinger See / Untersee /
      Schweiz") auf bsb-fahrplan.html komplett entfernt. Beide Bereiche
@@ -575,7 +583,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v93';
+const CACHE = 'bootsmann-v94';
 const SHELL = [
   './',
   './index.html',
