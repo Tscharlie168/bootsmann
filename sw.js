@@ -7,7 +7,9 @@
      See/Untersee eingefärbt (exakt dieselben Farben wie in der
      Von/Nach-Auswahl, Wiedererkennungswert), Schweizer Grenze
      gestrichelt, große Bereichsnamen direkt auf der Karte (Obersee,
-     Überlinger See, Untersee, 🇨🇭 Schweizer Ufer) – bewusst OHNE
+     Überlinger See, Untersee, 🇨🇭 Schweizer Ufer), Positionen nach
+     Rückmeldung noch in freie Wasserflächen verschoben statt über
+     Ortsnamen – bewusst OHNE
      Routenlinien oder Schiffe (Unterschied zur Live-Positionskarte).
      Zoombar/verschiebbar wie die Live-Karte (eigener State, damit die
      Live-Karte unberührt bleibt), inkl. Vollbild-Button. Eigene
