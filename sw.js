@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v89) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v90) – Stand: 17. Juli 2026
+   Neu gegenüber v89:
+   - Doppelpfeil (↔) in den Kachel-Untertiteln von Fähre/Katamaran auf der
+     Startseite vergrößert (17px statt geerbter 13px), da er zuvor kaum
+     zu erkennen war. Dafür die Untertitel-Keys auf data-i18n-html
+     umgestellt (Pfeil in eigenem .arrow-Span).
    Neu gegenüber v88:
    - Seitentitel auf katamaran.html von "Katamaran" zu "Schnellschiff-
      Katamaran" geändert, zweifarbig (weiß + Cyan) wie bei den anderen
@@ -549,7 +554,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v89';
+const CACHE = 'bootsmann-v90';
 const SHELL = [
   './',
   './index.html',
