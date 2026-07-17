@@ -22,7 +22,7 @@ select,input,button{font-family:inherit;}
 .lg-back{display:inline-flex;align-items:center;gap:6px;color:#0A2233;text-decoration:none;font-family:'Barlow Condensed',sans-serif;font-weight:600;font-size:15px;letter-spacing:.05em;text-transform:uppercase;background:#7FD5EA;border:1.5px solid #62D0E8;border-radius:999px;padding:9px 16px;-webkit-tap-highlight-color:transparent;cursor:pointer;}
 .lg-back:active{background:#62D0E8;border-color:#2BA6C9;}
 .lg-head h1{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:34px;line-height:1.04;margin:6px 0 0;letter-spacing:.01em;}
-.lg-head h1 span{color:#62D0E8;}
+.lg-head h1 .hl{color:#62D0E8;}
 .lg-sub{margin:8px 0 0;font-size:14px;color:#D5E6F1;}
 .lg-lang{display:flex;gap:6px;flex:none;}
 .lg-lang button{display:flex;flex-direction:column;align-items:center;gap:2px;background:rgba(255,255,255,.14);border:1.5px solid rgba(255,255,255,.3);border-radius:10px;padding:5px 7px;cursor:pointer;-webkit-tap-highlight-color:transparent;}
@@ -74,7 +74,7 @@ select,input,button{font-family:inherit;}
         <button class="lg-back" onclick="zurueck()" data-i18n="back_btn">‹ Zurück</button>
         <div id="lg-lang-slot"></div>
       </div>
-      <h1 data-i18n="tile_kat">Katamaran</h1>
+      <h1><span data-i18n="kat_h1_plain">Schnellschiff-</span><span class="hl" data-i18n="kat_h1_hl">Katamaran</span></h1>
       <p class="lg-sub" data-i18n="kat_season">Saison 2026 · 1. Apr – 4. Okt</p>
     </div>
     <svg class="lg-wave" viewBox="0 0 1440 44" preserveAspectRatio="none"><path d="M0 44V20c120-16 260-16 380 0s260 16 380 0 260-16 380 0 200 12 300 6v18z"/></svg>
