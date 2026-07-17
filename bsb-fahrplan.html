@@ -928,10 +928,6 @@ function bodenseeKarteHTML(){
     dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
     var dx=pp[0]-midX, dy=pp[1]-midY, dist=Math.max(Math.hypot(dx,dy),1);
     dx/=dist; dy/=dist;
-    // Unteruhldingen liegt zwischen Hagnau/Immenstaad und Friedrichshafen sehr
-    // dicht gedraengt; die zentrumsradiale Richtung zeigt dort ins vollbesetzte
-    // Ufer. Stattdessen nach Sueden (in die freie Wasserflaeche) ausweichen.
-    if(h===41){ dx=0; dy=1; }
     var jitterSign0=(i%2===0?1:-1);
     var textW=PORTS[h].length*4.3;
     var lx,ly,anchor,bbox;
