@@ -38,7 +38,8 @@ select,input,button{font-family:inherit;}
 .lg-panel{padding:18px 16px 8px;}
 .lg-szw-head{margin:0 0 12px;}
 .lg-szw-label{display:block;font-family:'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.05em;font-size:23px;font-weight:700;color:var(--navy);margin-bottom:4px;}
-.lg-szw-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:16px;}
+.lg-szw-group{border-radius:14px;padding:12px 12px 2px;margin-bottom:14px;}
+.lg-szw-chips{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:10px;}
 .lg-szw-chip{border:2px solid var(--azure);background:#fff;border-radius:999px;padding:11px 18px;font-size:15px;font-weight:600;color:var(--navy);cursor:pointer;transition:.15s;box-shadow:0 1px 2px rgba(16,58,90,.08);}
 .lg-szw-chip:hover{background:var(--sky);}
 .lg-szw-chip.is-on{background:var(--blue);border-color:var(--blue);color:#fff;font-weight:700;box-shadow:0 2px 8px rgba(21,103,158,.35);}
@@ -621,16 +622,25 @@ function schweizRueckfahrtHTML(destIdx, date){
 function schweizHTML(){
   var dest=state.schweizDest;
   var h='<section class="lg-panel">';
-  h+='<div class="lg-szw-head"><span class="lg-szw-label">'+t("szw_ziel_waehlen")+'</span></div>';
-  h+='<div class="lg-szw-chips">';
-  for(var i=0;i<SCHWEIZ_ZIELE.length;i++){
-    var z=SCHWEIZ_ZIELE[i];
-    var on=(dest===z.idx);
-    h+='<button class="lg-szw-chip'+(on?" is-on":"")+'" data-sdest="'+z.idx+'">';
-    h+=esc(z.name)+'</button>';
-  }
-  h+='</div>';
   h+='<div class="lg-note" style="margin-bottom:16px">'+t("szw_hilfe")+'</div>';
+  h+='<div class="lg-szw-head"><span class="lg-szw-label">'+t("szw_ziel_waehlen")+'</span></div>';
+  // Ziele nach Seebereich farblich gruppiert (dieselben Farben wie im Von/Nach-
+  // Auswahldialog: SELECT_GROUP_COLORS), damit die Zuordnung sofort erkennbar
+  // ist. Obersee (Gruppe 0) taucht hier nicht auf, SCHWEIZ_ZIELE ist bereits in
+  // dieser Gruppenreihenfolge sortiert.
+  for(var g=1;g<SELECT_GROUPS.length;g++){
+    var grp=SELECT_GROUPS[g],col=SELECT_GROUP_COLORS[g];
+    var mitglieder=SCHWEIZ_ZIELE.filter(function(z){ return grp[1].indexOf(z.idx)!==-1; });
+    if(!mitglieder.length) continue;
+    h+='<div class="lg-szw-group" style="background:'+col.bg+'"><div class="lg-szw-chips">';
+    for(var i=0;i<mitglieder.length;i++){
+      var z=mitglieder[i];
+      var on=(dest===z.idx);
+      h+='<button class="lg-szw-chip'+(on?" is-on":"")+'" data-sdest="'+z.idx+'">';
+      h+=esc(z.name)+'</button>';
+    }
+    h+='</div></div>';
+  }
   if(dest!==null){
     var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
     var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';

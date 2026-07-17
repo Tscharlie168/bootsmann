@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v78) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v79) – Stand: 17. Juli 2026
+   Neu gegenüber v78:
+   - BSB-Seite, Tab "Überlinger See / Untersee / Schweiz": gelber Hinweiskasten
+     ("Wählen Sie zuerst den Zielort...") jetzt oben vor "Ziel wählen" statt
+     darunter. Die Ziel-Chips sind jetzt nach Seebereich farblich hinterlegt
+     (Grün/Beige/Lila, dieselben Farben wie im Von/Nach-Auswahldialog), damit
+     die Zuordnung zu Überlinger See/Untersee/Schweizer Ufer auf einen Blick
+     erkennbar ist.
    Neu gegenüber v77:
    - Bodenseekarte: Ortsnamen-Beschriftung komplett entfernt (weder Häfen-
      noch Bereichsnamen). Die Kollisionsvermeidung für dicht beieinander-
@@ -479,7 +486,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v78';
+const CACHE = 'bootsmann-v79';
 const SHELL = [
   './',
   './index.html',
