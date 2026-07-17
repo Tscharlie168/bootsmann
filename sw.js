@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v75) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v76) – Stand: 17. Juli 2026
+   Neu gegenüber v75:
+   - Startseite: die 3 Info-Kacheln (Bodenseekarte/Live-Positionskarte/
+     Hinweise) waren als 3-Spalten-Raster zu dominant im Vergleich zu
+     den 3 Haupt-Kacheln darüber. Zurück zum schmalen Zeilen-Muster
+     (Icon links, Name, Chevron rechts), volle Breite, untereinander
+     gestapelt – neue `.tiles-stack`/`.tile-row`-Klassen. Neue
+     Überschrift "Informationen" darüber, analog zu "Womit wollen Sie
+     fahren?" über den Haupt-Kacheln.
    Neu gegenüber v74 (Schritt 3 von 3 der BSB-Tab-Umstrukturierung):
    - Neue "Bodenseekarte": Orientierungskarte, erreichbar über
      bsb-fahrplan.html?tab=bodenseekarte und neue dritte Startseiten-
@@ -443,7 +451,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v75';
+const CACHE = 'bootsmann-v76';
 const SHELL = [
   './',
   './index.html',

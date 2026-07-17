@@ -94,6 +94,7 @@ var I18N={
     tile_hinweise:"Hinweise",
     tile_bodenseekarte:"Bodenseekarte",
     womit_fahren:"Womit wollen Sie fahren?",
+    informationen_lbl:"Informationen",
     naechster_hafen_lbl:"Nächster Hafen",
     route_btn:"Route",
     ruf_hint:"Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.",
