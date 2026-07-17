@@ -199,6 +199,8 @@ var I18N={
     ruf_vorbei_html:"Die letzte Rückfahrt heute ab <b>{to}</b> ({time} Uhr) ist schon vorbei.",
     ruf_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
     ruf_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
+    ruf_unmoeglich_heute_html:"Mit den angezeigten Verbindungen ist heute keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft.",
+    ruf_unmoeglich_am_html:"Mit den angezeigten Verbindungen ist am {date} keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft.",
     ruf2_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b>",
     ruf2_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b>",
 
