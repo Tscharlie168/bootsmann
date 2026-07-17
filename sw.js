@@ -1,4 +1,13 @@
-/* Bootsmann – Service Worker (v86) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v87) – Stand: 17. Juli 2026
+   Neu gegenüber v86:
+   - Die drei Fahrzeug-Kacheln ("Womit wollen Sie fahren?") auf der
+     Startseite von nebeneinander (Grid) auf übereinander (Liste im
+     Tile-Row-Stil wie die Informationen-Liste) umgestellt, jeweils mit
+     Untertitel: BSB Schifffahrt – Überlinger See/Untersee/Schweiz,
+     Bodensee Fähre – Pendelverkehr Konstanz–Meersburg, Katamaran jetzt
+     "Schnellschiff-Katamaran" – Pendelverkehr Friedrichshafen–Konstanz
+     (eigener i18n-Key nur für die Home-Kachel, katamaran.html-Überschrift
+     bleibt unverändert "Katamaran").
    Neu gegenüber v85:
    - Das Feld "Nächster Hafen" + "Nächste Abfahrt" ganz oben auf der
      Startseite komplett entfernt (samt zugehöriger i18n-Keys, CSS-Klassen
@@ -528,7 +537,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v86';
+const CACHE = 'bootsmann-v87';
 const SHELL = [
   './',
   './index.html',
