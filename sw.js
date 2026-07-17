@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v81) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v82) – Stand: 17. Juli 2026
+   Neu gegenüber v81:
+   - Bugfix Schweiz-Tab (Überlinger See/Untersee/Schweiz): "Ziel wählen"-
+     Ergebnisliste (Hin- und Rückfahrt) zeigte für heute immer den ganzen
+     Tagesfahrplan, auch bereits abgefahrene Kurse. Jetzt wie im Haupt-
+     Fahrplaner: vergangene Abfahrten für heute ausgeblendet, mit Hinweis
+     "Vergangene Abfahrten sind ausgeblendet."
    Neu gegenüber v80:
    - Bugfix "Rückfahrt heute/am"-Karte im Haupt-Fahrplaner: zeigte bisher immer
      die spätestmögliche Rückfahrt des Tages an, auch wenn die angezeigte
@@ -497,7 +503,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v81';
+const CACHE = 'bootsmann-v82';
 const SHELL = [
   './',
   './index.html',
