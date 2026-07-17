@@ -87,6 +87,7 @@ var I18N={
     doc_title:"Bootsmann · Bodensee",
     h1_prefix:"Willkommen am",
     h1_lake:"Bodensee",
+    tile_obersee_sub:"Ausflugsschiffe/Kursschiffe",
     tile_bsb:"Ausflüge West",
     tile_bsb_sub:"Überlinger See / Untersee / Schweiz",
     tile_faehre:"Bodensee Fähre",
