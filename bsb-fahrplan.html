@@ -165,6 +165,8 @@ select,input,button{font-family:inherit;}
 .lg-map-wrap svg{display:block;width:100%;height:56vh;max-height:520px;}
 .lg-map-wrap.is-vollbild{position:fixed;inset:0;z-index:1000;margin:0;border-radius:0;}
 .lg-map-wrap.is-vollbild svg{width:100%;height:100%;max-height:none;}
+.lg-bkarte-img{display:block;width:100%;height:56vh;max-height:520px;object-fit:contain;}
+.lg-map-wrap.is-vollbild .lg-bkarte-img{height:100%;max-height:none;}
 .lg-map-see{stroke-width:1.1;stroke-linejoin:round;}
 .lg-map-see--obersee{fill:#A9D4E8;stroke:#7EB6D9;}
 .lg-map-see--ueberlingen{fill:#5FBFCE;stroke:#379AAA;}
@@ -195,12 +197,6 @@ select,input,button{font-family:inherit;}
 .lg-map-wrap.is-vollbild .lg-map-info b{font-size:19px;}
 .lg-map-wrap.is-vollbild .lg-map-fs,.lg-map-wrap.is-vollbild .lg-map-locate{top:max(10px,env(safe-area-inset-top));}
 
-/* Bodenseekarte: eigene Farben je Seebereich, exakt wie in der Von/Nach-Auswahl
-   (SELECT_GROUP_COLORS), damit man den Bereich sofort wiedererkennt. Eigene
-   Klassen statt .lg-map-see--*, damit die Live-Karte unveraendert bleibt. */
-.lg-bkarte-obersee{fill:#E3F2FA;stroke:#B7D6EB;}
-.lg-bkarte-ueberlingen{fill:#E9F5EC;stroke:#BFE0C9;}
-.lg-bkarte-untersee{fill:#FBF0E0;stroke:#EBD3A8;}
 </style>
 </head>
 <body>
@@ -877,44 +873,15 @@ function karteHTML(){
   return h2;
 }
 
-/* Statische Orientierungskarte: alle wählbaren Häfen beschriftet, nach
-   Seebereich eingefärbt (exakt die Farben aus der Von/Nach-Auswahl),
-   keine Routenlinien/Schiffe (bewusst reduziert, damit sie im Gegensatz
-   zur Live-Karte übersichtlich bleibt). Zoom/Pan wie die Live-Karte,
-   aber eigener State (bkarteView/bkarteVollbild), damit die Live-Karte
-   unberührt bleibt. Eigene Neuzeichnung aus unseren Geodaten
-   (COORDS/Seeumrisse) – keine Übernahme aus dem gedruckten
-   VSU-Fahrplan. */
-var bkarteView=null, bkarteVollbild=false;
+/* Statische Orientierungskarte: von Hand gezeichnetes Bild (Auftraggeber),
+   ersetzt die vorherige programmatisch aus Geodaten gezeichnete SVG-Karte.
+   Nur noch Vollbild-Umschaltung (kein Pan/Zoom mehr noetig, da es ein
+   fertiges Bild statt einer SVG-Zeichenflaeche ist). */
+var bkarteVollbild=false;
 function bodenseeKarteHTML(){
-  function ringPfad(ring){
-    return "M"+ring.map(function(p){var xy=karteXY(p[0],p[1]);return xy[0].toFixed(1)+","+xy[1].toFixed(1);}).join("L")+"Z";
-  }
-  function linPfad(ring){
-    return ring.map(function(p,i){var xy=karteXY(p[0],p[1]);return (i===0?"M":"L")+xy[0].toFixed(1)+","+xy[1].toFixed(1);}).join("");
-  }
-  var seeBg='<path class="lg-map-see lg-bkarte-obersee" d="'+ringPfad(BODENSEE_UMRISS)+'"/>'+
-    '<path class="lg-map-see lg-bkarte-untersee" d="'+ringPfad(BODENSEE_UNTERSEE)+'"/>'+
-    '<path class="lg-map-see lg-bkarte-untersee" d="'+ringPfad(BODENSEE_RHEIN_WEST)+'"/>'+
-    '<path class="lg-map-see lg-bkarte-ueberlingen" d="'+ringPfad(BODENSEE_UEBERLINGER_SEE)+'"/>'+
-    '<path class="lg-map-kontur" d="'+ringPfad(BODENSEE_UMRISS)+'"/>'+
-    '<path class="lg-map-kontur" d="'+ringPfad(BODENSEE_RHEIN_WEST)+'"/>'+
-    '<path class="lg-map-grenze" d="'+linPfad(GRENZE_CH)+'"/>';
-  var regionLabels="";
-  // Bewusst ohne jede Beschriftung (weder Bereichsnamen noch Ortsnamen) - nur
-  // Seeflaeche farblich nach Bereich eingefaerbt plus Hafenpunkte. Die Namen
-  // stehen ohnehin schon in der Von/Nach-Auswahl; hier zaehlt nur der schnelle
-  // Farb-Ueberblick, ohne das Label-Ueberlappungsproblem einer Kartenbeschriftung.
-  var dots="";
-  for(var i=0;i<SELECTABLE.length;i++){
-    var h=SELECTABLE[i];
-    var pp=karteXY(COORDS[h][0],COORDS[h][1]);
-    var chCls=REGION_SCHWEIZ[h]?" lg-map-hafen--ch":"";
-    dots+='<circle class="lg-map-hafen'+chCls+'" cx="'+pp[0].toFixed(1)+'" cy="'+pp[1].toFixed(1)+'" r="2.4"/>';
-  }
   var h3='<section class="lg-panel">'+
     '<div class="lg-map-wrap'+(bkarteVollbild?" is-vollbild":"")+'" id="lg-bkarte-wrap">'+
-    '<svg viewBox="'+(bkarteView?bkarteView.x.toFixed(1)+" "+bkarteView.y.toFixed(1)+" "+bkarteView.w.toFixed(1)+" "+bkarteView.h.toFixed(1):"0 0 "+KARTE_BASIS.w+" "+KARTE_BASIS.h)+'" preserveAspectRatio="xMidYMid meet">'+seeBg+regionLabels+dots+'</svg>'+
+    '<img class="lg-bkarte-img" src="bodenseekarte.webp" alt="'+esc(t("bkrt_h1_plain")+t("bkrt_h1_hl"))+'">'+
     '<button type="button" class="lg-map-fs" id="lg-bkarte-fs" title="'+(bkarteVollbild?t("krt_vollbild_verlassen"):t("krt_vollbild_anzeigen"))+'">'+(bkarteVollbild?"&#10005;":"&#9974;")+'</button>'+
     '</div>'+
     '<p class="lg-map-hint">'+t("bkrt_hint_html")+'</p>';
@@ -922,105 +889,13 @@ function bodenseeKarteHTML(){
   h3+='</section>';
   return h3;
 }
-function bkarteKlemmen(v){
-  var aspect=v.w/v.h;
-  v.w=Math.max(KARTE_MIN_W,Math.min(KARTE_BASIS.w,v.w));
-  v.h=v.w/aspect;
-  if(v.h>KARTE_BASIS.h){ v.h=KARTE_BASIS.h; v.w=v.h*aspect; }
-  if(v.x<0)v.x=0; if(v.y<0)v.y=0;
-  if(v.x>KARTE_BASIS.w-v.w)v.x=Math.max(0,KARTE_BASIS.w-v.w);
-  if(v.y>KARTE_BASIS.h-v.h)v.y=Math.max(0,KARTE_BASIS.h-v.h);
-  return v;
-}
 function bkarteBindMap(){
-  var svg=document.querySelector("#lg-bkarte-wrap svg");
-  if(!svg) return;
-  if(!bkarteView){
-    // Startansicht: auf den tatsaechlich mit Haefen belegten Bereich zugeschnitten
-    // (statt Live-Karte-Standardzoom), damit man am Anfang alles auf einen Blick sieht.
-    var minX=1e9,maxX=-1e9,minY=1e9,maxY=-1e9;
-    for(var i=0;i<SELECTABLE.length;i++){
-      var pp=karteXY(COORDS[SELECTABLE[i]][0],COORDS[SELECTABLE[i]][1]);
-      if(pp[0]<minX)minX=pp[0]; if(pp[0]>maxX)maxX=pp[0];
-      if(pp[1]<minY)minY=pp[1]; if(pp[1]>maxY)maxY=pp[1];
-    }
-    var padX=30, padY=22;
-    var w=maxX-minX+2*padX, h=maxY-minY+2*padY;
-    var cx=(minX+maxX)/2, cy=(minY+maxY)/2;
-    bkarteView=bkarteKlemmen({x:cx-w/2,y:cy-h/2,w:w,h:h});
-    svg.setAttribute("viewBox",bkarteView.x.toFixed(1)+" "+bkarteView.y.toFixed(1)+" "+bkarteView.w.toFixed(1)+" "+bkarteView.h.toFixed(1));
-  }
   var fsBtn=document.getElementById("lg-bkarte-fs");
   if(fsBtn) fsBtn.addEventListener("click",function(){
     bkarteVollbild=!bkarteVollbild;
-    bkarteView=null;
     document.body.style.overflow=bkarteVollbild?"hidden":"";
     render();
   });
-  function svgPunkt(clientX,clientY){
-    var rect=svg.getBoundingClientRect();
-    return {x:bkarteView.x+(clientX-rect.left)/rect.width*bkarteView.w,
-      y:bkarteView.y+(clientY-rect.top)/rect.height*bkarteView.h};
-  }
-  function anwenden(){
-    svg.setAttribute("viewBox",bkarteView.x.toFixed(1)+" "+bkarteView.y.toFixed(1)+" "+bkarteView.w.toFixed(1)+" "+bkarteView.h.toFixed(1));
-  }
-  var pts={},downPt=null,downView=null,pinchDist=0,pinchView=null,pinchMid=null;
-  svg.addEventListener("pointerdown",function(e){
-    svg.setPointerCapture(e.pointerId);
-    pts[e.pointerId]={x:e.clientX,y:e.clientY};
-    var ids=Object.keys(pts);
-    if(ids.length===1){
-      downPt={x:e.clientX,y:e.clientY}; downView={x:bkarteView.x,y:bkarteView.y,w:bkarteView.w,h:bkarteView.h};
-    }else if(ids.length===2){
-      var p1=pts[ids[0]],p2=pts[ids[1]];
-      pinchDist=Math.hypot(p2.x-p1.x,p2.y-p1.y);
-      pinchView={x:bkarteView.x,y:bkarteView.y,w:bkarteView.w,h:bkarteView.h};
-      pinchMid=svgPunkt((p1.x+p2.x)/2,(p1.y+p2.y)/2);
-    }
-  });
-  svg.addEventListener("pointermove",function(e){
-    if(!pts[e.pointerId]) return;
-    pts[e.pointerId]={x:e.clientX,y:e.clientY};
-    var ids=Object.keys(pts);
-    if(ids.length===1&&downPt){
-      var rect=svg.getBoundingClientRect();
-      var dxC=e.clientX-downPt.x, dyC=e.clientY-downPt.y;
-      var dx=dxC/rect.width*downView.w, dy=dyC/rect.height*downView.h;
-      bkarteView=bkarteKlemmen({x:downView.x-dx,y:downView.y-dy,w:downView.w,h:downView.h});
-      anwenden();
-      e.preventDefault();
-    }else if(ids.length===2&&pinchDist>0){
-      var p1=pts[ids[0]],p2=pts[ids[1]];
-      var dist=Math.hypot(p2.x-p1.x,p2.y-p1.y);
-      var factor=pinchDist/Math.max(dist,1);
-      var pinchAspect=pinchView.w/pinchView.h;
-      var newW=pinchView.w*factor, newH=newW/pinchAspect;
-      var nx=pinchMid.x-(pinchMid.x-pinchView.x)*(newW/pinchView.w);
-      var ny=pinchMid.y-(pinchMid.y-pinchView.y)*(newH/pinchView.h);
-      bkarteView=bkarteKlemmen({x:nx,y:ny,w:newW,h:newH});
-      anwenden();
-      e.preventDefault();
-    }
-  });
-  function bkarteUp(e){
-    delete pts[e.pointerId];
-    if(Object.keys(pts).length<2) pinchDist=0;
-    downPt=null;
-  }
-  svg.addEventListener("pointerup",bkarteUp);
-  svg.addEventListener("pointercancel",bkarteUp);
-  svg.addEventListener("wheel",function(e){
-    e.preventDefault();
-    var mid=svgPunkt(e.clientX,e.clientY);
-    var factor=e.deltaY>0?1.15:1/1.15;
-    var wheelAspect=bkarteView.w/bkarteView.h;
-    var newW=bkarteView.w*factor, newH=newW/wheelAspect;
-    var nx=mid.x-(mid.x-bkarteView.x)*(newW/bkarteView.w);
-    var ny=mid.y-(mid.y-bkarteView.y)*(newH/bkarteView.h);
-    bkarteView=bkarteKlemmen({x:nx,y:ny,w:newW,h:newH});
-    anwenden();
-  },{passive:false});
 }
 
 function hinweiseHTML(){
@@ -1193,7 +1068,7 @@ function render(){
   var main=document.getElementById("lg-main");
   if(karteTimer){ clearInterval(karteTimer); karteTimer=null; }
   if(state.tab!=="karte"){ karteView=null; if(karteVollbild){ karteVollbild=false; document.body.style.overflow=""; } } // Zoom/Pan/Vollbild beim Verlassen des Tabs zuruecksetzen
-  if(state.tab!=="bodenseekarte"){ bkarteView=null; if(bkarteVollbild){ bkarteVollbild=false; document.body.style.overflow=""; } }
+  if(state.tab!=="bodenseekarte"&&bkarteVollbild){ bkarteVollbild=false; document.body.style.overflow=""; }
   if(state.tab==="planer") main.innerHTML=planerHTML();
   else if(state.tab==="schweiz") main.innerHTML=schweizHTML();
   else if(state.tab==="karte"){
@@ -1337,7 +1212,6 @@ document.addEventListener("keydown",function(e){
   }
   if(e.key==="Escape"&&bkarteVollbild){
     bkarteVollbild=false;
-    bkarteView=null;
     document.body.style.overflow="";
     render();
   }
