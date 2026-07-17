@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v90) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v91) – Stand: 17. Juli 2026
+   Neu gegenüber v90:
+   - Home-Kachel "BSB Schifffahrt" umbenannt in "Ausflüge West" (nur die
+     Kachel auf der Startseite; der Seitentitel auf bsb-fahrplan.html
+     bleibt unverändert "BSB Schifffahrt").
    Neu gegenüber v89:
    - Doppelpfeil (↔) in den Kachel-Untertiteln von Fähre/Katamaran auf der
      Startseite vergrößert (17px statt geerbter 13px), da er zuvor kaum
@@ -554,7 +558,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v90';
+const CACHE = 'bootsmann-v91';
 const SHELL = [
   './',
   './index.html',
