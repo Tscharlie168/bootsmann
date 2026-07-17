@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v87) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v88) – Stand: 17. Juli 2026
+   Neu gegenüber v87:
+   - Untertitel der Fähre- und Katamaran-Kachel auf der Startseite gekürzt:
+     "Pendelverkehr Konstanz – Meersburg" → "Konstanz ↔ Meersburg" (analog
+     Katamaran), Doppelpfeil statt Wort "Pendelverkehr" und Gedankenstrich.
    Neu gegenüber v86:
    - Die drei Fahrzeug-Kacheln ("Womit wollen Sie fahren?") auf der
      Startseite von nebeneinander (Grid) auf übereinander (Liste im
@@ -537,7 +541,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v87';
+const CACHE = 'bootsmann-v88';
 const SHELL = [
   './',
   './index.html',
