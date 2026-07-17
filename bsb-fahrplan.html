@@ -858,7 +858,7 @@ var BKARTE_REGION_LABELS=[
   {key:"bkrt_lbl_obersee", lat:47.635, lng:9.66, cls:"obersee"},
   {key:"bkrt_lbl_ueberlingen", lat:47.815, lng:9.245, cls:"ueberlingen"},
   {key:"bkrt_lbl_untersee", lat:47.60, lng:8.865, cls:"untersee"},
-  {key:"bkrt_lbl_schweiz", lat:47.53, lng:9.19, cls:"schweiz"}
+  {key:"bkrt_lbl_schweiz", lat:47.505, lng:9.14, cls:"schweiz"}
 ];
 var BKARTE_REGION_COLORS={obersee:"#0F5C86",ueberlingen:"#1F6B3F",untersee:"#8C5A16",schweiz:"#7A3E82"};
 function bodenseeKarteHTML(){
@@ -948,6 +948,10 @@ function bodenseeKarteHTML(){
       if(flaeche===0) break;
     }
     lx=beste.lx; ly=beste.ly; anchor=beste.anchor; bbox=beste.bbox;
+    // Manuelle Feinkorrektur nach Rueckmeldung: Friedrichshafen beruehrte den
+    // "Obersee"-Bereichsnamen, Langenargen sass zu dicht an Kressbronn.
+    if(h===5){ ly-=8; bbox=bboxVon(lx,ly,anchor,textW); }
+    else if(h===6){ ly-=4; bbox=bboxVon(lx,ly,anchor,textW); }
     bbox.eigen=-2;
     platziert.push(bbox);
     dots+='<text class="lg-map-hafen-label" style="font-size:8px;text-anchor:'+anchor+'" x="'+lx.toFixed(1)+'" y="'+ly.toFixed(1)+'">'+esc(PORTS[h])+'</text>';
