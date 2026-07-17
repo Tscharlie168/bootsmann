@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v88) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v89) – Stand: 17. Juli 2026
+   Neu gegenüber v88:
+   - Seitentitel auf katamaran.html von "Katamaran" zu "Schnellschiff-
+     Katamaran" geändert, zweifarbig (weiß + Cyan) wie bei den anderen
+     Unterseiten (BSB Schifffahrt, Bodensee Fähre). CSS-Selektor dafür von
+     generischem "h1 span" auf ".hl"-Klasse vereinheitlicht, analog zu
+     autofaehre.html/bsb-fahrplan.html. Ungenutzten i18n-Key "tile_kat"
+     (alle 4 Sprachen) entfernt, da nur noch tile_kat_home (Startseite)
+     gebraucht wird.
    Neu gegenüber v87:
    - Untertitel der Fähre- und Katamaran-Kachel auf der Startseite gekürzt:
      "Pendelverkehr Konstanz – Meersburg" → "Konstanz ↔ Meersburg" (analog
@@ -541,7 +549,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v88';
+const CACHE = 'bootsmann-v89';
 const SHELL = [
   './',
   './index.html',
