@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v107) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v108) – Stand: 18. Juli 2026
+   Neu gegenüber v107:
+   - Kachel-Titel 1 und 2 auf der Hauptseite von Regionsnamen zu
+     Funktionsnamen umbenannt: Kachel 1 "Alle Verbindungen" / "inkl.
+     Umsteigen und Rückfahrt" (statt "Obersee & Bregenz"), Kachel 2
+     "Rückwärtssuche" / "für Überlinger / Untersee / Schweiz" (statt
+     "Überlingen / Untersee / Schweiz"). Hintergrund: Testkunden
+     verstanden die Regionsnamen als Einschränkung ("darf ich nur hier
+     fahren?"), obwohl Kachel 1 alle Strecken abdeckt. Die Orientierungs-
+     Skizze bleibt unverändert als reine geografische Übersicht, ohne
+     direkte 1:1-Zuordnung zu den Kacheln. EN/FR/NL mitübersetzt.
    Neu gegenüber v106:
    - "Keine Rückfahrt mehr möglich"-Meldung in der Standardsuche (Kachel 1)
      ergänzt um den Tipp, stattdessen die Rückwärtssuche auf der
@@ -664,7 +674,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v107';
+const CACHE = 'bootsmann-v108';
 const SHELL = [
   './',
   './index.html',
