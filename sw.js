@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v96) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v97) – Stand: 18. Juli 2026
+   Neu gegenüber v96:
+   - Punkt 10 aus dem Fahrplan-Prüfbericht geklärt: Laut offiziellem
+     URh-Plakatfahrplan 2026 (eigenständige Quelle, direkt vom Betreiber)
+     laufen die Kreuzlingen↔Schaffhausen-Kernkurse (528/536/550/558/525/
+     533/543/551) in der Hauptsaison (14.5.–13.9.) täglich, OHNE Mo/Di-
+     Ausschluss. Der bisherige Mo/Di-Ausschluss im Code war ein Fehler
+     und wurde entfernt.
    Neu gegenüber v95:
    - Fahrplandaten-Korrekturen nach vollständigem Abgleich mit dem
      VSU-Fahrplan 2026 (alle 16 PDF-Seiten gegen fahrplan-daten.js geprüft):
@@ -602,7 +609,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v96';
+const CACHE = 'bootsmann-v97';
 const SHELL = [
   './',
   './index.html',
