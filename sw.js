@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v106) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v107) – Stand: 18. Juli 2026
+   Neu gegenüber v106:
+   - "Keine Rückfahrt mehr möglich"-Meldung in der Standardsuche (Kachel 1)
+     ergänzt um den Tipp, stattdessen die Rückwärtssuche auf der
+     Startseite zu nutzen (alle Rückfahrt-Optionen auf einen Blick statt
+     einzelne Häfen durchprobieren). EN/FR/NL mitübersetzt.
    Neu gegenüber v105:
    - Unterzeilen der ersten beiden Kacheln erklären jetzt die Funktion
      statt nur das Produkt: Kachel 1 "Alle Verbindungen inkl. Umstieg"
@@ -659,7 +664,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v106';
+const CACHE = 'bootsmann-v107';
 const SHELL = [
   './',
   './index.html',
