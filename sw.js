@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v108) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v109) – Stand: 18. Juli 2026
+   Neu gegenüber v108:
+   - Rückfahrt-Hinweistext ("Verfügbare Rückfahrten werden direkt bei
+     den Hinfahrt-Zeiten angezeigt.") unterhalb der 4 Hauptkacheln
+     entfernt: redundant, seit Kachel 1 ("inkl. ... Rückfahrt") und
+     Kachel 2 ("Rückwärtssuche") das schon selbst sagen. i18n-Key
+     ruf_hint, .ruf-note-CSS und HTML in allen 4 Sprachen entfernt.
+   - Kachel "Route zum nächstgelegenen Hafen" zu "Zum nächstgelegenen
+     Hafen" gekürzt (EN/FR/NL mitübersetzt).
    Neu gegenüber v107:
    - Kachel-Titel 1 und 2 auf der Hauptseite von Regionsnamen zu
      Funktionsnamen umbenannt: Kachel 1 "Alle Verbindungen" / "inkl.
@@ -674,7 +682,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v108';
+const CACHE = 'bootsmann-v109';
 const SHELL = [
   './',
   './index.html',
