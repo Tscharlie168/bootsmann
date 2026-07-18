@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v113) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v114) – Stand: 18. Juli 2026
+   Neu gegenüber v113:
+   - "Keine Rückfahrt mehr möglich"-Meldung in der Standardsuche
+     verweist jetzt auf "Verbindungen für kleine Häfen" statt auf den
+     veralteten Namen "Rückwärtssuche" (Kachel wurde in PR #119
+     umbenannt, dieser Verweistext war noch nicht angepasst).
+     EN/FR/NL mitübersetzt.
    Neu gegenüber v112:
    - Erklärungsbox auf der "Verbindungen für kleine Häfen"-Seite
      überarbeitet: neuer Titel "Finden statt suchen!" jetzt oberhalb
@@ -715,7 +721,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v113';
+const CACHE = 'bootsmann-v114';
 const SHELL = [
   './',
   './index.html',
