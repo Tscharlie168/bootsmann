@@ -1,4 +1,15 @@
-/* Bootsmann – Service Worker (v109) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v110) – Stand: 18. Juli 2026
+   Neu gegenüber v109:
+   - Hauptseite umstrukturiert nach Testkunden-Feedback (Kachel 2 als
+     "Rückwärtssuche" wurde missverstanden): Kachel 1 "Alle
+     Verbindungen" jetzt groß/prominent als eigene Sektion oben (neue
+     `.tile-row--primary`-CSS-Klasse). Neue Sektion "Pendelverkehr" mit
+     Fähre + Katamaran. Neue Sektion "Verbindungen für kleine Häfen"
+     mit der vormaligen Kachel 2, jetzt mit konkreten Regionsnamen als
+     Titel ("Überlinger / Untersee / Schweiz") statt Funktionsnamen.
+     Nebenbei behobener Bug: HTML-Fallback-Text von "womit_fahren" war
+     seit PR #108 nicht mehr mit dem i18n.js-Wert synchron. EN/FR/NL
+     mitübersetzt.
    Neu gegenüber v108:
    - Rückfahrt-Hinweistext ("Verfügbare Rückfahrten werden direkt bei
      den Hinfahrt-Zeiten angezeigt.") unterhalb der 4 Hauptkacheln
@@ -682,7 +693,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v109';
+const CACHE = 'bootsmann-v110';
 const SHELL = [
   './',
   './index.html',
