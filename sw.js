@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v114) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v115) – Stand: 18. Juli 2026
+   Neu gegenüber v114:
+   - Doppeltes gelbes SBS/URh-Hinweisfenster auf der "Verbindungen für
+     kleine Häfen"-Seite behoben: erschien bisher sowohl zwischen
+     Hinfahrt- und Rückfahrt-Ergebnissen als auch nochmal ganz am Ende.
+     Erste (mittlere) Instanz entfernt, verbleibt nur noch am Ende.
    Neu gegenüber v113:
    - "Keine Rückfahrt mehr möglich"-Meldung in der Standardsuche
      verweist jetzt auf "Verbindungen für kleine Häfen" statt auf den
@@ -721,7 +726,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v114';
+const CACHE = 'bootsmann-v115';
 const SHELL = [
   './',
   './index.html',
