@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v105) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v106) – Stand: 18. Juli 2026
+   Neu gegenüber v105:
+   - Unterzeilen der ersten beiden Kacheln erklären jetzt die Funktion
+     statt nur das Produkt: Kachel 1 "Alle Verbindungen inkl. Umstieg"
+     (Standard-Von/Nach-Suche über alle Häfen), Kachel 2 "Rückwärtssuche
+     für sichere Rückfahrt" (Ziel-zuerst-Suche für Untersee/Schweiz/
+     Überlinger See, wo wenige Schiffe fahren und eine Rückfahrt am
+     selben Tag oft nicht möglich ist). Kachel-Titel unverändert, damit
+     sie weiter zur Orientierungs-Skizze passen. EN/FR/NL mitübersetzt.
    Neu gegenüber v104:
    - Vollständiger EN/FR/NL-Übersetzungsabgleich in i18n.js: 35 Schlüssel
      ergänzt, die bislang nur auf Deutsch existierten (Orientierungs-
@@ -651,7 +659,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v105';
+const CACHE = 'bootsmann-v106';
 const SHELL = [
   './',
   './index.html',
