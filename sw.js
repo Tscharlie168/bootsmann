@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v103) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v104) – Stand: 18. Juli 2026
+   Neu gegenüber v103:
+   - Doppelpfeil zwischen den Ortsnamen bei Fähre/Katamaran-Kachel von
+     Textzeichen "↔" (hing je nach Schrift-Fallback zu tief) auf ein
+     zentriertes SVG-Icon im Stil der übrigen App-Icons umgestellt.
    Neu gegenüber v102:
    - Untertitel der ersten beiden Kacheln auf der Hauptseite von
      "Ausflugsschiffe (Weiße Flotte)" zu "Linienschiffe (Weiße Flotte)"
@@ -637,7 +641,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v103';
+const CACHE = 'bootsmann-v104';
 const SHELL = [
   './',
   './index.html',
