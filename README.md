@@ -61,7 +61,7 @@ python3 -m http.server 8000
 
 Siehe `CLAUDE.md` für den verbindlichen Arbeitsablauf (main als einzige
 Datenquelle, PR-Workflow) sowie `STRATEGIE-APP-STORE.md`,
-`PRODUKT-IDEEN.md` und `KATAMARAN-DATEN.md` für den laufenden
-Diskussions- und Umsetzungsstand.
+`STORE-CHECKLISTE.md`, `PRODUKT-IDEEN.md` und `KATAMARAN-DATEN.md` für
+den laufenden Diskussions- und Umsetzungsstand.
 
 Angaben ohne Gewähr.

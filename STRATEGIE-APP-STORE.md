@@ -140,5 +140,15 @@ Store-Provision.
 - [x] README.md aktualisiert (Hotel-Bezug entfernt, Stand 14.07.2026)
 - [ ] Prüfen, ob die e.K. bereits eine D-U-N-S-Nummer hat; falls nicht,
       sofort beantragen
-- [ ] Konkrete Checkliste mit Zeitplan für Store-Launch erstellen
+- [x] Konkrete Checkliste mit Zeitplan für Store-Launch erstellt –
+      siehe `STORE-CHECKLISTE.md` (Stand 18.07.2026)
 - [ ] Budget-Entscheidung treffen, sobald Ertragserwartung konkreter ist
+
+## Ergänzung 18.07.2026
+
+- Der geplante mehrtägige "Komoot-artige" Reiseplaner (mehrere Fahrten,
+  zwei Umstiege, Speichern) ist als **separater In-App-Kauf** vorgesehen,
+  erst nachdem die Basis-App im Store läuft – kein Launch-Blocker.
+- Hauptverzeichnis soll auf eine eigene Subdomain umziehen (noch nicht
+  angelegt) – wichtig für die Reihenfolge in `STORE-CHECKLISTE.md`
+  (muss vor der Android-TWA-Einrichtung stehen).
