@@ -1,4 +1,11 @@
-/* Bootsmann – Service Worker (v112) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v113) – Stand: 18. Juli 2026
+   Neu gegenüber v112:
+   - Erklärungsbox auf der "Verbindungen für kleine Häfen"-Seite
+     überarbeitet: neuer Titel "Finden statt suchen!" jetzt oberhalb
+     der Box (statt fetter Zeile innerhalb), Box-Text in zwei Absätze
+     aufgeteilt (neuer i18n-Key szw_hilfe2). Label über der ersten
+     Farbgruppe von "Ziel wählen" zu "Zielhafen wählen" geändert.
+     EN/FR/NL mitübersetzt.
    Neu gegenüber v111:
    - Auf der "Verbindungen für kleine Häfen"-Seite (tab=schweiz): den
      drei Farbgruppen (Überlinger See/Untersee/Schweiz) Titel
@@ -708,7 +715,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v112';
+const CACHE = 'bootsmann-v113';
 const SHELL = [
   './',
   './index.html',
