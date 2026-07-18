@@ -104,7 +104,7 @@ var I18N={
     tile_karte:"Live-Positionskarte",
     tile_hinweise:"Hinweise",
     tile_route_hafen:"Route zum nächstgelegenen Hafen",
-    womit_fahren:"Womit wollen Sie fahren?",
+    womit_fahren:"Wohin möchten Sie fahren?",
     informationen_lbl:"Informationen",
     ruf_hint:"Verfügbare Rückfahrten werden direkt bei den Hinfahrt-Zeiten angezeigt.",
     nach_prefix:"nach ",
