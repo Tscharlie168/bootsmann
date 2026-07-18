@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v97) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v98) – Stand: 18. Juli 2026
+   Neu gegenüber v97:
+   - Herbst-Gültigkeit Kreuzlingen↔Schaffhausen nach URh-Plakatfahrplan
+     präzisiert: allgemeines Herbstfenster endet 30.9. (nicht 4.10.);
+     danach 1.10.–18.10. (statt 5.10.) laufen nur noch Kurs 533/536,
+     weiterhin täglich; "nicht am 3.10." (Tag der Deutschen Einheit) aus
+     der ursprünglichen VSU-Quelle bleibt als Ausnahme bestehen.
    Neu gegenüber v96:
    - Punkt 10 aus dem Fahrplan-Prüfbericht geklärt: Laut offiziellem
      URh-Plakatfahrplan 2026 (eigenständige Quelle, direkt vom Betreiber)
@@ -609,7 +615,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v97';
+const CACHE = 'bootsmann-v98';
 const SHELL = [
   './',
   './index.html',
