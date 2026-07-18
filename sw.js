@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v100) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v101) – Stand: 18. Juli 2026
+   Neu gegenüber v100:
+   - Kachel-Titel "Überlinger See / Untersee / Schweiz" auf der
+     Hauptseite zu "Überlingen / Untersee / Schweiz" gekürzt, damit er
+     auf einer Zeile passt statt umzubrechen.
    Neu gegenüber v99:
    - Überschrift über den vier Kacheln von "Womit wollen Sie fahren?" zu
      "Wohin möchten Sie fahren?" geändert, passend zur neuen
@@ -626,7 +630,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v100';
+const CACHE = 'bootsmann-v101';
 const SHELL = [
   './',
   './index.html',
