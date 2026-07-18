@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v111) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v112) – Stand: 18. Juli 2026
+   Neu gegenüber v111:
+   - Auf der "Verbindungen für kleine Häfen"-Seite (tab=schweiz): den
+     drei Farbgruppen (Überlinger See/Untersee/Schweiz) Titel
+     hinzugefügt, analog zur Hauptauswahl (gleiche i18n-Keys grp_*,
+     gleiche Label-Optik wie im Von/Nach-Auswahldialog). Außerdem
+     Ergebnis-Block (Hin-/Rückfahrt) nicht mehr erst ganz am Ende nach
+     allen drei Gruppen angezeigt, sondern direkt unter der Farbgruppe,
+     in der das angeklickte Ziel liegt – Testkunden hatten das lange
+     Scrollen zum bisherigen Ergebnis-Block übersehen und dachten, es
+     passiert nichts.
    Neu gegenüber v110:
    - Hinweisbox auf der "Verbindungen für kleine Häfen"-Seite
      (tab=schweiz) um fette Überschrift "Ziel wählen – Starthäfen
@@ -698,7 +708,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v111';
+const CACHE = 'bootsmann-v112';
 const SHELL = [
   './',
   './index.html',

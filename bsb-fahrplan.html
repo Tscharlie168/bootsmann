@@ -631,6 +631,33 @@ function schweizRueckfahrtHTML(destIdx, date){
   return h;
 }
 
+/* Ergebnis-Block (Hin-/Rückfahrt) für ein gewähltes Ziel. Wird direkt
+   unter der Farbgruppe eingefügt, in der das Ziel liegt – nicht erst
+   ganz am Ende nach allen Gruppen, damit er ohne langes Scrollen
+   sichtbar ist (Testkunden haben das sonst übersehen). */
+function schweizErgebnisHTML(dest){
+  var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
+  var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';
+  var h='<div class="lg-card" style="margin:14px 0 18px">';
+  // Hinfahrt
+  h+='<div style="'+hd+'">'+t("szw_hinfahrt_titel")+esc(PORTS[dest])+'</div>';
+  h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
+  h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_hinfahrt")+'</span>';
+  h+='<input type="date" id="lg-szwdate" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
+  h+='<button class="lg-daynext" id="lg-szwdatenext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
+  h+=schweizAbfahrtenHTML(dest,state.date);
+  // Rückfahrt
+  var retDate=state.schweizRet||state.date;
+  h+='<div style="'+hd+';margin-top:26px;padding-top:18px;border-top:2px solid var(--sky)">'+t("szw_rueckfahrt_titel")+esc(PORTS[dest])+'</div>';
+  h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
+  h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_rueckfahrt")+'</span>';
+  h+='<input type="date" id="lg-szwretdate" min="2026-05-14" max="2026-09-13" value="'+retDate+'"></label>';
+  h+='<button class="lg-daynext" id="lg-szwretdatenext"'+(retDate>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
+  h+=schweizRueckfahrtHTML(dest,retDate);
+  h+='</div>';
+  return h;
+}
+
 function schweizHTML(){
   var dest=state.schweizDest;
   var h='<section class="lg-panel">';
@@ -644,7 +671,7 @@ function schweizHTML(){
     var grp=SELECT_GROUPS[g],col=SELECT_GROUP_COLORS[g];
     var mitglieder=SCHWEIZ_ZIELE.filter(function(z){ return grp[1].indexOf(z.idx)!==-1; });
     if(!mitglieder.length) continue;
-    h+='<div class="lg-szw-group" style="background:'+col.bg+'"><div class="lg-szw-chips">';
+    h+='<div class="lg-szw-group" style="background:'+col.bg+'"><div class="lg-picker-group-label" style="color:'+col.label+'">'+t(grp[0])+'</div><div class="lg-szw-chips">';
     for(var i=0;i<mitglieder.length;i++){
       var z=mitglieder[i];
       var on=(dest===z.idx);
@@ -652,25 +679,7 @@ function schweizHTML(){
       h+=esc(z.name)+'</button>';
     }
     h+='</div></div>';
-  }
-  if(dest!==null){
-    var hd='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.06em;font-size:21px;font-weight:700;color:var(--navy);margin:8px 0 10px';
-    var lbl='font-family:\'Barlow Condensed\',sans-serif;text-transform:uppercase;letter-spacing:.1em;font-size:12px;font-weight:600;color:var(--muted)';
-    // Hinfahrt
-    h+='<div style="'+hd+'">'+t("szw_hinfahrt_titel")+esc(PORTS[dest])+'</div>';
-    h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
-    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_hinfahrt")+'</span>';
-    h+='<input type="date" id="lg-szwdate" min="2026-05-14" max="2026-09-13" value="'+state.date+'"></label>';
-    h+='<button class="lg-daynext" id="lg-szwdatenext"'+(state.date>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
-    h+=schweizAbfahrtenHTML(dest,state.date);
-    // Rückfahrt
-    var retDate=state.schweizRet||state.date;
-    h+='<div style="'+hd+';margin-top:26px;padding-top:18px;border-top:2px solid var(--sky)">'+t("szw_rueckfahrt_titel")+esc(PORTS[dest])+'</div>';
-    h+='<div style="display:flex;align-items:flex-end;gap:8px;flex-wrap:wrap">';
-    h+='<label class="lg-field lg-field--date" style="display:flex;flex-direction:column;gap:5px;max-width:200px"><span style="'+lbl+'">'+t("szw_tag_rueckfahrt")+'</span>';
-    h+='<input type="date" id="lg-szwretdate" min="2026-05-14" max="2026-09-13" value="'+retDate+'"></label>';
-    h+='<button class="lg-daynext" id="lg-szwretdatenext"'+(retDate>=SAISON_MAX?" disabled":"")+' aria-label="'+t("pl_naechster_tag_aria")+'">'+t("pl_naechster_tag_btn")+'</button></div>';
-    h+=schweizRueckfahrtHTML(dest,retDate);
+    if(dest!==null&&grp[1].indexOf(dest)!==-1) h+=schweizErgebnisHTML(dest);
   }
   var destIstSchweiz=dest!==null&&REGION_SCHWEIZ[dest];
   h+='<div class="lg-card" style="margin-top:18px"><h3>'+t("szw_praktisch_h")+'</h3><ul>'+
