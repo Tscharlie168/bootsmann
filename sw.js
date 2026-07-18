@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v110) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v111) – Stand: 18. Juli 2026
+   Neu gegenüber v110:
+   - Hinweisbox auf der "Verbindungen für kleine Häfen"-Seite
+     (tab=schweiz) um fette Überschrift "Ziel wählen – Starthäfen
+     finden" ergänzt, Fließtext neu formuliert (neuer i18n-Key
+     szw_hilfe_h, szw_hilfe-Text aktualisiert). EN/FR/NL mitübersetzt.
    Neu gegenüber v109:
    - Hauptseite umstrukturiert nach Testkunden-Feedback (Kachel 2 als
      "Rückwärtssuche" wurde missverstanden): Kachel 1 "Alle
@@ -693,7 +698,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v110';
+const CACHE = 'bootsmann-v111';
 const SHELL = [
   './',
   './index.html',

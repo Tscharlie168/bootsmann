@@ -217,7 +217,8 @@ var I18N={
     grp_schweiz:"Schweizer Ufer (SBS)",
 
     szw_ziel_waehlen:"Ziel wählen",
-    szw_hilfe:"Wählen Sie zuerst den Zielort. Anschließend werden alle Häfen angezeigt, von denen aus Sie zum Zielhafen fahren können — teils nur wenige Verbindungen am Tag. Für die Rückfahrt gilt dasselbe.",
+    szw_hilfe_h:"Ziel wählen – Starthäfen finden",
+    szw_hilfe:"Wählen Sie Ihr Ziel. Wir zeigen Ihnen alle Häfen, von denen aus heute Schiffe dorthin abfahren. So sehen Sie sofort, ob ein Nachbarhafen in Ihrer Nähe eine bessere Verbindung oder Rückfahrt bietet.",
     szw_hinfahrt_titel:"Hinfahrt — nach ",
     szw_tag_hinfahrt:"Tag der Hinfahrt",
     szw_rueckfahrt_titel:"Rückfahrt — ab ",
@@ -363,7 +364,8 @@ var I18N={
     grp_schweiz:"Swiss shore (SBS)",
 
     szw_ziel_waehlen:"Choose destination",
-    szw_hilfe:"First choose your destination here. You'll then see all departure points and times to get there, and can pick whichever departure point suits your time and travel plans. The same applies for the return trip.",
+    szw_hilfe_h:"Choose destination – find departure harbours",
+    szw_hilfe:"Choose your destination. We'll show you all harbours from which boats depart there today. This way you can see immediately whether a nearby harbour offers a better connection or return trip.",
     szw_hinfahrt_titel:"Outward trip — to ",
     szw_tag_hinfahrt:"Day of outward trip",
     szw_rueckfahrt_titel:"Return trip — from ",
@@ -545,7 +547,8 @@ var I18N={
     grp_schweiz:"Rive suisse (SBS)",
 
     szw_ziel_waehlen:"Choisir la destination",
-    szw_hilfe:"Choisissez d'abord la destination ici. Vous verrez alors tous les points et heures de départ pour vous y rendre, et pourrez choisir le point de départ qui convient le mieux à votre horaire et à votre trajet. Il en va de même pour le retour.",
+    szw_hilfe_h:"Choisir la destination – trouver les ports de départ",
+    szw_hilfe:"Choisissez votre destination. Nous vous montrons tous les ports d'où partent aujourd'hui des bateaux vers cette destination. Vous voyez ainsi immédiatement si un port voisin offre une meilleure liaison ou un meilleur retour.",
     szw_hinfahrt_titel:"Aller — vers ",
     szw_tag_hinfahrt:"Jour de l'aller",
     szw_rueckfahrt_titel:"Retour — depuis ",
@@ -727,7 +730,8 @@ var I18N={
     grp_schweiz:"Zwitserse oever (SBS)",
 
     szw_ziel_waehlen:"Bestemming kiezen",
-    szw_hilfe:"Kies hier eerst de bestemming. U ziet dan alle vertrekpunten en -tijden daarnaartoe en kunt zelf kiezen welk vertrekpunt bij uw tijd en reis past. Voor de terugreis geldt hetzelfde.",
+    szw_hilfe_h:"Bestemming kiezen – vertrekhavens vinden",
+    szw_hilfe:"Kies uw bestemming. Wij tonen u alle havens van waaruit vandaag boten daarheen vertrekken. Zo ziet u meteen of een naburige haven een betere verbinding of terugreis biedt.",
     szw_hinfahrt_titel:"Heenreis — naar ",
     szw_tag_hinfahrt:"Dag van de heenreis",
     szw_rueckfahrt_titel:"Terugreis — vanaf ",
