@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v98) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v99) – Stand: 18. Juli 2026
+   Neu gegenüber v98:
+   - Neue Orientierungs-Skizze auf der Hauptseite oberhalb der vier
+     Kacheln: zeigt Obersee & Bregenz, Überlinger See, Untersee und
+     Schweizer Ufer anhand derselben echten Küstenlinien-Daten und
+     Farben wie die Live-Positionskarte (reine Anzeige, nicht
+     interaktiv), als Orientierungshilfe für die Kachel-Auswahl.
    Neu gegenüber v97:
    - Herbst-Gültigkeit Kreuzlingen↔Schaffhausen nach URh-Plakatfahrplan
      präzisiert: allgemeines Herbstfenster endet 30.9. (nicht 4.10.);
@@ -615,7 +621,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v98';
+const CACHE = 'bootsmann-v99';
 const SHELL = [
   './',
   './index.html',
