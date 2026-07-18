@@ -1,4 +1,7 @@
-/* Bootsmann – Service Worker (v101) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v102) – Stand: 18. Juli 2026
+   Neu gegenüber v101:
+   - Kachel-Titel der Fähre auf der Hauptseite von "Konstanz ↔ Meersburg"
+     zu "Meersburg ↔ Konstanz" getauscht.
    Neu gegenüber v100:
    - Kachel-Titel "Überlinger See / Untersee / Schweiz" auf der
      Hauptseite zu "Überlingen / Untersee / Schweiz" gekürzt, damit er
@@ -630,7 +633,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v101';
+const CACHE = 'bootsmann-v102';
 const SHELL = [
   './',
   './index.html',

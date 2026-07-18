@@ -98,7 +98,7 @@ var I18N={
     tile_bsb_sub:"Überlingen / Untersee / Schweiz",
     tile_west_sub:"Ausflugsschiffe (Weiße Flotte)",
     tile_faehre:"Bodensee Autofähre",
-    tile_faehre_sub_html:"Konstanz <span class=\"arrow\">↔</span> Meersburg",
+    tile_faehre_sub_html:"Meersburg <span class=\"arrow\">↔</span> Konstanz",
     tile_kat_home:"Schnellschiff-Katamaran",
     tile_kat_home_sub_html:"Friedrichshafen <span class=\"arrow\">↔</span> Konstanz",
     tile_karte:"Live-Positionskarte",
