@@ -37,7 +37,7 @@ var COURSES = [
   {"no":142,"svc":"restaurant","line":"obersee","stops":[[11, "10:25", "10:25"], [10, "10:47", "10:55"], [9, "11:15", "11:15"], [8, "11:25", "11:25"], [7, "11:35", "11:35"], [6, "11:55", "11:55"], [5, "12:20", "12:20"]]},
   {"no":132,"svc":"snack","line":"obersee","stops":[[5, "12:30", "12:30"], [4, "13:00", "13:00"], [3, "13:15", "13:15"], [2, "13:30", "13:40"], [0, "14:10", "14:10"]]},
   {"no":124,"svc":"snack","line":"obersee","stops":[[11, "12:15", "12:15"], [10, "12:37", "12:50"], [9, "13:10", "13:10"], [8, "13:20", "13:20"], [7, "13:30", "13:30"], [6, "13:50", "13:50"], [5, "14:15", "14:15"]]},
-  {"no":152,"svc":"snack","line":"obersee","stops":[[2, "13:40", "13:40"], [1, "14:35", "14:35"], [0, "15:05", "15:05"]]},
+  {"no":152,"svc":"snack","line":"obersee","stops":[[1, "14:35", "14:35"], [0, "15:05", "15:05"]]},
   {"no":122,"svc":"snack","line":"obersee","stops":[[11, "11:10", "11:10"], [10, "11:32", "11:32"]]},
   {"no":144,"svc":"restaurant","line":"obersee","stops":[[11, "14:30", "14:30"], [10, "14:52", "15:00"], [9, "15:20", "15:20"], [8, "15:30", "15:30"], [7, "15:40", "15:40"], [6, "16:00", "16:00"], [5, "16:25", "16:25"]]},
   {"no":134,"svc":"snack","line":"obersee","stops":[[2, "15:40", "15:40"], [1, "16:05", "16:05"], [0, "16:35", "16:35"]]},
@@ -75,6 +75,7 @@ var COURSES = [
   {"no":312,"svc":"restaurant","line":"sbs","stops":[[30,"14:20","14:20"],[9,"15:15","15:15"],[10,"15:40","15:40"]]},
   {"no":306,"svc":"restaurant","line":"sbs","stops":[[30,"17:05","17:05"],[9,"17:50","17:50"],[10,"18:15","18:15"]]},
   // Lindau → Rorschach
+  {"no":301,"svc":"snack","line":"sbs","stops":[[10,"9:25","9:25"],[9,"9:45","9:45"],[30,"10:35","10:35"]]},
   {"no":303,"svc":"snack","line":"sbs","stops":[[10,"11:45","11:45"],[9,"12:05","12:05"],[30,"12:55","12:55"]]},
   {"no":73,"svc":"restaurant","line":"sbs","stops":[[10,"13:10","13:10"],[30,"14:06","14:06"]]},
   {"no":305,"svc":"restaurant","line":"sbs","stops":[[10,"15:50","15:50"],[30,"16:51","16:51"]]},
@@ -84,8 +85,8 @@ var COURSES = [
   // === Romanshorn – Arbon – Langenargen – Rorschach, Quelle: VSU-Fahrplan
   // 2026 S. 10, nur 27.6.–13.9. (line "sbs-2706") ===
   // Romanshorn/Arbon → Langenargen
-  {"no":7220,"svc":"restaurant","line":"sbs-2706","stops":[[28,"08:50","08:50"],[29,"09:20","09:23"],[6,"10:05","10:05"]]},
-  {"no":7222,"svc":"restaurant","line":"sbs-2706","stops":[[28,"12:05","12:05"],[29,"12:35","12:38"],[6,"13:20","13:20"]]},
+  {"no":7220,"svc":"restaurant","line":"sbs-2706","stops":[[28,"08:50","08:50"],[29,"09:20","09:23"],[6,"10:05","10:10"],[30,"10:52","10:52"]]},
+  {"no":7222,"svc":"restaurant","line":"sbs-2706","stops":[[28,"12:05","12:05"],[29,"12:35","12:38"],[6,"13:20","13:25"],[30,"14:07","14:07"]]},
   {"no":7223,"svc":"restaurant","line":"sbs-2706","stops":[[29,"14:38","14:38"],[6,"15:20","15:20"]]},
   // Rorschach → Horn → Arbon → Romanshorn
   {"no":7221,"svc":"restaurant","line":"sbs-2706","stops":[[30,"11:02","11:02"],[31,"11:17","11:17"],[29,"11:27","11:30"],[28,"12:00","12:00"]]},
@@ -146,7 +147,7 @@ var COURSES = [
   {"no":405,"svc":"restaurant","line":"obersee","stops":[[0,"16:20","16:20"],[2,"16:50","17:00"],[1,"17:20","17:25"],[41,"17:40","17:40"],[42,"18:00","18:00"],[43,"18:15","18:15"]]},
   {"no":415,"svc":"restaurant","line":"obersee","stops":[[0,"18:05","18:05"],[2,"18:35","18:45"],[1,"19:05","19:05"],[41,"19:15","19:15"],[43,"19:35","19:35"]]},
   // Überlingen → Konstanz
-  {"no":402,"svc":"restaurant","line":"obersee","stops":[[43,"10:05","10:05"],[42,"10:15","10:15"],[41,"10:35","10:35"],[1,"10:50","11:00"],[2,"11:20","11:35"],[0,"12:05","12:05"]]},
+  {"no":402,"svc":"restaurant","line":"obersee","stops":[[43,"10:05","10:05"],[42,"10:15","10:15"],[41,"10:35","10:35"],[2,"11:20","11:35"],[0,"12:05","12:05"]]},
   {"no":412,"svc":"restaurant","line":"obersee","stops":[[43,"11:40","11:40"],[42,"11:55","11:55"],[41,"12:15","12:15"],[1,"12:30","12:40"],[2,"13:00","13:10"],[0,"13:40","13:40"]]},
   {"no":"4002e","svc":"snack","line":"obersee","stops":[[1,"13:15","13:15"],[2,"13:30","13:30"]]},
   {"no":462,"svc":"snack","line":"ueberlingen-fn3","stops":[[43,"13:10","13:10"],[42,"13:20","13:20"],[41,"13:40","13:40"],[1,"13:55","14:00"],[2,"14:20","14:20"]]},
@@ -157,11 +158,12 @@ var COURSES = [
   {"no":414,"svc":"restaurant","line":"obersee","stops":[[43,"16:05","16:05"],[42,"16:15","16:15"],[41,"16:35","16:35"],[1,"16:50","16:55"],[2,"17:15","17:25"],[0,"17:55","17:55"]]},
   {"no":406,"svc":"restaurant","line":"obersee","stops":[[43,"18:25","18:25"],[42,"18:35","18:35"],[41,"19:10","19:10"],[2,"19:30","19:35"],[0,"20:05","20:05"]]},
   {"no":416,"svc":"restaurant","line":"obersee","stops":[[43,"19:40","19:40"],[42,"19:50","19:50"],[2,"20:30","20:30"],[0,"21:00","21:00"]]},
-  // === Konstanz ↔ Bregenz, zwei Nebensaison-Schnellkurse ohne Hauptsaison-
-  // Entsprechung, Quelle: VSU-Fahrplan 2026 S. 3, nur 14.9.–4.10. Sa/So
-  // (line "obersee", Gültigkeit siehe courseValidOn) ===
-  {"no":157,"svc":"restaurant","line":"obersee","stops":[[0,"14:40","14:40"],[2,"15:35","15:40"],[10,"17:20","17:25"],[11,"17:47","17:47"]]},
-  {"no":158,"svc":"snack","line":"obersee","stops":[[11,"9:15","9:15"],[10,"9:37","9:45"],[2,"11:25","11:35"],[1,"12:00","12:00"],[0,"12:30","12:30"]]},
+  // === Konstanz ↔ Bregenz, Schnellkurse 157/158, Quelle: VSU-Fahrplan 2026
+  // S. 3 (Nebensaison, Fußnote 1) und S. 5/6 (Hauptsaison, Fußnote 3):
+  // 14.5.–3.7. nur Sa/So+Feiertag, 4.7.–13.9. Do–So, 14.9.–4.10. Sa/So
+  // (line "obersee-schnellkurs", Gültigkeit siehe courseValidOn) ===
+  {"no":157,"svc":"restaurant","line":"obersee-schnellkurs","stops":[[0,"14:40","14:40"],[1,"15:15","15:15"],[2,"15:35","15:40"],[10,"17:20","17:25"],[11,"17:47","17:47"]]},
+  {"no":158,"svc":"snack","line":"obersee-schnellkurs","stops":[[11,"9:15","9:15"],[10,"9:37","9:45"],[2,"11:25","11:35"],[1,"12:00","12:00"],[0,"12:30","12:30"]]},
   // === Konstanz ↔ Überlingen, eigene Nebensaison-Kurse (andere Zeiten als
   // die Hauptsaison-Kurse gleicher Nummer!), Quelle: VSU-Fahrplan 2026 S. 4,
   // täglich 3.4.–13.5. und 14.9.–18.10. (line "ueberlingen-neben") ===
@@ -235,8 +237,8 @@ function exception(no,fromIdx,toIdx,date){
    Gueltigkeit erweitert, keine neuen Kurse noetig. */
 var UNTERSEE_558_533={558:1,533:1};
 var SBS_MEERSBURG_NR={7040:1,7011:1,7044:1,7021:1,7012:1,7041:1,7022:1,7045:1};
-var SBS_RORSCHACH_LINDAU_NR={302:1,72:1,304:1,312:1,306:1,303:1,73:1,305:1,313:1,7042:1,7043:1};
-var SBS_RORSCHACH_LINDAU_KEIN_WOCHENTAG={306:1,313:1}; // die spaeten Kurse fahren werktags in der Nebensaison nicht
+var SBS_RORSCHACH_LINDAU_NR={301:1,302:1,72:1,304:1,312:1,306:1,303:1,73:1,305:1,313:1,7042:1,7043:1};
+var SBS_RHEINECK_NR={10:1,20:1,30:1,50:1}; // Rorschach<->Rheineck, S.10: laeuft bis 4.10. statt nur 13.9.
 // Konstanz-Überlingen-Kurse: eigene Nebensaison-Zeiten unter "ueberlingen-neben",
 // deshalb hier von der obersee-Nebensaison-Erweiterung ausgenommen.
 var OBERSEE_UEB_ZWEIG={401:1,411:1,"4001e":1,403:1,"4003e":1,413:1,"4005e":1,"4007e":1,405:1,415:1,
@@ -268,11 +270,6 @@ function courseValidOn(c,dObj,dStr){
   }
   if(c.line==="obersee"){
     if(dStr>="2026-05-14"&&dStr<="2026-09-13") return true; // Hauptsaison: alle Kurse taeglich
-    // 157/158 (Schnellkurs): NUR 14.9.-4.10. Sa/So, keine Hauptsaison-Entsprechung (S. 3, Fußnote 1)
-    if(c.no===157||c.no===158){
-      if(dStr>="2026-09-14"&&dStr<="2026-10-04"){ var wo=dObj.getDay(); return wo===0||wo===6; }
-      return false;
-    }
     // Nebensaison-Erweiterung (S. 3): dieselben Kursnummern, ausser den
     // Konstanz-Ueberlingen-Kursen (eigene Zeiten, siehe "ueberlingen-neben")
     if(!OBERSEE_UEB_ZWEIG[c.no] && ((dStr>="2026-04-03"&&dStr<="2026-05-13")||(dStr>="2026-09-14"&&dStr<="2026-10-18")))
@@ -296,12 +293,14 @@ function courseValidOn(c,dObj,dStr){
       if((dStr>="2026-04-03"&&dStr<="2026-05-13")||(dStr>="2026-09-14"&&dStr<="2026-10-18")){
         if(nebenIstWeFeiertag(dObj,dStr)) return true;
       }
-      if(!SBS_RORSCHACH_LINDAU_KEIN_WOCHENTAG[c.no]&&dStr>="2026-09-14"&&dStr<="2026-10-02"){
+      if(dStr>="2026-09-14"&&dStr<="2026-10-02"){
         var w4=dObj.getDay(); return w4>=1&&w4<=5;
       }
       return false;
     }
-    return false; // andere sbs-Kurse (Rorschach-Rheineck, Kreuzlingen-Hagnau u.a.): nur Hauptsaison
+    // Rorschach<->Rheineck (S.10): laeuft taeglich bis 4.10., nicht nur 13.9.
+    if(SBS_RHEINECK_NR[c.no]&&dStr>="2026-09-14"&&dStr<="2026-10-04") return true;
+    return false; // andere sbs-Kurse (Kreuzlingen-Hagnau u.a.): nur Hauptsaison
   }
   if(c.line==="sbs-fr"){
     // Freitags 27.06–13.09.2026
@@ -331,6 +330,22 @@ function courseValidOn(c,dObj,dStr){
     var w3=dObj.getDay();
     if(dStr<="2026-07-03") return w3===0||w3===6||FEIERTAGE.indexOf(dStr)!==-1;
     return w3===0||w3===4||w3===5||w3===6;
+  }
+  if(c.line==="obersee-schnellkurs"){
+    // Konstanz-Bregenz Kurse 157/158 (S.5/6, Fußnote 3): 14.5.-3.7. nur
+    // Sa/So+Feiertag, 4.7.-13.9. Do-So; zusaetzlich Nebensaison-Randzeit
+    // 14.9.-4.10. Sa/So (S.3, Fußnote 1)
+    var FEIERTAGE_SK=["2026-05-14","2026-05-24","2026-05-25","2026-06-04"];
+    if(dStr>="2026-05-14"&&dStr<="2026-07-03"){
+      var wsk=dObj.getDay(); return wsk===0||wsk===6||FEIERTAGE_SK.indexOf(dStr)!==-1;
+    }
+    if(dStr>="2026-07-04"&&dStr<="2026-09-13"){
+      var wsk2=dObj.getDay(); return wsk2===0||wsk2===4||wsk2===5||wsk2===6;
+    }
+    if(dStr>="2026-09-14"&&dStr<="2026-10-04"){
+      var wsk3=dObj.getDay(); return wsk3===0||wsk3===6;
+    }
+    return false;
   }
   return false; // alle Linien oben explizit behandelt
 }

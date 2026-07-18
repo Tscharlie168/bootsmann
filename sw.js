@@ -1,4 +1,17 @@
-/* Bootsmann – Service Worker (v95) – Stand: 17. Juli 2026
+/* Bootsmann – Service Worker (v96) – Stand: 18. Juli 2026
+   Neu gegenüber v95:
+   - Fahrplandaten-Korrekturen nach vollständigem Abgleich mit dem
+     VSU-Fahrplan 2026 (alle 16 PDF-Seiten gegen fahrplan-daten.js geprüft):
+     Kurs 157/158 (Konstanz↔Bregenz-Schnellkurse) laufen jetzt korrekt auch
+     in der Hauptsaison (Sa/So+Feiertag bzw. Do–So), nicht mehr nur im
+     Herbst; Kurs 157 fehlender Mainau-Halt ergänzt; Kurs 152 überzähliger
+     Meersburg-Halt entfernt; Kurs 402 (Hauptsaison) fälschlicher
+     Mainau-Halt entfernt; Kurs 7220/7222 (Romanshorn-Arbon-Langenargen)
+     fahren jetzt bis Rorschach statt nur Langenargen; Kurs 301
+     (Lindau→Rorschach) komplett neu ergänzt, fehlte bisher ganz; Kurse
+     10/20/30/50 (Rorschach↔Rheineck) laufen jetzt bis 4.10. statt nur
+     13.9.; Wochentags-Erweiterung (14.9.–2.10.) für die späten
+     Rorschach-Lindau-Kurse (306/313) korrigiert, fehlte bisher.
    Neu gegenüber v94:
    - Kachel-Untertitel "Obersee & Bregenz" und "Überlinger See / Untersee /
      Schweiz" jetzt beide "Ausflugsschiffe (Weiße Flotte)". Untertitel der
@@ -589,7 +602,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v95';
+const CACHE = 'bootsmann-v96';
 const SHELL = [
   './',
   './index.html',
