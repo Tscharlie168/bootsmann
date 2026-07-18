@@ -95,7 +95,7 @@ var I18N={
     map_lbl_schweiz_l1:"Schweizer",
     map_lbl_schweiz_l2:"Ufer",
     tile_obersee_sub:"Ausflugsschiffe (Weiße Flotte)",
-    tile_bsb_sub:"Überlinger See / Untersee / Schweiz",
+    tile_bsb_sub:"Überlingen / Untersee / Schweiz",
     tile_west_sub:"Ausflugsschiffe (Weiße Flotte)",
     tile_faehre:"Bodensee Autofähre",
     tile_faehre_sub_html:"Konstanz <span class=\"arrow\">↔</span> Meersburg",
