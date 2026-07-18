@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v102) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v103) – Stand: 18. Juli 2026
+   Neu gegenüber v102:
+   - Untertitel der ersten beiden Kacheln auf der Hauptseite von
+     "Ausflugsschiffe (Weiße Flotte)" zu "Linienschiffe (Weiße Flotte)"
+     geändert.
    Neu gegenüber v101:
    - Kachel-Titel der Fähre auf der Hauptseite von "Konstanz ↔ Meersburg"
      zu "Meersburg ↔ Konstanz" getauscht.
@@ -633,7 +637,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v102';
+const CACHE = 'bootsmann-v103';
 const SHELL = [
   './',
   './index.html',
