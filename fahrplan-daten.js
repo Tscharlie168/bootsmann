@@ -245,8 +245,10 @@ var OBERSEE_UEB_ZWEIG={401:1,411:1,"4001e":1,403:1,"4003e":1,413:1,"4005e":1,"40
   402:1,412:1,"4002e":1,"4004e":1,404:1,"4006e":1,414:1,406:1,416:1};
 function courseValidOn(c,dObj,dStr){
   if(c.line==="untersee"){
-    if(dStr>="2026-05-14"&&dStr<="2026-06-26") return true;
-    if(dStr>="2026-05-14"&&dStr<="2026-09-13"){var w=dObj.getDay();return (w===0||w>=3);}
+    // Hauptsaison 14.5.-13.9. taeglich, Quelle: URh-Plakatfahrplan 2026
+    // ("01.05.-26.06. taeglich" + "27.06.-13.09. taeglich" - keine Mo/Di-
+    // Einschraenkung, wie zuvor faelschlich angenommen).
+    if(dStr>="2026-05-14"&&dStr<="2026-09-13") return true;
     // Nebensaison-Erweiterung fuer 528/536/550/558/525/533/543/551 (S. 13):
     if(UNTERSEE_558_533[c.no]){
       if((dStr>="2026-04-03"&&dStr<="2026-06-26")||(dStr>="2026-09-14"&&dStr<="2026-10-04"&&dStr!=="2026-10-03"))
