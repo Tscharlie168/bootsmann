@@ -249,17 +249,20 @@ function courseValidOn(c,dObj,dStr){
     // ("01.05.-26.06. taeglich" + "27.06.-13.09. taeglich" - keine Mo/Di-
     // Einschraenkung, wie zuvor faelschlich angenommen).
     if(dStr>="2026-05-14"&&dStr<="2026-09-13") return true;
-    // Nebensaison-Erweiterung fuer 528/536/550/558/525/533/543/551 (S. 13):
+    // Nebensaison-Erweiterung fuer 528/536/550/558/525/533/543/551, Quelle:
+    // VSU-Fahrplan 2026 S.13 + URh-Plakatfahrplan 2026 (praeziser: Herbst-
+    // Hauptfenster endet 30.9., nicht 4.10.; danach 1.10.-18.10. nur noch
+    // 533/536, taeglich 1x/Tag; "nicht am 3.10." aus VSU-Quelle uebernommen).
     if(UNTERSEE_558_533[c.no]){
-      if((dStr>="2026-04-03"&&dStr<="2026-06-26")||(dStr>="2026-09-14"&&dStr<="2026-10-04"&&dStr!=="2026-10-03"))
+      if((dStr>="2026-04-03"&&dStr<="2026-06-26")||(dStr>="2026-09-14"&&dStr<="2026-09-30"&&dStr!=="2026-10-03"))
         return nebenIstSoFeiertag(dObj,dStr);
-      if(c.no===533&&dStr>="2026-10-05"&&dStr<="2026-10-18") return true;
+      if(c.no===533&&dStr>="2026-10-01"&&dStr<="2026-10-18"&&dStr!=="2026-10-03") return true;
       return false;
     }
     if(dStr>="2026-04-03"&&dStr<="2026-04-30") return nebenIstDoSoFeiertag(dObj,dStr);
     if(dStr>="2026-05-01"&&dStr<="2026-05-13") return true;
-    if(dStr>="2026-09-14"&&dStr<="2026-10-04") return true;
-    if(c.no===536&&dStr>="2026-10-05"&&dStr<="2026-10-18") return true;
+    if(dStr>="2026-09-14"&&dStr<="2026-09-30") return true;
+    if(c.no===536&&dStr>="2026-10-01"&&dStr<="2026-10-18"&&dStr!=="2026-10-03") return true;
     return false;
   }
   if(c.line==="radolfzell"){
