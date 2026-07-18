@@ -1,4 +1,14 @@
-/* Bootsmann – Service Worker (v104) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v105) – Stand: 18. Juli 2026
+   Neu gegenüber v104:
+   - Vollständiger EN/FR/NL-Übersetzungsabgleich in i18n.js: 35 Schlüssel
+     ergänzt, die bislang nur auf Deutsch existierten (Orientierungs-
+     Skizze, Kachel-Texte, Hinweise-/Bodenseekarte-Seite, einige
+     Rückfahrt-Hinweise), sowie veraltete Übersetzungen korrigiert
+     (u.a. "Wohin möchten Sie fahren?", "Weiße Flotte"-Branding auf der
+     BSB-Seite, Kachel-Titel "Obersee & Bregenz" statt generischem
+     "Connection"/"Liaison"/"Verbinding", unübersetzter NL-Rest
+     "Überlinger See"). Tonalität: durchgängig formell/neutral,
+     britisches Englisch, Standard-Französisch, Standard-Niederländisch.
    Neu gegenüber v103:
    - Doppelpfeil zwischen den Ortsnamen bei Fähre/Katamaran-Kachel von
      Textzeichen "↔" (hing je nach Schrift-Fallback zu tief) auf ein
@@ -641,7 +651,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v104';
+const CACHE = 'bootsmann-v105';
 const SHELL = [
   './',
   './index.html',
