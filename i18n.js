@@ -205,8 +205,8 @@ var I18N={
     ruf_vorbei_html:"Die letzte Rückfahrt heute ab <b>{to}</b> ({time} Uhr) ist schon vorbei.",
     ruf_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
     ruf_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
-    ruf_unmoeglich_heute_html:"Mit den angezeigten Verbindungen ist heute keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die Rückwärtssuche auf der Startseite, um alle Rückfahrt-Optionen auf einen Blick zu sehen.",
-    ruf_unmoeglich_am_html:"Mit den angezeigten Verbindungen ist am {date} keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die Rückwärtssuche auf der Startseite, um alle Rückfahrt-Optionen auf einen Blick zu sehen.",
+    ruf_unmoeglich_heute_html:"Mit den angezeigten Verbindungen ist heute keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die \"Verbindungen für kleine Häfen\" auf der Startseite, um alle Rückfahrtoptionen auf einen Blick zu sehen.",
+    ruf_unmoeglich_am_html:"Mit den angezeigten Verbindungen ist am {date} keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die \"Verbindungen für kleine Häfen\" auf der Startseite, um alle Rückfahrtoptionen auf einen Blick zu sehen.",
     ruf2_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b>",
     ruf2_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b>",
 
@@ -441,8 +441,8 @@ var I18N={
     bkrt_lbl_untersee:"Lower Lake",
     bkrt_lbl_schweiz:"Swiss Shore",
     pl_empty_sbs_switch_html:"Click <strong>ÜBERLINGER SEE / UNTERSEE / SCHWEIZ</strong> above to see all connections there.",
-    ruf_unmoeglich_heute_html:"With the connections shown, no same-day return is possible today: the last return from <b>{to}</b> already departs at {time} — before your arrival. Use the reverse search on the home page to see all return options at a glance.",
-    ruf_unmoeglich_am_html:"With the connections shown, no same-day return is possible on {date}: the last return from <b>{to}</b> already departs at {time} — before your arrival. Use the reverse search on the home page to see all return options at a glance.",
+    ruf_unmoeglich_heute_html:"With the connections shown, no same-day return is possible today: the last return from <b>{to}</b> already departs at {time} — before your arrival. Use \"Connections for Small Harbours\" on the home page to see all return options at a glance.",
+    ruf_unmoeglich_am_html:"With the connections shown, no same-day return is possible on {date}: the last return from <b>{to}</b> already departs at {time} — before your arrival. Use \"Connections for Small Harbours\" on the home page to see all return options at a glance.",
     ruf2_info_heute_html:"The last return today from <b>{to}</b>: <b>{time}</b>",
     ruf2_info_am_html:"The last return on {date} from <b>{to}</b>: <b>{time}</b>",
 
@@ -625,8 +625,8 @@ var I18N={
     bkrt_lbl_untersee:"Lac inférieur",
     bkrt_lbl_schweiz:"Rive suisse",
     pl_empty_sbs_switch_html:"Cliquez en haut sur <strong>ÜBERLINGER SEE / UNTERSEE / SCHWEIZ</strong> pour voir toutes les liaisons vers cette zone.",
-    ruf_unmoeglich_heute_html:"Avec les liaisons affichées, aucun retour le jour même n'est possible aujourd'hui : le dernier retour depuis <b>{to}</b> part déjà à {time} — avant votre arrivée. Utilisez la recherche inversée sur la page d'accueil pour voir toutes les options de retour en un coup d'œil.",
-    ruf_unmoeglich_am_html:"Avec les liaisons affichées, aucun retour le jour même n'est possible le {date} : le dernier retour depuis <b>{to}</b> part déjà à {time} — avant votre arrivée. Utilisez la recherche inversée sur la page d'accueil pour voir toutes les options de retour en un coup d'œil.",
+    ruf_unmoeglich_heute_html:"Avec les liaisons affichées, aucun retour le jour même n'est possible aujourd'hui : le dernier retour depuis <b>{to}</b> part déjà à {time} — avant votre arrivée. Utilisez « Liaisons pour les petits ports » sur la page d'accueil pour voir toutes les options de retour en un coup d'œil.",
+    ruf_unmoeglich_am_html:"Avec les liaisons affichées, aucun retour le jour même n'est possible le {date} : le dernier retour depuis <b>{to}</b> part déjà à {time} — avant votre arrivée. Utilisez « Liaisons pour les petits ports » sur la page d'accueil pour voir toutes les options de retour en un coup d'œil.",
     ruf2_info_heute_html:"Dernier retour aujourd'hui depuis <b>{to}</b> : <b>{time}</b>",
     ruf2_info_am_html:"Dernier retour le {date} depuis <b>{to}</b> : <b>{time}</b>",
 
@@ -809,8 +809,8 @@ var I18N={
     bkrt_lbl_untersee:"Ondermeer",
     bkrt_lbl_schweiz:"Zwitserse oever",
     pl_empty_sbs_switch_html:"Klik hierboven op <strong>ÜBERLINGER SEE / UNTERSEE / SCHWEIZ</strong> om alle verbindingen daarheen te zien.",
-    ruf_unmoeglich_heute_html:"Met de getoonde verbindingen is vandaag geen terugreis op dezelfde dag meer mogelijk: de laatste terugreis vanaf <b>{to}</b> vertrekt al om {time} — vóór uw aankomst. Gebruik de omgekeerde zoekopdracht op de startpagina om alle terugreisopties in één oogopslag te zien.",
-    ruf_unmoeglich_am_html:"Met de getoonde verbindingen is op {date} geen terugreis op dezelfde dag meer mogelijk: de laatste terugreis vanaf <b>{to}</b> vertrekt al om {time} — vóór uw aankomst. Gebruik de omgekeerde zoekopdracht op de startpagina om alle terugreisopties in één oogopslag te zien.",
+    ruf_unmoeglich_heute_html:"Met de getoonde verbindingen is vandaag geen terugreis op dezelfde dag meer mogelijk: de laatste terugreis vanaf <b>{to}</b> vertrekt al om {time} — vóór uw aankomst. Gebruik \"Verbindingen voor kleine havens\" op de startpagina om alle terugreisopties in één oogopslag te zien.",
+    ruf_unmoeglich_am_html:"Met de getoonde verbindingen is op {date} geen terugreis op dezelfde dag meer mogelijk: de laatste terugreis vanaf <b>{to}</b> vertrekt al om {time} — vóór uw aankomst. Gebruik \"Verbindingen voor kleine havens\" op de startpagina om alle terugreisopties in één oogopslag te zien.",
     ruf2_info_heute_html:"Laatste terugreis vandaag vanaf <b>{to}</b>: <b>{time}</b>",
     ruf2_info_am_html:"Laatste terugreis op {date} vanaf <b>{to}</b>: <b>{time}</b>",
 
