@@ -219,7 +219,7 @@ var I18N={
 
     szw_ziel_waehlen:"Zielhafen wählen",
     szw_hilfe_h:"Finden statt suchen!",
-    szw_hilfe:"Da diese Zielhäfen seltener angefahren werden, zeigen wir alle Abfahrtshäfen, die Fahrten dorthin anbieten.",
+    szw_hilfe:"Diese Häfen werden seltener angefahren. Deshalb zeigen wir alle Abfahrtshäfen, von denen aus diese Häfen angesteuert werden.",
     szw_hilfe2:"Wählen Sie zuerst den Zielhafen. Anschließend sehen Sie alle Verbindungen, die dorthin angeboten werden.",
     szw_hinfahrt_titel:"Hinfahrt — nach ",
     szw_tag_hinfahrt:"Tag der Hinfahrt",

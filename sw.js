@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v123) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v124) – Stand: 19. Juli 2026
+   Neu gegenüber v123:
+   - Erster Absatz der "Finden statt suchen!"-Erklärungsbox (DE)
+     umformuliert: "Diese Häfen werden seltener angefahren. Deshalb
+     zeigen wir alle Abfahrtshäfen, von denen aus diese Häfen
+     angesteuert werden."
    Neu gegenüber v122:
    - Startseite: Unterzeile der "Kleine Häfen"-Kachel (DE) von "Ziel
      wählen, alle Verbindungen sehen" zu "Ziel wählen und Verbindungen
@@ -800,7 +805,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v123';
+const CACHE = 'bootsmann-v124';
 const SHELL = [
   './',
   './index.html',
