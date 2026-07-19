@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v116) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v117) – Stand: 18. Juli 2026
+   Neu gegenüber v116:
+   - "Ihnen" aus dem Erklärtext der "Verbindungen für kleine Häfen"-
+     Hinweisbox entfernt ("zeigen wir Ihnen alle..." → "zeigen wir
+     alle..."). EN/FR/NL entsprechend angepasst (Personalpronomen
+     jeweils entfernt).
    Neu gegenüber v115:
    - SBS-Fahrplandaten gegen offizielles SBS-Plakat "Fahrplan 2026"
      abgeglichen (neue Quelle, ergänzt VSU-Fahrplan): 3 Korrekturen.
@@ -738,7 +743,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v116';
+const CACHE = 'bootsmann-v117';
 const SHELL = [
   './',
   './index.html',
