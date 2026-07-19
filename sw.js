@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v124) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v125) – Stand: 19. Juli 2026
+   Neu gegenüber v124:
+   - Startseite: Hintergrundfarbe der "Kleine Häfen"-Kachel dezenter
+     (#F9F1E2 statt #F5E9D3, Rand #EFE2C6 statt #E6D2A8). Icons und
+     Textgrößen unverändert.
    Neu gegenüber v123:
    - Erster Absatz der "Finden statt suchen!"-Erklärungsbox (DE)
      umformuliert: "Diese Häfen werden seltener angefahren. Deshalb
@@ -805,7 +809,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v124';
+const CACHE = 'bootsmann-v125';
 const SHELL = [
   './',
   './index.html',
