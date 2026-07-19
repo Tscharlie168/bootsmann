@@ -105,7 +105,7 @@ var COURSES = [
   {"no":7040,"svc":"restaurant","line":"sbs","stops":[[28,"09:30","09:30"],[32,"09:55","09:55"],[33,"10:15","10:15"],[34,"10:35","10:35"],[12,"10:50","10:50"]]},
   {"no":7011,"svc":"restaurant","line":"sbs","stops":[[12,"10:55","10:55"],[1,"11:25","11:30"],[2,"11:50","11:50"]]},
   {"no":7044,"svc":"restaurant","line":"sbs","stops":[[28,"13:55","13:55"],[32,"14:20","14:20"],[33,"14:40","14:40"],[34,"15:00","15:00"],[12,"15:15","15:15"]]},
-  {"no":7021,"svc":"restaurant","line":"sbs","stops":[[12,"15:20","15:20"],[1,"15:50","15:50"],[2,"16:15","16:15"]]},
+  {"no":7021,"svc":"restaurant","line":"sbs","stops":[[12,"15:20","15:20"],[1,"15:50","15:55"],[2,"16:15","16:15"]]},
   {"no":7012,"svc":"restaurant","line":"sbs","stops":[[2,"11:55","11:55"],[12,"12:25","12:25"]]},
   {"no":7041,"svc":"restaurant","line":"sbs","stops":[[12,"12:30","12:30"],[34,"12:45","12:45"],[33,"13:05","13:05"],[32,"13:25","13:25"],[28,"13:50","13:50"]]},
   {"no":7022,"svc":"restaurant","line":"sbs","stops":[[2,"16:20","16:20"],[12,"16:50","16:50"]]},
@@ -238,7 +238,7 @@ function exception(no,fromIdx,toIdx,date){
 var UNTERSEE_558_533={558:1,533:1};
 var SBS_MEERSBURG_NR={7040:1,7011:1,7044:1,7021:1,7012:1,7041:1,7022:1,7045:1};
 var SBS_RORSCHACH_LINDAU_NR={301:1,302:1,72:1,304:1,312:1,306:1,303:1,73:1,305:1,313:1,7042:1,7043:1};
-var SBS_RHEINECK_NR={10:1,20:1,30:1,50:1}; // Rorschach<->Rheineck, S.10: laeuft bis 4.10. statt nur 13.9.
+var SBS_RHEINECK_NR={10:1,20:1,30:1,40:1,50:1,60:1}; // Rorschach<->Rheineck, S.10: laeuft bis 4.10. statt nur 13.9.
 // Konstanz-Überlingen-Kurse: eigene Nebensaison-Zeiten unter "ueberlingen-neben",
 // deshalb hier von der obersee-Nebensaison-Erweiterung ausgenommen.
 var OBERSEE_UEB_ZWEIG={401:1,411:1,"4001e":1,403:1,"4003e":1,413:1,"4005e":1,"4007e":1,405:1,415:1,
@@ -290,7 +290,10 @@ function courseValidOn(c,dObj,dStr){
     // Nebensaison-Erweiterung (S. 8): dieselben Kursnummern, nur an
     // weniger Tagen in den Randzeiten
     if(SBS_MEERSBURG_NR[c.no]){
-      if((dStr>="2026-04-03"&&dStr<="2026-05-10")||(dStr>="2026-10-01"&&dStr<="2026-10-18"))
+      // SBS-Plakat 2026: Hauptsaison für Dreiländereck UND Insel Mainau
+      // läuft täglich bis 4.10., nicht nur 13.9. (vorher Lücke 14.9.-30.9.).
+      if(dStr>="2026-09-14"&&dStr<="2026-10-04") return true;
+      if((dStr>="2026-04-03"&&dStr<="2026-05-10")||(dStr>="2026-10-05"&&dStr<="2026-10-18"))
         return nebenIstWeFeiertag(dObj,dStr);
       return false;
     }
