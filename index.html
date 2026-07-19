@@ -15,7 +15,11 @@
 <script src="fahrplan-daten.js"></script>
 <script src="katamaran-daten.js"></script>
 <style>
-:root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;}
+:root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;
+  --reg-obersee-bg:#E4EEF6;--reg-obersee-accent:#2E7EB8;--reg-obersee-label:#1B496B;
+  --reg-ueberlingen-bg:#E4F0F0;--reg-ueberlingen-accent:#328F8C;--reg-ueberlingen-label:#1D5351;
+  --reg-untersee-bg:#EEF1E6;--reg-untersee-accent:#799442;--reg-untersee-label:#465626;
+  --reg-schweiz-bg:#F8EDEA;--reg-schweiz-accent:#C77560;--reg-schweiz-label:#734438;}
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;}
 .app{max-width:560px;margin:0 auto;min-height:100vh;background:var(--paper);padding-bottom:26px;}
@@ -63,11 +67,11 @@ a{color:inherit;}
 
 .lg-map-orient{margin:16px;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 1px 3px rgba(16,58,90,.06);}
 .lg-map-orient .lbl{margin:14px 15px 8px;}
-.lg-map-orient svg{display:block;width:100%;height:auto;background:#A9D4E8;}
+.lg-map-orient svg{display:block;width:100%;height:auto;background:var(--reg-obersee-bg);}
 .lg-map-see{stroke-width:1.1;stroke-linejoin:round;}
-.lg-map-see--obersee{fill:#A9D4E8;stroke:#7EB6D9;}
-.lg-map-see--ueberlingen{fill:#5FBFCE;stroke:#379AAA;}
-.lg-map-see--untersee{fill:#9BDCAE;stroke:#63BB80;}
+.lg-map-see--obersee{fill:var(--reg-obersee-bg);stroke:var(--reg-obersee-accent);}
+.lg-map-see--ueberlingen{fill:var(--reg-ueberlingen-bg);stroke:var(--reg-ueberlingen-accent);}
+.lg-map-see--untersee{fill:var(--reg-untersee-bg);stroke:var(--reg-untersee-accent);}
 .lg-map-kontur{fill:none;stroke:var(--navy);stroke-width:1.3;stroke-linejoin:round;opacity:.55;}
 .lg-map-grenze{fill:none;stroke:var(--navy);stroke-width:1.1;stroke-dasharray:3,2.4;opacity:.6;}
 .lg-map-orient-label{font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;fill:var(--navy);paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round;}

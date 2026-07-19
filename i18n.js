@@ -204,6 +204,7 @@ var I18N={
     ruf_keine_am_html:"Am {date} keine Rückfahrt von <b>{to}</b> nach <b>{from}</b> im Fahrplan.",
     ruf_vorbei_html:"Die letzte Rückfahrt heute ab <b>{to}</b> ({time} Uhr) ist schon vorbei.",
     ruf_info_heute_html:"Die letzte Rückfahrt heute ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
+    ruf_knapp_html:"Die letzte Rückfahrt heute ab <b>{to}</b> ist bald dran: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr — nicht mehr viel Zeit vor Ort.",
     ruf_info_am_html:"Die letzte Rückfahrt am {date} ab <b>{to}</b>: <b>{time} Uhr</b> · Ankunft in {from} um {arr} Uhr",
     ruf_unmoeglich_heute_html:"Mit den angezeigten Verbindungen ist heute keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die \"Verbindungen für kleine Häfen\" auf der Startseite, um alle Rückfahrtoptionen auf einen Blick zu sehen.",
     ruf_unmoeglich_am_html:"Mit den angezeigten Verbindungen ist am {date} keine Rückfahrt mehr am selben Tag möglich: Die letzte Rückfahrt ab <b>{to}</b> fährt schon um {time} Uhr ab — vor Ihrer Ankunft. Nutzen Sie die \"Verbindungen für kleine Häfen\" auf der Startseite, um alle Rückfahrtoptionen auf einen Blick zu sehen.",
@@ -356,6 +357,7 @@ var I18N={
     ruf_keine_am_html:"No return on {date} from <b>{to}</b> to <b>{from}</b> in the timetable.",
     ruf_vorbei_html:"The last return today from <b>{to}</b> ({time}) has already gone.",
     ruf_info_heute_html:"The last return today from <b>{to}</b>: <b>{time}</b> · arrival in {from} at {arr}",
+    ruf_knapp_html:"The last return today from <b>{to}</b> is coming up soon: <b>{time}</b> · arrival in {from} at {arr} — not much time left there.",
     ruf_info_am_html:"The last return on {date} from <b>{to}</b>: <b>{time}</b> · arrival in {from} at {arr}",
 
     pk_schliessen_aria:"Close",
@@ -540,6 +542,7 @@ var I18N={
     ruf_keine_am_html:"Le {date}, aucun retour de <b>{to}</b> vers <b>{from}</b> dans l'horaire.",
     ruf_vorbei_html:"Le dernier retour d'aujourd'hui depuis <b>{to}</b> ({time}) est déjà passé.",
     ruf_info_heute_html:"Dernier retour aujourd'hui depuis <b>{to}</b> : <b>{time}</b> · arrivée à {from} à {arr}",
+    ruf_knapp_html:"Le dernier retour d'aujourd'hui depuis <b>{to}</b> approche : <b>{time}</b> · arrivée à {from} à {arr} — plus beaucoup de temps sur place.",
     ruf_info_am_html:"Dernier retour le {date} depuis <b>{to}</b> : <b>{time}</b> · arrivée à {from} à {arr}",
 
     pk_schliessen_aria:"Fermer",
@@ -724,6 +727,7 @@ var I18N={
     ruf_keine_am_html:"Op {date} geen terugreis van <b>{to}</b> naar <b>{from}</b> in de dienstregeling.",
     ruf_vorbei_html:"De laatste terugreis van vandaag vanaf <b>{to}</b> ({time}) is al voorbij.",
     ruf_info_heute_html:"Laatste terugreis vandaag vanaf <b>{to}</b>: <b>{time}</b> · aankomst in {from} om {arr}",
+    ruf_knapp_html:"De laatste terugreis vandaag vanaf <b>{to}</b> is bijna: <b>{time}</b> · aankomst in {from} om {arr} — niet veel tijd meer ter plaatse.",
     ruf_info_am_html:"Laatste terugreis op {date} vanaf <b>{to}</b>: <b>{time}</b> · aankomst in {from} om {arr}",
 
     pk_schliessen_aria:"Sluiten",
