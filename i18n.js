@@ -96,7 +96,7 @@ var I18N={
     map_lbl_schweiz_l2:"Ufer",
     tile_obersee_sub:"inkl. Umsteigen und Rückfahrt",
     tile_bsb_sub:"Überlinger / Untersee / Schweiz",
-    tile_west_sub:"Ziel wählen, alle Verbindungen sehen",
+    tile_west_sub:"Ziel wählen und Verbindungen sehen",
     tile_faehre:"Bodensee Autofähre",
     tile_faehre_sub_html:"Meersburg <span class=\"arrow\"><svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 8 3 12l4 4\"/><path d=\"M3 12h18\"/><path d=\"M17 8l4 4-4 4\"/></svg></span> Konstanz",
     tile_kat_home:"Schnellschiff-Katamaran",
