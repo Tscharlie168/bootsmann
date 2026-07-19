@@ -1,4 +1,9 @@
-/* Bootsmann – Service Worker (v117) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v118) – Stand: 19. Juli 2026
+   Neu gegenüber v117:
+   - "Verbindungen für kleine Häfen": Zielhafen-Chip lässt sich jetzt
+     ein zweites Mal anklicken, um die Auswahl wieder aufzuheben
+     (Toggle). Vorher blieb der Zielhafen dauerhaft markiert und man
+     kam nicht mehr in den Ausgangszustand zurück.
    Neu gegenüber v116:
    - "Ihnen" aus dem Erklärtext der "Verbindungen für kleine Häfen"-
      Hinweisbox entfernt ("zeigen wir Ihnen alle..." → "zeigen wir
@@ -743,7 +748,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v117';
+const CACHE = 'bootsmann-v118';
 const SHELL = [
   './',
   './index.html',

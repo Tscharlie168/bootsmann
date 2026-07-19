@@ -1090,7 +1090,9 @@ function bind(){
   // Schweiz-Reiter: Ziel-Chips und Datum
   document.querySelectorAll("[data-sdest]").forEach(function(b){
     b.addEventListener("click",function(){
-      state.schweizDest=+this.getAttribute("data-sdest");render();
+      var idx=+this.getAttribute("data-sdest");
+      state.schweizDest=(state.schweizDest===idx)?null:idx;
+      render();
     });
   });
   var szwDate=document.getElementById("lg-szwdate");
