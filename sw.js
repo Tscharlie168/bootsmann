@@ -1,4 +1,8 @@
-/* Bootsmann – Service Worker (v122) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v123) – Stand: 19. Juli 2026
+   Neu gegenüber v122:
+   - Startseite: Unterzeile der "Kleine Häfen"-Kachel (DE) von "Ziel
+     wählen, alle Verbindungen sehen" zu "Ziel wählen und Verbindungen
+     sehen" geändert.
    Neu gegenüber v121:
    - Startseite (nur index.html): Kachel-Farben/Textfarben/Chevrons auf
      die exakten Hex-Werte der finalen Grafik-Spec abgeglichen (u.a.
@@ -796,7 +800,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v122';
+const CACHE = 'bootsmann-v123';
 const SHELL = [
   './',
   './index.html',
