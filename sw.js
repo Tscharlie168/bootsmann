@@ -1,4 +1,17 @@
-/* Bootsmann – Service Worker (v120) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v121) – Stand: 19. Juli 2026
+   Neu gegenüber v120:
+   - Startseite: neue Kachel-Hierarchie (nur index.html, keine andere
+     Seite betroffen). Hero-Kachel "Alle Verbindungen" in gedämpftem
+     Stahlblau (#3D7A99, weiße Schrift/Icons). Pendelverkehr-Kacheln
+     (Fähre/Katamaran) in hellerem Blau, "Kleine Häfen"-Kachel im
+     bestehenden Beige-Ton (wiederverwendet von der Erklärbox auf der
+     Zielhafen-Seite). "Informationen"-Sektion aufgeteilt: "Zum
+     nächstgelegenen Hafen" als hervorgehobene weiße Zeile mit kleinem
+     grünen Live-Punkt, "Live-Positionskarte"/"Hinweise" als kompakte,
+     kachellose Liste darunter. Kacheln 2-4 bekommen unterscheidbare
+     Icons (Auto/Blitz/Anker) statt der bisherigen teils doppelten
+     Symbole (Kachel 4 war zuvor 1:1-Kopie des Schiff-Icons von
+     Kachel 1).
    Neu gegenüber v119:
    - "Finden statt suchen!"-Erklärungsbox auf der "Verbindungen für
      kleine Häfen"-Seite bekommt ein dezentes Info-Icon (braunes "i")
@@ -775,7 +788,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v120';
+const CACHE = 'bootsmann-v121';
 const SHELL = [
   './',
   './index.html',
