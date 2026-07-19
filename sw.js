@@ -1,4 +1,16 @@
-/* Bootsmann – Service Worker (v115) – Stand: 18. Juli 2026
+/* Bootsmann – Service Worker (v116) – Stand: 18. Juli 2026
+   Neu gegenüber v115:
+   - SBS-Fahrplandaten gegen offizielles SBS-Plakat "Fahrplan 2026"
+     abgeglichen (neue Quelle, ergänzt VSU-Fahrplan): 3 Korrekturen.
+     1) SBS_RHEINECK_NR um Kurse 40/60 ergänzt (fehlten, liefen sonst
+     fälschlich nur bis 13.9. statt bis 4.10. wie 10/20/30/50).
+     2) SBS_MEERSBURG_NR (Insel Mainau): Nebensaison-Lücke 14.9.-30.9.
+     geschlossen – Hauptsaison läuft laut Plakat täglich bis 4.10.,
+     nicht nur bis 13.9., analog zu den Dreiländereck-Kursen.
+     3) Kurs 7021: Mainau-Aufenthalt korrigiert auf Ankunft 15:50 /
+     Abfahrt 15:55 (statt beides 15:50), analog zum Gegenkurs 7011.
+     Alle anderen SBS-Kurse (Langenargen, Dreiländereck, Hagnau Fr,
+     Hagnau Do+So, Alter Rhein) beim Abgleich als korrekt bestätigt.
    Neu gegenüber v114:
    - Doppeltes gelbes SBS/URh-Hinweisfenster auf der "Verbindungen für
      kleine Häfen"-Seite behoben: erschien bisher sowohl zwischen
@@ -726,7 +738,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v115';
+const CACHE = 'bootsmann-v116';
 const SHELL = [
   './',
   './index.html',
