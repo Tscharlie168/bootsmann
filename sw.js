@@ -1,5 +1,26 @@
-/* Bootsmann – Service Worker (v118) – Stand: 19. Juli 2026
-   Neu gegenüber v117:
+/* Bootsmann – Service Worker (v119) – Stand: 19. Juli 2026
+   Neu gegenüber v118:
+   - Neues Farbkonzept umgesetzt (Regionsfarben + Rückfahrt-Ampel), auf
+     Basis einer Pixel-Analyse der offiziellen VSU/BSB-Fahrplanbroschüre
+     2026 und anschließender Nachschärfung auf klare Unterscheidbarkeit:
+     1) Vier Regionsfarben (Obersee & Bregenz=Blau, Überlinger See=
+     Türkis, Untersee=Oliv/Gelbgrün, Schweizer Ufer=Terrakotta) als
+     zentrale CSS-Variablen in index.html und bsb-fahrplan.html, überall
+     konsistent verwendet (Startseiten-Karte, Live-Karte, Von/Nach-
+     Picker, Schweiz-Tab-Gruppen) statt der bisherigen Inkonsistenz
+     zwischen Startseite (Untersee grün/Überlingen türkis) und
+     Zielhafen-Auswahl (Überlingen grün/Untersee beige/Schweiz lila).
+     2) Rückfahrt-Status ("RÜCKFAHRT HEUTE"-Box) hat jetzt eine eigene,
+     kräftige Ampel-Farbsprache mit Lampen-Symbol: Grün (genug Zeit),
+     Gelb ("Knapp" - unter 45 Min. Aufenthalt vor Ort bei der
+     frühestmöglichen Ankunft, neuer i18n-Key ruf_knapp_html in allen 4
+     Sprachen), Rot (Rückfahrt vorbei/unmöglich). Vorher nutzte "vorbei"
+     dieselbe neutrale Beige-Farbe wie eine normale Infobox. Gleiche
+     Ampel jetzt auch auf autofaehre.html und katamaran.html (2-stufig
+     Grün/Rot).
+     3) Ausstattungs-Badges (Restaurant/Snacks) auf neutrale Grautöne
+     umgestellt, um Kollision mit dem neuen Ampel-Grün zu vermeiden.
+   Neu gegenüber v118:
    - "Verbindungen für kleine Häfen": Zielhafen-Chip lässt sich jetzt
      ein zweites Mal anklicken, um die Auswahl wieder aufzuheben
      (Toggle). Vorher blieb der Zielhafen dauerhaft markiert und man
@@ -748,7 +769,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v118';
+const CACHE = 'bootsmann-v119';
 const SHELL = [
   './',
   './index.html',

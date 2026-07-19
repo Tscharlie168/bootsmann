@@ -9,7 +9,12 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <script src="i18n.js"></script>
 <style>
-:root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--kat:#7B4FA0;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;--gold:#B9842B;}
+:root{--ink:#0A2233;--navy:#103A5A;--blue:#15679E;--azure:#2BA6C9;--red:#C8472F;--kat:#7B4FA0;--sky:#EAF2F8;--paper:#F4F8FB;--line:#D8E5EF;--muted:#5C7488;--gold:#B9842B;
+  --reg-obersee-bg:#E4EEF6;--reg-obersee-accent:#2E7EB8;--reg-obersee-label:#1B496B;
+  --reg-ueberlingen-bg:#E4F0F0;--reg-ueberlingen-accent:#328F8C;--reg-ueberlingen-label:#1D5351;
+  --reg-untersee-bg:#EEF1E6;--reg-untersee-accent:#799442;--reg-untersee-label:#465626;
+  --reg-schweiz-bg:#F8EDEA;--reg-schweiz-accent:#C77560;--reg-schweiz-label:#734438;
+  --ampel-gruen:#2E9E5B;--ampel-gelb:#E0A020;--ampel-rot:#D9453D;}
 *{box-sizing:border-box;}
 body{margin:0;font-family:'Inter',system-ui,-apple-system,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased;}
 .lg-app{max-width:560px;margin:0 auto;min-height:100vh;background:var(--paper);}
@@ -95,8 +100,8 @@ select,input,button{font-family:inherit;}
 .lg-kurs.sm{font-size:12px;background:var(--sky);color:var(--navy);}
 .lg-dur{font-size:12.5px;color:#A9CBDD;font-variant-numeric:tabular-nums;}
 .lg-tag{font-size:11px;font-weight:600;padding:3px 8px;border-radius:6px;letter-spacing:.02em;}
-.lg-tag--rest{background:#7FE0C4;color:#063B2E;}
-.lg-tag--snack{background:#FBE0A6;color:#5C3F08;}
+.lg-tag--rest{background:#DCE2E8;color:#3C4A56;}
+.lg-tag--snack{background:#E7E3DC;color:#544C3C;}
 .lg-warn{margin-top:9px;font-size:13px;color:#FFD9CC;background:rgba(200,71,47,.22);border-radius:7px;padding:6px 10px;}
 .lg-legs{margin-top:11px;padding-top:11px;border-top:1px dashed rgba(255,255,255,.22);display:flex;flex-direction:column;gap:5px;}
 .lg-leg{display:flex;gap:12px;align-items:baseline;font-size:13.5px;}
@@ -130,7 +135,16 @@ select,input,button{font-family:inherit;}
 
 .lg-note{font-size:15px;color:#5A4220;background:#FBF4E6;border:1px solid #EBD9B0;border-radius:12px;padding:13px 15px;}
 .lg-info{font-size:15px;color:var(--navy);background:var(--sky);border:1px solid var(--line);border-radius:12px;padding:13px 15px;}
-.lg-alert{font-size:15px;color:#7A2B1D;background:#FBE9E5;border:1px solid #F0C2B8;border-radius:12px;padding:13px 15px;}
+.lg-alert{font-size:15px;color:#772622;background:#FBECEC;border:1px solid #F2BEBB;border-radius:12px;padding:13px 15px;}
+.lg-ok{font-size:15px;color:#195732;background:#EAF5EF;border:1px solid #B6DDC6;border-radius:12px;padding:13px 15px;}
+.lg-knapp{font-size:15px;color:#7B5812;background:#FCF6E9;border:1px solid #F4DEB1;border-radius:12px;padding:13px 15px;}
+.lg-ampel{display:flex;align-items:center;gap:14px;}
+.lg-ampel-lamp{flex:none;display:flex;flex-direction:column;gap:6px;background:#20242B;border-radius:10px;padding:7px 6px;}
+.lg-ampel-dot{width:16px;height:16px;border-radius:50%;background:#454B54;}
+.lg-ampel-dot--red.is-on{background:var(--ampel-rot);box-shadow:0 0 9px 2px rgba(217,69,61,.8);}
+.lg-ampel-dot--yellow.is-on{background:var(--ampel-gelb);box-shadow:0 0 9px 2px rgba(224,160,32,.8);}
+.lg-ampel-dot--green.is-on{background:var(--ampel-gruen);box-shadow:0 0 9px 2px rgba(46,158,91,.8);}
+.lg-ampel-text{flex:1;}
 
 .lg-card{background:#fff;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-bottom:13px;}
 .lg-card h3{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;color:var(--navy);margin:0 0 7px;}
@@ -157,16 +171,16 @@ select,input,button{font-family:inherit;}
 .lg-xfer{margin:9px 0 4px;padding:7px 11px;background:rgba(98,208,232,.16);border-radius:8px;font-size:13px;color:#CDEAF4;}
 .lg-leg-kurs{display:flex;align-items:center;gap:8px;margin:6px 0 4px;}
 
-.lg-map-wrap{position:relative;background:#A9D4E8;border:1px solid var(--line);border-radius:0;overflow:hidden;margin:0 -16px 10px;touch-action:none;}
+.lg-map-wrap{position:relative;background:var(--reg-obersee-bg);border:1px solid var(--line);border-radius:0;overflow:hidden;margin:0 -16px 10px;touch-action:none;}
 .lg-map-wrap svg{display:block;width:100%;height:56vh;max-height:520px;}
 .lg-map-wrap.is-vollbild{position:fixed;inset:0;z-index:1000;margin:0;border-radius:0;}
 .lg-map-wrap.is-vollbild svg{width:100%;height:100%;max-height:none;}
 .lg-bkarte-img{display:block;width:100%;height:56vh;max-height:520px;object-fit:contain;}
 .lg-map-wrap.is-vollbild .lg-bkarte-img{height:100%;max-height:none;}
 .lg-map-see{stroke-width:1.1;stroke-linejoin:round;}
-.lg-map-see--obersee{fill:#A9D4E8;stroke:#7EB6D9;}
-.lg-map-see--ueberlingen{fill:#5FBFCE;stroke:#379AAA;}
-.lg-map-see--untersee{fill:#9BDCAE;stroke:#63BB80;}
+.lg-map-see--obersee{fill:var(--reg-obersee-bg);stroke:var(--reg-obersee-accent);}
+.lg-map-see--ueberlingen{fill:var(--reg-ueberlingen-bg);stroke:var(--reg-ueberlingen-accent);}
+.lg-map-see--untersee{fill:var(--reg-untersee-bg);stroke:var(--reg-untersee-accent);}
 .lg-map-kontur{fill:none;stroke:var(--navy);stroke-width:1.3;stroke-linejoin:round;opacity:.55;}
 .lg-map-grenze{fill:none;stroke:var(--navy);stroke-width:1.1;stroke-dasharray:3,2.4;opacity:.6;}
 .lg-map-hafen{fill:#6F97AC;}
@@ -330,10 +344,10 @@ var SELECT_GROUPS = [
 ];
 // Farbschema pro Gruppe (Hintergrund/Label) für den Hafen-Auswahldialog, gleiche Reihenfolge wie SELECT_GROUPS
 var SELECT_GROUP_COLORS = [
-  {bg:"#E3F2FA", label:"#0F5C86"},
-  {bg:"#E9F5EC", label:"#1F6B3F"},
-  {bg:"#FBF0E0", label:"#8C5A16"},
-  {bg:"#F3E9F5", label:"#7A3E82"}
+  {bg:"#E4EEF6", label:"#1B496B"},
+  {bg:"#E4F0F0", label:"#1D5351"},
+  {bg:"#EEF1E6", label:"#465626"},
+  {bg:"#F8EDEA", label:"#734438"}
 ];
 function pickerHTML(){
   if(!state.picker) return "";
@@ -407,6 +421,20 @@ function bsbExtLinkHTML(margin){
   return '<a class="lg-ext-link" style="margin:'+margin+'" href="https://www.bsb.de/de" target="_blank" rel="noopener">'+
     '<span>🔗</span><span>'+t("bsb_ext_html")+'</span></a>';
 }
+// Rueckfahrt-Ampel: kleines Drei-Lampen-Symbol (Rot/Gelb/Gruen) links neben dem
+// Text, zusaetzlich zur Hintergrundfarbe der Box.
+function ampelBoxHTML(cls,contentHtml){
+  var isAlert=cls==="lg-alert",isKnapp=cls==="lg-knapp",isOk=cls==="lg-ok";
+  var h='<div class="'+cls+' lg-ampel"><span class="lg-ampel-lamp">';
+  h+='<span class="lg-ampel-dot lg-ampel-dot--red'+(isAlert?" is-on":"")+'"></span>';
+  h+='<span class="lg-ampel-dot lg-ampel-dot--yellow'+(isKnapp?" is-on":"")+'"></span>';
+  h+='<span class="lg-ampel-dot lg-ampel-dot--green'+(isOk?" is-on":"")+'"></span>';
+  h+='</span><span class="lg-ampel-text">'+contentHtml+'</span></div>';
+  return h;
+}
+// Schwelle fuer "Knapp"-Warnstufe: bei der fruehestmoeglichen Ankunft bleiben
+// weniger als 45 Minuten Aufenthalt vor Ort bis zur letzten Rueckfahrt.
+var RUECKFAHRT_KNAPP_MIN=45;
 function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
   var istHeute=date===todayISO();
   var d=new Date(date+"T12:00:00");
@@ -433,11 +461,13 @@ function rueckfahrtCardHTML(fromIdx,toIdx,date,hinRows){
     }
   }
   if(fruehesteAnkunft!==null&&toMin(letzte.dep)<fruehesteAnkunft){
-    h+='<div class="lg-alert">'+tf(istHeute?"ruf_unmoeglich_heute_html":"ruf_unmoeglich_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep)})+'</div>';
+    h+=ampelBoxHTML("lg-alert",tf(istHeute?"ruf_unmoeglich_heute_html":"ruf_unmoeglich_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep)}));
   }else if(istHeute&&toMin(letzte.dep)<nowMin()){
-    h+='<div class="lg-note">'+tf("ruf_vorbei_html",{to:esc(PORTS[toIdx]),time:pad(letzte.dep)})+'</div>';
+    h+=ampelBoxHTML("lg-alert",tf("ruf_vorbei_html",{to:esc(PORTS[toIdx]),time:pad(letzte.dep)}));
+  }else if(fruehesteAnkunft!==null&&(toMin(letzte.dep)-fruehesteAnkunft)<RUECKFAHRT_KNAPP_MIN){
+    h+=ampelBoxHTML("lg-knapp",tf("ruf_knapp_html",{to:esc(PORTS[toIdx]),time:pad(letzte.dep),from:esc(PORTS[fromIdx]),arr:pad(letzte.arr)}));
   }else{
-    h+='<div class="lg-info">'+tf(istHeute?"ruf_info_heute_html":"ruf_info_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep),from:esc(PORTS[fromIdx]),arr:pad(letzte.arr)})+'</div>';
+    h+=ampelBoxHTML("lg-ok",tf(istHeute?"ruf_info_heute_html":"ruf_info_am_html",{date:esc(dateLabel),to:esc(PORTS[toIdx]),time:pad(letzte.dep),from:esc(PORTS[fromIdx]),arr:pad(letzte.arr)}));
   }
   h+='</div>';
   return h;
