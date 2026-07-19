@@ -1,4 +1,10 @@
-/* Bootsmann – Service Worker (v119) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v120) – Stand: 19. Juli 2026
+   Neu gegenüber v119:
+   - "Finden statt suchen!"-Erklärungsbox auf der "Verbindungen für
+     kleine Häfen"-Seite bekommt ein dezentes Info-Icon (braunes "i")
+     links neben dem Text, damit die Box mehr Aufmerksamkeit zieht und
+     sich von den umliegenden Feldern abhebt. Bewusst kein Ampel-Symbol
+     oder Ausrufezeichen, da reiner Erklärtext, keine Warnung.
    Neu gegenüber v118:
    - Neues Farbkonzept umgesetzt (Regionsfarben + Rückfahrt-Ampel), auf
      Basis einer Pixel-Analyse der offiziellen VSU/BSB-Fahrplanbroschüre
@@ -769,7 +775,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v119';
+const CACHE = 'bootsmann-v120';
 const SHELL = [
   './',
   './index.html',
