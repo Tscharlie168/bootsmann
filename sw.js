@@ -1,4 +1,12 @@
-/* Bootsmann – Service Worker (v121) – Stand: 19. Juli 2026
+/* Bootsmann – Service Worker (v122) – Stand: 19. Juli 2026
+   Neu gegenüber v121:
+   - Startseite (nur index.html): Kachel-Farben/Textfarben/Chevrons auf
+     die exakten Hex-Werte der finalen Grafik-Spec abgeglichen (u.a.
+     eigene Chevron-Farben statt Standard-Azurblau bei Kachel 2-5,
+     Icon-Hintergrund Hero-Kachel auf 15% Weiß-Transparenz). Icon-Chip-
+     Hintergrund (farbiges Quadrat) bei Kachel 2-5 entfernt, Icons
+     liegen jetzt direkt farbig auf der Kachel-Fläche; Kachel 1 (Hero)
+     behält ihren Icon-Chip.
    Neu gegenüber v120:
    - Startseite: neue Kachel-Hierarchie (nur index.html, keine andere
      Seite betroffen). Hero-Kachel "Alle Verbindungen" in gedämpftem
@@ -788,7 +796,7 @@
    Wichtig: Die Zahl in CACHE bei jeder Änderung an den SHELL-Dateien um
    eins erhöhen, damit alte gespeicherte Kopien sauber ersetzt werden. */
 
-const CACHE = 'bootsmann-v121';
+const CACHE = 'bootsmann-v122';
 const SHELL = [
   './',
   './index.html',
