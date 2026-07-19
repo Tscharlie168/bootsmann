@@ -218,7 +218,7 @@ var I18N={
 
     szw_ziel_waehlen:"Zielhafen wählen",
     szw_hilfe_h:"Finden statt suchen!",
-    szw_hilfe:"Da diese Zielhäfen seltener angefahren werden, zeigen wir Ihnen alle Abfahrtshäfen, die Fahrten dorthin anbieten.",
+    szw_hilfe:"Da diese Zielhäfen seltener angefahren werden, zeigen wir alle Abfahrtshäfen, die Fahrten dorthin anbieten.",
     szw_hilfe2:"Wählen Sie zuerst den Zielhafen. Anschließend sehen Sie alle Verbindungen, die dorthin angeboten werden.",
     szw_hinfahrt_titel:"Hinfahrt — nach ",
     szw_tag_hinfahrt:"Tag der Hinfahrt",
@@ -366,7 +366,7 @@ var I18N={
 
     szw_ziel_waehlen:"Choose destination harbour",
     szw_hilfe_h:"Find instead of search!",
-    szw_hilfe:"Since these destination harbours are served less often, we show you all departure harbours offering trips there.",
+    szw_hilfe:"Since these destination harbours are served less often, we show all departure harbours offering trips there.",
     szw_hilfe2:"First choose the destination harbour. You'll then see all connections offered there.",
     szw_hinfahrt_titel:"Outward trip — to ",
     szw_tag_hinfahrt:"Day of outward trip",
@@ -550,7 +550,7 @@ var I18N={
 
     szw_ziel_waehlen:"Choisir le port de destination",
     szw_hilfe_h:"Trouver plutôt que chercher !",
-    szw_hilfe:"Comme ces ports de destination sont desservis moins souvent, nous vous montrons tous les ports de départ proposant des trajets vers eux.",
+    szw_hilfe:"Comme ces ports de destination sont desservis moins souvent, nous montrons tous les ports de départ proposant des trajets vers eux.",
     szw_hilfe2:"Choisissez d'abord le port de destination. Vous verrez ensuite toutes les liaisons proposées vers celui-ci.",
     szw_hinfahrt_titel:"Aller — vers ",
     szw_tag_hinfahrt:"Jour de l'aller",
@@ -734,7 +734,7 @@ var I18N={
 
     szw_ziel_waehlen:"Bestemmingshaven kiezen",
     szw_hilfe_h:"Vinden in plaats van zoeken!",
-    szw_hilfe:"Omdat deze bestemmingshavens minder vaak worden aangedaan, tonen wij u alle vertrekhavens die daarheen vaarten aanbieden.",
+    szw_hilfe:"Omdat deze bestemmingshavens minder vaak worden aangedaan, tonen wij alle vertrekhavens die daarheen vaarten aanbieden.",
     szw_hilfe2:"Kies eerst de bestemmingshaven. Daarna ziet u alle verbindingen die daarheen worden aangeboden.",
     szw_hinfahrt_titel:"Heenreis — naar ",
     szw_tag_hinfahrt:"Dag van de heenreis",
